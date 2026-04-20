@@ -1,0 +1,266 @@
+import { useEffect, useRef, useState } from 'react'
+import { useLineupStore } from '../store/useLineupStore'
+import type { Player, Skills } from '../types'
+import { fileToSquareDataUrl, initials } from '../lib/photoUtils'
+
+type Props = {
+  open: boolean
+  onClose: () => void
+}
+
+type SkillColumn = {
+  key: keyof Skills
+  label: string
+  /** Kurzform als Tooltip, falls Spalte eng wird. */
+  title?: string
+}
+
+const fieldSkillColumns: SkillColumn[] = [
+  { key: 'pace',      label: 'Tempo' },
+  { key: 'shooting',  label: 'Schuss' },
+  { key: 'passing',   label: 'Pass' },
+  { key: 'dribbling', label: 'Dribb.', title: 'Dribbling' },
+  { key: 'defending', label: 'Def.',   title: 'Verteidigung' },
+  { key: 'physical',  label: 'Physis' },
+]
+
+const gkSkillColumns: SkillColumn[] = [
+  { key: 'gkReflexes',    label: 'Reflexe' },
+  { key: 'gkHandling',    label: 'Fangen' },
+  { key: 'gkDiving',      label: 'Flug',   title: 'Flugparaden' },
+  { key: 'gkPositioning', label: 'Stell.', title: 'Stellungsspiel' },
+  { key: 'gkKicking',     label: 'Abschl.', title: 'Abschlag / Kicking' },
+  { key: 'pace',          label: 'Tempo' },
+]
+
+function PhotoCell({ player }: { player: Player }) {
+  const setPlayerPhoto = useLineupStore((s) => s.setPlayerPhoto)
+  const inputRef = useRef<HTMLInputElement>(null)
+  const [busy, setBusy] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  const onFile = async (file: File) => {
+    setError(null)
+    setBusy(true)
+    try {
+      const dataUrl = await fileToSquareDataUrl(file, 256, 0.85)
+      setPlayerPhoto(player.id, dataUrl)
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Unbekannter Fehler')
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  return (
+    <div className="flex flex-col items-center gap-1">
+      <button
+        type="button"
+        onClick={() => inputRef.current?.click()}
+        className={[
+          'relative h-12 w-12 overflow-hidden rounded-full ring-2 transition',
+          player.role === 'GK' ? 'ring-amber-400' : 'ring-sky-400',
+          player.photo ? 'bg-slate-800' : player.role === 'GK'
+            ? 'bg-gradient-to-br from-amber-500 to-amber-700'
+            : 'bg-gradient-to-br from-sky-500 to-indigo-700',
+          busy ? 'opacity-50' : 'hover:brightness-110',
+        ].join(' ')}
+        aria-label={`Foto für ${player.name} ändern`}
+        title="Foto hochladen"
+      >
+        {player.photo ? (
+          <img src={player.photo} alt="" className="h-full w-full object-cover" />
+        ) : (
+          <span className="flex h-full w-full items-center justify-center text-sm font-bold text-white">
+            {initials(player.name)}
+          </span>
+        )}
+        <span className="absolute inset-x-0 bottom-0 bg-black/60 py-0.5 text-center text-[9px] font-semibold uppercase text-white">
+          {player.photo ? 'Foto' : '+ Foto'}
+        </span>
+      </button>
+      {player.photo && (
+        <button
+          type="button"
+          onClick={() => setPlayerPhoto(player.id, null)}
+          className="text-[10px] text-slate-400 hover:text-red-400"
+        >
+          entfernen
+        </button>
+      )}
+      {error && <span className="text-[10px] text-red-400">{error}</span>}
+      <input
+        ref={inputRef}
+        type="file"
+        accept="image/*"
+        className="hidden"
+        onChange={(e) => {
+          const f = e.target.files?.[0]
+          if (f) void onFile(f)
+          e.target.value = '' // damit das gleiche File erneut auswählbar ist
+        }}
+      />
+    </div>
+  )
+}
+
+function SkillInput({ player, skillKey }: { player: Player; skillKey: keyof Skills }) {
+  const updatePlayerSkills = useLineupStore((s) => s.updatePlayerSkills)
+  const value = player.skills?.[skillKey]
+  return (
+    <input
+      type="number"
+      inputMode="numeric"
+      min={1}
+      max={99}
+      step={1}
+      placeholder="–"
+      value={value ?? ''}
+      onChange={(e) => {
+        const raw = e.target.value
+        if (raw === '') {
+          updatePlayerSkills(player.id, { [skillKey]: undefined })
+          return
+        }
+        const n = Math.max(1, Math.min(99, parseInt(raw, 10)))
+        if (Number.isFinite(n)) updatePlayerSkills(player.id, { [skillKey]: n })
+      }}
+      className="w-14 rounded-md border border-slate-700 bg-slate-950 px-1 py-1 text-center text-sm text-white placeholder:text-slate-600 focus:border-emerald-500 focus:outline-none"
+      style={{ fontSize: '16px' }}
+      aria-label={String(skillKey)}
+    />
+  )
+}
+
+function SkillTable({
+  title,
+  accent,
+  players,
+  columns,
+}: {
+  title: string
+  accent: string
+  players: Player[]
+  columns: SkillColumn[]
+}) {
+  if (players.length === 0) return null
+  return (
+    <section>
+      <h3 className={`mb-2 text-xs font-semibold uppercase tracking-wider ${accent}`}>{title}</h3>
+      <div className="overflow-x-auto rounded-xl border border-slate-800">
+        <table className="min-w-full border-separate border-spacing-0 text-sm">
+          <thead className="bg-slate-900/80">
+            <tr className="text-[10px] uppercase tracking-wider text-slate-400">
+              <th className="sticky left-0 z-10 bg-slate-900/80 px-3 py-2 text-left">Foto</th>
+              <th className="sticky left-[60px] z-10 bg-slate-900/80 px-2 py-2 text-left">Name</th>
+              {columns.map((c) => (
+                <th
+                  key={String(c.key)}
+                  title={c.title ?? c.label}
+                  className="px-1.5 py-2 text-center font-semibold"
+                >
+                  {c.label}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {players.map((p, idx) => (
+              <tr
+                key={p.id}
+                className={[
+                  'transition',
+                  idx % 2 === 0 ? 'bg-slate-900/40' : 'bg-slate-900/20',
+                ].join(' ')}
+              >
+                <td className="sticky left-0 z-[5] border-t border-slate-800 bg-slate-950/80 px-3 py-2">
+                  <PhotoCell player={p} />
+                </td>
+                <td className="sticky left-[60px] z-[5] border-t border-slate-800 bg-slate-950/80 px-2 py-2 font-medium text-white">
+                  {p.name}
+                </td>
+                {columns.map((c) => (
+                  <td key={String(c.key)} className="border-t border-slate-800 px-1 py-2 text-center">
+                    <SkillInput player={p} skillKey={c.key} />
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  )
+}
+
+export function RosterDialog({ open, onClose }: Props) {
+  const players = useLineupStore((s) => s.players)
+
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [open, onClose])
+
+  if (!open) return null
+
+  const goalkeepers = players.filter((p) => p.role === 'GK')
+  const fieldPlayers = players.filter((p) => p.role === 'FIELD')
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 p-0 backdrop-blur-sm sm:items-center sm:p-6"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Kader verwalten"
+    >
+      <div
+        className="flex max-h-[95vh] w-full max-w-4xl flex-col overflow-hidden rounded-t-2xl border border-slate-800 bg-slate-900 shadow-2xl sm:rounded-2xl"
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          paddingBottom: 'max(env(safe-area-inset-bottom, 0px), 0px)',
+        }}
+      >
+        <div className="flex items-center justify-between border-b border-slate-800 px-5 py-4">
+          <div>
+            <h2 className="text-base font-semibold text-white">Kader verwalten</h2>
+            <p className="text-xs text-slate-400">
+              Fotos hochladen und Skill-Werte (1–99) pro Spieler eintragen. Alles wird lokal gespeichert.
+            </p>
+          </div>
+          <button
+            onClick={onClose}
+            className="-m-2 rounded-lg p-2 text-slate-400 transition hover:bg-slate-800 hover:text-white"
+            aria-label="Schließen"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div className="flex-1 space-y-5 overflow-y-auto px-5 py-4">
+          <SkillTable
+            title="Torhüter"
+            accent="text-amber-400/80"
+            players={goalkeepers}
+            columns={gkSkillColumns}
+          />
+          <SkillTable
+            title="Feldspieler"
+            accent="text-sky-400/80"
+            players={fieldPlayers}
+            columns={fieldSkillColumns}
+          />
+
+          <p className="pt-2 text-[11px] text-slate-500">
+            Tipp: Leere Felder bedeuten „noch nicht bewertet". Die Werte fließen später in die
+            „Beste Aufstellung"-Berechnung ein (Phase 2).
+          </p>
+        </div>
+      </div>
+    </div>
+  )
+}

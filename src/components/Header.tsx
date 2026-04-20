@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import { useLineupStore } from '../store/useLineupStore'
 import { FormationPicker } from './FormationPicker'
+import { RosterDialog } from './RosterDialog'
 import { SavedLineupsDialog } from './SavedLineupsDialog'
 
 export function Header() {
   const reset = useLineupStore((s) => s.reset)
   const savedCount = useLineupStore((s) => s.savedLineups.length)
   const [dialogOpen, setDialogOpen] = useState(false)
+  const [rosterOpen, setRosterOpen] = useState(false)
 
   return (
     <>
@@ -28,6 +30,13 @@ export function Header() {
         </div>
         <div className="flex flex-wrap items-center gap-2 sm:flex-nowrap sm:gap-3">
           <FormationPicker />
+          <button
+            onClick={() => setRosterOpen(true)}
+            className="flex items-center gap-1.5 rounded-lg border border-sky-700 bg-sky-800/40 px-3 py-1.5 text-sm font-medium text-sky-100 shadow-inner transition hover:bg-sky-700/50"
+          >
+            <span aria-hidden>👥</span>
+            <span>Kader</span>
+          </button>
           <button
             onClick={() => setDialogOpen(true)}
             className="flex items-center gap-1.5 rounded-lg border border-emerald-700 bg-emerald-800/40 px-3 py-1.5 text-sm font-medium text-emerald-100 shadow-inner transition hover:bg-emerald-700/50"
@@ -52,6 +61,7 @@ export function Header() {
       </header>
 
       <SavedLineupsDialog open={dialogOpen} onClose={() => setDialogOpen(false)} />
+      <RosterDialog open={rosterOpen} onClose={() => setRosterOpen(false)} />
     </>
   )
 }

@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { formationById, formations } from '../data/formations'
 import { initialPlayers } from '../data/players'
-import type { Player } from '../types'
+import type { Player, Skills } from '../types'
 
 type Assignments = Record<string, string | null> // slotId → playerId | null
 
@@ -43,6 +43,11 @@ type Actions = {
   renameLineup: (id: string, name: string) => void
   /** Löscht eine gespeicherte Aufstellung. Falls sie aktiv war, wird der Aktiv-Status zurückgesetzt. */
   deleteLineup: (id: string) => void
+
+  /** Setzt / entfernt das Spielerfoto (Data-URL oder null). */
+  setPlayerPhoto: (playerId: string, photo: string | null) => void
+  /** Aktualisiert einzelne Skill-Werte; undefined im Patch entfernt den Key. */
+  updatePlayerSkills: (playerId: string, patch: Partial<Skills>) => void
 }
 
 const emptyAssignments = (slotIds: string[]): Assignments =>
@@ -188,16 +193,63 @@ export const useLineupStore = create<State & Actions>()(
           activeLineupId: activeLineupId === id ? null : activeLineupId,
         })
       },
+
+      setPlayerPhoto: (playerId, photo) => {
+        const next = get().players.map((p) =>
+          p.id === playerId ? { ...p, photo: photo ?? undefined } : p,
+        )
+        set({ players: next })
+      },
+
+      updatePlayerSkills: (playerId, patch) => {
+        const next = get().players.map((p) => {
+          if (p.id !== playerId) return p
+          const merged: Skills = { ...(p.skills ?? {}), ...patch }
+          for (const k of Object.keys(merged) as Array<keyof Skills>) {
+            const v = merged[k]
+            if (v === undefined || !Number.isFinite(v)) delete merged[k]
+          }
+          return { ...p, skills: Object.keys(merged).length > 0 ? merged : undefined }
+        })
+        set({ players: next })
+      },
     }),
     {
       name: 'aufstellungsplaner:v1',
-      version: 2,
+      version: 3,
       partialize: (state) => ({
         formationId: state.formationId,
         assignments: state.assignments,
         savedLineups: state.savedLineups,
         activeLineupId: state.activeLineupId,
+        players: state.players,
       }),
+      merge: (persistedStateUnknown, currentState) => {
+        // Alte Persistenzen haben evtl. kein players-Feld. Außerdem sollen neu
+        // im Code hinzugekommene Spieler (z. B. Neuzugänge) erscheinen, ohne
+        // die gespeicherten Fotos/Skills der bestehenden zu verlieren.
+        const persisted = (persistedStateUnknown ?? {}) as Partial<State>
+        const persistedPlayers = Array.isArray(persisted.players) ? persisted.players : []
+        const byId = new Map(persistedPlayers.map((p) => [p.id, p]))
+
+        const mergedPlayers: Player[] = initialPlayers.map((base) => {
+          const saved = byId.get(base.id)
+          if (!saved) return base
+          return {
+            ...base,
+            photo: saved.photo,
+            skills: saved.skills,
+            // Name aus dem Code hat Vorrang (Korrekturen in players.ts sollen greifen),
+            // kann später via renamePlayer-Action eigenständig werden.
+          }
+        })
+
+        return {
+          ...currentState,
+          ...persisted,
+          players: mergedPlayers,
+        }
+      },
     },
   ),
 )

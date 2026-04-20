@@ -1,5 +1,6 @@
 import { useDraggable } from '@dnd-kit/core'
 import type { Player } from '../types'
+import { initials } from '../lib/photoUtils'
 
 type Props = {
   player: Player
@@ -21,10 +22,12 @@ export function PlayerChip({ player, source, positionShort, compact }: Props) {
     : {}
 
   const isGK = player.role === 'GK'
-  const ring = isGK ? 'ring-amber-400/60' : 'ring-sky-400/50'
-  const bg = isGK
+  const ring = isGK ? 'ring-amber-400' : 'ring-sky-400'
+  const fallbackBg = isGK
     ? 'bg-gradient-to-br from-amber-500 to-amber-700'
     : 'bg-gradient-to-br from-sky-500 to-indigo-700'
+  const avatarSize = compact ? 'h-11 w-11 text-xs' : 'h-14 w-14 text-sm'
+  const nameSize = compact ? 'text-[10px]' : 'text-xs'
 
   return (
     <button
@@ -33,21 +36,47 @@ export function PlayerChip({ player, source, positionShort, compact }: Props) {
       {...listeners}
       {...attributes}
       className={[
-        'select-none touch-none flex items-center gap-2 rounded-xl px-3 py-2',
-        'text-white shadow-lg ring-1 transition',
-        bg,
-        ring,
-        isDragging ? 'opacity-60 scale-105 shadow-2xl z-50' : 'hover:brightness-110',
-        compact ? 'text-xs' : 'text-sm',
+        'group flex select-none touch-none flex-col items-center gap-1 text-white transition',
+        isDragging ? 'z-50 scale-105 opacity-70' : 'hover:brightness-110',
       ].join(' ')}
       aria-label={`Spieler ${player.name}`}
     >
-      {positionShort && (
-        <span className="rounded bg-white/20 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider">
-          {positionShort}
-        </span>
-      )}
-      <span className="font-semibold">{player.name}</span>
+      <div className="relative">
+        {positionShort && (
+          <span className="absolute -left-1 -top-1 z-10 rounded-md bg-black/80 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white shadow">
+            {positionShort}
+          </span>
+        )}
+        <div
+          className={[
+            'overflow-hidden rounded-full shadow-lg ring-2',
+            avatarSize,
+            ring,
+            player.photo ? 'bg-slate-800' : fallbackBg,
+          ].join(' ')}
+        >
+          {player.photo ? (
+            <img
+              src={player.photo}
+              alt=""
+              draggable={false}
+              className="h-full w-full object-cover"
+            />
+          ) : (
+            <div className="flex h-full w-full items-center justify-center font-bold">
+              {initials(player.name)}
+            </div>
+          )}
+        </div>
+      </div>
+      <span
+        className={[
+          'max-w-[80px] truncate rounded-md bg-black/60 px-1.5 py-0.5 font-semibold text-white shadow-sm',
+          nameSize,
+        ].join(' ')}
+      >
+        {player.name}
+      </span>
     </button>
   )
 }

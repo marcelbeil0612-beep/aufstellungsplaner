@@ -7,12 +7,12 @@ export type Position =
   | 'LW' | 'RW' | 'ST' | 'CF'
 
 export type Skills = {
-  pace: number
-  shooting: number
-  passing: number
-  dribbling: number
-  defending: number
-  physical: number
+  pace?: number
+  shooting?: number
+  passing?: number
+  dribbling?: number
+  defending?: number
+  physical?: number
   gkReflexes?: number
   gkHandling?: number
   gkDiving?: number
@@ -24,6 +24,8 @@ export type Player = {
   id: string
   name: string
   role: Role
+  /** Optionales Spielerfoto als Data-URL (wird im localStorage abgelegt). */
+  photo?: string
   skills?: Skills
 }
 
