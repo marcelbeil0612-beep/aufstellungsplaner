@@ -1,37 +1,57 @@
+import { useState } from 'react'
 import { useLineupStore } from '../store/useLineupStore'
 import { FormationPicker } from './FormationPicker'
+import { SavedLineupsDialog } from './SavedLineupsDialog'
 
 export function Header() {
   const reset = useLineupStore((s) => s.reset)
+  const savedCount = useLineupStore((s) => s.savedLineups.length)
+  const [dialogOpen, setDialogOpen] = useState(false)
 
   return (
-    <header
-      className="flex flex-col gap-3 border-b border-slate-800 bg-slate-950/80 px-6 py-4 backdrop-blur sm:flex-row sm:items-center sm:justify-between"
-      style={{
-        paddingTop: 'max(env(safe-area-inset-top, 0px), 1rem)',
-        paddingLeft: 'max(env(safe-area-inset-left, 0px), 1.5rem)',
-        paddingRight: 'max(env(safe-area-inset-right, 0px), 1.5rem)',
-      }}
-    >
-      <div>
-        <h1 className="text-xl font-bold text-white sm:text-2xl">
-          Aufstellungsplaner
-        </h1>
-        <p className="text-xs text-slate-400">
-          Spieler per Drag-and-Drop aufs Feld ziehen · Formation wählen · Aufstellung wird lokal gespeichert
-        </p>
-      </div>
-      <div className="flex items-center gap-3">
-        <FormationPicker />
-        <button
-          onClick={() => {
-            if (confirm('Aufstellung wirklich zurücksetzen?')) reset()
-          }}
-          className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-sm text-slate-200 shadow-inner transition hover:bg-slate-800"
-        >
-          Zurücksetzen
-        </button>
-      </div>
-    </header>
+    <>
+      <header
+        className="flex flex-col gap-3 border-b border-slate-800 bg-slate-950/80 px-6 py-4 backdrop-blur sm:flex-row sm:items-center sm:justify-between"
+        style={{
+          paddingTop: 'max(env(safe-area-inset-top, 0px), 1rem)',
+          paddingLeft: 'max(env(safe-area-inset-left, 0px), 1.5rem)',
+          paddingRight: 'max(env(safe-area-inset-right, 0px), 1.5rem)',
+        }}
+      >
+        <div>
+          <h1 className="text-xl font-bold text-white sm:text-2xl">
+            Aufstellungsplaner
+          </h1>
+          <p className="text-xs text-slate-400">
+            Spieler per Drag-and-Drop aufs Feld ziehen · Formation wählen · Aufstellung wird lokal gespeichert
+          </p>
+        </div>
+        <div className="flex flex-wrap items-center gap-2 sm:flex-nowrap sm:gap-3">
+          <FormationPicker />
+          <button
+            onClick={() => setDialogOpen(true)}
+            className="flex items-center gap-1.5 rounded-lg border border-emerald-700 bg-emerald-800/40 px-3 py-1.5 text-sm font-medium text-emerald-100 shadow-inner transition hover:bg-emerald-700/50"
+          >
+            <span aria-hidden>💾</span>
+            <span>Aufstellungen</span>
+            {savedCount > 0 && (
+              <span className="ml-0.5 rounded-full bg-emerald-500/30 px-1.5 text-[11px] font-semibold">
+                {savedCount}
+              </span>
+            )}
+          </button>
+          <button
+            onClick={() => {
+              if (confirm('Aufstellung wirklich zurücksetzen?')) reset()
+            }}
+            className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-sm text-slate-200 shadow-inner transition hover:bg-slate-800"
+          >
+            Zurücksetzen
+          </button>
+        </div>
+      </header>
+
+      <SavedLineupsDialog open={dialogOpen} onClose={() => setDialogOpen(false)} />
+    </>
   )
 }

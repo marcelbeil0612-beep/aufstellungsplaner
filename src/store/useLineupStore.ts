@@ -6,10 +6,22 @@ import type { Player } from '../types'
 
 type Assignments = Record<string, string | null> // slotId → playerId | null
 
+export type SavedLineup = {
+  id: string
+  name: string
+  formationId: string
+  assignments: Assignments
+  createdAt: number
+  updatedAt: number
+}
+
 type State = {
   players: Player[]
   formationId: string
   assignments: Assignments
+  savedLineups: SavedLineup[]
+  /** ID der zuletzt geladenen Aufstellung – dient UI-Hinweisen („Änderungen speichern"). */
+  activeLineupId: string | null
 }
 
 type Actions = {
@@ -20,10 +32,26 @@ type Actions = {
   unassign: (slotId: string) => void
   /** Setzt Aufstellung zurück (alle Slots leer, Formation bleibt). */
   reset: () => void
+
+  /** Legt eine neue gespeicherte Aufstellung aus dem aktuellen Zustand an und macht sie aktiv. */
+  saveAsNewLineup: (name: string) => string
+  /** Überschreibt die gerade aktive gespeicherte Aufstellung mit dem aktuellen Zustand. */
+  overwriteActiveLineup: () => void
+  /** Lädt eine gespeicherte Aufstellung in den aktuellen Zustand. */
+  loadLineup: (id: string) => void
+  /** Benennt eine gespeicherte Aufstellung um. */
+  renameLineup: (id: string, name: string) => void
+  /** Löscht eine gespeicherte Aufstellung. Falls sie aktiv war, wird der Aktiv-Status zurückgesetzt. */
+  deleteLineup: (id: string) => void
 }
 
 const emptyAssignments = (slotIds: string[]): Assignments =>
   Object.fromEntries(slotIds.map((id) => [id, null]))
+
+const newId = (): string => {
+  if (typeof crypto !== 'undefined' && 'randomUUID' in crypto) return crypto.randomUUID()
+  return Math.random().toString(36).slice(2) + Date.now().toString(36)
+}
 
 export const useLineupStore = create<State & Actions>()(
   persist(
@@ -31,6 +59,8 @@ export const useLineupStore = create<State & Actions>()(
       players: initialPlayers,
       formationId: formations[0].id,
       assignments: emptyAssignments(formations[0].slots.map((s) => s.id)),
+      savedLineups: [],
+      activeLineupId: null,
 
       setFormation: (id) => {
         const oldFormation = formationById(get().formationId)
@@ -87,14 +117,86 @@ export const useLineupStore = create<State & Actions>()(
 
       reset: () => {
         const formation = formationById(get().formationId)
-        set({ assignments: emptyAssignments(formation.slots.map((s) => s.id)) })
+        set({
+          assignments: emptyAssignments(formation.slots.map((s) => s.id)),
+          activeLineupId: null,
+        })
+      },
+
+      saveAsNewLineup: (name) => {
+        const { formationId, assignments, savedLineups } = get()
+        const now = Date.now()
+        const lineup: SavedLineup = {
+          id: newId(),
+          name: name.trim() || formationById(formationId).name,
+          formationId,
+          assignments: { ...assignments },
+          createdAt: now,
+          updatedAt: now,
+        }
+        set({
+          savedLineups: [lineup, ...savedLineups],
+          activeLineupId: lineup.id,
+        })
+        return lineup.id
+      },
+
+      overwriteActiveLineup: () => {
+        const { activeLineupId, formationId, assignments, savedLineups } = get()
+        if (!activeLineupId) return
+        const idx = savedLineups.findIndex((l) => l.id === activeLineupId)
+        if (idx === -1) return
+        const updated: SavedLineup = {
+          ...savedLineups[idx],
+          formationId,
+          assignments: { ...assignments },
+          updatedAt: Date.now(),
+        }
+        const next = [...savedLineups]
+        next[idx] = updated
+        set({ savedLineups: next })
+      },
+
+      loadLineup: (id) => {
+        const lineup = get().savedLineups.find((l) => l.id === id)
+        if (!lineup) return
+        const formation = formationById(lineup.formationId)
+        // Defensive: vollständige Slot-Map der Formation herstellen, damit keine Slots fehlen,
+        // falls sich Formationsdefinitionen ändern.
+        const base = emptyAssignments(formation.slots.map((s) => s.id))
+        const merged: Assignments = { ...base, ...lineup.assignments }
+        set({
+          formationId: lineup.formationId,
+          assignments: merged,
+          activeLineupId: id,
+        })
+      },
+
+      renameLineup: (id, name) => {
+        const trimmed = name.trim()
+        if (!trimmed) return
+        const next = get().savedLineups.map((l) =>
+          l.id === id ? { ...l, name: trimmed, updatedAt: Date.now() } : l,
+        )
+        set({ savedLineups: next })
+      },
+
+      deleteLineup: (id) => {
+        const { savedLineups, activeLineupId } = get()
+        set({
+          savedLineups: savedLineups.filter((l) => l.id !== id),
+          activeLineupId: activeLineupId === id ? null : activeLineupId,
+        })
       },
     }),
     {
       name: 'aufstellungsplaner:v1',
+      version: 2,
       partialize: (state) => ({
         formationId: state.formationId,
         assignments: state.assignments,
+        savedLineups: state.savedLineups,
+        activeLineupId: state.activeLineupId,
       }),
     },
   ),
