@@ -5,7 +5,14 @@ export function Header() {
   const reset = useLineupStore((s) => s.reset)
 
   return (
-    <header className="flex flex-col gap-3 border-b border-slate-800 bg-slate-950/80 px-6 py-4 backdrop-blur sm:flex-row sm:items-center sm:justify-between">
+    <header
+      className="flex flex-col gap-3 border-b border-slate-800 bg-slate-950/80 px-6 py-4 backdrop-blur sm:flex-row sm:items-center sm:justify-between"
+      style={{
+        paddingTop: 'max(env(safe-area-inset-top, 0px), 1rem)',
+        paddingLeft: 'max(env(safe-area-inset-left, 0px), 1.5rem)',
+        paddingRight: 'max(env(safe-area-inset-right, 0px), 1.5rem)',
+      }}
+    >
       <div>
         <h1 className="text-xl font-bold text-white sm:text-2xl">
           Aufstellungsplaner

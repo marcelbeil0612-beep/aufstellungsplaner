@@ -10,6 +10,7 @@ import {
 import { useMemo, useState } from 'react'
 import { Bench } from './components/Bench'
 import { Header } from './components/Header'
+import { IOSInstallHint } from './components/IOSInstallHint'
 import { Pitch } from './components/Pitch'
 import { formationById } from './data/formations'
 import { positionLabel } from './data/positionWeights'
@@ -63,8 +64,9 @@ export default function App() {
 
   return (
     <DndContext sensors={sensors} onDragEnd={onDragEnd}>
-      <div className="flex min-h-screen flex-col bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+      <div className="flex min-h-[100svh] flex-col bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
         <Header />
+        <IOSInstallHint />
 
         {warning && (
           <div className="mx-6 mt-4 rounded-lg border border-rose-500/40 bg-rose-950/70 px-4 py-2 text-sm text-rose-200 shadow">
@@ -95,7 +97,10 @@ export default function App() {
           </div>
         </main>
 
-        <footer className="border-t border-slate-800 px-6 py-3 text-center text-[11px] text-slate-500">
+        <footer
+          className="border-t border-slate-800 px-6 py-3 text-center text-[11px] text-slate-500"
+          style={{ paddingBottom: 'max(env(safe-area-inset-bottom, 0px), 0.75rem)' }}
+        >
           Aufstellung wird im Browser gespeichert · Phase 2 folgt: Skill-Bewertungen & beste Aufstellung automatisch
         </footer>
       </div>
