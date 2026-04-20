@@ -48,6 +48,9 @@ type Actions = {
   setPlayerPhoto: (playerId: string, photo: string | null) => void
   /** Aktualisiert einzelne Skill-Werte; undefined im Patch entfernt den Key. */
   updatePlayerSkills: (playerId: string, patch: Partial<Skills>) => void
+
+  /** Wendet eine berechnete Auto-Aufstellung auf die aktuelle Formation an. */
+  applyAutoLineup: (assignments: Record<string, string>) => void
 }
 
 const emptyAssignments = (slotIds: string[]): Assignments =>
@@ -212,6 +215,15 @@ export const useLineupStore = create<State & Actions>()(
           return { ...p, skills: Object.keys(merged).length > 0 ? merged : undefined }
         })
         set({ players: next })
+      },
+
+      applyAutoLineup: (assignments) => {
+        const formation = formationById(get().formationId)
+        const next = emptyAssignments(formation.slots.map((s) => s.id))
+        for (const [slotId, playerId] of Object.entries(assignments)) {
+          if (slotId in next) next[slotId] = playerId
+        }
+        set({ assignments: next, activeLineupId: null })
       },
     }),
     {

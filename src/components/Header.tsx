@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useLineupStore } from '../store/useLineupStore'
+import { AutoLineupDialog } from './AutoLineupDialog'
 import { FormationPicker } from './FormationPicker'
 import { RosterDialog } from './RosterDialog'
 import { SavedLineupsDialog } from './SavedLineupsDialog'
@@ -9,6 +10,7 @@ export function Header() {
   const savedCount = useLineupStore((s) => s.savedLineups.length)
   const [dialogOpen, setDialogOpen] = useState(false)
   const [rosterOpen, setRosterOpen] = useState(false)
+  const [autoOpen, setAutoOpen] = useState(false)
 
   return (
     <>
@@ -30,6 +32,15 @@ export function Header() {
         </div>
         <div className="flex flex-wrap items-center gap-2 sm:flex-nowrap sm:gap-3">
           <FormationPicker />
+          <button
+            onClick={() => setAutoOpen(true)}
+            className="flex items-center gap-1.5 rounded-lg border border-amber-600 bg-amber-800/40 px-3 py-1.5 text-sm font-medium text-amber-100 shadow-inner transition hover:bg-amber-700/50"
+            title="Aufstellung automatisch nach Skill-Score optimieren"
+          >
+            <span aria-hidden>⚡</span>
+            <span className="hidden sm:inline">Beste Aufstellung</span>
+            <span className="sm:hidden">Auto</span>
+          </button>
           <button
             onClick={() => setRosterOpen(true)}
             className="flex items-center gap-1.5 rounded-lg border border-sky-700 bg-sky-800/40 px-3 py-1.5 text-sm font-medium text-sky-100 shadow-inner transition hover:bg-sky-700/50"
@@ -62,6 +73,7 @@ export function Header() {
 
       <SavedLineupsDialog open={dialogOpen} onClose={() => setDialogOpen(false)} />
       <RosterDialog open={rosterOpen} onClose={() => setRosterOpen(false)} />
+      <AutoLineupDialog open={autoOpen} onClose={() => setAutoOpen(false)} />
     </>
   )
 }

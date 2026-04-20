@@ -3,6 +3,7 @@ import type { Slot } from '../types'
 import { PlayerChip } from './PlayerChip'
 import { selectPlayerOfSlot, useLineupStore } from '../store/useLineupStore'
 import { positionShort } from '../data/positionWeights'
+import { playerPositionScore } from '../lib/score'
 
 type Props = { slot: Slot }
 
@@ -38,7 +39,13 @@ export function SlotDropZone({ slot }: Props) {
         ].join(' ')}
       >
         {player ? (
-          <PlayerChip player={player} source={slot.id} positionShort={positionShort[slot.position]} compact />
+          <PlayerChip
+            player={player}
+            source={slot.id}
+            positionShort={positionShort[slot.position]}
+            score={player.skills ? playerPositionScore(player, slot.position) : undefined}
+            compact
+          />
         ) : (
           <div className="flex h-12 w-12 flex-col items-center justify-center rounded-full border-2 border-dashed border-white/60 bg-white/5 text-[10px] font-bold text-white/80 shadow-md">
             {positionShort[slot.position]}
