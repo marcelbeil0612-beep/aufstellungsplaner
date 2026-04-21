@@ -10,7 +10,7 @@ import {
   useSensor,
   useSensors,
 } from '@dnd-kit/core'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Bench } from './components/Bench'
 import { Header } from './components/Header'
 import { IOSInstallHint } from './components/IOSInstallHint'
@@ -21,7 +21,19 @@ import { formationById } from './data/formations'
 import { positionLabel, positionShort } from './data/positionWeights'
 import { applyPhase } from './lib/phaseShift'
 import { playerPositionScore } from './lib/score'
-import { useLineupStore } from './store/useLineupStore'
+import { hasHydratedStore, onStoreHydrated, useLineupStore } from './store/useLineupStore'
+
+/** Kurzer Splash während der asynchronen IndexedDB-Hydration. */
+function LoadingSplash() {
+  return (
+    <div className="flex min-h-[100svh] items-center justify-center bg-slate-950 text-slate-300">
+      <div className="flex flex-col items-center gap-3">
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-700 border-t-emerald-400" />
+        <p className="text-sm">Aufstellung wird geladen …</p>
+      </div>
+    </div>
+  )
+}
 
 type DragData = {
   playerId: string
@@ -32,6 +44,13 @@ type DropData = { slotId?: string; position?: string; isBench?: boolean }
 type ActiveDrag = { playerId: string; source: string }
 
 export default function App() {
+  const [hydrated, setHydrated] = useState(() => hasHydratedStore())
+  useEffect(() => {
+    if (hydrated) return
+    setHydrated(hasHydratedStore())
+    return onStoreHydrated(() => setHydrated(true))
+  }, [hydrated])
+
   const formationId = useLineupStore((s) => s.formationId)
   const phase = useLineupStore((s) => s.phase)
   const players = useLineupStore((s) => s.players)
@@ -40,6 +59,8 @@ export default function App() {
   const formation = useMemo(() => formationById(formationId), [formationId])
   const [warning, setWarning] = useState<string | null>(null)
   const [activeDrag, setActiveDrag] = useState<ActiveDrag | null>(null)
+
+  if (!hydrated) return <LoadingSplash />
 
   // Etwas reaktivere Touch-Aktivierung: 80 ms Halten statt 120 ms, Toleranz 3 px
   // statt 5 px – Drag startet früher, ohne versehentlich beim Tippen zu triggern.

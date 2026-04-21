@@ -4,6 +4,7 @@ import { formationById, formations } from '../data/formations'
 import { initialPlayers } from '../data/players'
 import type { Phase } from '../lib/phaseShift'
 import type { Player, Skills } from '../types'
+import { lineupStorage } from './idbStorage'
 
 type Assignments = Record<string, string | null> // slotId → playerId | null
 
@@ -279,6 +280,10 @@ export const useLineupStore = create<State & Actions>()(
     {
       name: 'aufstellungsplaner:v1',
       version: 4,
+      // IndexedDB statt localStorage: höheres Quota, auf iOS stabiler, kein
+      // ITP-7-Tage-Auslauf. Die Storage-Schicht migriert bestehende Daten
+      // beim ersten Lesen einmalig aus dem alten localStorage-Eintrag.
+      storage: lineupStorage,
       partialize: (state) => ({
         formationId: state.formationId,
         assignments: state.assignments,
@@ -338,6 +343,18 @@ export const useLineupStore = create<State & Actions>()(
     },
   ),
 )
+
+/**
+ * Async-Hydration-Status: true, sobald die Daten aus IndexedDB geladen sind.
+ * Während der kurzen Hydration-Phase steht nur der Default-State zur Verfügung;
+ * die UI zeigt solange einen kleinen Splash, damit keine "leere Kader"-Illusion
+ * entsteht.
+ */
+export const hasHydratedStore = (): boolean => useLineupStore.persist.hasHydrated()
+
+/** Subscribe-Helfer: ruft cb einmal, sobald die Hydration abgeschlossen ist. */
+export const onStoreHydrated = (cb: () => void): (() => void) =>
+  useLineupStore.persist.onFinishHydration(cb)
 
 /** Liefert Spieler, die aktuell keinem Slot zugewiesen sind. */
 export const selectBenchPlayers = (s: State): Player[] => {
