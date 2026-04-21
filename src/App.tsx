@@ -10,7 +10,7 @@ import {
   useSensor,
   useSensors,
 } from '@dnd-kit/core'
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Bench } from './components/Bench'
 import { Header } from './components/Header'
 import { IOSInstallHint } from './components/IOSInstallHint'
@@ -21,19 +21,7 @@ import { formationById } from './data/formations'
 import { positionLabel, positionShort } from './data/positionWeights'
 import { applyPhase } from './lib/phaseShift'
 import { playerPositionScore } from './lib/score'
-import { hasHydratedStore, onStoreHydrated, useLineupStore } from './store/useLineupStore'
-
-/** Kurzer Splash während der asynchronen IndexedDB-Hydration. */
-function LoadingSplash() {
-  return (
-    <div className="flex min-h-[100svh] items-center justify-center bg-slate-950 text-slate-300">
-      <div className="flex flex-col items-center gap-3">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-700 border-t-emerald-400" />
-        <p className="text-sm">Aufstellung wird geladen …</p>
-      </div>
-    </div>
-  )
-}
+import { useLineupStore } from './store/useLineupStore'
 
 type DragData = {
   playerId: string
@@ -44,13 +32,9 @@ type DropData = { slotId?: string; position?: string; isBench?: boolean }
 type ActiveDrag = { playerId: string; source: string }
 
 export default function App() {
-  const [hydrated, setHydrated] = useState(() => hasHydratedStore())
-  useEffect(() => {
-    if (hydrated) return
-    setHydrated(hasHydratedStore())
-    return onStoreHydrated(() => setHydrated(true))
-  }, [hydrated])
-
+  // Default-State ist valide (leere Aufstellung auf 4-4-2) – die App rendert
+  // sofort, die IndexedDB-Hydration tauscht die Werte transparent aus, sobald
+  // sie fertig ist. Kein Splash, der bei fertiger Hydration hängen bleiben könnte.
   const formationId = useLineupStore((s) => s.formationId)
   const phase = useLineupStore((s) => s.phase)
   const players = useLineupStore((s) => s.players)
@@ -60,17 +44,11 @@ export default function App() {
   const [warning, setWarning] = useState<string | null>(null)
   const [activeDrag, setActiveDrag] = useState<ActiveDrag | null>(null)
 
-  // Etwas reaktivere Touch-Aktivierung: 80 ms Halten statt 120 ms, Toleranz 3 px
-  // statt 5 px – Drag startet früher, ohne versehentlich beim Tippen zu triggern.
-  // WICHTIG: diese Sensor-Hooks MÜSSEN vor einer konditionalen Rückgabe stehen,
-  // sonst verletzt es die Rules of Hooks (Hook-Anzahl zwischen Rendern inkonsistent).
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 4 } }),
     useSensor(TouchSensor, { activationConstraint: { delay: 80, tolerance: 3 } }),
     useSensor(KeyboardSensor),
   )
-
-  if (!hydrated) return <LoadingSplash />
 
   const onDragStart = (e: DragStartEvent) => {
     const data = e.active.data.current as DragData | undefined
