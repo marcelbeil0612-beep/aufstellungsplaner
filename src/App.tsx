@@ -1,6 +1,9 @@
 import {
   DndContext,
+  DragCancelEvent,
   DragEndEvent,
+  DragOverlay,
+  DragStartEvent,
   KeyboardSensor,
   PointerSensor,
   TouchSensor,
@@ -13,8 +16,11 @@ import { Header } from './components/Header'
 import { IOSInstallHint } from './components/IOSInstallHint'
 import { PhaseToggle } from './components/PhaseToggle'
 import { Pitch } from './components/Pitch'
+import { PlayerChipVisual } from './components/PlayerChipVisual'
 import { formationById } from './data/formations'
-import { positionLabel } from './data/positionWeights'
+import { positionLabel, positionShort } from './data/positionWeights'
+import { applyPhase } from './lib/phaseShift'
+import { playerPositionScore } from './lib/score'
 import { useLineupStore } from './store/useLineupStore'
 
 type DragData = {
@@ -23,21 +29,37 @@ type DragData = {
   role: 'GK' | 'FIELD'
 }
 type DropData = { slotId?: string; position?: string; isBench?: boolean }
+type ActiveDrag = { playerId: string; source: string }
 
 export default function App() {
   const formationId = useLineupStore((s) => s.formationId)
-  const formation = useMemo(() => formationById(formationId), [formationId])
+  const phase = useLineupStore((s) => s.phase)
+  const players = useLineupStore((s) => s.players)
   const assign = useLineupStore((s) => s.assign)
   const unassign = useLineupStore((s) => s.unassign)
+  const formation = useMemo(() => formationById(formationId), [formationId])
   const [warning, setWarning] = useState<string | null>(null)
+  const [activeDrag, setActiveDrag] = useState<ActiveDrag | null>(null)
 
+  // Etwas reaktivere Touch-Aktivierung: 80 ms Halten statt 120 ms, Toleranz 3 px
+  // statt 5 px – Drag startet früher, ohne versehentlich beim Tippen zu triggern.
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 4 } }),
-    useSensor(TouchSensor, { activationConstraint: { delay: 120, tolerance: 5 } }),
+    useSensor(TouchSensor, { activationConstraint: { delay: 80, tolerance: 3 } }),
     useSensor(KeyboardSensor),
   )
 
+  const onDragStart = (e: DragStartEvent) => {
+    const data = e.active.data.current as DragData | undefined
+    if (data) setActiveDrag({ playerId: data.playerId, source: data.source })
+  }
+
+  const onDragCancel = (_: DragCancelEvent) => {
+    setActiveDrag(null)
+  }
+
   const onDragEnd = (e: DragEndEvent) => {
+    setActiveDrag(null)
     const data = e.active.data.current as DragData | undefined
     const target = e.over?.data.current as DropData | undefined
     if (!data || !target) return
@@ -63,8 +85,26 @@ export default function App() {
     }
   }
 
+  // Für den DragOverlay: Spieler und – falls aus einem Slot gezogen – der
+  // dortige Score werden 1 : 1 mitvisualisiert, damit die schwebende
+  // Darstellung identisch mit dem Ursprung ist.
+  const activePlayer = activeDrag
+    ? players.find((p) => p.id === activeDrag.playerId) ?? null
+    : null
+  const activeSlot = activeDrag && activeDrag.source !== 'bench'
+    ? applyPhase(formation.slots, phase).find((s) => s.id === activeDrag.source)
+    : undefined
+  const overlayScore = activePlayer && activeSlot && activePlayer.skills
+    ? playerPositionScore(activePlayer, activeSlot.position)
+    : undefined
+
   return (
-    <DndContext sensors={sensors} onDragEnd={onDragEnd}>
+    <DndContext
+      sensors={sensors}
+      onDragStart={onDragStart}
+      onDragEnd={onDragEnd}
+      onDragCancel={onDragCancel}
+    >
       <div className="flex min-h-[100svh] flex-col bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
         <Header />
         <IOSInstallHint />
@@ -110,6 +150,23 @@ export default function App() {
           Aufstellung, Fotos & Skills werden im Browser gespeichert · Beste-Aufstellung-Rechner per Skill-Score
         </footer>
       </div>
+
+      {/* Schwebender Chip beim Drag – kein Overflow-Clipping, kein Transform-Kampf. */}
+      <DragOverlay
+        dropAnimation={{ duration: 180, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' }}
+        zIndex={100}
+        style={{ willChange: 'transform', cursor: 'grabbing' }}
+      >
+        {activePlayer && (
+          <PlayerChipVisual
+            player={activePlayer}
+            compact
+            positionShort={activeSlot ? positionShort[activeSlot.position] : undefined}
+            score={overlayScore}
+            elevated
+          />
+        )}
+      </DragOverlay>
     </DndContext>
   )
 }

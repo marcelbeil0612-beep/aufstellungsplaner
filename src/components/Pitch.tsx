@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { applyPhase } from '../lib/phaseShift'
 import { useLineupStore } from '../store/useLineupStore'
 import type { Formation } from '../types'
@@ -14,9 +14,21 @@ export function Pitch({ formation }: Props) {
   const phase = useLineupStore((s) => s.phase)
   const slots = useMemo(() => applyPhase(formation.slots, phase), [formation.slots, phase])
 
+  // Slot-Positionen werden ausschließlich beim Phasenwechsel animiert, nicht
+  // während des normalen Drag-and-Drops. So gibt es kein „Nachlaufen" wenn
+  // ein Chip in einen Slot einrastet.
+  const [animatingPhase, setAnimatingPhase] = useState(false)
+  const lastPhase = useRef(phase)
+  useEffect(() => {
+    if (lastPhase.current === phase) return
+    lastPhase.current = phase
+    setAnimatingPhase(true)
+    const t = window.setTimeout(() => setAnimatingPhase(false), 550)
+    return () => window.clearTimeout(t)
+  }, [phase])
+
   return (
     <div className="relative mx-auto aspect-[2/3] w-full max-w-[480px] overflow-hidden rounded-[28px] shadow-[0_30px_60px_-20px_rgba(0,0,0,0.7)] ring-1 ring-white/10">
-      {/* Rasenfarbe – warmes Stadiongrün mit feinen Streifen und sanftem Rauschen */}
       <svg
         viewBox="0 0 100 150"
         preserveAspectRatio="none"
@@ -49,15 +61,11 @@ export function Pitch({ formation }: Props) {
           </filter>
         </defs>
 
-        {/* Basisrasen + Streifen + Rauschen */}
         <rect width="100" height="150" fill="url(#pitch-grass)" />
         <rect width="100" height="150" fill="url(#pitch-stripes)" />
         <rect width="100" height="150" filter="url(#pitch-noise)" opacity="0.6" />
-
-        {/* Vignette */}
         <rect width="100" height="150" fill="url(#pitch-vignette)" />
 
-        {/* Linien (mit sanftem Glow) */}
         <g
           fill="none"
           stroke="#f8fafc"
@@ -66,26 +74,20 @@ export function Pitch({ formation }: Props) {
           strokeLinejoin="round"
           filter="url(#line-glow)"
         >
-          {/* Außenlinie */}
           <rect x="2" y="2" width="96" height="146" rx="0.6" />
-          {/* Mittellinie + Mittelkreis + Anstoßpunkt */}
           <line x1="2" y1="75" x2="98" y2="75" />
           <circle cx="50" cy="75" r="9" />
           <circle cx="50" cy="75" r="0.7" fill="#f8fafc" stroke="none" />
-          {/* Strafraum & 5-Meter oben (gegnerisches Tor) */}
           <rect x="22" y="2" width="56" height="18" />
           <rect x="36" y="2" width="28" height="6" />
           <circle cx="50" cy="14" r="0.7" fill="#f8fafc" stroke="none" />
           <path d="M 41 20 A 9 9 0 0 0 59 20" />
-          {/* Tor-Deko oben */}
           <line x1="44" y1="2" x2="56" y2="2" strokeWidth="1" />
-          {/* Strafraum & 5-Meter unten (eigenes Tor) */}
           <rect x="22" y="130" width="56" height="18" />
           <rect x="36" y="142" width="28" height="6" />
           <circle cx="50" cy="136" r="0.7" fill="#f8fafc" stroke="none" />
           <path d="M 41 130 A 9 9 0 0 1 59 130" />
           <line x1="44" y1="148" x2="56" y2="148" strokeWidth="1" />
-          {/* Eckviertel */}
           <path d="M 2 4 A 2 2 0 0 0 4 2" />
           <path d="M 98 4 A 2 2 0 0 1 96 2" />
           <path d="M 2 146 A 2 2 0 0 1 4 148" />
@@ -93,7 +95,6 @@ export function Pitch({ formation }: Props) {
         </g>
       </svg>
 
-      {/* Richtungs-Hinweis (eigenes/gegnerisches Tor) */}
       <div className="pointer-events-none absolute left-2 top-2 rounded-md bg-black/40 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-white/80 backdrop-blur">
         Gegner ↑
       </div>
@@ -101,10 +102,9 @@ export function Pitch({ formation }: Props) {
         Eigenes Tor ↓
       </div>
 
-      {/* Slots – mit sanfter Positions-Transition für Phasenwechsel */}
       <div className="absolute inset-0">
         {slots.map((slot) => (
-          <SlotDropZone key={slot.id} slot={slot} />
+          <SlotDropZone key={slot.id} slot={slot} animating={animatingPhase} />
         ))}
       </div>
     </div>

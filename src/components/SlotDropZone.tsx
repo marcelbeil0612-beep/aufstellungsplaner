@@ -5,9 +5,13 @@ import { selectPlayerOfSlot, useLineupStore } from '../store/useLineupStore'
 import { positionShort } from '../data/positionWeights'
 import { playerPositionScore } from '../lib/score'
 
-type Props = { slot: Slot }
+type Props = {
+  slot: Slot
+  /** Aktiviert die weichen top/left-Transitions – nur beim Phasenwechsel gesetzt. */
+  animating?: boolean
+}
 
-export function SlotDropZone({ slot }: Props) {
+export function SlotDropZone({ slot, animating }: Props) {
   const player = useLineupStore((s) => selectPlayerOfSlot(s, slot.id))
   const { isOver, setNodeRef, active } = useDroppable({
     id: `slot:${slot.id}`,
@@ -27,7 +31,10 @@ export function SlotDropZone({ slot }: Props) {
 
   return (
     <div
-      className="absolute -translate-x-1/2 -translate-y-1/2 transition-[top,left] duration-500 ease-out"
+      className={[
+        'absolute -translate-x-1/2 -translate-y-1/2',
+        animating ? 'transition-[top,left] duration-500 ease-out' : '',
+      ].join(' ')}
       style={{ top, left }}
     >
       <div
