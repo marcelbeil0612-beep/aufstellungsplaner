@@ -4,6 +4,7 @@ import { AutoLineupDialog } from './AutoLineupDialog'
 import { FormationPicker } from './FormationPicker'
 import { RosterDialog } from './RosterDialog'
 import { SavedLineupsDialog } from './SavedLineupsDialog'
+import { TacticBookDialog } from './TacticBook/TacticBookDialog'
 
 export function Header() {
   const reset = useLineupStore((s) => s.reset)
@@ -11,6 +12,7 @@ export function Header() {
   const [dialogOpen, setDialogOpen] = useState(false)
   const [rosterOpen, setRosterOpen] = useState(false)
   const [autoOpen, setAutoOpen] = useState(false)
+  const [bookOpen, setBookOpen] = useState(false)
 
   return (
     <>
@@ -49,6 +51,14 @@ export function Header() {
             <span>Kader</span>
           </button>
           <button
+            onClick={() => setBookOpen(true)}
+            className="flex items-center gap-1.5 rounded-lg border border-indigo-700 bg-indigo-800/40 px-3 py-1.5 text-sm font-medium text-indigo-100 shadow-inner transition hover:bg-indigo-700/50"
+            title="Taktik-Nachschlagewerk für den Spieltag"
+          >
+            <span aria-hidden>📖</span>
+            <span>Systembuch</span>
+          </button>
+          <button
             onClick={() => setDialogOpen(true)}
             className="flex items-center gap-1.5 rounded-lg border border-emerald-700 bg-emerald-800/40 px-3 py-1.5 text-sm font-medium text-emerald-100 shadow-inner transition hover:bg-emerald-700/50"
           >
@@ -74,6 +84,7 @@ export function Header() {
       <SavedLineupsDialog open={dialogOpen} onClose={() => setDialogOpen(false)} />
       <RosterDialog open={rosterOpen} onClose={() => setRosterOpen(false)} />
       <AutoLineupDialog open={autoOpen} onClose={() => setAutoOpen(false)} />
+      <TacticBookDialog open={bookOpen} onClose={() => setBookOpen(false)} />
     </>
   )
 }

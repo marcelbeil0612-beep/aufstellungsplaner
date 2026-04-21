@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { formationById, formations } from '../data/formations'
 import { initialPlayers } from '../data/players'
+import type { SystemId, TacticBookView } from '../data/tacticBook'
 import type { Phase } from '../lib/phaseShift'
 import type { Player, Skills } from '../types'
 import { lineupStorage } from './idbStorage'
@@ -26,6 +27,10 @@ type State = {
   activeLineupId: string | null
   /** Taktische Phase, beeinflusst die Slot-Koordinaten auf dem Feld. */
   phase: Phase
+  /** Zuletzt gewählte Detailtiefe im Systembuch. */
+  tacticBookView: TacticBookView
+  /** Zuletzt betrachtetes Duell, damit der Dialog bei Öffnen dort weitermacht. */
+  lastViewedDuel: { our: SystemId; opp: SystemId } | null
 }
 
 type Actions = {
@@ -62,6 +67,11 @@ type Actions = {
 
   /** Stellt einen zuvor exportierten Snapshot wieder her (alle persistierten Felder). */
   restoreFromBackup: (snapshot: Partial<State>) => void
+
+  /** Systembuch: Detailtiefe wechseln. */
+  setTacticBookView: (v: TacticBookView) => void
+  /** Systembuch: zuletzt betrachtetes Duell merken. */
+  setLastViewedDuel: (duel: { our: SystemId; opp: SystemId } | null) => void
 }
 
 const emptyAssignments = (slotIds: string[]): Assignments =>
@@ -81,6 +91,8 @@ export const useLineupStore = create<State & Actions>()(
       savedLineups: [],
       activeLineupId: null,
       phase: 'withBall',
+      tacticBookView: 'matchday',
+      lastViewedDuel: null,
 
       setFormation: (id) => {
         const oldFormation = formationById(get().formationId)
@@ -276,10 +288,13 @@ export const useLineupStore = create<State & Actions>()(
           players: mergedPlayers,
         })
       },
+
+      setTacticBookView: (v) => set({ tacticBookView: v }),
+      setLastViewedDuel: (duel) => set({ lastViewedDuel: duel }),
     }),
     {
       name: 'aufstellungsplaner:v1',
-      version: 4,
+      version: 5,
       // IndexedDB statt localStorage: höheres Quota, auf iOS stabiler, kein
       // ITP-7-Tage-Auslauf. Die Storage-Schicht migriert bestehende Daten
       // beim ersten Lesen einmalig aus dem alten localStorage-Eintrag.
@@ -291,6 +306,8 @@ export const useLineupStore = create<State & Actions>()(
         activeLineupId: state.activeLineupId,
         players: state.players,
         phase: state.phase,
+        tacticBookView: state.tacticBookView,
+        lastViewedDuel: state.lastViewedDuel,
       }),
       // WICHTIG: Jede künftige Schema-Änderung bekommt hier einen neuen Zweig.
       // Ohne migrate würde Zustand bei Versionssprüngen die persistierten Daten
@@ -311,6 +328,13 @@ export const useLineupStore = create<State & Actions>()(
           if (s.phase !== 'withBall' && s.phase !== 'withoutBall') {
             s.phase = 'withBall'
           }
+        }
+        // v4 → v5: Systembuch-Status
+        if (version < 5) {
+          if (s.tacticBookView !== 'matchday' && s.tacticBookView !== 'coach' && s.tacticBookView !== 'training') {
+            s.tacticBookView = 'matchday'
+          }
+          if (!('lastViewedDuel' in s)) s.lastViewedDuel = null
         }
         return s
       },
