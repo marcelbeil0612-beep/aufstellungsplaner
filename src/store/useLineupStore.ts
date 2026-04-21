@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { formationById, formations } from '../data/formations'
 import { initialPlayers } from '../data/players'
+import type { Phase } from '../lib/phaseShift'
 import type { Player, Skills } from '../types'
 
 type Assignments = Record<string, string | null> // slotId → playerId | null
@@ -22,6 +23,8 @@ type State = {
   savedLineups: SavedLineup[]
   /** ID der zuletzt geladenen Aufstellung – dient UI-Hinweisen („Änderungen speichern"). */
   activeLineupId: string | null
+  /** Taktische Phase, beeinflusst die Slot-Koordinaten auf dem Feld. */
+  phase: Phase
 }
 
 type Actions = {
@@ -51,6 +54,10 @@ type Actions = {
 
   /** Wendet eine berechnete Auto-Aufstellung auf die aktuelle Formation an. */
   applyAutoLineup: (assignments: Record<string, string>) => void
+
+  /** Schaltet die taktische Phase direkt oder per Toggle um. */
+  setPhase: (phase: Phase) => void
+  togglePhase: () => void
 }
 
 const emptyAssignments = (slotIds: string[]): Assignments =>
@@ -69,6 +76,7 @@ export const useLineupStore = create<State & Actions>()(
       assignments: emptyAssignments(formations[0].slots.map((s) => s.id)),
       savedLineups: [],
       activeLineupId: null,
+      phase: 'withBall',
 
       setFormation: (id) => {
         const oldFormation = formationById(get().formationId)
@@ -225,16 +233,20 @@ export const useLineupStore = create<State & Actions>()(
         }
         set({ assignments: next, activeLineupId: null })
       },
+
+      setPhase: (phase) => set({ phase }),
+      togglePhase: () => set({ phase: get().phase === 'withBall' ? 'withoutBall' : 'withBall' }),
     }),
     {
       name: 'aufstellungsplaner:v1',
-      version: 3,
+      version: 4,
       partialize: (state) => ({
         formationId: state.formationId,
         assignments: state.assignments,
         savedLineups: state.savedLineups,
         activeLineupId: state.activeLineupId,
         players: state.players,
+        phase: state.phase,
       }),
       merge: (persistedStateUnknown, currentState) => {
         // Alte Persistenzen haben evtl. kein players-Feld. Außerdem sollen neu

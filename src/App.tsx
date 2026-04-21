@@ -11,6 +11,7 @@ import { useMemo, useState } from 'react'
 import { Bench } from './components/Bench'
 import { Header } from './components/Header'
 import { IOSInstallHint } from './components/IOSInstallHint'
+import { PhaseToggle } from './components/PhaseToggle'
 import { Pitch } from './components/Pitch'
 import { formationById } from './data/formations'
 import { positionLabel } from './data/positionWeights'
@@ -75,17 +76,22 @@ export default function App() {
         )}
 
         <main className="flex flex-1 flex-col gap-6 p-4 sm:p-6 lg:flex-row">
-          <section className="flex-1">
-            <div className="flex items-center justify-between pb-3">
-              <h2 className="text-lg font-semibold text-white">
-                {formation.name}
-              </h2>
-              <p className="text-xs text-slate-500">
-                {formation.slots.length} Positionen
-              </p>
+          <section className="flex flex-1 flex-col items-center">
+            <div className="flex w-full max-w-[480px] flex-col gap-3 pb-3">
+              <div className="flex items-center justify-between">
+                <h2 className="text-lg font-semibold text-white">
+                  {formation.name}
+                </h2>
+                <p className="text-xs text-slate-500">
+                  {formation.slots.length} Positionen
+                </p>
+              </div>
+              <div className="flex justify-center sm:justify-start">
+                <PhaseToggle />
+              </div>
             </div>
             <Pitch formation={formation} />
-            <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-slate-500">
+            <div className="mt-3 flex w-full max-w-[480px] flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-slate-500">
               <span className="font-semibold text-slate-400">Legende:</span>
               {Array.from(new Set(formation.slots.map((s) => s.position))).map((pos) => (
                 <span key={pos}>{positionLabel[pos]}</span>
@@ -101,7 +107,7 @@ export default function App() {
           className="border-t border-slate-800 px-6 py-3 text-center text-[11px] text-slate-500"
           style={{ paddingBottom: 'max(env(safe-area-inset-bottom, 0px), 0.75rem)' }}
         >
-          Aufstellung wird im Browser gespeichert · Phase 2 folgt: Skill-Bewertungen & beste Aufstellung automatisch
+          Aufstellung, Fotos & Skills werden im Browser gespeichert · Beste-Aufstellung-Rechner per Skill-Score
         </footer>
       </div>
     </DndContext>

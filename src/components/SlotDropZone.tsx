@@ -27,14 +27,14 @@ export function SlotDropZone({ slot }: Props) {
 
   return (
     <div
-      className="absolute -translate-x-1/2 -translate-y-1/2"
+      className="absolute -translate-x-1/2 -translate-y-1/2 transition-[top,left] duration-500 ease-out"
       style={{ top, left }}
     >
       <div
         ref={setNodeRef}
         className={[
           'flex flex-col items-center gap-1 rounded-2xl p-1 transition',
-          isOver && !incompatibleDrag ? 'bg-white/20 ring-2 ring-white/80' : '',
+          isOver && !incompatibleDrag ? 'bg-white/25 ring-2 ring-white/80 shadow-[0_0_20px_rgba(255,255,255,0.45)]' : '',
           incompatibleDrag ? 'bg-rose-500/30 ring-2 ring-rose-400' : '',
         ].join(' ')}
       >
@@ -47,7 +47,7 @@ export function SlotDropZone({ slot }: Props) {
             compact
           />
         ) : (
-          <div className="flex h-12 w-12 flex-col items-center justify-center rounded-full border-2 border-dashed border-white/60 bg-white/5 text-[10px] font-bold text-white/80 shadow-md">
+          <div className="flex h-14 w-14 flex-col items-center justify-center rounded-full border-2 border-dashed border-white/70 bg-white/10 text-[11px] font-black uppercase tracking-wider text-white/90 shadow-[inset_0_0_15px_rgba(0,0,0,0.25)] backdrop-blur">
             {positionShort[slot.position]}
           </div>
         )}
