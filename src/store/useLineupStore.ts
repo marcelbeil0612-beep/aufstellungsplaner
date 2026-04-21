@@ -58,6 +58,9 @@ type Actions = {
   /** Schaltet die taktische Phase direkt oder per Toggle um. */
   setPhase: (phase: Phase) => void
   togglePhase: () => void
+
+  /** Stellt einen zuvor exportierten Snapshot wieder her (alle persistierten Felder). */
+  restoreFromBackup: (snapshot: Partial<State>) => void
 }
 
 const emptyAssignments = (slotIds: string[]): Assignments =>
@@ -236,6 +239,42 @@ export const useLineupStore = create<State & Actions>()(
 
       setPhase: (phase) => set({ phase }),
       togglePhase: () => set({ phase: get().phase === 'withBall' ? 'withoutBall' : 'withBall' }),
+
+      restoreFromBackup: (snapshot) => {
+        const safeFormationId =
+          typeof snapshot.formationId === 'string' ? snapshot.formationId : formations[0].id
+        const safeAssignments: Assignments =
+          snapshot.assignments && typeof snapshot.assignments === 'object'
+            ? (snapshot.assignments as Assignments)
+            : emptyAssignments(formationById(safeFormationId).slots.map((s) => s.id))
+        const safeSavedLineups: SavedLineup[] = Array.isArray(snapshot.savedLineups)
+          ? (snapshot.savedLineups as SavedLineup[])
+          : []
+        const safeActiveId =
+          typeof snapshot.activeLineupId === 'string' || snapshot.activeLineupId === null
+            ? (snapshot.activeLineupId as string | null)
+            : null
+        const safePhase: Phase = snapshot.phase === 'withoutBall' ? 'withoutBall' : 'withBall'
+
+        // Spieler-Merge: Code-Kader als Basis, gespeicherte Fotos + Skills drüberlegen.
+        // Neue Spieler im Code erscheinen dadurch, bestehende behalten ihre Werte.
+        const persistedPlayers = Array.isArray(snapshot.players) ? (snapshot.players as Player[]) : []
+        const byId = new Map(persistedPlayers.map((p) => [p.id, p]))
+        const mergedPlayers: Player[] = initialPlayers.map((base) => {
+          const saved = byId.get(base.id)
+          if (!saved) return base
+          return { ...base, photo: saved.photo, skills: saved.skills }
+        })
+
+        set({
+          formationId: safeFormationId,
+          assignments: safeAssignments,
+          savedLineups: safeSavedLineups,
+          activeLineupId: safeActiveId,
+          phase: safePhase,
+          players: mergedPlayers,
+        })
+      },
     }),
     {
       name: 'aufstellungsplaner:v1',
@@ -248,6 +287,28 @@ export const useLineupStore = create<State & Actions>()(
         players: state.players,
         phase: state.phase,
       }),
+      // WICHTIG: Jede künftige Schema-Änderung bekommt hier einen neuen Zweig.
+      // Ohne migrate würde Zustand bei Versionssprüngen die persistierten Daten
+      // verwerfen – genau der Fehler, der dem Nutzer die Daten schon gekostet hat.
+      migrate: (persistedStateUnknown, version) => {
+        const s = (persistedStateUnknown ?? {}) as Partial<State>
+        // v1 → v2: gespeicherte Aufstellungen + aktive Aufstellung
+        if (version < 2) {
+          if (!Array.isArray(s.savedLineups)) s.savedLineups = []
+          if (!('activeLineupId' in s)) s.activeLineupId = null
+        }
+        // v2 → v3: Spieler-Liste mit Fotos/Skills (merge ergänzt aus dem Code-Kader)
+        if (version < 3) {
+          if (!Array.isArray(s.players)) s.players = []
+        }
+        // v3 → v4: taktische Phase
+        if (version < 4) {
+          if (s.phase !== 'withBall' && s.phase !== 'withoutBall') {
+            s.phase = 'withBall'
+          }
+        }
+        return s
+      },
       merge: (persistedStateUnknown, currentState) => {
         // Alte Persistenzen haben evtl. kein players-Feld. Außerdem sollen neu
         // im Code hinzugekommene Spieler (z. B. Neuzugänge) erscheinen, ohne

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { downloadBackup, importBackupFile } from '../lib/backup'
 import { useLineupStore } from '../store/useLineupStore'
 import type { Player, Skills } from '../types'
 import { fileToSquareDataUrl, initials } from '../lib/photoUtils'
@@ -193,6 +194,76 @@ function SkillTable({
   )
 }
 
+function BackupSection() {
+  const fileRef = useRef<HTMLInputElement>(null)
+  const [status, setStatus] = useState<{ kind: 'ok' | 'err'; text: string } | null>(null)
+
+  const handleRestore = async (file: File) => {
+    setStatus(null)
+    if (!confirm('Aktuelle Daten werden mit dem Backup-Inhalt überschrieben. Fortfahren?')) return
+    try {
+      await importBackupFile(file)
+      setStatus({ kind: 'ok', text: 'Backup erfolgreich wiederhergestellt.' })
+    } catch (e) {
+      setStatus({
+        kind: 'err',
+        text: e instanceof Error ? e.message : 'Unbekannter Fehler beim Wiederherstellen.',
+      })
+    }
+  }
+
+  return (
+    <section className="rounded-xl border border-emerald-800/50 bg-emerald-950/40 p-4">
+      <h3 className="mb-1 flex items-center gap-1.5 text-sm font-semibold text-emerald-200">
+        <span aria-hidden>🛟</span> Backup &amp; Wiederherstellen
+      </h3>
+      <p className="mb-3 text-xs leading-snug text-emerald-200/80">
+        Deine Fotos, Skills und gespeicherten Aufstellungen liegen lokal im Browser. Dateien in
+        „Einstellungen → Safari → Daten löschen" oder ein System-Reset können sie entfernen –
+        mach ab und zu ein Backup und leg die Datei in „Dateien" oder iCloud ab.
+      </p>
+      <div className="flex flex-wrap items-center gap-2">
+        <button
+          onClick={() => {
+            downloadBackup()
+            setStatus({ kind: 'ok', text: 'Backup-Datei wurde heruntergeladen.' })
+          }}
+          className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-3 py-1.5 text-sm font-semibold text-white transition hover:bg-emerald-500"
+        >
+          <span aria-hidden>⬇</span> Backup herunterladen
+        </button>
+        <button
+          onClick={() => fileRef.current?.click()}
+          className="inline-flex items-center gap-1.5 rounded-lg border border-emerald-600/70 bg-slate-900 px-3 py-1.5 text-sm font-semibold text-emerald-200 transition hover:bg-slate-800"
+        >
+          <span aria-hidden>⬆</span> Backup wiederherstellen
+        </button>
+        <input
+          ref={fileRef}
+          type="file"
+          accept="application/json,.json"
+          className="hidden"
+          onChange={(e) => {
+            const f = e.target.files?.[0]
+            if (f) void handleRestore(f)
+            e.target.value = ''
+          }}
+        />
+      </div>
+      {status && (
+        <p
+          className={[
+            'mt-2 text-xs',
+            status.kind === 'ok' ? 'text-emerald-300' : 'text-rose-300',
+          ].join(' ')}
+        >
+          {status.text}
+        </p>
+      )}
+    </section>
+  )
+}
+
 export function RosterDialog({ open, onClose }: Props) {
   const players = useLineupStore((s) => s.players)
 
@@ -242,6 +313,7 @@ export function RosterDialog({ open, onClose }: Props) {
         </div>
 
         <div className="flex-1 space-y-5 overflow-y-auto px-5 py-4">
+          <BackupSection />
           <SkillTable
             title="Torhüter"
             accent="text-amber-400/80"
