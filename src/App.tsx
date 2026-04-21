@@ -60,15 +60,17 @@ export default function App() {
   const [warning, setWarning] = useState<string | null>(null)
   const [activeDrag, setActiveDrag] = useState<ActiveDrag | null>(null)
 
-  if (!hydrated) return <LoadingSplash />
-
   // Etwas reaktivere Touch-Aktivierung: 80 ms Halten statt 120 ms, Toleranz 3 px
   // statt 5 px – Drag startet früher, ohne versehentlich beim Tippen zu triggern.
+  // WICHTIG: diese Sensor-Hooks MÜSSEN vor einer konditionalen Rückgabe stehen,
+  // sonst verletzt es die Rules of Hooks (Hook-Anzahl zwischen Rendern inkonsistent).
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 4 } }),
     useSensor(TouchSensor, { activationConstraint: { delay: 80, tolerance: 3 } }),
     useSensor(KeyboardSensor),
   )
+
+  if (!hydrated) return <LoadingSplash />
 
   const onDragStart = (e: DragStartEvent) => {
     const data = e.active.data.current as DragData | undefined
