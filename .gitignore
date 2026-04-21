@@ -6,3 +6,4 @@ dist-ssr
 .DS_Store
 *.log
 tsconfig.tsbuildinfo
+vite.config.*.timestamp-*
