@@ -19,6 +19,7 @@ import { Pitch } from './components/Pitch'
 import { PlayerChipVisual } from './components/PlayerChipVisual'
 import { formationById } from './data/formations'
 import { positionLabel, positionShort } from './data/positionWeights'
+import { downloadLineupPng, suggestedLineupFilename } from './lib/exportLineup'
 import { applyPhase } from './lib/phaseShift'
 import { playerPositionScore } from './lib/score'
 import { useLineupStore } from './store/useLineupStore'
@@ -38,11 +39,32 @@ export default function App() {
   const formationId = useLineupStore((s) => s.formationId)
   const phase = useLineupStore((s) => s.phase)
   const players = useLineupStore((s) => s.players)
+  const assignments = useLineupStore((s) => s.assignments)
   const assign = useLineupStore((s) => s.assign)
   const unassign = useLineupStore((s) => s.unassign)
   const formation = useMemo(() => formationById(formationId), [formationId])
   const [warning, setWarning] = useState<string | null>(null)
   const [activeDrag, setActiveDrag] = useState<ActiveDrag | null>(null)
+  const [exporting, setExporting] = useState(false)
+
+  const handleExport = async () => {
+    setExporting(true)
+    try {
+      await downloadLineupPng(
+        { formation, phase, assignments, players, title: formation.name },
+        suggestedLineupFilename(formation.name),
+      )
+    } catch (e) {
+      setWarning(
+        e instanceof Error
+          ? `Export fehlgeschlagen: ${e.message}`
+          : 'Export fehlgeschlagen.',
+      )
+      window.setTimeout(() => setWarning(null), 3500)
+    } finally {
+      setExporting(false)
+    }
+  }
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 4 } }),
@@ -119,7 +141,7 @@ export default function App() {
         <main className="flex flex-1 flex-col gap-6 p-4 sm:p-6 lg:flex-row">
           <section className="flex flex-1 flex-col items-center">
             <div className="flex w-full max-w-[480px] flex-col gap-3 pb-3">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-3">
                 <h2 className="text-lg font-semibold text-white">
                   {formation.name}
                 </h2>
@@ -127,8 +149,17 @@ export default function App() {
                   {formation.slots.length} Positionen
                 </p>
               </div>
-              <div className="flex justify-center sm:justify-start">
+              <div className="flex flex-wrap items-center justify-between gap-2">
                 <PhaseToggle />
+                <button
+                  onClick={handleExport}
+                  disabled={exporting}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-900/80 px-3 py-1.5 text-xs font-semibold text-slate-200 shadow-inner transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-50"
+                  title="Aufstellung als PNG exportieren"
+                >
+                  <span aria-hidden>📷</span>
+                  <span>{exporting ? 'Export läuft …' : 'Als Bild'}</span>
+                </button>
               </div>
             </div>
             <Pitch formation={formation} />
