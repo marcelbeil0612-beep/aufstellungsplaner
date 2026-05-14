@@ -82,6 +82,53 @@ const newId = (): string => {
   return Math.random().toString(36).slice(2) + Date.now().toString(36)
 }
 
+/**
+ * Aktuelle Schema-Version des persistierten Stores. Wird sowohl von der
+ * Zustand-`persist`-Konfiguration als auch von `lib/backup.ts` gelesen, damit
+ * Backups die Version mitschreiben und beim Import durch dieselbe Migrations-
+ * Kette wie der reguläre Persist-Pfad laufen können.
+ */
+export const STORE_VERSION = 5
+
+/**
+ * Reine Migrationsfunktion. Wird sowohl im `persist({ migrate })`-Hook als auch
+ * beim Backup-Import (`importBackupFile`) verwendet, damit ein älteres Backup
+ * dieselben Migrationen durchläuft wie eine alte lokale Persistenz.
+ */
+export function migratePersistedState(
+  raw: unknown,
+  fromVersion: number,
+): Partial<State> {
+  const s = (raw ?? {}) as Partial<State>
+  // v1 → v2: gespeicherte Aufstellungen + aktive Aufstellung
+  if (fromVersion < 2) {
+    if (!Array.isArray(s.savedLineups)) s.savedLineups = []
+    if (!('activeLineupId' in s)) s.activeLineupId = null
+  }
+  // v2 → v3: Spieler-Liste mit Fotos/Skills (merge ergänzt aus dem Code-Kader)
+  if (fromVersion < 3) {
+    if (!Array.isArray(s.players)) s.players = []
+  }
+  // v3 → v4: taktische Phase
+  if (fromVersion < 4) {
+    if (s.phase !== 'withBall' && s.phase !== 'withoutBall') {
+      s.phase = 'withBall'
+    }
+  }
+  // v4 → v5: Systembuch-Status
+  if (fromVersion < 5) {
+    if (
+      s.tacticBookView !== 'matchday' &&
+      s.tacticBookView !== 'coach' &&
+      s.tacticBookView !== 'training'
+    ) {
+      s.tacticBookView = 'matchday'
+    }
+    if (!('lastViewedDuel' in s)) s.lastViewedDuel = null
+  }
+  return s
+}
+
 export const useLineupStore = create<State & Actions>()(
   persist(
     (set, get) => ({
@@ -122,9 +169,18 @@ export const useLineupStore = create<State & Actions>()(
       },
 
       assign: (slotId, playerId) => {
-        const { assignments, formationId } = get()
+        const { assignments, formationId, players } = get()
         const formation = formationById(formationId)
-        if (!formation.slots.some((s) => s.id === slotId)) return
+        const slot = formation.slots.find((s) => s.id === slotId)
+        if (!slot) return
+        const player = players.find((p) => p.id === playerId)
+        if (!player) return
+        // Defense-in-depth: die UI verhindert GK/Feld-Mismatches bereits beim
+        // Drag, aber programmatische Aufrufe (Backup-Import mit kaputten
+        // Assignments, künftige Features) könnten die Invariante sonst brechen.
+        const isGkSlot = slot.position === 'GK'
+        const isGkPlayer = player.role === 'GK'
+        if (isGkSlot !== isGkPlayer) return
 
         const next: Assignments = { ...assignments }
 
@@ -294,7 +350,7 @@ export const useLineupStore = create<State & Actions>()(
     }),
     {
       name: 'aufstellungsplaner:v1',
-      version: 5,
+      version: STORE_VERSION,
       // IndexedDB statt localStorage: höheres Quota, auf iOS stabiler, kein
       // ITP-7-Tage-Auslauf. Die Storage-Schicht migriert bestehende Daten
       // beim ersten Lesen einmalig aus dem alten localStorage-Eintrag.
@@ -309,35 +365,8 @@ export const useLineupStore = create<State & Actions>()(
         tacticBookView: state.tacticBookView,
         lastViewedDuel: state.lastViewedDuel,
       }),
-      // WICHTIG: Jede künftige Schema-Änderung bekommt hier einen neuen Zweig.
-      // Ohne migrate würde Zustand bei Versionssprüngen die persistierten Daten
-      // verwerfen – genau der Fehler, der dem Nutzer die Daten schon gekostet hat.
-      migrate: (persistedStateUnknown, version) => {
-        const s = (persistedStateUnknown ?? {}) as Partial<State>
-        // v1 → v2: gespeicherte Aufstellungen + aktive Aufstellung
-        if (version < 2) {
-          if (!Array.isArray(s.savedLineups)) s.savedLineups = []
-          if (!('activeLineupId' in s)) s.activeLineupId = null
-        }
-        // v2 → v3: Spieler-Liste mit Fotos/Skills (merge ergänzt aus dem Code-Kader)
-        if (version < 3) {
-          if (!Array.isArray(s.players)) s.players = []
-        }
-        // v3 → v4: taktische Phase
-        if (version < 4) {
-          if (s.phase !== 'withBall' && s.phase !== 'withoutBall') {
-            s.phase = 'withBall'
-          }
-        }
-        // v4 → v5: Systembuch-Status
-        if (version < 5) {
-          if (s.tacticBookView !== 'matchday' && s.tacticBookView !== 'coach' && s.tacticBookView !== 'training') {
-            s.tacticBookView = 'matchday'
-          }
-          if (!('lastViewedDuel' in s)) s.lastViewedDuel = null
-        }
-        return s
-      },
+      migrate: (persistedStateUnknown, version) =>
+        migratePersistedState(persistedStateUnknown, version),
       merge: (persistedStateUnknown, currentState) => {
         // Alte Persistenzen haben evtl. kein players-Feld. Außerdem sollen neu
         // im Code hinzugekommene Spieler (z. B. Neuzugänge) erscheinen, ohne

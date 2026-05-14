@@ -1,5 +1,5 @@
 import type { Phase } from './phaseShift'
-import { useLineupStore } from '../store/useLineupStore'
+import { migratePersistedState, STORE_VERSION, useLineupStore } from '../store/useLineupStore'
 
 const BACKUP_VERSION = 1
 const MAGIC = 'aufstellungsplaner-backup'
@@ -16,6 +16,8 @@ type BackupPayload = {
     activeLineupId: string | null
     players: unknown[]
     phase: Phase
+    tacticBookView?: unknown
+    lastViewedDuel?: unknown
   }
 }
 
@@ -25,7 +27,7 @@ export function exportBackupBlob(): Blob {
   const payload: BackupPayload = {
     type: MAGIC,
     backupVersion: BACKUP_VERSION,
-    storeVersion: 4,
+    storeVersion: STORE_VERSION,
     exportedAt: new Date().toISOString(),
     state: {
       formationId: s.formationId,
@@ -34,6 +36,8 @@ export function exportBackupBlob(): Blob {
       activeLineupId: s.activeLineupId,
       players: s.players,
       phase: s.phase,
+      tacticBookView: s.tacticBookView,
+      lastViewedDuel: s.lastViewedDuel,
     },
   }
   return new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' })
@@ -64,9 +68,12 @@ export async function importBackupFile(file: File): Promise<BackupPayload> {
   if (!isBackupPayload(parsed)) {
     throw new Error('Datei ist kein Aufstellungsplaner-Backup.')
   }
-  // restoreFromBackup validiert die Felder eigenständig – hier reicht ein
-  // bewusster Cast auf den vom Store erwarteten Partial<State>-Typ.
-  useLineupStore.getState().restoreFromBackup(parsed.state as unknown as Parameters<ReturnType<typeof useLineupStore.getState>['restoreFromBackup']>[0])
+  // Backups älterer App-Versionen durch dieselbe Migrationskette schicken wie
+  // beim normalen Persist-Boot, damit fehlende Felder (z. B. tacticBookView)
+  // mit Default-Werten aufgefüllt werden, statt im Store als `undefined` zu landen.
+  const fromVersion = typeof parsed.storeVersion === 'number' ? parsed.storeVersion : 1
+  const migrated = migratePersistedState(parsed.state, fromVersion)
+  useLineupStore.getState().restoreFromBackup(migrated)
   return parsed
 }
 
