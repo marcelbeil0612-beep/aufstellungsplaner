@@ -2,7 +2,7 @@ import { useRef, useState } from 'react'
 import { downloadBackup, importBackupFile } from '../lib/backup'
 import { usePlayerPhotoUrl } from '../store/photoStore'
 import { useLineupStore } from '../store/useLineupStore'
-import type { Player, Skills } from '../types'
+import type { Player, Role, Skills } from '../types'
 import { fileToSquareBlob, initials } from '../lib/photoUtils'
 import { Modal } from './Modal'
 
@@ -108,6 +108,125 @@ function PhotoCell({ player }: { player: Player }) {
   )
 }
 
+function NameCell({ player }: { player: Player }) {
+  const renamePlayer = useLineupStore((s) => s.renamePlayer)
+  const [editing, setEditing] = useState(false)
+  const [value, setValue] = useState(player.name)
+
+  const commit = () => {
+    setEditing(false)
+    const trimmed = value.trim()
+    if (trimmed && trimmed !== player.name) renamePlayer(player.id, trimmed)
+    else setValue(player.name)
+  }
+
+  if (editing) {
+    return (
+      <input
+        autoFocus
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        onBlur={commit}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') commit()
+          if (e.key === 'Escape') {
+            setEditing(false)
+            setValue(player.name)
+          }
+        }}
+        className="w-full rounded-md border border-slate-700 bg-slate-950 px-2 py-1 text-sm text-white focus:border-emerald-500 focus:outline-none"
+        style={{ fontSize: '16px' }}
+        aria-label={`Name für ${player.name} ändern`}
+      />
+    )
+  }
+  return (
+    <button
+      type="button"
+      onClick={() => {
+        setValue(player.name)
+        setEditing(true)
+      }}
+      className="-mx-1 rounded px-1 py-0.5 text-left font-medium text-white transition hover:bg-slate-800"
+      title="Klicken zum Umbenennen"
+    >
+      {player.name}
+    </button>
+  )
+}
+
+function DeleteCell({ player }: { player: Player }) {
+  const removePlayer = useLineupStore((s) => s.removePlayer)
+  return (
+    <button
+      type="button"
+      onClick={() => {
+        if (confirm(`Spieler „${player.name}" wirklich entfernen?`)) {
+          void removePlayer(player.id)
+        }
+      }}
+      className="rounded-md p-1.5 text-slate-500 transition hover:bg-rose-950 hover:text-rose-300"
+      aria-label={`${player.name} entfernen`}
+      title="Spieler entfernen"
+    >
+      🗑
+    </button>
+  )
+}
+
+function AddPlayerForm() {
+  const addPlayer = useLineupStore((s) => s.addPlayer)
+  const [name, setName] = useState('')
+  const [role, setRole] = useState<Role>('FIELD')
+
+  const handleAdd = () => {
+    if (!name.trim()) return
+    addPlayer(name, role)
+    setName('')
+  }
+
+  return (
+    <section className="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+      <h3 className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-300">
+        Neuen Spieler hinzufügen
+      </h3>
+      <div className="flex flex-wrap items-stretch gap-2">
+        <input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              e.preventDefault()
+              handleAdd()
+            }
+          }}
+          placeholder="Vorname / Spitzname"
+          className="min-w-[160px] flex-1 rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white placeholder:text-slate-500 focus:border-emerald-500 focus:outline-none"
+          style={{ fontSize: '16px' }}
+          aria-label="Name des neuen Spielers"
+        />
+        <select
+          value={role}
+          onChange={(e) => setRole(e.target.value as Role)}
+          className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white focus:border-emerald-500 focus:outline-none"
+          aria-label="Rolle"
+        >
+          <option value="FIELD">Feldspieler</option>
+          <option value="GK">Torhüter</option>
+        </select>
+        <button
+          type="button"
+          onClick={handleAdd}
+          disabled={!name.trim()}
+          className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-500 disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          Hinzufügen
+        </button>
+      </div>
+    </section>
+  )
+}
+
 function SkillInput({
   player,
   skillKey,
@@ -156,7 +275,16 @@ function SkillTable({
   players: Player[]
   columns: SkillColumn[]
 }) {
-  if (players.length === 0) return null
+  if (players.length === 0) {
+    return (
+      <section>
+        <h3 className={`mb-2 text-xs font-semibold uppercase tracking-wider ${accent}`}>{title}</h3>
+        <p className="rounded-xl border border-dashed border-slate-800 bg-slate-900/30 px-4 py-3 text-xs text-slate-500">
+          Noch keine Spieler in dieser Gruppe – oben hinzufügen.
+        </p>
+      </section>
+    )
+  }
   return (
     <section>
       <h3 className={`mb-2 text-xs font-semibold uppercase tracking-wider ${accent}`}>{title}</h3>
@@ -175,6 +303,7 @@ function SkillTable({
                   {c.label}
                 </th>
               ))}
+              <th className="px-2 py-2 text-right font-semibold" aria-label="Aktionen" />
             </tr>
           </thead>
           <tbody>
@@ -189,14 +318,17 @@ function SkillTable({
                 <td className="sticky left-0 z-[5] border-t border-slate-800 bg-slate-950/80 px-3 py-2">
                   <PhotoCell player={p} />
                 </td>
-                <td className="sticky left-[60px] z-[5] border-t border-slate-800 bg-slate-950/80 px-2 py-2 font-medium text-white">
-                  {p.name}
+                <td className="sticky left-[60px] z-[5] border-t border-slate-800 bg-slate-950/80 px-2 py-2">
+                  <NameCell player={p} />
                 </td>
                 {columns.map((c) => (
                   <td key={String(c.key)} className="border-t border-slate-800 px-1 py-2 text-center">
                     <SkillInput player={p} skillKey={c.key} skillLabel={c.title ?? c.label} />
                   </td>
                 ))}
+                <td className="border-t border-slate-800 px-2 py-2 text-right">
+                  <DeleteCell player={p} />
+                </td>
               </tr>
             ))}
           </tbody>
@@ -293,6 +425,7 @@ export function RosterDialog({ open, onClose }: Props) {
     >
       <div className="flex-1 space-y-5 overflow-y-auto px-5 py-4">
         <BackupSection />
+        <AddPlayerForm />
         <SkillTable
           title="Torhüter"
           accent="text-amber-400/80"
@@ -307,8 +440,8 @@ export function RosterDialog({ open, onClose }: Props) {
         />
 
         <p className="pt-2 text-[11px] text-slate-500">
-          Tipp: Leere Felder bedeuten „noch nicht bewertet". Die Werte fließen später in die
-          „Beste Aufstellung"-Berechnung ein (Phase 2).
+          Tipp: Klick auf einen Namen, um ihn umzubenennen. Leere Skill-Felder bedeuten
+          „noch nicht bewertet" und fließen mit dem Neutralwert 50 in die Auto-Aufstellung ein.
         </p>
       </div>
     </Modal>

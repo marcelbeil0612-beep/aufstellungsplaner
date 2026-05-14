@@ -4,7 +4,7 @@ import { formationById, formations } from '../data/formations'
 import { initialPlayers } from '../data/players'
 import type { SystemId, TacticBookView } from '../data/tacticBook'
 import type { Phase } from '../lib/phaseShift'
-import type { Player, Skills } from '../types'
+import type { Player, Role, Skills } from '../types'
 import { lineupStorage } from './idbStorage'
 import { newPhotoId, usePhotoStore } from './photoStore'
 
@@ -32,6 +32,12 @@ type State = {
   tacticBookView: TacticBookView
   /** Zuletzt betrachtetes Duell, damit der Dialog bei Öffnen dort weitermacht. */
   lastViewedDuel: { our: SystemId; opp: SystemId } | null
+  /**
+   * Wird true, sobald der Nutzer die Spielerliste aktiv geändert hat
+   * (add/remove/rename). Ab dann ist die persistierte Liste autoritativ;
+   * der Code-Default-Kader wird beim Merge nicht mehr drüberkopiert.
+   */
+  playerListIsUserManaged: boolean
 }
 
 type Actions = {
@@ -62,6 +68,15 @@ type Actions = {
   setPlayerPhoto: (playerId: string, blob: Blob | null) => Promise<void>
   /** Aktualisiert einzelne Skill-Werte; undefined im Patch entfernt den Key. */
   updatePlayerSkills: (playerId: string, patch: Partial<Skills>) => void
+  /** Fügt einen neuen Spieler hinzu. Setzt `playerListIsUserManaged` auf true. */
+  addPlayer: (name: string, role: Role) => void
+  /**
+   * Entfernt einen Spieler. Räumt sämtliche Slot-Zuordnungen (aktuell + in
+   * allen gespeicherten Aufstellungen) und das ggf. hinterlegte Foto auf.
+   */
+  removePlayer: (playerId: string) => Promise<void>
+  /** Benennt einen Spieler um. */
+  renamePlayer: (playerId: string, name: string) => void
 
   /** Wendet eine berechnete Auto-Aufstellung auf die aktuelle Formation an. */
   applyAutoLineup: (assignments: Record<string, string>) => void
@@ -93,7 +108,7 @@ const newId = (): string => {
  * Backups die Version mitschreiben und beim Import durch dieselbe Migrations-
  * Kette wie der reguläre Persist-Pfad laufen können.
  */
-export const STORE_VERSION = 5
+export const STORE_VERSION = 6
 
 /**
  * Reine Migrationsfunktion. Wird sowohl im `persist({ migrate })`-Hook als auch
@@ -131,6 +146,12 @@ export function migratePersistedState(
     }
     if (!('lastViewedDuel' in s)) s.lastViewedDuel = null
   }
+  // v5 → v6: Spielerliste kann jetzt vom Nutzer verwaltet werden (CRUD).
+  // Bestehende Installationen starten mit false – ihre Liste wird weiterhin
+  // mit dem Code-Default gemergt, bis sie zum ersten Mal aktiv editiert wird.
+  if (fromVersion < 6) {
+    if (typeof s.playerListIsUserManaged !== 'boolean') s.playerListIsUserManaged = false
+  }
   return s
 }
 
@@ -145,6 +166,7 @@ export const useLineupStore = create<State & Actions>()(
       phase: 'withBall',
       tacticBookView: 'matchday',
       lastViewedDuel: null,
+      playerListIsUserManaged: false,
 
       setFormation: (id) => {
         const oldFormation = formationById(get().formationId)
@@ -323,6 +345,55 @@ export const useLineupStore = create<State & Actions>()(
         set({ players: next })
       },
 
+      addPlayer: (name, role) => {
+        const trimmed = name.trim()
+        if (!trimmed) return
+        const player: Player = { id: newId(), name: trimmed, role }
+        set({
+          players: [...get().players, player],
+          playerListIsUserManaged: true,
+        })
+      },
+
+      removePlayer: async (playerId) => {
+        const player = get().players.find((p) => p.id === playerId)
+        if (!player) return
+
+        // Foto-Blob mit aufräumen, sonst bleibt eine verwaiste Datei im Photo-IDB liegen.
+        if (player.photoId) {
+          await usePhotoStore.getState().remove(player.photoId)
+        }
+
+        const cleanAssignments = (a: Assignments): Assignments => {
+          const next: Assignments = {}
+          for (const [slotId, pid] of Object.entries(a)) {
+            next[slotId] = pid === playerId ? null : pid
+          }
+          return next
+        }
+
+        set({
+          players: get().players.filter((p) => p.id !== playerId),
+          assignments: cleanAssignments(get().assignments),
+          savedLineups: get().savedLineups.map((l) => ({
+            ...l,
+            assignments: cleanAssignments(l.assignments),
+          })),
+          playerListIsUserManaged: true,
+        })
+      },
+
+      renamePlayer: (playerId, name) => {
+        const trimmed = name.trim()
+        if (!trimmed) return
+        set({
+          players: get().players.map((p) =>
+            p.id === playerId ? { ...p, name: trimmed } : p,
+          ),
+          playerListIsUserManaged: true,
+        })
+      },
+
       applyAutoLineup: (assignments) => {
         const formation = formationById(get().formationId)
         const next = emptyAssignments(formation.slots.map((s) => s.id))
@@ -351,20 +422,27 @@ export const useLineupStore = create<State & Actions>()(
             : null
         const safePhase: Phase = snapshot.phase === 'withoutBall' ? 'withoutBall' : 'withBall'
 
-        // Spieler-Merge: Code-Kader als Basis, gespeicherte Fotos + Skills drüberlegen.
-        // Neue Spieler im Code erscheinen dadurch, bestehende behalten ihre Werte.
+        // Wenn das Backup aus einer Installation kommt, in der der Nutzer den
+        // Kader aktiv verwaltet hat, ist die persistierte Liste autoritativ.
+        // Sonst (Default-Kader unverändert) bleibt das bisherige Merge-Verhalten.
         const persistedPlayers = Array.isArray(snapshot.players) ? (snapshot.players as Player[]) : []
-        const byId = new Map(persistedPlayers.map((p) => [p.id, p]))
-        const mergedPlayers: Player[] = initialPlayers.map((base) => {
-          const saved = byId.get(base.id)
-          if (!saved) return base
-          return {
-            ...base,
-            photo: saved.photo,
-            photoId: saved.photoId,
-            skills: saved.skills,
-          }
-        })
+        const userManaged = snapshot.playerListIsUserManaged === true
+        let mergedPlayers: Player[]
+        if (userManaged) {
+          mergedPlayers = persistedPlayers
+        } else {
+          const byId = new Map(persistedPlayers.map((p) => [p.id, p]))
+          mergedPlayers = initialPlayers.map((base) => {
+            const saved = byId.get(base.id)
+            if (!saved) return base
+            return {
+              ...base,
+              photo: saved.photo,
+              photoId: saved.photoId,
+              skills: saved.skills,
+            }
+          })
+        }
 
         set({
           formationId: safeFormationId,
@@ -373,6 +451,7 @@ export const useLineupStore = create<State & Actions>()(
           activeLineupId: safeActiveId,
           phase: safePhase,
           players: mergedPlayers,
+          playerListIsUserManaged: userManaged,
         })
       },
 
@@ -395,29 +474,33 @@ export const useLineupStore = create<State & Actions>()(
         phase: state.phase,
         tacticBookView: state.tacticBookView,
         lastViewedDuel: state.lastViewedDuel,
+        playerListIsUserManaged: state.playerListIsUserManaged,
       }),
       migrate: (persistedStateUnknown, version) =>
         migratePersistedState(persistedStateUnknown, version),
       merge: (persistedStateUnknown, currentState) => {
-        // Alte Persistenzen haben evtl. kein players-Feld. Außerdem sollen neu
-        // im Code hinzugekommene Spieler (z. B. Neuzugänge) erscheinen, ohne
-        // die gespeicherten Fotos/Skills der bestehenden zu verlieren.
         const persisted = (persistedStateUnknown ?? {}) as Partial<State>
         const persistedPlayers = Array.isArray(persisted.players) ? persisted.players : []
-        const byId = new Map(persistedPlayers.map((p) => [p.id, p]))
 
-        const mergedPlayers: Player[] = initialPlayers.map((base) => {
-          const saved = byId.get(base.id)
-          if (!saved) return base
-          return {
-            ...base,
-            photo: saved.photo,
-            photoId: saved.photoId,
-            skills: saved.skills,
-            // Name aus dem Code hat Vorrang (Korrekturen in players.ts sollen greifen),
-            // kann später via renamePlayer-Action eigenständig werden.
-          }
-        })
+        // Sobald der Nutzer den Kader aktiv editiert hat, ist die persistierte
+        // Liste autoritativ – Neuzugänge in players.ts erscheinen ab dem Punkt
+        // nicht mehr automatisch (sonst wäre das vom Nutzer Gelöschte wieder da).
+        let mergedPlayers: Player[]
+        if (persisted.playerListIsUserManaged === true) {
+          mergedPlayers = persistedPlayers
+        } else {
+          const byId = new Map(persistedPlayers.map((p) => [p.id, p]))
+          mergedPlayers = initialPlayers.map((base) => {
+            const saved = byId.get(base.id)
+            if (!saved) return base
+            return {
+              ...base,
+              photo: saved.photo,
+              photoId: saved.photoId,
+              skills: saved.skills,
+            }
+          })
+        }
 
         return {
           ...currentState,
