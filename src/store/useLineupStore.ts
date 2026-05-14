@@ -4,7 +4,7 @@ import { formationById, formations } from '../data/formations'
 import { initialPlayers } from '../data/players'
 import type { SystemId, TacticBookView } from '../data/tacticBook'
 import type { Phase } from '../lib/phaseShift'
-import type { Player, PlayerStatus, Role, Skills } from '../types'
+import type { Player, PlayerStatus, Role, Skills, Substitution } from '../types'
 import { lineupStorage } from './idbStorage'
 import { newPhotoId, usePhotoStore } from './photoStore'
 
@@ -15,6 +15,8 @@ export type SavedLineup = {
   name: string
   formationId: string
   assignments: Assignments
+  /** Geplante Auswechslungen für diese Aufstellung. */
+  substitutions: Substitution[]
   createdAt: number
   updatedAt: number
 }
@@ -38,6 +40,8 @@ type State = {
    * der Code-Default-Kader wird beim Merge nicht mehr drüberkopiert.
    */
   playerListIsUserManaged: boolean
+  /** Live geplante Auswechslungen für die aktuelle Aufstellung. */
+  substitutions: Substitution[]
 }
 
 type Actions = {
@@ -82,6 +86,15 @@ type Actions = {
   /** Benennt einen Spieler um. */
   renamePlayer: (playerId: string, name: string) => void
 
+  /** Fügt eine leere Auswechsel-Zeile hinzu und gibt die neue ID zurück. */
+  addSubstitution: () => string
+  /** Aktualisiert eine bestehende Auswechslung (Patch-Style). */
+  updateSubstitution: (id: string, patch: Partial<Omit<Substitution, 'id'>>) => void
+  /** Entfernt eine geplante Auswechslung. */
+  removeSubstitution: (id: string) => void
+  /** Löscht den gesamten Wechselplan der aktuellen Aufstellung. */
+  clearSubstitutions: () => void
+
   /** Wendet eine berechnete Auto-Aufstellung auf die aktuelle Formation an. */
   applyAutoLineup: (assignments: Record<string, string>) => void
 
@@ -112,7 +125,7 @@ const newId = (): string => {
  * Backups die Version mitschreiben und beim Import durch dieselbe Migrations-
  * Kette wie der reguläre Persist-Pfad laufen können.
  */
-export const STORE_VERSION = 6
+export const STORE_VERSION = 7
 
 /**
  * Reine Migrationsfunktion. Wird sowohl im `persist({ migrate })`-Hook als auch
@@ -156,6 +169,15 @@ export function migratePersistedState(
   if (fromVersion < 6) {
     if (typeof s.playerListIsUserManaged !== 'boolean') s.playerListIsUserManaged = false
   }
+  // v6 → v7: Auswechselplan, live + pro gespeicherter Aufstellung.
+  if (fromVersion < 7) {
+    if (!Array.isArray(s.substitutions)) s.substitutions = []
+    if (Array.isArray(s.savedLineups)) {
+      s.savedLineups = s.savedLineups.map((l) =>
+        Array.isArray(l.substitutions) ? l : { ...l, substitutions: [] },
+      )
+    }
+  }
   return s
 }
 
@@ -171,6 +193,7 @@ export const useLineupStore = create<State & Actions>()(
       tacticBookView: 'matchday',
       lastViewedDuel: null,
       playerListIsUserManaged: false,
+      substitutions: [],
 
       setFormation: (id) => {
         const oldFormation = formationById(get().formationId)
@@ -239,17 +262,19 @@ export const useLineupStore = create<State & Actions>()(
         set({
           assignments: emptyAssignments(formation.slots.map((s) => s.id)),
           activeLineupId: null,
+          substitutions: [],
         })
       },
 
       saveAsNewLineup: (name) => {
-        const { formationId, assignments, savedLineups } = get()
+        const { formationId, assignments, substitutions, savedLineups } = get()
         const now = Date.now()
         const lineup: SavedLineup = {
           id: newId(),
           name: name.trim() || formationById(formationId).name,
           formationId,
           assignments: { ...assignments },
+          substitutions: substitutions.map((s) => ({ ...s })),
           createdAt: now,
           updatedAt: now,
         }
@@ -261,7 +286,7 @@ export const useLineupStore = create<State & Actions>()(
       },
 
       overwriteActiveLineup: () => {
-        const { activeLineupId, formationId, assignments, savedLineups } = get()
+        const { activeLineupId, formationId, assignments, substitutions, savedLineups } = get()
         if (!activeLineupId) return
         const idx = savedLineups.findIndex((l) => l.id === activeLineupId)
         if (idx === -1) return
@@ -269,6 +294,7 @@ export const useLineupStore = create<State & Actions>()(
           ...savedLineups[idx],
           formationId,
           assignments: { ...assignments },
+          substitutions: substitutions.map((s) => ({ ...s })),
           updatedAt: Date.now(),
         }
         const next = [...savedLineups]
@@ -288,6 +314,7 @@ export const useLineupStore = create<State & Actions>()(
           formationId: lineup.formationId,
           assignments: merged,
           activeLineupId: id,
+          substitutions: (lineup.substitutions ?? []).map((s) => ({ ...s })),
         })
       },
 
@@ -415,13 +442,41 @@ export const useLineupStore = create<State & Actions>()(
         })
       },
 
+      addSubstitution: () => {
+        const sub: Substitution = {
+          id: newId(),
+          outPlayerId: '',
+          inPlayerId: '',
+        }
+        set({ substitutions: [...get().substitutions, sub] })
+        return sub.id
+      },
+
+      updateSubstitution: (id, patch) => {
+        set({
+          substitutions: get().substitutions.map((s) =>
+            s.id === id ? { ...s, ...patch } : s,
+          ),
+        })
+      },
+
+      removeSubstitution: (id) => {
+        set({ substitutions: get().substitutions.filter((s) => s.id !== id) })
+      },
+
+      clearSubstitutions: () => {
+        set({ substitutions: [] })
+      },
+
       applyAutoLineup: (assignments) => {
         const formation = formationById(get().formationId)
         const next = emptyAssignments(formation.slots.map((s) => s.id))
         for (const [slotId, playerId] of Object.entries(assignments)) {
           if (slotId in next) next[slotId] = playerId
         }
-        set({ assignments: next, activeLineupId: null })
+        // Auswechslungen sind plan-spezifisch – nach kompletter Umstellung
+        // sind sie i. d. R. nicht mehr passend.
+        set({ assignments: next, activeLineupId: null, substitutions: [] })
       },
 
       setPhase: (phase) => set({ phase }),
@@ -434,14 +489,21 @@ export const useLineupStore = create<State & Actions>()(
           snapshot.assignments && typeof snapshot.assignments === 'object'
             ? (snapshot.assignments as Assignments)
             : emptyAssignments(formationById(safeFormationId).slots.map((s) => s.id))
+        // Saved lineups defensiv durchreichen + ggf. fehlende substitutions[] nachziehen.
         const safeSavedLineups: SavedLineup[] = Array.isArray(snapshot.savedLineups)
-          ? (snapshot.savedLineups as SavedLineup[])
+          ? (snapshot.savedLineups as SavedLineup[]).map((l) => ({
+              ...l,
+              substitutions: Array.isArray(l.substitutions) ? l.substitutions : [],
+            }))
           : []
         const safeActiveId =
           typeof snapshot.activeLineupId === 'string' || snapshot.activeLineupId === null
             ? (snapshot.activeLineupId as string | null)
             : null
         const safePhase: Phase = snapshot.phase === 'withoutBall' ? 'withoutBall' : 'withBall'
+        const safeSubstitutions: Substitution[] = Array.isArray(snapshot.substitutions)
+          ? (snapshot.substitutions as Substitution[])
+          : []
 
         // Wenn das Backup aus einer Installation kommt, in der der Nutzer den
         // Kader aktiv verwaltet hat, ist die persistierte Liste autoritativ.
@@ -475,6 +537,7 @@ export const useLineupStore = create<State & Actions>()(
           phase: safePhase,
           players: mergedPlayers,
           playerListIsUserManaged: userManaged,
+          substitutions: safeSubstitutions,
         })
       },
 
@@ -498,6 +561,7 @@ export const useLineupStore = create<State & Actions>()(
         tacticBookView: state.tacticBookView,
         lastViewedDuel: state.lastViewedDuel,
         playerListIsUserManaged: state.playerListIsUserManaged,
+        substitutions: state.substitutions,
       }),
       migrate: (persistedStateUnknown, version) =>
         migratePersistedState(persistedStateUnknown, version),

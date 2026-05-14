@@ -1,9 +1,13 @@
 import { useDroppable } from '@dnd-kit/core'
+import { useState } from 'react'
 import { selectBenchPlayers, useLineupStore } from '../store/useLineupStore'
 import { PlayerChip } from './PlayerChip'
+import { SubstitutionsDialog } from './SubstitutionsDialog'
 
 export function Bench() {
   const players = useLineupStore(selectBenchPlayers)
+  const subCount = useLineupStore((s) => s.substitutions.length)
+  const [subsOpen, setSubsOpen] = useState(false)
   const { isOver, setNodeRef, active } = useDroppable({
     id: 'bench',
     data: { isBench: true },
@@ -59,6 +63,23 @@ export function Bench() {
           </div>
         )}
       </section>
+
+      <button
+        type="button"
+        onClick={() => setSubsOpen(true)}
+        className="mt-2 inline-flex items-center justify-center gap-2 rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm font-semibold text-slate-200 shadow-inner transition hover:bg-slate-800"
+        title="Wechselplan für den Spieltag verwalten"
+      >
+        <span aria-hidden>🔁</span>
+        <span>Wechselplan</span>
+        {subCount > 0 && (
+          <span className="rounded-full bg-emerald-500/30 px-2 text-[11px] font-semibold text-emerald-200">
+            {subCount}
+          </span>
+        )}
+      </button>
+
+      <SubstitutionsDialog open={subsOpen} onClose={() => setSubsOpen(false)} />
     </aside>
   )
 }

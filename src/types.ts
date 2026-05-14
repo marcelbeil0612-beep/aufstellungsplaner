@@ -57,3 +57,17 @@ export type Formation = {
   name: string
   slots: Slot[]
 }
+
+/** Ein geplanter Auswechselvorgang. Reine Notiz – die App rechnet daraus keine
+ *  abgeleitete Aufstellung, sondern hält den Plan strukturiert für den Trainer. */
+export type Substitution = {
+  id: string
+  /** Geplante Spielminute, undefined = noch offen. */
+  minute?: number
+  /** Spieler, der vom Platz geht. */
+  outPlayerId: string
+  /** Spieler, der reinkommt. */
+  inPlayerId: string
+  /** Freier Hinweis („für den 10er", „wenn wir führen"). */
+  note?: string
+}

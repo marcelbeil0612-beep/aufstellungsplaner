@@ -18,6 +18,8 @@ type BackupPayload = {
     phase: Phase
     tacticBookView?: unknown
     lastViewedDuel?: unknown
+    playerListIsUserManaged?: boolean
+    substitutions?: unknown[]
   }
 }
 
@@ -38,6 +40,8 @@ export function exportBackupBlob(): Blob {
       phase: s.phase,
       tacticBookView: s.tacticBookView,
       lastViewedDuel: s.lastViewedDuel,
+      playerListIsUserManaged: s.playerListIsUserManaged,
+      substitutions: s.substitutions,
     },
   }
   return new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' })
