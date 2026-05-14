@@ -2,9 +2,28 @@ import { useRef, useState } from 'react'
 import { downloadBackup, importBackupFile } from '../lib/backup'
 import { usePlayerPhotoUrl } from '../store/photoStore'
 import { useLineupStore } from '../store/useLineupStore'
-import type { Player, Role, Skills } from '../types'
+import type { Player, PlayerStatus, Role, Skills } from '../types'
 import { fileToSquareBlob, initials } from '../lib/photoUtils'
 import { Modal } from './Modal'
+
+const statusOptions: { value: PlayerStatus | null; label: string; icon: string; color: string }[] = [
+  { value: null,         label: 'Verfügbar', icon: '✓',  color: 'bg-emerald-500/20 text-emerald-200 ring-emerald-500/40' },
+  { value: 'injured',    label: 'Verletzt',  icon: '🤕', color: 'bg-rose-500/20 text-rose-200 ring-rose-500/40' },
+  { value: 'suspended',  label: 'Gesperrt',  icon: '🟥', color: 'bg-amber-500/20 text-amber-200 ring-amber-500/40' },
+  { value: 'absent',     label: 'Abwesend',  icon: '🚫', color: 'bg-slate-500/20 text-slate-200 ring-slate-500/40' },
+]
+
+export const statusLabels: Record<PlayerStatus, string> = {
+  injured: 'verletzt',
+  suspended: 'gesperrt',
+  absent: 'abwesend',
+}
+
+export const statusIcons: Record<PlayerStatus, string> = {
+  injured: '🤕',
+  suspended: '🟥',
+  absent: '🚫',
+}
 
 type Props = {
   open: boolean
@@ -155,6 +174,60 @@ function NameCell({ player }: { player: Player }) {
   )
 }
 
+function NumberCell({ player }: { player: Player }) {
+  const setPlayerNumber = useLineupStore((s) => s.setPlayerNumber)
+  return (
+    <input
+      type="number"
+      inputMode="numeric"
+      min={1}
+      max={99}
+      step={1}
+      placeholder="–"
+      value={player.number ?? ''}
+      onChange={(e) => {
+        const raw = e.target.value
+        if (raw === '') {
+          setPlayerNumber(player.id, null)
+          return
+        }
+        const n = parseInt(raw, 10)
+        if (Number.isFinite(n)) setPlayerNumber(player.id, n)
+      }}
+      className="w-14 rounded-md border border-slate-700 bg-slate-950 px-1 py-1 text-center text-sm text-white placeholder:text-slate-600 focus:border-emerald-500 focus:outline-none"
+      style={{ fontSize: '16px' }}
+      aria-label={`Trikotnummer für ${player.name}`}
+    />
+  )
+}
+
+function StatusCell({ player }: { player: Player }) {
+  const setPlayerStatus = useLineupStore((s) => s.setPlayerStatus)
+  return (
+    <div className="flex justify-center gap-1" role="radiogroup" aria-label={`Status für ${player.name}`}>
+      {statusOptions.map((opt) => {
+        const active = (player.status ?? null) === opt.value
+        return (
+          <button
+            key={opt.label}
+            type="button"
+            role="radio"
+            aria-checked={active}
+            onClick={() => setPlayerStatus(player.id, opt.value)}
+            title={opt.label}
+            className={[
+              'h-7 w-7 rounded-md text-sm transition ring-1',
+              active ? opt.color : 'bg-slate-900/50 text-slate-500 ring-slate-700 hover:text-slate-200',
+            ].join(' ')}
+          >
+            <span aria-hidden>{opt.icon}</span>
+          </button>
+        )
+      })}
+    </div>
+  )
+}
+
 function DeleteCell({ player }: { player: Player }) {
   const removePlayer = useLineupStore((s) => s.removePlayer)
   return (
@@ -294,6 +367,8 @@ function SkillTable({
             <tr className="text-[10px] uppercase tracking-wider text-slate-400">
               <th className="sticky left-0 z-10 bg-slate-900/80 px-3 py-2 text-left">Foto</th>
               <th className="sticky left-[60px] z-10 bg-slate-900/80 px-2 py-2 text-left">Name</th>
+              <th className="px-1.5 py-2 text-center font-semibold">Nr.</th>
+              <th className="px-1.5 py-2 text-center font-semibold">Status</th>
               {columns.map((c) => (
                 <th
                   key={String(c.key)}
@@ -320,6 +395,12 @@ function SkillTable({
                 </td>
                 <td className="sticky left-[60px] z-[5] border-t border-slate-800 bg-slate-950/80 px-2 py-2">
                   <NameCell player={p} />
+                </td>
+                <td className="border-t border-slate-800 px-1 py-2 text-center">
+                  <NumberCell player={p} />
+                </td>
+                <td className="border-t border-slate-800 px-1 py-2">
+                  <StatusCell player={p} />
                 </td>
                 {columns.map((c) => (
                   <td key={String(c.key)} className="border-t border-slate-800 px-1 py-2 text-center">

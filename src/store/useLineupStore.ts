@@ -4,7 +4,7 @@ import { formationById, formations } from '../data/formations'
 import { initialPlayers } from '../data/players'
 import type { SystemId, TacticBookView } from '../data/tacticBook'
 import type { Phase } from '../lib/phaseShift'
-import type { Player, Role, Skills } from '../types'
+import type { Player, PlayerStatus, Role, Skills } from '../types'
 import { lineupStorage } from './idbStorage'
 import { newPhotoId, usePhotoStore } from './photoStore'
 
@@ -68,6 +68,10 @@ type Actions = {
   setPlayerPhoto: (playerId: string, blob: Blob | null) => Promise<void>
   /** Aktualisiert einzelne Skill-Werte; undefined im Patch entfernt den Key. */
   updatePlayerSkills: (playerId: string, patch: Partial<Skills>) => void
+  /** Setzt oder löscht die Trikotnummer (1–99). */
+  setPlayerNumber: (playerId: string, number: number | null) => void
+  /** Setzt oder löscht den Verfügbarkeitsstatus (undefined = verfügbar). */
+  setPlayerStatus: (playerId: string, status: PlayerStatus | null) => void
   /** Fügt einen neuen Spieler hinzu. Setzt `playerListIsUserManaged` auf true. */
   addPlayer: (name: string, role: Role) => void
   /**
@@ -345,6 +349,23 @@ export const useLineupStore = create<State & Actions>()(
         set({ players: next })
       },
 
+      setPlayerNumber: (playerId, number) => {
+        const next = get().players.map((p) => {
+          if (p.id !== playerId) return p
+          if (number === null || !Number.isFinite(number)) return { ...p, number: undefined }
+          const clamped = Math.max(1, Math.min(99, Math.trunc(number)))
+          return { ...p, number: clamped }
+        })
+        set({ players: next })
+      },
+
+      setPlayerStatus: (playerId, status) => {
+        const next = get().players.map((p) =>
+          p.id === playerId ? { ...p, status: status ?? undefined } : p,
+        )
+        set({ players: next })
+      },
+
       addPlayer: (name, role) => {
         const trimmed = name.trim()
         if (!trimmed) return
@@ -440,6 +461,8 @@ export const useLineupStore = create<State & Actions>()(
               photo: saved.photo,
               photoId: saved.photoId,
               skills: saved.skills,
+              number: saved.number,
+              status: saved.status,
             }
           })
         }
@@ -498,6 +521,8 @@ export const useLineupStore = create<State & Actions>()(
               photo: saved.photo,
               photoId: saved.photoId,
               skills: saved.skills,
+              number: saved.number,
+              status: saved.status,
             }
           })
         }

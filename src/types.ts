@@ -20,6 +20,9 @@ export type Skills = {
   gkKicking?: number
 }
 
+/** Aktueller Verfügbarkeitsstatus eines Spielers (undefined = verfügbar). */
+export type PlayerStatus = 'injured' | 'suspended' | 'absent'
+
 export type Player = {
   id: string
   name: string
@@ -34,6 +37,10 @@ export type Player = {
   /** Referenz auf einen Blob im Photo-IDB-Store (siehe `store/photoStore.ts`). */
   photoId?: string
   skills?: Skills
+  /** Trikotnummer 1–99, rein anzeigerelevant. */
+  number?: number
+  /** Verfügbarkeitsstatus; undefined = einsatzbereit. */
+  status?: PlayerStatus
 }
 
 export type Slot = {

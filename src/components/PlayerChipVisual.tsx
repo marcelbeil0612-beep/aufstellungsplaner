@@ -1,6 +1,12 @@
-import type { Player } from '../types'
+import type { Player, PlayerStatus } from '../types'
 import { initials } from '../lib/photoUtils'
 import { usePlayerPhotoUrl } from '../store/photoStore'
+
+const statusBadge: Record<PlayerStatus, { icon: string; ring: string; title: string }> = {
+  injured:   { icon: '🤕', ring: 'bg-rose-500 ring-rose-300/60',   title: 'verletzt' },
+  suspended: { icon: '🟥', ring: 'bg-amber-500 ring-amber-300/60', title: 'gesperrt' },
+  absent:    { icon: '🚫', ring: 'bg-slate-500 ring-slate-300/60', title: 'abwesend' },
+}
 
 type Props = {
   player: Player
@@ -65,6 +71,18 @@ export function PlayerChipVisual({ player, positionShort, score, compact, elevat
             {score.toFixed(0)}
           </span>
         )}
+        {player.status && (
+          <span
+            className={[
+              'absolute -bottom-1 -right-1.5 z-10 flex h-5 w-5 items-center justify-center rounded-full text-[11px] shadow-lg ring-2 ring-slate-950',
+              statusBadge[player.status].ring,
+            ].join(' ')}
+            title={statusBadge[player.status].title}
+            aria-label={statusBadge[player.status].title}
+          >
+            <span aria-hidden>{statusBadge[player.status].icon}</span>
+          </span>
+        )}
         <div
           className={[
             'relative overflow-hidden rounded-full shadow-xl ring-[3px] ring-offset-2 ring-offset-transparent',
@@ -93,11 +111,19 @@ export function PlayerChipVisual({ player, positionShort, score, compact, elevat
       </div>
       <span
         className={[
-          'max-w-[96px] truncate rounded-md bg-black/70 px-2 py-0.5 font-bold text-white shadow backdrop-blur',
+          'flex max-w-[110px] items-center gap-1 rounded-md bg-black/70 px-2 py-0.5 font-bold text-white shadow backdrop-blur',
           nameSize,
         ].join(' ')}
       >
-        {player.name}
+        {typeof player.number === 'number' && (
+          <span
+            className="shrink-0 rounded bg-white/15 px-1 text-[10px] font-black tabular-nums text-amber-200"
+            aria-label={`Trikotnummer ${player.number}`}
+          >
+            {player.number}
+          </span>
+        )}
+        <span className="truncate">{player.name}</span>
       </span>
     </div>
   )
