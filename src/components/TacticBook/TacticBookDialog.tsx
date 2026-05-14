@@ -6,6 +6,7 @@ import {
   systemOrder,
   type SystemId,
 } from '../../data/tacticBook'
+import { useEscapeKey } from '../../lib/useEscapeKey'
 import { useLineupStore } from '../../store/useLineupStore'
 import { DuelDetail } from './DuelDetail'
 import { SystemNav } from './SystemNav'
@@ -40,14 +41,7 @@ export function TacticBookDialog({ open, onClose }: Props) {
   }, [open, lastViewed, formationId])
 
   // ESC schließt
-  useEffect(() => {
-    if (!open) return
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [open, onClose])
+  useEscapeKey(open, onClose)
 
   // Auswahl persistieren, sobald ein sinnvoller Stand da ist
   useEffect(() => {

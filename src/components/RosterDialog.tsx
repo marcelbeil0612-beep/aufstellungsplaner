@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { downloadBackup, importBackupFile } from '../lib/backup'
 import { useLineupStore } from '../store/useLineupStore'
 import type { Player, Skills } from '../types'
 import { fileToSquareDataUrl, initials } from '../lib/photoUtils'
+import { Modal } from './Modal'
 
 type Props = {
   open: boolean
@@ -105,7 +106,16 @@ function PhotoCell({ player }: { player: Player }) {
   )
 }
 
-function SkillInput({ player, skillKey }: { player: Player; skillKey: keyof Skills }) {
+function SkillInput({
+  player,
+  skillKey,
+  skillLabel,
+}: {
+  player: Player
+  skillKey: keyof Skills
+  /** Deutscher Anzeigename des Skills (z. B. „Tempo") für Screenreader. */
+  skillLabel: string
+}) {
   const updatePlayerSkills = useLineupStore((s) => s.updatePlayerSkills)
   const value = player.skills?.[skillKey]
   return (
@@ -128,7 +138,7 @@ function SkillInput({ player, skillKey }: { player: Player; skillKey: keyof Skil
       }}
       className="w-14 rounded-md border border-slate-700 bg-slate-950 px-1 py-1 text-center text-sm text-white placeholder:text-slate-600 focus:border-emerald-500 focus:outline-none"
       style={{ fontSize: '16px' }}
-      aria-label={String(skillKey)}
+      aria-label={`${skillLabel} – ${player.name}`}
     />
   )
 }
@@ -182,7 +192,7 @@ function SkillTable({
                 </td>
                 {columns.map((c) => (
                   <td key={String(c.key)} className="border-t border-slate-800 px-1 py-2 text-center">
-                    <SkillInput player={p} skillKey={c.key} />
+                    <SkillInput player={p} skillKey={c.key} skillLabel={c.title ?? c.label} />
                   </td>
                 ))}
               </tr>
@@ -267,72 +277,38 @@ function BackupSection() {
 export function RosterDialog({ open, onClose }: Props) {
   const players = useLineupStore((s) => s.players)
 
-  useEffect(() => {
-    if (!open) return
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [open, onClose])
-
-  if (!open) return null
-
   const goalkeepers = players.filter((p) => p.role === 'GK')
   const fieldPlayers = players.filter((p) => p.role === 'FIELD')
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 p-0 backdrop-blur-sm sm:items-center sm:p-6"
-      onClick={onClose}
-      role="dialog"
-      aria-modal="true"
-      aria-label="Kader verwalten"
+    <Modal
+      open={open}
+      onClose={onClose}
+      title="Kader verwalten"
+      subtitle="Fotos hochladen und Skill-Werte (1–99) pro Spieler eintragen. Alles wird lokal gespeichert."
+      size="4xl"
+      maxHeight="95vh"
     >
-      <div
-        className="flex max-h-[95vh] w-full max-w-4xl flex-col overflow-hidden rounded-t-2xl border border-slate-800 bg-slate-900 shadow-2xl sm:rounded-2xl"
-        onClick={(e) => e.stopPropagation()}
-        style={{
-          paddingBottom: 'max(env(safe-area-inset-bottom, 0px), 0px)',
-        }}
-      >
-        <div className="flex items-center justify-between border-b border-slate-800 px-5 py-4">
-          <div>
-            <h2 className="text-base font-semibold text-white">Kader verwalten</h2>
-            <p className="text-xs text-slate-400">
-              Fotos hochladen und Skill-Werte (1–99) pro Spieler eintragen. Alles wird lokal gespeichert.
-            </p>
-          </div>
-          <button
-            onClick={onClose}
-            className="-m-2 rounded-lg p-2 text-slate-400 transition hover:bg-slate-800 hover:text-white"
-            aria-label="Schließen"
-          >
-            ✕
-          </button>
-        </div>
+      <div className="flex-1 space-y-5 overflow-y-auto px-5 py-4">
+        <BackupSection />
+        <SkillTable
+          title="Torhüter"
+          accent="text-amber-400/80"
+          players={goalkeepers}
+          columns={gkSkillColumns}
+        />
+        <SkillTable
+          title="Feldspieler"
+          accent="text-sky-400/80"
+          players={fieldPlayers}
+          columns={fieldSkillColumns}
+        />
 
-        <div className="flex-1 space-y-5 overflow-y-auto px-5 py-4">
-          <BackupSection />
-          <SkillTable
-            title="Torhüter"
-            accent="text-amber-400/80"
-            players={goalkeepers}
-            columns={gkSkillColumns}
-          />
-          <SkillTable
-            title="Feldspieler"
-            accent="text-sky-400/80"
-            players={fieldPlayers}
-            columns={fieldSkillColumns}
-          />
-
-          <p className="pt-2 text-[11px] text-slate-500">
-            Tipp: Leere Felder bedeuten „noch nicht bewertet". Die Werte fließen später in die
-            „Beste Aufstellung"-Berechnung ein (Phase 2).
-          </p>
-        </div>
+        <p className="pt-2 text-[11px] text-slate-500">
+          Tipp: Leere Felder bedeuten „noch nicht bewertet". Die Werte fließen später in die
+          „Beste Aufstellung"-Berechnung ein (Phase 2).
+        </p>
       </div>
-    </div>
+    </Modal>
   )
 }

@@ -1,9 +1,10 @@
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import { formationById } from '../data/formations'
 import { positionShort } from '../data/positionWeights'
 import { computeBestLineup } from '../lib/autoLineup'
 import { initials } from '../lib/photoUtils'
 import { useLineupStore } from '../store/useLineupStore'
+import { Modal } from './Modal'
 
 type Props = {
   open: boolean
@@ -21,15 +22,6 @@ export function AutoLineupDialog({ open, onClose }: Props) {
     [open, players, formation],
   )
 
-  useEffect(() => {
-    if (!open) return
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [open, onClose])
-
   if (!open || !result) return null
 
   const percent = Math.round((result.totalScore / result.maxPossibleScore) * 100)
@@ -42,34 +34,29 @@ export function AutoLineupDialog({ open, onClose }: Props) {
   }
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 p-0 backdrop-blur-sm sm:items-center sm:p-6"
-      onClick={onClose}
-      role="dialog"
-      aria-modal="true"
-      aria-label="Beste Aufstellung"
-    >
-      <div
-        className="flex max-h-[92vh] w-full max-w-lg flex-col overflow-hidden rounded-t-2xl border border-slate-800 bg-slate-900 shadow-2xl sm:rounded-2xl"
-        onClick={(e) => e.stopPropagation()}
-        style={{ paddingBottom: 'max(env(safe-area-inset-bottom, 0px), 0px)' }}
-      >
-        <div className="flex items-center justify-between border-b border-slate-800 px-5 py-4">
-          <div>
-            <h2 className="text-base font-semibold text-white">Beste Aufstellung</h2>
-            <p className="text-xs text-slate-400">
-              {formation.name} · Ø-Score {averageScore.toFixed(1)} · {percent}% vom Maximum
-            </p>
-          </div>
+    <Modal
+      open={open}
+      onClose={onClose}
+      title="Beste Aufstellung"
+      subtitle={`${formation.name} · Ø-Score ${averageScore.toFixed(1)} · ${percent}% vom Maximum`}
+      footer={
+        <>
           <button
             onClick={onClose}
-            className="-m-2 rounded-lg p-2 text-slate-400 transition hover:bg-slate-800 hover:text-white"
-            aria-label="Schließen"
+            className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-sm text-slate-200 transition hover:bg-slate-800"
           >
-            ✕
+            Abbrechen
           </button>
-        </div>
-
+          <button
+            onClick={handleApply}
+            className="rounded-lg bg-emerald-600 px-4 py-1.5 text-sm font-semibold text-white shadow transition hover:bg-emerald-500"
+          >
+            Übernehmen
+          </button>
+        </>
+      }
+    >
+      <>
         {incompleteCount > 0 && (
           <div className="border-b border-amber-700/40 bg-amber-950/40 px-5 py-2.5 text-xs text-amber-200">
             ⚠ {incompleteCount} Spieler {incompleteCount === 1 ? 'hat' : 'haben'} ein unvollständiges
@@ -135,22 +122,7 @@ export function AutoLineupDialog({ open, onClose }: Props) {
             })}
           </ul>
         </div>
-
-        <div className="flex items-center justify-end gap-2 border-t border-slate-800 bg-slate-950/60 px-5 py-3">
-          <button
-            onClick={onClose}
-            className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-sm text-slate-200 transition hover:bg-slate-800"
-          >
-            Abbrechen
-          </button>
-          <button
-            onClick={handleApply}
-            className="rounded-lg bg-emerald-600 px-4 py-1.5 text-sm font-semibold text-white shadow transition hover:bg-emerald-500"
-          >
-            Übernehmen
-          </button>
-        </div>
-      </div>
-    </div>
+      </>
+    </Modal>
   )
 }

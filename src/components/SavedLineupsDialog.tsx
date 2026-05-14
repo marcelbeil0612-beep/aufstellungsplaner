@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { formationById } from '../data/formations'
 import { useLineupStore } from '../store/useLineupStore'
+import { Modal } from './Modal'
 
 type Props = {
   open: boolean
@@ -47,18 +48,6 @@ export function SavedLineupsDialog({ open, onClose }: Props) {
     }
   }, [open, currentFormationName])
 
-  // ESC schließt den Dialog
-  useEffect(() => {
-    if (!open) return
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [open, onClose])
-
-  if (!open) return null
-
   const handleSaveAsNew = () => {
     saveAsNewLineup(name)
     setName(currentFormationName)
@@ -74,36 +63,14 @@ export function SavedLineupsDialog({ open, onClose }: Props) {
   }
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 p-0 backdrop-blur-sm sm:items-center sm:p-6"
-      onClick={onClose}
-      role="dialog"
-      aria-modal="true"
-      aria-label="Gespeicherte Aufstellungen"
+    <Modal
+      open={open}
+      onClose={onClose}
+      title="Aufstellungen"
+      subtitle={`${filledCount}/${totalSlots} Positionen besetzt · ${currentFormationName}`}
+      ariaLabel="Gespeicherte Aufstellungen"
     >
-      <div
-        className="flex max-h-[92vh] w-full max-w-lg flex-col overflow-hidden rounded-t-2xl border border-slate-800 bg-slate-900 shadow-2xl sm:rounded-2xl"
-        onClick={(e) => e.stopPropagation()}
-        style={{
-          paddingBottom: 'max(env(safe-area-inset-bottom, 0px), 0px)',
-        }}
-      >
-        <div className="flex items-center justify-between border-b border-slate-800 px-5 py-4">
-          <div>
-            <h2 className="text-base font-semibold text-white">Aufstellungen</h2>
-            <p className="text-xs text-slate-400">
-              {filledCount}/{totalSlots} Positionen besetzt · {currentFormationName}
-            </p>
-          </div>
-          <button
-            onClick={onClose}
-            className="-m-2 rounded-lg p-2 text-slate-400 transition hover:bg-slate-800 hover:text-white"
-            aria-label="Schließen"
-          >
-            ✕
-          </button>
-        </div>
-
+      <>
         {/* Speicher-Bereich */}
         <div className="space-y-3 border-b border-slate-800 bg-slate-900/70 px-5 py-4">
           <label className="block">
@@ -233,7 +200,7 @@ export function SavedLineupsDialog({ open, onClose }: Props) {
             </ul>
           )}
         </div>
-      </div>
-    </div>
+      </>
+    </Modal>
   )
 }
