@@ -6,6 +6,7 @@ import type { SystemId, TacticBookView } from '../data/tacticBook'
 import type { Phase } from '../lib/phaseShift'
 import type { Player, Skills } from '../types'
 import { lineupStorage } from './idbStorage'
+import { newPhotoId, usePhotoStore } from './photoStore'
 
 type Assignments = Record<string, string | null> // slotId → playerId | null
 
@@ -53,8 +54,12 @@ type Actions = {
   /** Löscht eine gespeicherte Aufstellung. Falls sie aktiv war, wird der Aktiv-Status zurückgesetzt. */
   deleteLineup: (id: string) => void
 
-  /** Setzt / entfernt das Spielerfoto (Data-URL oder null). */
-  setPlayerPhoto: (playerId: string, photo: string | null) => void
+  /**
+   * Speichert oder entfernt das Spielerfoto. Der Blob wandert in den
+   * separaten Photo-IDB-Store (siehe `photoStore.ts`); im Spieler-State
+   * bleibt nur die `photoId`.
+   */
+  setPlayerPhoto: (playerId: string, blob: Blob | null) => Promise<void>
   /** Aktualisiert einzelne Skill-Werte; undefined im Patch entfernt den Key. */
   updatePlayerSkills: (playerId: string, patch: Partial<Skills>) => void
 
@@ -277,11 +282,32 @@ export const useLineupStore = create<State & Actions>()(
         })
       },
 
-      setPlayerPhoto: (playerId, photo) => {
-        const next = get().players.map((p) =>
-          p.id === playerId ? { ...p, photo: photo ?? undefined } : p,
-        )
-        set({ players: next })
+      setPlayerPhoto: async (playerId, blob) => {
+        const player = get().players.find((p) => p.id === playerId)
+        if (!player) return
+        const photoStore = usePhotoStore.getState()
+
+        if (blob === null) {
+          if (player.photoId) await photoStore.remove(player.photoId)
+          set({
+            players: get().players.map((p) =>
+              p.id === playerId ? { ...p, photoId: undefined, photo: undefined } : p,
+            ),
+          })
+          return
+        }
+
+        // Neue photoId für jeden Upload: macht „Foto ersetzen" trivial und vermeidet
+        // Race-Conditions, falls zwei schnelle Uploads denselben Blob-Key überschreiben würden.
+        const oldId = player.photoId
+        const newId = newPhotoId()
+        await photoStore.put(newId, blob)
+        if (oldId) await photoStore.remove(oldId)
+        set({
+          players: get().players.map((p) =>
+            p.id === playerId ? { ...p, photoId: newId, photo: undefined } : p,
+          ),
+        })
       },
 
       updatePlayerSkills: (playerId, patch) => {
@@ -332,7 +358,12 @@ export const useLineupStore = create<State & Actions>()(
         const mergedPlayers: Player[] = initialPlayers.map((base) => {
           const saved = byId.get(base.id)
           if (!saved) return base
-          return { ...base, photo: saved.photo, skills: saved.skills }
+          return {
+            ...base,
+            photo: saved.photo,
+            photoId: saved.photoId,
+            skills: saved.skills,
+          }
         })
 
         set({
@@ -381,6 +412,7 @@ export const useLineupStore = create<State & Actions>()(
           return {
             ...base,
             photo: saved.photo,
+            photoId: saved.photoId,
             skills: saved.skills,
             // Name aus dem Code hat Vorrang (Korrekturen in players.ts sollen greifen),
             // kann später via renamePlayer-Action eigenständig werden.

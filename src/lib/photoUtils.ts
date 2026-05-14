@@ -1,13 +1,14 @@
 /**
  * Liest eine Bilddatei, beschneidet sie zentriert quadratisch, skaliert auf `size`
- * und gibt ein komprimiertes JPEG als Data-URL zurück. So bleibt der
- * localStorage-Fußabdruck klein (ein 256-JPEG ist ≈ 20-40 kB).
+ * und gibt ein komprimiertes JPEG zurück. Die App speichert Fotos als Blob im
+ * separaten Photo-IDB-Store, damit sie nicht bei jedem `set()` durch die
+ * JSON-Serialisierung des Haupt-Stores wandern.
  */
-export async function fileToSquareDataUrl(
+export async function fileToSquareBlob(
   file: File,
   size = 256,
   quality = 0.85,
-): Promise<string> {
+): Promise<Blob> {
   if (!file.type.startsWith('image/')) {
     throw new Error('Bitte eine Bilddatei auswählen.')
   }
@@ -28,10 +29,20 @@ export async function fileToSquareDataUrl(
     const ctx = canvas.getContext('2d')
     if (!ctx) throw new Error('Canvas-Kontext nicht verfügbar.')
     ctx.drawImage(img, sx, sy, min, min, 0, 0, size, size)
-    return canvas.toDataURL('image/jpeg', quality)
+    const blob = await new Promise<Blob | null>((resolve) =>
+      canvas.toBlob(resolve, 'image/jpeg', quality),
+    )
+    if (!blob) throw new Error('Bild konnte nicht codiert werden.')
+    return blob
   } finally {
     URL.revokeObjectURL(url)
   }
+}
+
+/** Wandelt eine Legacy-Data-URL (aus älteren Persistenz-Versionen) in einen Blob um. */
+export async function dataUrlToBlob(dataUrl: string): Promise<Blob> {
+  const res = await fetch(dataUrl)
+  return res.blob()
 }
 
 /** Erzeugt aus einem Namen zwei Initialbuchstaben für den Avatar-Fallback. */

@@ -1,8 +1,9 @@
 import { useRef, useState } from 'react'
 import { downloadBackup, importBackupFile } from '../lib/backup'
+import { usePlayerPhotoUrl } from '../store/photoStore'
 import { useLineupStore } from '../store/useLineupStore'
 import type { Player, Skills } from '../types'
-import { fileToSquareDataUrl, initials } from '../lib/photoUtils'
+import { fileToSquareBlob, initials } from '../lib/photoUtils'
 import { Modal } from './Modal'
 
 type Props = {
@@ -37,6 +38,7 @@ const gkSkillColumns: SkillColumn[] = [
 
 function PhotoCell({ player }: { player: Player }) {
   const setPlayerPhoto = useLineupStore((s) => s.setPlayerPhoto)
+  const photoUrl = usePlayerPhotoUrl(player)
   const inputRef = useRef<HTMLInputElement>(null)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -45,8 +47,8 @@ function PhotoCell({ player }: { player: Player }) {
     setError(null)
     setBusy(true)
     try {
-      const dataUrl = await fileToSquareDataUrl(file, 256, 0.85)
-      setPlayerPhoto(player.id, dataUrl)
+      const blob = await fileToSquareBlob(file, 256, 0.85)
+      await setPlayerPhoto(player.id, blob)
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Unbekannter Fehler')
     } finally {
@@ -62,7 +64,7 @@ function PhotoCell({ player }: { player: Player }) {
         className={[
           'relative h-12 w-12 overflow-hidden rounded-full ring-2 transition',
           player.role === 'GK' ? 'ring-amber-400' : 'ring-sky-400',
-          player.photo ? 'bg-slate-800' : player.role === 'GK'
+          photoUrl ? 'bg-slate-800' : player.role === 'GK'
             ? 'bg-gradient-to-br from-amber-500 to-amber-700'
             : 'bg-gradient-to-br from-sky-500 to-indigo-700',
           busy ? 'opacity-50' : 'hover:brightness-110',
@@ -70,21 +72,21 @@ function PhotoCell({ player }: { player: Player }) {
         aria-label={`Foto für ${player.name} ändern`}
         title="Foto hochladen"
       >
-        {player.photo ? (
-          <img src={player.photo} alt="" className="h-full w-full object-cover" />
+        {photoUrl ? (
+          <img src={photoUrl} alt="" className="h-full w-full object-cover" />
         ) : (
           <span className="flex h-full w-full items-center justify-center text-sm font-bold text-white">
             {initials(player.name)}
           </span>
         )}
         <span className="absolute inset-x-0 bottom-0 bg-black/60 py-0.5 text-center text-[9px] font-semibold uppercase text-white">
-          {player.photo ? 'Foto' : '+ Foto'}
+          {photoUrl ? 'Foto' : '+ Foto'}
         </span>
       </button>
-      {player.photo && (
+      {photoUrl && (
         <button
           type="button"
-          onClick={() => setPlayerPhoto(player.id, null)}
+          onClick={() => void setPlayerPhoto(player.id, null)}
           className="text-[10px] text-slate-400 hover:text-red-400"
         >
           entfernen

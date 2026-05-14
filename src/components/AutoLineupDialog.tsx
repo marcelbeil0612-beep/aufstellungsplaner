@@ -3,8 +3,30 @@ import { formationById } from '../data/formations'
 import { positionShort } from '../data/positionWeights'
 import { computeBestLineup } from '../lib/autoLineup'
 import { initials } from '../lib/photoUtils'
+import { usePlayerPhotoUrl } from '../store/photoStore'
 import { useLineupStore } from '../store/useLineupStore'
+import type { Player } from '../types'
 import { Modal } from './Modal'
+
+function PlayerAvatarMini({ player }: { player: Player }) {
+  const photoUrl = usePlayerPhotoUrl(player)
+  return (
+    <div
+      className={[
+        'flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full text-xs font-bold text-white',
+        player.role === 'GK'
+          ? 'bg-gradient-to-br from-amber-500 to-amber-700'
+          : 'bg-gradient-to-br from-sky-500 to-indigo-700',
+      ].join(' ')}
+    >
+      {photoUrl ? (
+        <img src={photoUrl} alt="" className="h-full w-full object-cover" />
+      ) : (
+        initials(player.name)
+      )}
+    </div>
+  )
+}
 
 type Props = {
   open: boolean
@@ -84,20 +106,7 @@ export function AutoLineupDialog({ open, onClose }: Props) {
                   <div className="flex min-w-0 flex-1 items-center gap-2">
                     {player ? (
                       <>
-                        <div
-                          className={[
-                            'flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full text-xs font-bold text-white',
-                            player.role === 'GK'
-                              ? 'bg-gradient-to-br from-amber-500 to-amber-700'
-                              : 'bg-gradient-to-br from-sky-500 to-indigo-700',
-                          ].join(' ')}
-                        >
-                          {player.photo ? (
-                            <img src={player.photo} alt="" className="h-full w-full object-cover" />
-                          ) : (
-                            initials(player.name)
-                          )}
-                        </div>
+                        <PlayerAvatarMini player={player} />
                         <span className="truncate text-sm font-medium text-white">{player.name}</span>
                         {isIncomplete && (
                           <span className="shrink-0 text-[10px] text-amber-400" title="Profil unvollständig">

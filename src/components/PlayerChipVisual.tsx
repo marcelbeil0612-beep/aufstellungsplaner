@@ -1,5 +1,6 @@
 import type { Player } from '../types'
 import { initials } from '../lib/photoUtils'
+import { usePlayerPhotoUrl } from '../store/photoStore'
 
 type Props = {
   player: Player
@@ -18,6 +19,7 @@ type Props = {
  * Wird sowohl vom normalen `PlayerChip` als auch vom `DragOverlay` gerendert.
  */
 export function PlayerChipVisual({ player, positionShort, score, compact, elevated }: Props) {
+  const photoUrl = usePlayerPhotoUrl(player)
   const isGK = player.role === 'GK'
   const ringColor = isGK ? 'ring-amber-400' : 'ring-sky-400'
   const gradient = isGK
@@ -68,12 +70,12 @@ export function PlayerChipVisual({ player, positionShort, score, compact, elevat
             'relative overflow-hidden rounded-full shadow-xl ring-[3px] ring-offset-2 ring-offset-transparent',
             avatarSize,
             ringColor,
-            player.photo ? 'bg-slate-950' : gradient,
+            photoUrl ? 'bg-slate-950' : gradient,
           ].join(' ')}
         >
-          {player.photo ? (
+          {photoUrl ? (
             <img
-              src={player.photo}
+              src={photoUrl}
               alt=""
               draggable={false}
               className="h-full w-full object-cover"

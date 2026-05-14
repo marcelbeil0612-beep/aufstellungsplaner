@@ -24,8 +24,15 @@ export type Player = {
   id: string
   name: string
   role: Role
-  /** Optionales Spielerfoto als Data-URL (wird im localStorage abgelegt). */
+  /**
+   * Legacy-Feld (≤ v5 Persistenz): Foto als Data-URL.
+   * Wird nach Hydration einmalig in den Photo-IDB-Store migriert und
+   * anschließend gelöscht. Neue Fotos werden ausschließlich per `photoId` referenziert.
+   * @deprecated nur noch für Migrations-Zwecke vorhanden
+   */
   photo?: string
+  /** Referenz auf einen Blob im Photo-IDB-Store (siehe `store/photoStore.ts`). */
+  photoId?: string
   skills?: Skills
 }
 
