@@ -11,7 +11,7 @@ zusammengefasst.
 | [ChatGPT Pro mit Web-Suche](./chatgpt-pro-2026-05-15.md) | 2026-05-15 | ✅ eingegangen, Bewertung am Ende der Datei |
 | [Gemini Pro](./gemini-pro-2026-05-15.md) | 2026-05-15 | ✅ eingegangen, Bewertung am Ende der Datei |
 | [Dritte Quelle](./third-research-2026-05-15.md) (vermutlich Claude.ai mit Web-Suche) | 2026-05-15 | ✅ eingegangen, Bewertung am Ende der Datei |
-| Synthese / Entscheidungsnotiz | – | 🟡 bereit zu starten, sobald keine weitere Quelle erwartet wird |
+| **[Synthese / Entscheidungsnotiz](./synthesis.md)** | **2026-05-15** | **✅ fertig — Ausrichtung: Monetarisierung. Konkrete Umsetzung in [../TODO.md](../TODO.md)** |
 
 ## Workflow
 
