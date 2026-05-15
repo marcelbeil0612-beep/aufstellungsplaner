@@ -5,7 +5,7 @@ import { initialPlayers } from '../data/players'
 import type { SystemId, TacticBookView } from '../data/tacticBook'
 import type { Phase } from '../lib/phaseShift'
 import type { ShareMatchResult } from '../lib/shareUrl'
-import type { Player, PlayerStatus, Position, Role, Skills, Substitution } from '../types'
+import type { Match, Player, PlayerStatus, Position, Role, Skills, Substitution } from '../types'
 import { lineupStorage } from './idbStorage'
 import { newPhotoId, usePhotoStore } from './photoStore'
 
@@ -43,6 +43,8 @@ type State = {
   playerListIsUserManaged: boolean
   /** Live geplante Auswechslungen für die aktuelle Aufstellung. */
   substitutions: Substitution[]
+  /** Spielprotokoll: chronologische Liste gespielter Matches. */
+  matches: Match[]
 }
 
 type Actions = {
@@ -98,6 +100,15 @@ type Actions = {
   /** Löscht den gesamten Wechselplan der aktuellen Aufstellung. */
   clearSubstitutions: () => void
 
+  /** Legt einen neuen Spielprotokoll-Eintrag an und gibt die ID zurück. */
+  addMatch: (
+    init: Pick<Match, 'date' | 'opponent'> & Partial<Omit<Match, 'id' | 'date' | 'opponent' | 'createdAt' | 'updatedAt'>>,
+  ) => string
+  /** Aktualisiert einen Eintrag (Patch). updatedAt wird automatisch gesetzt. */
+  updateMatch: (id: string, patch: Partial<Omit<Match, 'id' | 'createdAt' | 'updatedAt'>>) => void
+  /** Entfernt einen Spielprotokoll-Eintrag. */
+  removeMatch: (id: string) => void
+
   /** Wendet eine berechnete Auto-Aufstellung auf die aktuelle Formation an. */
   applyAutoLineup: (assignments: Record<string, string>) => void
 
@@ -134,7 +145,7 @@ const newId = (): string => {
  * Backups die Version mitschreiben und beim Import durch dieselbe Migrations-
  * Kette wie der reguläre Persist-Pfad laufen können.
  */
-export const STORE_VERSION = 7
+export const STORE_VERSION = 8
 
 /**
  * Reine Migrationsfunktion. Wird sowohl im `persist({ migrate })`-Hook als auch
@@ -187,6 +198,10 @@ export function migratePersistedState(
       )
     }
   }
+  // v7 → v8: Spielprotokoll.
+  if (fromVersion < 8) {
+    if (!Array.isArray(s.matches)) s.matches = []
+  }
   return s
 }
 
@@ -203,6 +218,7 @@ export const useLineupStore = create<State & Actions>()(
       lastViewedDuel: null,
       playerListIsUserManaged: false,
       substitutions: [],
+      matches: [],
 
       setFormation: (id) => {
         const oldFormation = formationById(get().formationId)
@@ -337,10 +353,14 @@ export const useLineupStore = create<State & Actions>()(
       },
 
       deleteLineup: (id) => {
-        const { savedLineups, activeLineupId } = get()
+        const { savedLineups, activeLineupId, matches } = get()
         set({
           savedLineups: savedLineups.filter((l) => l.id !== id),
           activeLineupId: activeLineupId === id ? null : activeLineupId,
+          // Spielprotokoll-Einträge dürfen nicht auf ein gelöschtes Lineup zeigen.
+          matches: matches.map((m) =>
+            m.lineupId === id ? { ...m, lineupId: undefined } : m,
+          ),
         })
       },
 
@@ -491,6 +511,36 @@ export const useLineupStore = create<State & Actions>()(
         set({ substitutions: [] })
       },
 
+      addMatch: (init) => {
+        const now = Date.now()
+        const match: Match = {
+          id: newId(),
+          date: init.date,
+          opponent: init.opponent,
+          lineupId: init.lineupId,
+          ourGoals: init.ourGoals,
+          oppGoals: init.oppGoals,
+          venue: init.venue,
+          notes: init.notes,
+          createdAt: now,
+          updatedAt: now,
+        }
+        set({ matches: [match, ...get().matches] })
+        return match.id
+      },
+
+      updateMatch: (id, patch) => {
+        set({
+          matches: get().matches.map((m) =>
+            m.id === id ? { ...m, ...patch, updatedAt: Date.now() } : m,
+          ),
+        })
+      },
+
+      removeMatch: (id) => {
+        set({ matches: get().matches.filter((m) => m.id !== id) })
+      },
+
       applyAutoLineup: (assignments) => {
         const formation = formationById(get().formationId)
         const next = emptyAssignments(formation.slots.map((s) => s.id))
@@ -566,6 +616,9 @@ export const useLineupStore = create<State & Actions>()(
         const safeSubstitutions: Substitution[] = Array.isArray(snapshot.substitutions)
           ? (snapshot.substitutions as Substitution[])
           : []
+        const safeMatches: Match[] = Array.isArray(snapshot.matches)
+          ? (snapshot.matches as Match[])
+          : []
 
         // Wenn das Backup aus einer Installation kommt, in der der Nutzer den
         // Kader aktiv verwaltet hat, ist die persistierte Liste autoritativ.
@@ -601,6 +654,7 @@ export const useLineupStore = create<State & Actions>()(
           players: mergedPlayers,
           playerListIsUserManaged: userManaged,
           substitutions: safeSubstitutions,
+          matches: safeMatches,
         })
       },
 
@@ -625,6 +679,7 @@ export const useLineupStore = create<State & Actions>()(
         lastViewedDuel: state.lastViewedDuel,
         playerListIsUserManaged: state.playerListIsUserManaged,
         substitutions: state.substitutions,
+        matches: state.matches,
       }),
       migrate: (persistedStateUnknown, version) =>
         migratePersistedState(persistedStateUnknown, version),

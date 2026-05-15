@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useLineupStore } from '../store/useLineupStore'
 import { AutoLineupDialog } from './AutoLineupDialog'
 import { FormationPicker } from './FormationPicker'
+import { MatchesDialog } from './MatchesDialog'
 import { RosterDialog } from './RosterDialog'
 import { SavedLineupsDialog } from './SavedLineupsDialog'
 import { TacticBookDialog } from './TacticBook/TacticBookDialog'
@@ -9,10 +10,12 @@ import { TacticBookDialog } from './TacticBook/TacticBookDialog'
 export function Header() {
   const reset = useLineupStore((s) => s.reset)
   const savedCount = useLineupStore((s) => s.savedLineups.length)
+  const matchesCount = useLineupStore((s) => s.matches.length)
   const [dialogOpen, setDialogOpen] = useState(false)
   const [rosterOpen, setRosterOpen] = useState(false)
   const [autoOpen, setAutoOpen] = useState(false)
   const [bookOpen, setBookOpen] = useState(false)
+  const [matchesOpen, setMatchesOpen] = useState(false)
 
   return (
     <>
@@ -71,6 +74,19 @@ export function Header() {
             )}
           </button>
           <button
+            onClick={() => setMatchesOpen(true)}
+            className="flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-sm font-medium text-slate-200 shadow-inner transition hover:bg-slate-800"
+            title="Spielprotokoll: Datum, Gegner, Ergebnis, Notizen"
+          >
+            <span aria-hidden>📋</span>
+            <span>Spiele</span>
+            {matchesCount > 0 && (
+              <span className="ml-0.5 rounded-full bg-slate-500/30 px-1.5 text-[11px] font-semibold">
+                {matchesCount}
+              </span>
+            )}
+          </button>
+          <button
             onClick={() => {
               if (confirm('Aufstellung wirklich zurücksetzen?')) reset()
             }}
@@ -85,6 +101,7 @@ export function Header() {
       <RosterDialog open={rosterOpen} onClose={() => setRosterOpen(false)} />
       <AutoLineupDialog open={autoOpen} onClose={() => setAutoOpen(false)} />
       <TacticBookDialog open={bookOpen} onClose={() => setBookOpen(false)} />
+      <MatchesDialog open={matchesOpen} onClose={() => setMatchesOpen(false)} />
     </>
   )
 }

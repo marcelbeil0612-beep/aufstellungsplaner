@@ -64,6 +64,31 @@ export type Formation = {
   slots: Slot[]
 }
 
+/**
+ * Eintrag im Spielprotokoll: ein gespieltes Match mit Datum, Gegner, Ergebnis
+ * und optionaler Referenz auf die genutzte Aufstellung. Bewusst flach gehalten;
+ * Mannschafts- oder Wettbewerbskontext fehlt absichtlich für v1.
+ */
+export type Match = {
+  id: string
+  /** ISO-Datum (YYYY-MM-DD). */
+  date: string
+  /** Gegner-Anzeigename. */
+  opponent: string
+  /** ID einer gespeicherten Aufstellung (oder undefined, wenn frei eingetragen). */
+  lineupId?: string
+  /** Eigene Tore. */
+  ourGoals?: number
+  /** Gegnerische Tore. */
+  oppGoals?: number
+  /** Heim/Auswärts – rein anzeigerelevant. */
+  venue?: 'home' | 'away'
+  /** Freier Notiztext (max ~500 Zeichen empfohlen). */
+  notes?: string
+  createdAt: number
+  updatedAt: number
+}
+
 /** Ein geplanter Auswechselvorgang. Reine Notiz – die App rechnet daraus keine
  *  abgeleitete Aufstellung, sondern hält den Plan strukturiert für den Trainer. */
 export type Substitution = {
