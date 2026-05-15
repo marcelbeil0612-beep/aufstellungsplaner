@@ -282,4 +282,98 @@ export const entriesOur532: TacticBookEntry[] = [
       'Einen Achter höher zwischen ihre Linien schieben.',
     ],
   },
+  {
+    id: '5-3-2_vs_5-4-1',
+    ourSystem: '5-3-2',
+    opponentSystem: '5-4-1',
+    rating: 'vorteilhaft',
+    character:
+      'Wir haben mit zwei Spitzen mehr Präsenz gegen ihre tiefe letzte Linie. Entscheidend ist Geduld, weil ihre Mittelfeldkette zentrale Räume lange schließt.',
+    ourAdvantages: [
+      'Zwei Spitzen binden ihre Innenverteidiger dauerhaft.',
+      'Drei Zentrumsspieler können zweite Bälle sichern.',
+      'Wingbacks können ihre äußeren Mittelfeldspieler zurückdrücken.',
+    ],
+    ourDangers: [
+      'Zu frühe Flanken gegen ihre Fünferkette.',
+      'Konter über den freien Zielspieler.',
+      'Ballverluste im Zentrum vor ihrer Kompaktheit.',
+    ],
+    importantZones: [
+      'Halbräume vor ihrer Fünferkette.',
+      'Rückraum nach geblockten Flanken.',
+      'Ballferne Seite hinter ihrer Mittelfeldkette.',
+    ],
+    pressing: [
+      'Spitzen stellen Rückpässe zu und lenken nach außen.',
+      'Wingback presst erst, wenn der Ball auf den Flügel kommt.',
+      'Zentrumsspieler sichern konsequent zweite Bälle.',
+    ],
+    inPossession: [
+      'Geduldig von Seite zu Seite verlagern.',
+      'Eine Spitze kurz anbieten, die andere Tiefe halten.',
+      'Flanken erst nach klarer Dynamik bringen.',
+    ],
+    transition: [
+      'Nach Ballgewinn sofort Tempo gegen ihre breite Kette aufnehmen.',
+      'Nach Ballverlust Pass auf den Zielspieler verhindern.',
+      'Ballferner Wingback bleibt zur Absicherung tiefer.',
+    ],
+    liveCoaching: [
+      '„Geduldig verlagern!"',
+      '„Rückraum besetzen!"',
+    ],
+    adjustments: [
+      'Einen Achter höher zwischen ihre Linien schieben.',
+      'Wingbacks breiter und früher anspielbar machen.',
+      'Zentralen Innenverteidiger mutiger andribbeln lassen.',
+    ],
+  },
+  {
+    id: '5-3-2_vs_4-1-4-1',
+    ourSystem: '5-3-2',
+    opponentSystem: '4-1-4-1',
+    rating: 'ausgeglichen',
+    character:
+      'Ihre Fünfer-Mittelfeldstruktur kann unser Zentrum blockieren. Wir müssen den einzelnen Sechser binden und dann schnell über Wingbacks oder diagonale Läufe lösen.',
+    ourAdvantages: [
+      'Zwei Spitzen können ihre Innenverteidiger unter Druck setzen.',
+      'Wingbacks haben Breite gegen ihre Viererkette.',
+      'Drei Innenverteidiger sichern gut gegen ihren einzelnen Stürmer.',
+    ],
+    ourDangers: [
+      'Ihr Mittelfeld kann unsere Passwege ins Zentrum schließen.',
+      'Außenspieler können unsere Wingbacks früh anlaufen.',
+      'Ihr Sechser kann zweite Bälle frei aufnehmen.',
+    ],
+    importantZones: [
+      'Raum neben ihrem Sechser.',
+      'Außenbahn hinter ihren Außenspielern.',
+      'Rückraum vor ihrer Viererkette.',
+    ],
+    pressing: [
+      'Spitzen laufen Innenverteidiger an und decken den Sechser ab.',
+      'Ballnaher Achter springt auf ihren Achter heraus.',
+      'Wingback bleibt wach gegen Verlagerungen.',
+    ],
+    inPossession: [
+      'Eine Spitze bindet den Sechser durch Zurückfallen.',
+      'Diagonal auf den ballfernen Wingback verlagern.',
+      'Achter in die Räume neben ihrem Sechser schieben.',
+    ],
+    transition: [
+      'Nach Ballgewinn sofort hinter ihre Außenspieler spielen.',
+      'Nach Ballverlust ihren ersten Pass ins Zentrum blocken.',
+      'Zentraler Innenverteidiger sichert gegen lange Bälle.',
+    ],
+    liveCoaching: [
+      '„Sechser binden!"',
+      '„Ballferne Seite!"',
+    ],
+    adjustments: [
+      'Eine Spitze tiefer als Verbindungsspieler einsetzen.',
+      'Wingback auf der Ballseite höher positionieren.',
+      'Achter enger an ihren Sechser heranschieben.',
+    ],
+  },
 ]
