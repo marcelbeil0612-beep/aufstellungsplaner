@@ -359,42 +359,130 @@ export const entriesOur433: TacticBookEntry[] = [
     ourSystem: '4-3-3',
     opponentSystem: '4-4-2-raute',
     rating: 'vorteilhaft',
-    character: 'Meist gutes Duell für uns, wenn wir Breite sauber nutzen.',
-    ourAdvantages: [
-      'Außen klare Vorteile',
-      'Gegner muss viel verschieben',
-      'Seitenwechsel tun weh',
-    ],
-    ourDangers: [
-      'Zentrum kann bei schlechtem Positionsspiel zugestellt werden',
-      'Gegner hat Präsenz im Zwischenlinienraum',
-    ],
-    importantZones: [
-      'Beide Außenbahnen',
-      'Raum hinter ihren Achtern',
-      'Schnittstellen neben dem Sechser',
-    ],
-    pressing: [
-      'Zentrum gut verdichten',
-      'Gegner nicht durch die Mitte kombinieren lassen',
-    ],
-    inPossession: [
-      'Maximale Breite',
-      'Schnelle Seitenwechsel',
-      'Außenverteidiger aktiv einschalten',
-    ],
-    transition: [
-      'Sofort auf Außen',
-      'Bei Ballverlust Mitte schließen',
-    ],
-    liveCoaching: [
-      'Feld groß machen',
-      'Nicht ins Zentrum verrennen',
-      'Außenüberzahl schaffen',
-    ],
+    character:
+      'Meist gutes Duell für uns, wenn wir Breite sauber nutzen und die Raute dauerhaft zum Verschieben zwingen. Schlüsselraum sind beide Außenbahnen, Schlüsselrisiko ist ihr enger Zwischenlinienraum mit Zehner und zwei Spitzen.',
+    phases: {
+      ownPossession: {
+        spaces: [
+          'Beide Außenbahnen sind offen, weil die Raute keine natürlichen Flügelspieler hat und ihre Außenverteidiger früh isoliert werden können.',
+          'Raum hinter ihren Achtern entsteht, wenn sie weit nach außen schieben müssen und dadurch die Halbräume neben ihrem Sechser öffnen.',
+          'Schnittstellen neben ihrem Sechser werden bespielbar, sobald unsere Achter versetzt zwischen Außenbahn und Halbraum anbieten.',
+          'Ballferne Außenbahn wird frei, wenn wir eine Seite binden und dann schnell verlagern.',
+          'Rückraum vor ihrer Kette kann frei werden, wenn ihre Achter tief nach außen nacharbeiten müssen.',
+        ],
+        advantages: [
+          'Unsere Flügel und Außenverteidiger können klare 2-gegen-1-Situationen gegen ihre Außenverteidiger herstellen.',
+          'Maximale Breite zwingt ihre enge Raute zu langen Verschiebewegen und öffnet anschließend Halbräume.',
+          'Schnelle Seitenwechsel tun ihnen weh, weil ihre ballfernen Achter weite Wege zurücklegen müssen.',
+          'Wir können den Gegner außen binden und danach über Achterläufe neben ihrem Sechser wieder ins Zentrum kommen.',
+        ],
+        dangers: [
+          'Wenn wir uns ins Zentrum verrennen, läuft der Ball direkt in ihre enge Raute aus Sechser, Achtern und Zehner.',
+          'Ihr Zehner kann unseren Sechser zustellen und den einfachen Aufbau durch die Mitte blockieren.',
+          'Ihre zwei Spitzen können unsere Innenverteidiger anlaufen und uns zu unruhigen Pässen auf außen zwingen.',
+          'Bei schlechtem Positionsspiel stehen unsere Achter zu flach und der Raum hinter ihren Achtern bleibt ungenutzt.',
+        ],
+        keyActions: [
+          'Flügel halten konsequent maximale Breite und ziehen ihre Außenverteidiger bis an die Linie.',
+          'Ballnaher Außenverteidiger schiebt aktiv nach, sobald der Flügel gebunden hat, um außen Überzahl zu schaffen.',
+          'Ballnaher Achter bietet sich im Halbraum hinter ihrem Achter an, nicht auf derselben Linie wie unser Sechser.',
+          'Sechser verlagert schnell, sobald ihre Raute zur Ballseite kippt.',
+          'Mittelstürmer bindet die Innenverteidiger und öffnet mit kurzen Gegenbewegungen den Rückraum für nachrückende Achter.',
+        ],
+      },
+      afterLoss: {
+        spaces: [
+          'Zentrum um unseren Sechser wird sofort kritisch, weil ihre Raute dort viele kurze Anschlussoptionen hat.',
+          'Halbraum hinter unserem ballnahen Achter öffnet sich, wenn er nach Ballverlust zu breit oder zu hoch steht.',
+          'Außenbahn hinter unserem aufgerückten Außenverteidiger ist offen für den ersten Pass auf ihren Außenverteidiger.',
+          'Zwischenlinienraum vor unserer Abwehr ist gefährlich, weil ihr Zehner dort nach Ballgewinn direkt aufdrehen kann.',
+        ],
+        advantages: [
+          'Ballverluste auf außen können wir gut einkreisen, weil Seitenlinie, Flügel, Außenverteidiger und Achter sofort Druck erzeugen.',
+          'Unser Sechser kann den ersten zentralen Pass auf ihren Zehner blocken, wenn er nicht zu weit nachschiebt.',
+          'Durch unsere drei Mittelfeldspieler haben wir gute Chancen, zweite Bälle direkt nach dem Gegenpressing zu sichern.',
+        ],
+        dangers: [
+          'Ihre zwei Spitzen können nach dem ersten vertikalen Pass sofort unsere Innenverteidiger binden.',
+          'Ihr Zehner kann den Konter beschleunigen, wenn wir die Mitte nach Ballverlust nicht sofort schließen.',
+          'Wenn unser Außenverteidiger hoch steht, kann ihr Außenverteidiger oder Achter direkt in den freien Außenkorridor starten.',
+          'Ihre enge Raute kann sich mit kurzen Pässen aus schlechtem Gegenpressing lösen.',
+        ],
+        keyActions: [
+          'Ballnaher Flügel und Außenverteidiger stellen sofort die Außenbahn zu und lassen keinen einfachen Pass nach vorne zu.',
+          'Ballnaher Achter presst den ersten Pass nach innen und verhindert das Aufdrehen ihres Achters.',
+          'Sechser bleibt zentral vor der Kette und schließt den Passweg auf ihren Zehner.',
+          'Ballferner Achter rückt ein und sichert den zweiten Ball im Zentrum.',
+          'Innenverteidiger bleiben gestaffelt gegen ihre zwei Spitzen: einer attackiert, einer sichert Tiefe.',
+        ],
+      },
+      oppPossession: {
+        spaces: [
+          'Zentrum zwischen unseren Achtern und unserem Sechser ist die Hauptzone, weil ihre Raute dort Überzahl herstellen will.',
+          'Halbräume neben unserem Sechser werden gefährlich, wenn ihre Achter hinter unsere Achter kommen.',
+          'Außenbahn bei ihren Außenverteidigern ist die Pressingzone, weil sie dort ihre einzige natürliche Breite haben.',
+          'Raum hinter unseren Außenverteidigern bleibt anfällig, wenn wir zu aggressiv auf ihre Außenverteidiger springen.',
+        ],
+        advantages: [
+          'Unsere Flügel können ihre Außenverteidiger früh anlaufen und ihnen die einzige Breite im Aufbau nehmen.',
+          'Unser Sechser hat eine klare Orientierung auf ihren Zehner und kann den Zwischenlinienraum kontrollieren.',
+          'Mit enger Staffelung der Achter können wir ihre Raute im Zentrum verdichten und Kombinationen durch die Mitte erschweren.',
+        ],
+        dangers: [
+          'Ihre vier zentralen Mittelfeldspieler können unsere drei zentralen Spieler überladen, wenn wir nicht kompakt bleiben.',
+          'Ihr Zehner kann sich seitlich aus dem Rücken unseres Sechsers lösen und freie Drehungen bekommen.',
+          'Ihre zwei Spitzen binden beide Innenverteidiger und öffnen Ablagen in den Rückraum.',
+          'Wenn unsere Flügel nicht sauber zurückarbeiten, bekommen ihre Außenverteidiger freie Vorwärtswege.',
+        ],
+        keyActions: [
+          'Mittelstürmer läuft einen Innenverteidiger bogenförmig an und nimmt ihren Sechser in den Deckungsschatten.',
+          'Ballnaher Flügel presst ihren Außenverteidiger mit geschlossener Innenseite.',
+          'Ballnaher Achter schiebt auf ihren Achter, sobald der Pass ins Zentrum geöffnet wird.',
+          'Sechser bleibt eng am Zehnerraum und verfolgt ihren Zehner nicht blind bis auf die Außenbahn.',
+          'Außenverteidiger bleibt zunächst eingerückt und sichert gegen Tiefenläufe ihrer Spitzen, bevor er nach außen springt.',
+        ],
+      },
+      afterGain: {
+        spaces: [
+          'Ballnahe Außenbahn ist sofort offen, wenn ihre Raute nach innen verdichtet und der Außenverteidiger hoch steht.',
+          'Ballferne Außenbahn ist nach Ballgewinn besonders frei, weil ihre Raute lange Verschiebewege hat.',
+          'Raum hinter ihren Achtern kann mit dem ersten Pass in den Halbraum attackiert werden.',
+          'Schnittstelle zwischen Außenverteidiger und Innenverteidiger öffnet sich für diagonale Läufe unserer Flügel.',
+        ],
+        advantages: [
+          'Nach Ballgewinn können wir sofort auf außen spielen, wo ihre Raute am langsamsten Zugriff bekommt.',
+          'Unsere Flügel starten aus breiter Position und können ihre Außenverteidiger direkt in Laufduelle zwingen.',
+          'Achter können als zweite Welle in den Rückraum nachrücken, wenn der direkte Angriff über außen gebremst wird.',
+        ],
+        dangers: [
+          'Wenn der erste Pass zentral bleibt, kann ihre enge Raute sofort wieder Druck auf den Ball bekommen.',
+          'Ihr Sechser kann vertikale Konterpässe abfangen, wenn unsere Achter nicht seitlich versetzt anbieten.',
+          'Bei zu vielen Spielern vor dem Ball fehlt die Absicherung gegen ihre zwei Spitzen nach erneutem Ballverlust.',
+        ],
+        keyActions: [
+          'Erster Pass nach Ballgewinn sucht direkt den freien Flügel oder den Außenverteidiger auf der offenen Seite.',
+          'Ballnaher Flügel startet sofort in die Tiefe hinter ihren Außenverteidiger.',
+          'Mittelstürmer bindet beide Innenverteidiger und öffnet mit einem diagonalen Lauf die Schnittstelle.',
+          'Ballferner Flügel bleibt breit und bereit für die schnelle Verlagerung.',
+          'Sechser bleibt zentral als Absicherung und schiebt erst nach, wenn der Angriff kontrolliert läuft.',
+        ],
+      },
+    },
+    liveCoaching: ['„Feld groß machen!"', '„Nicht zentral verrennen!"', '„Außenüberzahl schaffen!"'],
     adjustments: [
-      'Kaum nötig, eher Rollenverhalten anpassen',
+      'Grundordnung halten und zuerst Rollenverhalten anpassen: Flügel breit, Außenverteidiger versetzt, Achter nicht auf einer Linie.',
+      'Wenn das Zentrum zugestellt wird, einen Achter kurz abkippen lassen und danach schnell auf den freien Flügel verlagern.',
+      'Wenn ihr Zehner im Zwischenlinienraum frei wird, Sechser enger binden und ballfernen Achter tiefer absichern.',
+      'Wenn außen keine Überzahl entsteht, ballnahen Außenverteidiger höher schieben und den ballnahen Achter darunter sichern lassen.',
+      'Wenn ihre zwei Spitzen unseren Aufbau stressen, Sechser situativ zwischen die Innenverteidiger abkippen lassen und über außen eröffnen.',
     ],
+    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
+    ourAdvantages: [],
+    ourDangers: [],
+    importantZones: [],
+    pressing: [],
+    inPossession: [],
+    transition: [],
   },
   {
     id: '4-3-3_vs_5-4-1',
