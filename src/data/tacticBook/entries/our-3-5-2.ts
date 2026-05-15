@@ -6,40 +6,134 @@ export const entriesOur352: TacticBookEntry[] = [
     ourSystem: '3-5-2',
     opponentSystem: '4-3-3',
     rating: 'vorteilhaft',
-    character: 'Oft gutes Zentrumsspiel für uns, aber gefährlich auf Außen.',
-    ourAdvantages: [
-      'Überzahl im Zentrum',
-      'Zwei Stürmer binden Innenverteidiger',
-      'Gute Präsenz zwischen und vor den Ketten',
-    ],
-    ourDangers: [
-      'Raum hinter Wingbacks',
-      'Große Laufwege auf Außen',
-    ],
-    importantZones: [
-      'Zentrum vor deren Sechser',
-      'Halbräume',
-      'Tiefe nach Verlagerung auf den Wingback',
-    ],
-    pressing: [
-      'Zwei Stürmer auf deren Aufbau',
-      'Wingbacks mutig, aber nicht blind vorschieben',
-    ],
-    inPossession: [
-      'Zentrum nutzen, dann auf Außen lösen',
-      'Stürmer gegensinnig bewegen',
-    ],
-    transition: [
-      'Nach Ballgewinn schnell in die Spitze',
-      'Nach Ballverlust Außen schließen',
-    ],
-    liveCoaching: [
-      'Wingbacks absichern',
-      'Zentrum dominant halten',
-    ],
+    character:
+      'Oft gutes Duell für uns im Zentrum, weil wir mit drei zentralen Mittelfeldspielern und zwei Spitzen viel Präsenz zwischen und vor den Ketten haben. Schlüsselraum ist das Zentrum vor ihrer Sechs, Schlüsselrisiko ist der Raum hinter unseren Wingbacks gegen ihre breiten Flügel.',
+    phases: {
+      ownPossession: {
+        spaces: [
+          'Zentrum vor ihrer Sechs ist die wichtigste Zone, weil unsere drei Mittelfeldspieler dort Überzahl und viele Anschlusswinkel schaffen.',
+          'Halbräume neben ihrer Sechs öffnen sich, wenn unsere Achter versetzt anbieten und eine Spitze kurz entgegenkommt.',
+          'Tiefe nach Verlagerung auf den Wingback wird frei, sobald ihre Flügel nach innen gegen unser Zentrum gebunden sind.',
+          'Schnittstelle zwischen Außenverteidiger und Innenverteidiger ist bespielbar, wenn unser Wingback breit hält und eine Spitze diagonal startet.',
+          'Raum hinter unseren Wingbacks bleibt als Restverteidigungszone kritisch, wenn beide gleichzeitig hoch stehen.',
+        ],
+        advantages: [
+          'Wir haben im Zentrum gute Überzahl gegen ihr 4-3-3, besonders wenn ihre Achter auf unsere Halbverteidiger oder Sechser reagieren müssen.',
+          'Zwei Stürmer binden ihre Innenverteidiger und öffnen Zwischenräume für nachrückende Mittelfeldspieler.',
+          'Unsere Dreierkette gibt Ruhe im Aufbau und kann den ersten Druck ihrer Front drei sauber umlaufen.',
+          'Nach zentraler Bindung können wir schnell auf die Wingbacks lösen und ihre Außenverteidiger in lange Wege bringen.',
+        ],
+        dangers: [
+          'Ihre Flügelspieler können unsere Wingbacks früh binden und bei Ballverlust sofort in deren Rücken starten.',
+          'Wenn wir das Zentrum zu langsam bespielen, kann ihre Sechs Pässe abfangen und das Gegenpressing auslösen.',
+          'Große Laufwege auf außen entstehen, wenn der ballferne Wingback zu spät nachschiebt oder absichert.',
+          'Bei gleichzeitig hohen Wingbacks öffnen wir breite Konterräume neben unserer Dreierkette.',
+        ],
+        keyActions: [
+          'Sechser bietet sich zentral vor der Dreierkette an und bindet ihre erste Pressinglinie mit sicherem Andribbeln.',
+          'Achter stehen versetzt in den Halbräumen und suchen den Pass neben ihre Sechs, nicht beide auf derselben Höhe.',
+          'Stürmer bewegen sich gegensinnig: einer kommt kurz in den Zwischenraum, der andere attackiert die Tiefe.',
+          'Wingback hält Breite und startet nach Seitenwechsel sofort in die Tiefe, statt den Ball statisch in den Fuß zu fordern.',
+          'Ballferner Halbverteidiger und Sechser sichern, wenn der ballnahe Wingback hoch in den Angriff geht.',
+        ],
+      },
+      afterLoss: {
+        spaces: [
+          'Raum hinter unserem ballnahen Wingback ist sofort kritisch, weil ihr Flügel dort nach Ballgewinn direkt starten kann.',
+          'Außenbahn auf der ballfernen Seite wird gefährlich, wenn ihr erster Pass unser zentrales Gegenpressing überspielt.',
+          'Zentrum um unsere Sechs muss geschlossen bleiben, damit ihre Achter nicht frei aufdrehen.',
+          'Halbraum neben unserem ballnahen Achter öffnet sich, wenn er zu weit nach außen ins Gegenpressing springt.',
+          'Tiefe neben dem äußeren Innenverteidiger wird kritisch, wenn unser Wingback nicht rechtzeitig zurückkommt.',
+        ],
+        advantages: [
+          'Unsere enge zentrale Staffelung ermöglicht schnelles Gegenpressing gegen ihre Sechs und Achter.',
+          'Zwei Stürmer können Rückpässe auf ihre Innenverteidiger sofort anlaufen und den ersten Befreiungspass stören.',
+          'Die Dreierkette hat grundsätzlich einen freien Sicherungsspieler, wenn sie gestaffelt bleibt.',
+        ],
+        dangers: [
+          'Ihre Flügelspieler können die Räume hinter unseren Wingbacks sofort attackieren.',
+          'Wenn der ballnahe Halbverteidiger zu früh nach außen springt, öffnet sich die Schnittstelle neben dem zentralen Innenverteidiger.',
+          'Ein schneller Diagonalball auf den ballfernen Flügel kann unsere langen Außenwege bestrafen.',
+          'Wenn beide Achter ins Gegenpressing springen, fehlt die zentrale Sicherung vor der Dreierkette.',
+        ],
+        keyActions: [
+          'Nach Ballverlust zuerst die Außenbahn hinter dem Wingback schließen und den Pass auf ihren Flügel verhindern.',
+          'Ballnaher Achter stellt den Ballführer, während die Sechs zentral vor der Dreierkette bleibt.',
+          'Ballnaher Wingback sprintet sofort zurück und nimmt den ersten Tiefenlauf ihres Flügels auf.',
+          'Äußerer Innenverteidiger sichert die Tiefe neben sich und rückt erst heraus, wenn der Wingback Kontakt hat.',
+          'Stürmer blocken Rückpässe auf Innenverteidiger und Sechs, damit ihr erster Pass nicht frei vorbereitet wird.',
+        ],
+      },
+      oppPossession: {
+        spaces: [
+          'Ihre Innenverteidiger sind die erste Pressingzone, weil unsere zwei Stürmer den Aufbau auf eine Seite lenken können.',
+          'Sechserraum ihres 4-3-3 muss kontrolliert werden, damit ihre Sechs nicht frei aufdreht und die Flügel einsetzen kann.',
+          'Außenbahn gegen ihre Flügel und Außenverteidiger ist kritisch, weil unsere Wingbacks dort große Wege haben.',
+          'Halbräume vor unserer Dreierkette müssen eng bleiben, damit ihre Achter nicht zwischen Wingback und Sechser auftauchen.',
+          'Raum hinter unseren Wingbacks bleibt die größte Gefahrenzone bei Verlagerungen.',
+        ],
+        advantages: [
+          'Zwei Stürmer können ihre Innenverteidiger direkt anlaufen und den Aufbau auf einen Außenverteidiger oder eine Seite lenken.',
+          'Unsere drei zentralen Mittelfeldspieler können ihre Sechs und Achter eng aufnehmen und das Zentrum dominant halten.',
+          'Die Dreierkette gibt Absicherung gegen ihren Mittelstürmer und diagonale Läufe der Flügel, wenn die Abstände stimmen.',
+        ],
+        dangers: [
+          'Ihre Flügelspieler können unsere Wingbacks isolieren, wenn ihre Außenverteidiger nachschieben.',
+          'Wingbacks dürfen nicht blind vorschieben, sonst öffnet sich der Raum hinter ihnen für direkte Tiefenläufe.',
+          'Wenn unser Zentrum zu mannorientiert herausrückt, können ihre Achter Halbräume hinter uns öffnen.',
+          'Schnelle Seitenwechsel auf den ballfernen Flügel erzeugen lange Rückwege und können unsere Kette auseinanderziehen.',
+        ],
+        keyActions: [
+          'Stürmer laufen die Innenverteidiger bogenförmig an und lenken den Aufbau auf eine Seite.',
+          'Ballnaher Achter springt auf ihre Sechs oder den ballnahen Achter, sobald der Pass offen ist.',
+          'Wingback rückt mutig auf den Außenverteidiger oder Flügel heraus, aber nur mit Sicherung durch Achter und äußeren Innenverteidiger.',
+          'Sechser bleibt zentral und schützt den Raum vor der Dreierkette gegen Ablagen des Mittelstürmers.',
+          'Ballferner Wingback rückt ein, bleibt aber bereit für die schnelle Verlagerung auf ihren Flügel.',
+        ],
+      },
+      afterGain: {
+        spaces: [
+          'Tiefe hinter ihrem Außenverteidiger ist nach Ballgewinn offen, wenn unser Wingback sofort startet.',
+          'Zentrum hinter ihrer ersten Pressinglinie wird frei, sobald wir ihre Sechs mit dem ersten Pass überspielen.',
+          'Halbraum neben ihrer Sechs ist bespielbar für den ersten Klatschball auf Achter oder Stürmer.',
+          'Ballferne Außenbahn öffnet sich, wenn ihr 4-3-3 nach eigenem Angriff zur Ballseite verschoben ist.',
+          'Schnittstelle zwischen Außenverteidiger und Innenverteidiger ist offen für gegensinnige Läufe unserer Spitzen.',
+        ],
+        advantages: [
+          'Nach Ballgewinn können wir schnell in die Spitze spielen, weil zwei Stürmer sofort Anschluss und Tiefe geben.',
+          'Unsere zentrale Präsenz ermöglicht kurze erste Pässe aus dem Druck.',
+          'Wingbacks können nach Ballgewinn die freien Außenräume attackieren und ihre Flügel in Rückwärtsläufe zwingen.',
+          'Achter können als zweite Welle in den Halbraum nachrücken, wenn die Spitzen die Innenverteidiger binden.',
+        ],
+        dangers: [
+          'Wenn der erste Pass langsam ins Zentrum kommt, greift ihr Gegenpressing mit Sechs und Achtern sofort zu.',
+          'Ein ungesicherter Pass auf den Wingback kann nach erneutem Ballverlust den Raum hinter ihm öffnen.',
+          'Bei zu vielen Läufen vor den Ball fehlt die zentrale Klatschoption und wir verlieren den Ball direkt wieder.',
+        ],
+        keyActions: [
+          'Erster Pass nach Ballgewinn sucht sofort eine Spitze oder den freien Wingback in der Tiefe.',
+          'Ballnahe Spitze kommt kurz entgegen, die zweite startet diagonal hinter den Außenverteidiger.',
+          'Achter rückt in den Halbraum nach und bietet sich für Klatschball oder zweiten Pass an.',
+          'Wingback startet in den freien Außenraum, fordert den Ball aber in den Lauf und nicht statisch in den Fuß.',
+          'Sechser bleibt unter dem Ball und sichert gegen den direkten Gegenkonter über ihre Flügel.',
+        ],
+      },
+    },
+    liveCoaching: ['„Wingbacks absichern!"', '„Zentrum dominant!"', '„Schnell verlagern!"'],
     adjustments: [
-      'Auf 5-3-2 tiefer werden, wenn Außen überlastet sind',
+      'Auf 5-3-2 tiefer werden, wenn die Außen überlastet sind und ihre Flügel zu oft in den Rücken kommen.',
+      'Ballnahen Achter früher nach außen schieben lassen, wenn Wingback gegen Flügel und Außenverteidiger isoliert wird.',
+      'Einen Wingback tiefer halten, wenn der ballferne Diagonalball dauerhaft gefährlich ist.',
+      'Eine Spitze öfter kurz fallen lassen, wenn ihr Sechser unsere zentralen Pässe abfängt.',
+      'Nach Ballgewinn konsequenter direkt auf den Wingback oder die zweite Spitze spielen, wenn ihr Gegenpressing unser Zentrum zuschiebt.',
     ],
+    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
+    ourAdvantages: [],
+    ourDangers: [],
+    importantZones: [],
+    pressing: [],
+    inPossession: [],
+    transition: [],
   },
   {
     id: '3-5-2_vs_4-4-2',
