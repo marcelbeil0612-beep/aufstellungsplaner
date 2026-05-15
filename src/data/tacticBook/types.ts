@@ -113,18 +113,3 @@ export const phaseMeta: Record<PhaseKey, { label: string; short: string; tooltip
 /** Reihenfolge der 4 Phasen für UI-Rendering (klassischer Kreislauf). */
 export const phaseOrder: PhaseKey[] = ['ownPossession', 'afterLoss', 'oppPossession', 'afterGain']
 
-export type SectionKey =
-  | 'character'
-  | 'ourAdvantages'
-  | 'ourDangers'
-  | 'importantZones'
-  | 'pressing'
-  | 'inPossession'
-  | 'transition'
-  | 'liveCoaching'
-  | 'adjustments'
-  | 'trainingForms'
-  | 'typicalProblems'
-
-export type TacticBookView = 'matchday' | 'coach' | 'training'
-export type PhaseTab = 'Aufbau' | 'Pressing' | 'Ballbesitz' | 'Umschalten' | 'Verteidigen'

@@ -10,7 +10,6 @@ import { useEscapeKey } from '../../lib/useEscapeKey'
 import { useLineupStore } from '../../store/useLineupStore'
 import { DuelDetail } from './DuelDetail'
 import { SystemNav } from './SystemNav'
-import { ViewToggle } from './ViewToggle'
 
 type Props = {
   open: boolean
@@ -19,8 +18,6 @@ type Props = {
 
 export function TacticBookDialog({ open, onClose }: Props) {
   const formationId = useLineupStore((s) => s.formationId)
-  const view = useLineupStore((s) => s.tacticBookView)
-  const setView = useLineupStore((s) => s.setTacticBookView)
   const lastViewed = useLineupStore((s) => s.lastViewedDuel)
   const setLastViewed = useLineupStore((s) => s.setLastViewedDuel)
 
@@ -104,16 +101,13 @@ export function TacticBookDialog({ open, onClose }: Props) {
               </p>
             </div>
           </div>
-          <div className="flex items-center gap-2">
-            <ViewToggle value={view} onChange={setView} />
-            <button
-              onClick={onClose}
-              className="-m-2 rounded-lg p-2 text-slate-400 transition hover:bg-slate-800 hover:text-white"
-              aria-label="Schließen"
-            >
-              ✕
-            </button>
-          </div>
+          <button
+            onClick={onClose}
+            className="-m-2 rounded-lg p-2 text-slate-400 transition hover:bg-slate-800 hover:text-white"
+            aria-label="Schließen"
+          >
+            ✕
+          </button>
         </div>
 
         {/* Inhalt: zwei Spalten ab lg, gestackt darunter */}
@@ -141,7 +135,6 @@ export function TacticBookDialog({ open, onClose }: Props) {
               ourSystem={ourSystem}
               opponentSystem={opponent}
               entry={currentEntry}
-              view={view}
             />
           </main>
         </div>

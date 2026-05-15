@@ -5,7 +5,6 @@ import type {
   PhaseKey,
   SystemId,
   TacticBookEntry,
-  TacticBookView,
 } from '../../data/tacticBook'
 import { phaseMeta, phaseOrder, systemLabels } from '../../data/tacticBook'
 import { PhaseHighlighter } from './PhaseHighlighter'
@@ -14,7 +13,6 @@ type Props = {
   ourSystem: SystemId
   opponentSystem: SystemId | null
   entry: TacticBookEntry | null
-  view: TacticBookView
 }
 
 const ratingStyle: Record<DuelRating, { bg: string; text: string; label: string }> = {
@@ -82,36 +80,34 @@ function PhaseCard({ phaseKey, analysis }: { phaseKey: PhaseKey; analysis: Phase
 }
 
 /** Legacy-Rendering, solange ein Eintrag noch keine 4-Phasen-Struktur hat. */
-function LegacyView({ entry, view }: { entry: TacticBookEntry; view: TacticBookView }) {
-  const sections: Array<{ title: string; icon: string; items: string[]; color: string; showIn: TacticBookView[] }> = [
-    { title: 'Unsere Vorteile',           icon: '✅', items: entry.ourAdvantages,  color: 'border-emerald-700/50', showIn: ['matchday', 'coach', 'training'] },
-    { title: 'Unsere Gefahren',           icon: '⚠',  items: entry.ourDangers,     color: 'border-rose-700/50',    showIn: ['matchday', 'coach', 'training'] },
-    { title: 'Wichtige Räume',            icon: '🗺', items: entry.importantZones, color: 'border-slate-700',      showIn: ['coach', 'training'] },
-    { title: 'Pressing-Zuordnung',        icon: '🛡', items: entry.pressing,       color: 'border-slate-700',      showIn: ['coach', 'training'] },
-    { title: 'Ballbesitz-Lösung',         icon: '⚽', items: entry.inPossession,   color: 'border-slate-700',      showIn: ['coach', 'training'] },
-    { title: 'Umschaltmomente',           icon: '⚡', items: entry.transition,     color: 'border-slate-700',      showIn: ['coach', 'training'] },
+function LegacyView({ entry }: { entry: TacticBookEntry }) {
+  const sections: Array<{ title: string; icon: string; items: string[]; color: string }> = [
+    { title: 'Unsere Vorteile',           icon: '✅', items: entry.ourAdvantages,  color: 'border-emerald-700/50' },
+    { title: 'Unsere Gefahren',           icon: '⚠',  items: entry.ourDangers,     color: 'border-rose-700/50' },
+    { title: 'Wichtige Räume',            icon: '🗺', items: entry.importantZones, color: 'border-slate-700' },
+    { title: 'Pressing-Zuordnung',        icon: '🛡', items: entry.pressing,       color: 'border-slate-700' },
+    { title: 'Ballbesitz-Lösung',         icon: '⚽', items: entry.inPossession,   color: 'border-slate-700' },
+    { title: 'Umschaltmomente',           icon: '⚡', items: entry.transition,     color: 'border-slate-700' },
   ]
   return (
     <>
       <div className="rounded-xl border border-dashed border-slate-800 bg-slate-950/40 px-4 py-2 text-[11px] text-slate-500">
         Dieses Duell ist noch im alten Schema. Migration ins 4-Phasen-Modell folgt.
       </div>
-      {sections
-        .filter((s) => s.showIn.includes(view))
-        .map((s) => (
-          <section key={s.title} className={`rounded-xl border bg-slate-950/50 p-4 ${s.color}`}>
-            <h4 className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-300">
-              <span aria-hidden>{s.icon}</span>
-              {s.title}
-            </h4>
-            <BulletList items={s.items} />
-          </section>
-        ))}
+      {sections.map((s) => (
+        <section key={s.title} className={`rounded-xl border bg-slate-950/50 p-4 ${s.color}`}>
+          <h4 className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-300">
+            <span aria-hidden>{s.icon}</span>
+            {s.title}
+          </h4>
+          <BulletList items={s.items} />
+        </section>
+      ))}
     </>
   )
 }
 
-export function DuelDetail({ ourSystem, opponentSystem, entry, view }: Props) {
+export function DuelDetail({ ourSystem, opponentSystem, entry }: Props) {
   const [phaseFilter, setPhaseFilter] = useState<PhaseKey | null>(null)
 
   if (!opponentSystem) {
@@ -136,8 +132,8 @@ export function DuelDetail({ ourSystem, opponentSystem, entry, view }: Props) {
   const hasNewSchema = !!entry.phases
   const style = ratingStyle[entry.rating]
 
-  // Coaching-Tools (Live-Coaching + Anpassungen) erscheinen prominent
-  // in allen Views — das ist die Spieltag-Realität.
+  // Coaching-Tools (Live-Coaching + Anpassungen) erscheinen prominent oben —
+  // das ist das, was der Trainer am Spieltag zuerst sieht.
   const coachingTools = (
     <div className="grid gap-3 sm:grid-cols-2">
       <section className="rounded-xl border border-sky-700/50 bg-slate-950/50 p-4">
@@ -172,8 +168,8 @@ export function DuelDetail({ ourSystem, opponentSystem, entry, view }: Props) {
         <p className="text-sm leading-snug text-slate-200">{entry.character}</p>
       </header>
 
-      {/* Phasen-Filter: nur Trainer/Training, nur wenn neues Schema vorhanden */}
-      {hasNewSchema && view !== 'matchday' && (
+      {/* Phasen-Filter: nur wenn neues Schema vorhanden */}
+      {hasNewSchema && (
         <div className="shrink-0">
           <PhaseHighlighter value={phaseFilter} onChange={setPhaseFilter} />
         </div>
@@ -191,7 +187,7 @@ export function DuelDetail({ ourSystem, opponentSystem, entry, view }: Props) {
             .map((key) => <PhaseCard key={key} phaseKey={key} analysis={entry.phases![key]} />)
         ) : (
           // ─── Legacy-Fallback ────────────────────────────────────────
-          <LegacyView entry={entry} view={view} />
+          <LegacyView entry={entry} />
         )}
       </div>
     </article>

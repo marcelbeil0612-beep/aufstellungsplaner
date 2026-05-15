@@ -16,7 +16,6 @@ type BackupPayload = {
     activeLineupId: string | null
     players: unknown[]
     phase: Phase
-    tacticBookView?: unknown
     lastViewedDuel?: unknown
     playerListIsUserManaged?: boolean
     substitutions?: unknown[]
@@ -39,7 +38,6 @@ export function exportBackupBlob(): Blob {
       activeLineupId: s.activeLineupId,
       players: s.players,
       phase: s.phase,
-      tacticBookView: s.tacticBookView,
       lastViewedDuel: s.lastViewedDuel,
       playerListIsUserManaged: s.playerListIsUserManaged,
       substitutions: s.substitutions,
@@ -75,7 +73,7 @@ export async function importBackupFile(file: File): Promise<BackupPayload> {
     throw new Error('Datei ist kein Aufstellungsplaner-Backup.')
   }
   // Backups älterer App-Versionen durch dieselbe Migrationskette schicken wie
-  // beim normalen Persist-Boot, damit fehlende Felder (z. B. tacticBookView)
+  // beim normalen Persist-Boot, damit fehlende Felder (z. B. lastViewedDuel)
   // mit Default-Werten aufgefüllt werden, statt im Store als `undefined` zu landen.
   const fromVersion = typeof parsed.storeVersion === 'number' ? parsed.storeVersion : 1
   const migrated = migratePersistedState(parsed.state, fromVersion)

@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { formationById, formations } from '../data/formations'
 import { initialPlayers } from '../data/players'
-import type { SystemId, TacticBookView } from '../data/tacticBook'
+import type { SystemId } from '../data/tacticBook'
 import type { Phase } from '../lib/phaseShift'
 import type { ShareMatchResult } from '../lib/shareUrl'
 import type { Match, Player, PlayerStatus, Position, Role, Skills, Substitution } from '../types'
@@ -31,8 +31,6 @@ type State = {
   activeLineupId: string | null
   /** Taktische Phase, beeinflusst die Slot-Koordinaten auf dem Feld. */
   phase: Phase
-  /** Zuletzt gewählte Detailtiefe im Systembuch. */
-  tacticBookView: TacticBookView
   /** Zuletzt betrachtetes Duell, damit der Dialog bei Öffnen dort weitermacht. */
   lastViewedDuel: { our: SystemId; opp: SystemId } | null
   /**
@@ -125,8 +123,6 @@ type Actions = {
   /** Stellt einen zuvor exportierten Snapshot wieder her (alle persistierten Felder). */
   restoreFromBackup: (snapshot: Partial<State>) => void
 
-  /** Systembuch: Detailtiefe wechseln. */
-  setTacticBookView: (v: TacticBookView) => void
   /** Systembuch: zuletzt betrachtetes Duell merken. */
   setLastViewedDuel: (duel: { our: SystemId; opp: SystemId } | null) => void
 }
@@ -172,15 +168,8 @@ export function migratePersistedState(
       s.phase = 'withBall'
     }
   }
-  // v4 → v5: Systembuch-Status
+  // v4 → v5: Systembuch-Status (tacticBookView wurde später entfernt; lastViewedDuel bleibt)
   if (fromVersion < 5) {
-    if (
-      s.tacticBookView !== 'matchday' &&
-      s.tacticBookView !== 'coach' &&
-      s.tacticBookView !== 'training'
-    ) {
-      s.tacticBookView = 'matchday'
-    }
     if (!('lastViewedDuel' in s)) s.lastViewedDuel = null
   }
   // v5 → v6: Spielerliste kann jetzt vom Nutzer verwaltet werden (CRUD).
@@ -214,7 +203,6 @@ export const useLineupStore = create<State & Actions>()(
       savedLineups: [],
       activeLineupId: null,
       phase: 'withBall',
-      tacticBookView: 'matchday',
       lastViewedDuel: null,
       playerListIsUserManaged: false,
       substitutions: [],
@@ -658,7 +646,6 @@ export const useLineupStore = create<State & Actions>()(
         })
       },
 
-      setTacticBookView: (v) => set({ tacticBookView: v }),
       setLastViewedDuel: (duel) => set({ lastViewedDuel: duel }),
     }),
     {
@@ -675,7 +662,6 @@ export const useLineupStore = create<State & Actions>()(
         activeLineupId: state.activeLineupId,
         players: state.players,
         phase: state.phase,
-        tacticBookView: state.tacticBookView,
         lastViewedDuel: state.lastViewedDuel,
         playerListIsUserManaged: state.playerListIsUserManaged,
         substitutions: state.substitutions,
