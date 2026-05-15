@@ -405,41 +405,131 @@ export const entriesOur433: TacticBookEntry[] = [
     ourSystem: '4-3-3',
     opponentSystem: '3-4-3',
     rating: 'unangenehm',
-    character: 'Sehr fordernd auf den Flügeln und in den Halbräumen.',
-    ourAdvantages: [
-      'Zentrum kann mit gutem Positionsspiel kontrolliert werden',
-      'Raum hinter hochstehenden Wingbacks',
-    ],
-    ourDangers: [
-      'Deren vordere Dreierreihe bindet stark',
-      'Halbräume sind schwer zu kontrollieren',
-      'Außenverteidiger geraten leicht in Unterzahl',
-    ],
-    importantZones: [
-      'Hinter Wingbacks',
-      'Halbraum neben unserem Sechser',
-      'Schnittstellen neben den Halbverteidigern',
-    ],
-    pressing: [
-      'Flügelspieler müssen konsequent rückwärts arbeiten',
-      'Achter unterstützen außen',
-    ],
-    inPossession: [
-      'Mit Verlagerungen arbeiten',
-      'Flügelstürmer in Tiefe schicken',
-    ],
-    transition: [
-      'Offene Außenräume sofort nutzen',
-      'Gegenpressing sauber absichern',
-    ],
-    liveCoaching: [
-      'Halbräume schließen',
-      'Außen doppeln',
-      'Nicht in offene Konter fallen',
-    ],
+    character:
+      'Sehr forderndes Duell auf den Flügeln und in den Halbräumen, weil ihre Wingbacks Breite geben und ihre vordere Dreierreihe unsere letzte Linie bindet. Schlüsselraum ist der Bereich hinter ihren Wingbacks, Schlüsselrisiko sind offene Halbräume neben unserem Sechser.',
+    phases: {
+      ownPossession: {
+        spaces: [
+          'Raum hinter ihren Wingbacks ist die wichtigste Tiefenzone, sobald sie hoch stehen oder auf unsere Außenverteidiger herausschieben.',
+          'Schnittstellen neben ihren Halbverteidigern werden offen, wenn unser Flügel diagonal startet und der Achter den Halbraum besetzt.',
+          'Zentrum vor ihrer Doppelsechs kann kontrolliert werden, weil wir mit Sechser und zwei Achtern eine 3-gegen-2-Staffelung haben.',
+          'Ballferne Außenbahn wird frei, wenn ihr 3-4-3 kompakt zur Ballseite verschiebt.',
+          'Außenbahn kann eng werden, wenn ihr Wingback, Halbverteidiger und Flügelspieler gemeinsam Zugriff herstellen.',
+        ],
+        advantages: [
+          'Mit gutem Positionsspiel können wir das Zentrum gegen ihre zwei zentralen Mittelfeldspieler kontrollieren.',
+          'Schnelle Verlagerungen öffnen Räume hinter ihren hochstehenden Wingbacks.',
+          'Unsere Flügel können ihre Halbverteidiger in breite Laufduelle ziehen, wenn sie aus der Tiefe gestartet werden.',
+          'Achterläufe in den Halbraum können ihre Halbverteidiger binden und den Außenkorridor für den Flügel öffnen.',
+        ],
+        dangers: [
+          'Ihre vordere Dreierreihe bindet unsere Innen- und Außenverteidiger stark und erschwert ruhigen Aufbau.',
+          'Ihre Halbverteidiger können aggressiv auf unsere Flügel herausschieben, wenn der Ball nur in den Fuß gespielt wird.',
+          'Bei zu breiter Staffelung unserer Achter wird der Halbraum neben unserem Sechser nach Ballverlust offen.',
+          'Wenn wir uns auf außen festspielen lassen, drohen Ballverluste gegen ihre Wingback-Halbverteidiger-Flügel-Dreiecke.',
+        ],
+        keyActions: [
+          'Sechser bleibt zentral anspielbar und verlagert schnell, sobald der ballnahe Wingback herausgelockt ist.',
+          'Ballnaher Achter bietet sich im Halbraum hinter ihrer Doppelsechs an und zieht den Halbverteidiger nicht zu früh heraus.',
+          'Flügel startet immer wieder in die Tiefe hinter den Wingback, statt dauerhaft breit im Fuß zu warten.',
+          'Außenverteidiger schiebt nur nach, wenn der ballnahe Achter oder Sechser den Raum hinter ihm absichert.',
+          'Nach Seitenbindung sofort auf den ballfernen Flügel verlagern und Tempo gegen den Wingback aufnehmen.',
+        ],
+      },
+      afterLoss: {
+        spaces: [
+          'Halbraum neben unserem Sechser ist sofort kritisch, weil ihre Flügelspieler dort nach Ballgewinn einrücken können.',
+          'Außenbahn hinter unserem aufgerückten Außenverteidiger öffnet sich für den startenden Wingback.',
+          'Raum zwischen Außenverteidiger und Innenverteidiger wird gefährlich, wenn ihre vordere Dreierreihe direkt diagonal startet.',
+          'Zentrum um die Mittellinie bleibt wichtig für zweite Bälle, weil ihre Doppelsechs dort Konter absichern kann.',
+        ],
+        advantages: [
+          'Durch unsere drei zentralen Mittelfeldspieler können wir zentrale Ballverluste schnell einkreisen, wenn die Abstände kurz bleiben.',
+          'Ballverluste auf außen können mit Flügel, Achter und Außenverteidiger sofort gedoppelt werden.',
+          'Unser Sechser kann den ersten vertikalen Pass auf ihre einrückenden Flügelspieler blocken.',
+        ],
+        dangers: [
+          'Ihre vordere Dreierreihe kann nach Ballgewinn sofort Tiefe attackieren und unsere letzte Linie breit binden.',
+          'Ihre Wingbacks können offene Außenräume direkt anlaufen, wenn unsere Flügel nicht mit zurückarbeiten.',
+          'Wenn das Gegenpressing nicht abgesichert ist, fällt der Gegner in offene Konter über Halbraum und Außenbahn.',
+          'Ihre Doppelsechs kann sich aus dem ersten Druck lösen, wenn unsere Achter zu ungestaffelt nach vorne springen.',
+        ],
+        keyActions: [
+          'Ballnaher Achter presst sofort den Ballführer, während der Sechser den Halbraum vor der Kette schließt.',
+          'Ballnaher Flügel arbeitet direkt rückwärts und blockt den Pass auf den Wingback.',
+          'Außenverteidiger sprintet nicht blind ins Gegenpressing, sondern sichert zuerst die Tiefe hinter sich.',
+          'Ballferner Achter rückt eng ein und jagt den zweiten Ball im Zentrum.',
+          'Innenverteidiger bleiben breit genug gegen ihre drei Angreifer, aber einer sichert immer den Raum hinter der Kette.',
+        ],
+      },
+      oppPossession: {
+        spaces: [
+          'Außenbahn auf unserer ballnahen Seite wird zur Überlastungszone, weil Wingback und Flügelspieler unseren Außenverteidiger binden können.',
+          'Halbraum neben unserem Sechser ist schwer zu kontrollieren, wenn ihr Flügelspieler einrückt und ihr zentraler Mittelfeldspieler nachschiebt.',
+          'Raum hinter unseren Außenverteidigern ist gefährlich, sobald sie zu früh auf den Wingback herausrücken.',
+          'Zentrum gegen ihre Doppelsechs ist kontrollierbar, wenn unsere Achter kompakt bleiben und Passwege schließen.',
+          'Schnittstelle zwischen Innenverteidiger und Außenverteidiger muss gegen diagonale Läufe ihrer vorderen Dreierreihe geschützt werden.',
+        ],
+        advantages: [
+          'Unsere drei Mittelfeldspieler können gegen ihre zwei zentralen Mittelfeldspieler Zugriff herstellen und das Zentrum verdichten.',
+          'Unsere Front drei kann ihre Dreierkette grundsätzlich mannorientiert anlaufen und den Aufbau auf eine Seite lenken.',
+          'Wenn unsere Flügel konsequent rückwärts arbeiten, können wir ihre Wingbacks außen doppeln.',
+        ],
+        dangers: [
+          'Unsere Außenverteidiger geraten leicht in Unterzahl, wenn Flügel und Wingback gleichzeitig auf ihrer Seite auftauchen.',
+          'Ihre vordere Dreierreihe bindet unsere letzte Linie und öffnet Ablagen in den Rückraum.',
+          'Wenn unsere Achter zu weit nach außen gezogen werden, wird der Sechserraum vor der Abwehr offen.',
+          'Ihr Halbverteidiger kann andribbeln und unseren Flügel binden, während der Wingback hinter ihm frei bleibt.',
+        ],
+        keyActions: [
+          'Mittelstürmer presst den zentralen Innenverteidiger bogenförmig und lenkt den Aufbau auf einen Halbverteidiger.',
+          'Ballnaher Flügel läuft den Halbverteidiger so an, dass der Pass auf den Wingback nicht offen in den Fuß kommt.',
+          'Außenverteidiger rückt erst auf den Wingback heraus, wenn unser Flügel mit zurückarbeitet und der Achter den Halbraum sichert.',
+          'Ballnaher Achter unterstützt außen, ohne den Passweg in den Sechserraum zu öffnen.',
+          'Sechser bleibt zentral vor der Kette und übernimmt einrückende Flügelspieler nur bis zur nächsten Übergabe.',
+        ],
+      },
+      afterGain: {
+        spaces: [
+          'Offene Außenräume hinter den Wingbacks müssen sofort genutzt werden, bevor ihre Fünferlinie wieder steht.',
+          'Schnittstellen neben den Halbverteidigern öffnen sich für diagonale Tiefenläufe unserer Flügel.',
+          'Halbraum hinter ihrer Doppelsechs wird frei, wenn ihre zentralen Mittelfeldspieler nach Ballverlust nach vorne stehen.',
+          'Ballferne Außenbahn ist nach Ballgewinn oft frei, weil ihr 3-4-3 stark zur Ballseite verschiebt.',
+        ],
+        advantages: [
+          'Unsere Flügel können nach Ballgewinn direkt in die Tiefe starten und die Halbverteidiger aus ihrer Kette ziehen.',
+          'Mit drei zentralen Spielern haben wir gute Klatsch- und Verlagerungsoptionen, wenn der erste Konterpass nicht sofort tief geht.',
+          'Schnelle Seitenwechsel nach Ballgewinn treffen ihre Wingbacks auf langen Rückwegen.',
+        ],
+        dangers: [
+          'Wenn der erste Pass unsauber zentral gespielt wird, kann ihre Doppelsechs sofort wieder Druck machen.',
+          'Ihre Halbverteidiger können aggressiv nach vorne verteidigen, wenn unsere Flügel den Ball nur in den Fuß bekommen.',
+          'Zu viele Spieler vor dem Ball öffnen nach erneutem Ballverlust direkte Konter in unsere Halbräume.',
+        ],
+        keyActions: [
+          'Erster Pass nach Ballgewinn sucht sofort den freien Flügel oder den Raum hinter dem Wingback.',
+          'Ballnaher Flügel startet tief in die Schnittstelle neben dem Halbverteidiger.',
+          'Mittelstürmer bindet den zentralen Innenverteidiger und öffnet durch diagonalen Lauf den Halbraum.',
+          'Ballnaher Achter bietet sich als Klatschoption an, falls der Tiefenpass blockiert ist.',
+          'Sechser bleibt als zentrale Sicherung stehen und verhindert den direkten Gegenkonter durch die Mitte.',
+        ],
+      },
+    },
+    liveCoaching: ['„Halbräume schließen!"', '„Außen doppeln!"', '„Konter absichern!"'],
     adjustments: [
-      '4-1-4-1 gegen den Ball',
+      'Gegen den Ball situativ in ein 4-1-4-1 fallen lassen, damit die Flügel die Wingbacks klar aufnehmen.',
+      'Einen Achter tiefer halten, wenn die Halbräume neben unserem Sechser zu oft offen werden.',
+      'Ballfernen Außenverteidiger konsequent einrücken lassen, wenn ihre vordere Dreierreihe viele diagonale Läufe setzt.',
+      'Flügel höher und breiter positionieren, wenn wir die Räume hinter den Wingbacks nach Ballgewinn nicht finden.',
+      'Bei Unterzahl auf außen den ballnahen Achter früher zur Seite schieben lassen und den Sechser zentral halten.',
     ],
+    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
+    ourAdvantages: [],
+    ourDangers: [],
+    importantZones: [],
+    pressing: [],
+    inPossession: [],
+    transition: [],
   },
   {
     id: '4-3-3_vs_4-4-2-raute',
