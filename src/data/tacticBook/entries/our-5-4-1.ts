@@ -325,4 +325,98 @@ export const entriesOur541: TacticBookEntry[] = [
       'Wingback ballnah früher in den freien Raum nachschieben.',
     ],
   },
+  {
+    id: '5-4-1_vs_5-4-1',
+    ourSystem: '5-4-1',
+    opponentSystem: '5-4-1',
+    rating: 'ausgeglichen',
+    character:
+      'Beide Teams stehen tief und breit abgesichert. Entscheidend sind Geduld, saubere Verlagerungen und klare Präsenz im Rückraum.',
+    ourAdvantages: [
+      'Defensive Zuordnung ist in allen Linien klar.',
+      'Außenspieler können Breite gegen ihre Wingbacks halten.',
+      'Fünferkette sichert gut gegen direkte Konter.',
+    ],
+    ourDangers: [
+      'Spiel kann ohne Tempo komplett festlaufen.',
+      'Unser Stürmer kann isoliert bleiben.',
+      'Zu frühe Flanken landen in ihrer Überzahl.',
+    ],
+    importantZones: [
+      'Rückraum vor ihrer Fünferkette.',
+      'Ballferne Außenbahn nach Verlagerung.',
+      'Raum neben ihrem zentralen Innenverteidiger.',
+    ],
+    pressing: [
+      'Stürmer lenkt den Aufbau auf eine Seite.',
+      'Außenspieler presst den Wingback erst bei schlechtem Kontakt.',
+      'Zentrale Mittelfeldspieler sichern zweite Bälle eng.',
+    ],
+    inPossession: [
+      'Geduldig verlagern und ihre Kette verschieben.',
+      'Stürmer kurz einbinden und sofort nachrücken.',
+      'Flanken erst nach Überzahl oder Tempo bringen.',
+    ],
+    transition: [
+      'Nach Ballgewinn sofort auf die ballferne Seite lösen.',
+      'Nach Ballverlust direkte Pässe auf den Stürmer blocken.',
+      'Ballferner Wingback bleibt zur Absicherung tief.',
+    ],
+    liveCoaching: [
+      '„Geduldig bleiben!"',
+      '„Rückraum besetzen!"',
+    ],
+    adjustments: [
+      'Einen Mittelfeldspieler höher neben den Stürmer schieben.',
+      'Außenspieler enger starten lassen, wenn Anschluss fehlt.',
+      'Äußeren Innenverteidiger mutiger andribbeln lassen.',
+    ],
+  },
+  {
+    id: '5-4-1_vs_4-1-4-1',
+    ourSystem: '5-4-1',
+    opponentSystem: '4-1-4-1',
+    rating: 'ausgeglichen',
+    character:
+      'Ihre Mittelfeld-Fünferstruktur kann unsere Zentrale blockieren. Wir müssen den Ball schnell nach außen bringen und den Stürmer mit klaren Anschlusswegen unterstützen.',
+    ourAdvantages: [
+      'Fünferkette kontrolliert ihren einzelnen Stürmer gut.',
+      'Außenspieler können Räume hinter ihren Außenverteidigern anlaufen.',
+      'Konter über die Breite sind gut möglich.',
+    ],
+    ourDangers: [
+      'Ihr Zentrum kann zweite Bälle dominieren.',
+      'Unser Stürmer steht oft allein gegen zwei Innenverteidiger.',
+      'Ihr Sechser kann freie Verlagerungen vorbereiten.',
+    ],
+    importantZones: [
+      'Raum neben ihrem Sechser.',
+      'Außenbahn hinter ihren Außenspielern.',
+      'Zweite-Ball-Zone vor unserer Abwehr.',
+    ],
+    pressing: [
+      'Stürmer läuft Innenverteidiger an und deckt den Sechser ab.',
+      'Außenspieler stellt den Pass auf ihren Außenverteidiger zu.',
+      'Zentrale Mittelfeldspieler bleiben eng gegen ihre Achter.',
+    ],
+    inPossession: [
+      'Nach Ballgewinn schnell hinter ihre Außenspieler spielen.',
+      'Stürmer als Wandspieler nutzen und sofort nachschieben.',
+      'Ballferne Seite früh für Verlagerungen öffnen.',
+    ],
+    transition: [
+      'Nach Ballgewinn direkt in die freie Außenbahn.',
+      'Nach Ballverlust Pass auf ihren Sechser schließen.',
+      'Wingback bleibt wach gegen Tiefenläufe des Außenspielers.',
+    ],
+    liveCoaching: [
+      '„Sechser zustellen!"',
+      '„Außen Tempo machen!"',
+    ],
+    adjustments: [
+      'Einen zentralen Mittelfeldspieler höher zum Stürmer schieben.',
+      'Außenspieler situativ enger gegen ihre Achter positionieren.',
+      'Wingback ballnah früher als Konterstation freigeben.',
+    ],
+  },
 ]
