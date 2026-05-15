@@ -220,4 +220,145 @@ export const entriesOur442: TacticBookEntry[] = [
       'Außenverteidiger ballnah mutiger nachschieben lassen.',
     ],
   },
+  {
+    id: '4-4-2_vs_3-5-2',
+    ourSystem: '4-4-2',
+    opponentSystem: '3-5-2',
+    rating: 'unangenehm',
+    character:
+      'Ihre drei Zentrumsspieler können unsere Mitte überladen. Wir müssen kompakt bleiben und nach Ballgewinn sofort die Räume hinter ihren Wingbacks attackieren.',
+    ourAdvantages: [
+      'Zwei Spitzen können ihre Dreierkette früh beschäftigen.',
+      'Flügel können Räume hinter ihren Wingbacks anlaufen.',
+      'Viererkette hat klare Zuordnung gegen zwei Spitzen.',
+    ],
+    ourDangers: [
+      'Zentrale Unterzahl gegen ihr Mittelfeld.',
+      'Ihre Wingbacks können unsere Flügel tief drücken.',
+      'Zweite Bälle vor unserer Abwehr können kippen.',
+    ],
+    importantZones: [
+      'Zentrum zwischen unseren Mittelfeldspielern.',
+      'Raum hinter ihren Wingbacks.',
+      'Halbräume neben unseren zentralen Mittelfeldspielern.',
+    ],
+    pressing: [
+      'Spitzen lenken auf einen äußeren Innenverteidiger.',
+      'Ballnaher Flügel presst den Wingback bei offenem Pass.',
+      'Zentrale Mittelfeldspieler bleiben eng gegen ihre drei Zentrumsspieler.',
+    ],
+    inPossession: [
+      'Nach Ballgewinn sofort hinter den Wingback spielen.',
+      'Eine Spitze kurz anbieten, die andere Tiefe halten.',
+      'Flügel breit starten und Außenverteidiger abgesichert nachschieben.',
+    ],
+    transition: [
+      'Nach Ballgewinn direkt in die freie Außenbahn.',
+      'Nach Ballverlust Zentrum sofort verdichten.',
+      'Ballferner Flügel rückt zur zweiten-Ball-Sicherung ein.',
+    ],
+    liveCoaching: [
+      '„Zentrum eng halten!"',
+      '„Hinter den Wingback!"',
+    ],
+    adjustments: [
+      'Einen Stürmer tiefer auf ihren Sechser fallen lassen.',
+      'Ballfernen Flügel enger zur Zentrumsicherung stellen.',
+      'Außenverteidiger nur mit klarer Absicherung hochschieben.',
+    ],
+  },
+  {
+    id: '4-4-2_vs_5-3-2',
+    ourSystem: '4-4-2',
+    opponentSystem: '5-3-2',
+    rating: 'ausgeglichen',
+    character:
+      'Ihre Fünferkette nimmt Tiefe gut weg, gibt uns aber Breite im Aufbau. Entscheidend ist, nicht früh zu flanken und den Rückraum sauber zu besetzen.',
+    ourAdvantages: [
+      'Flügel können ihre Wingbacks seitlich binden.',
+      'Zwei Spitzen halten Präsenz gegen ihre Innenverteidiger.',
+      'Außenverteidiger können Überzahl auf den Flügeln schaffen.',
+    ],
+    ourDangers: [
+      'Zu frühe Flanken gegen drei Innenverteidiger.',
+      'Konter über ihre zwei Spitzen.',
+      'Zentrale Unterzahl gegen ihre drei Mittelfeldspieler.',
+    ],
+    importantZones: [
+      'Rückraum vor ihrer Fünferkette.',
+      'Außenbahn gegen ihre Wingbacks.',
+      'Raum hinter unseren Außenverteidigern.',
+    ],
+    pressing: [
+      'Spitzen laufen die äußeren Innenverteidiger bogenförmig an.',
+      'Flügel stellt den Wingback nach außen fest.',
+      'Zentrales Mittelfeld schiebt eng auf zweite Bälle.',
+    ],
+    inPossession: [
+      'Geduldig verlagern und ihre Kette verschieben.',
+      'Flügel ins Eins-gegen-eins bringen statt blind zu flanken.',
+      'Eine Spitze löst sich in den Rückraum.',
+    ],
+    transition: [
+      'Nach Ballgewinn schnell auf die ballferne Seite lösen.',
+      'Nach Ballverlust direkten Pass auf ihre Spitzen blocken.',
+      'Außenverteidiger ballfern früh einrücken lassen.',
+    ],
+    liveCoaching: [
+      '„Nicht blind flanken!"',
+      '„Rückraum besetzen!"',
+    ],
+    adjustments: [
+      'Einen zentralen Mittelfeldspieler tiefer zur Kontersicherung halten.',
+      'Eine Spitze seitlich in den Flügelraum ausweichen lassen.',
+      'Ballnahen Außenverteidiger kontrolliert überlappen lassen.',
+    ],
+  },
+  {
+    id: '4-4-2_vs_5-4-1',
+    ourSystem: '4-4-2',
+    opponentSystem: '5-4-1',
+    rating: 'vorteilhaft',
+    character:
+      'Wir können mit zwei Spitzen und breiten Flügeln konstant Druck aufbauen. Wichtig ist Geduld, weil ihre tiefe Staffelung einfache Flanken gut verteidigt.',
+    ourAdvantages: [
+      'Zwei Spitzen geben klare Strafraumbesetzung.',
+      'Flügel und Außenverteidiger können ihre Breite bespielen.',
+      'Zentrales Mittelfeld kann zweite Bälle vor der Kette sichern.',
+    ],
+    ourDangers: [
+      'Ihr einzelner Stürmer kann lange Bälle festmachen.',
+      'Zu viele Flanken ohne Rückraumbesetzung.',
+      'Ballverluste im Zentrum öffnen Konterwege.',
+    ],
+    importantZones: [
+      'Rückraum vor ihrer Fünferkette.',
+      'Außenbahn gegen ihren Wingback.',
+      'Zentrum vor ihrer Mittelfeldkette.',
+    ],
+    pressing: [
+      'Spitzen stellen Innenverteidiger und Rückpässe zu.',
+      'Flügel presst den Wingback bei seitlicher Ballannahme.',
+      'Zentrum bleibt eng gegen Befreiungspässe.',
+    ],
+    inPossession: [
+      'Von Seite zu Seite verlagern und Tempo wechseln.',
+      'Flanken erst nach Dynamik oder Überzahl bringen.',
+      'Eine Spitze attackiert den ersten Pfosten, die andere bleibt zentral.',
+    ],
+    transition: [
+      'Nach Ballgewinn sofort Druck auf die letzte Linie halten.',
+      'Nach Ballverlust Pass auf den Zielspieler verhindern.',
+      'Ballferner Außenverteidiger bleibt zur Absicherung eingerückt.',
+    ],
+    liveCoaching: [
+      '„Geduldig verlagern!"',
+      '„Zielspieler zustellen!"',
+    ],
+    adjustments: [
+      'Einen Stürmer kurz zwischen die Linien fallen lassen.',
+      'Außenverteidiger ballnah höher als Überzahlspieler nutzen.',
+      'Ballfernen Flügel enger für Abschlüsse positionieren.',
+    ],
+  },
 ]
