@@ -4,6 +4,7 @@ import { formationById, formations } from '../data/formations'
 import { initialPlayers } from '../data/players'
 import type { SystemId, TacticBookView } from '../data/tacticBook'
 import type { Phase } from '../lib/phaseShift'
+import type { ShareMatchResult } from '../lib/shareUrl'
 import type { Player, PlayerStatus, Position, Role, Skills, Substitution } from '../types'
 import { lineupStorage } from './idbStorage'
 import { newPhotoId, usePhotoStore } from './photoStore'
@@ -99,6 +100,12 @@ type Actions = {
 
   /** Wendet eine berechnete Auto-Aufstellung auf die aktuelle Formation an. */
   applyAutoLineup: (assignments: Record<string, string>) => void
+
+  /**
+   * Importiert eine geteilte Aufstellung (Match-Result aus `lib/shareUrl.ts`)
+   * als neue gespeicherte Aufstellung und macht sie aktiv. Gibt die ID zurück.
+   */
+  applySharedLineup: (match: ShareMatchResult) => string
 
   /** Schaltet die taktische Phase direkt oder per Toggle um. */
   setPhase: (phase: Phase) => void
@@ -493,6 +500,45 @@ export const useLineupStore = create<State & Actions>()(
         // Auswechslungen sind plan-spezifisch – nach kompletter Umstellung
         // sind sie i. d. R. nicht mehr passend.
         set({ assignments: next, activeLineupId: null, substitutions: [] })
+      },
+
+      applySharedLineup: (match) => {
+        const formation = formationById(match.formationId)
+        const next = emptyAssignments(formation.slots.map((s) => s.id))
+        for (const [slotId, playerId] of match.assignments) {
+          if (slotId in next) next[slotId] = playerId
+        }
+        const subs: Substitution[] = match.substitutions.map((s) => ({
+          id: newId(),
+          minute: s.minute,
+          outPlayerId: s.outPlayerId,
+          inPlayerId: s.inPlayerId,
+          note: s.note,
+        }))
+        const now = Date.now()
+        const name =
+          match.title?.trim() ||
+          `Geteilt · ${formation.name} · ${new Date(now).toLocaleDateString('de-DE', {
+            day: '2-digit',
+            month: '2-digit',
+          })}`
+        const lineup: SavedLineup = {
+          id: newId(),
+          name,
+          formationId: match.formationId,
+          assignments: next,
+          substitutions: subs,
+          createdAt: now,
+          updatedAt: now,
+        }
+        set({
+          formationId: match.formationId,
+          assignments: next,
+          substitutions: subs,
+          savedLineups: [lineup, ...get().savedLineups],
+          activeLineupId: lineup.id,
+        })
+        return lineup.id
       },
 
       setPhase: (phase) => set({ phase }),
