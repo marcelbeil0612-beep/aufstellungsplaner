@@ -329,5 +329,171 @@ export const entriesOur343: TacticBookEntry[] = [
       'Bei Führung Wingbacks tiefer setzen und Konter über ballferne Verlagerungen suchen.',
     ],
   },
+  {
+    id: '3-4-3_vs_5-3-2',
+    ourSystem: '3-4-3',
+    opponentSystem: '5-3-2',
+    rating: 'unangenehm',
+    character:
+      'Ihr 5-3-2 ist kompakt im Zentrum und hat gegen unsere Front drei viel Absicherung. Wir müssen ihre Wingbacks binden und die Räume neben den äußeren Innenverteidigern konsequent attackieren.',
+    ourAdvantages: [
+      'Unsere Flügelstürmer können die äußeren Innenverteidiger seitlich herausziehen.',
+      'Unsere Wingbacks können ihre Wingbacks früh binden und nach hinten drücken.',
+      'Die Dreierkette gibt uns Absicherung gegen ihre zwei Spitzen.',
+      'Halbverteidiger können andribbeln, wenn ihre Spitzen passiv bleiben.',
+    ],
+    ourDangers: [
+      'Ihre drei zentralen Mittelfeldspieler können unsere Doppelsechs überladen.',
+      'Ihre Fünferkette verteidigt Tiefe und Strafraum sehr stabil.',
+      'Bei Ballverlust drohen schnelle Konter auf ihre zwei Spitzen.',
+      'Ihre Wingbacks können hinter unsere hochstehenden Wingbacks starten.',
+    ],
+    importantZones: [
+      'Halbräume neben ihren äußeren Innenverteidigern.',
+      'Zentrum um unsere Doppelsechs.',
+      'Räume hinter ihren Wingbacks.',
+      'Rückraum vor unserer Dreierkette.',
+    ],
+    pressing: [
+      'Unsere Front drei lenkt den Aufbau auf einen äußeren Innenverteidiger.',
+      'Mittelstürmer stellt den zentralen Innenverteidiger im Deckungsschatten zu.',
+      'Ballnaher Flügelstürmer presst den äußeren Innenverteidiger aggressiv.',
+      'Ballnaher Zentrumsspieler schiebt auf ihren Halbspieler im Mittelfeld.',
+    ],
+    inPossession: [
+      'Flügelstürmer zwischen Wingback und äußerem Innenverteidiger positionieren.',
+      'Wingbacks breit halten und ihre Wingbacks tief binden.',
+      'Halbverteidiger andribbeln lassen, um ihre Mittelfeldreihe herauszuziehen.',
+      'Nach zentralem Locken schnell diagonal hinter den ballfernen Wingback spielen.',
+    ],
+    transition: [
+      'Nach Ballgewinn sofort hinter ihren aufgerückten Wingback spielen.',
+      'Nach Ballverlust ersten Pass auf ihre zwei Spitzen verhindern.',
+      'Zentraler Innenverteidiger bleibt tief und sichert direkte Tiefenbälle.',
+    ],
+    liveCoaching: [
+      '„Wingback binden!"',
+      '„Halbraum attackieren!"',
+      '„Zentrum sichern!"',
+      '„Konter stoppen!"',
+    ],
+    adjustments: [
+      'Bei zentraler Unterzahl einen Flügelstürmer tiefer neben die Doppelsechs ziehen.',
+      'Wenn ihre Fünferkette alles wegverteidigt, häufiger Rückraum und Seitenwechsel suchen.',
+      'Bei Kontergefahr ballfernen Wingback tiefer in der Restverteidigung halten.',
+      'Bei Rückstand Mittelstürmer enger an die Innenverteidiger stellen und zweite Bälle erzwingen.',
+    ],
+  },
+  {
+    id: '3-4-3_vs_5-4-1',
+    ourSystem: '3-4-3',
+    opponentSystem: '5-4-1',
+    rating: 'ausgeglichen',
+    character:
+      'Wir haben viel Ballbesitz und können ihre erste Linie kontrollieren, müssen aber gegen den tiefen Block geduldig bleiben. Entscheidend sind Seitenwechsel, Rückraum und Läufe hinter die Wingbacks.',
+    ourAdvantages: [
+      'Unsere Dreierkette kann gegen ihren einzelnen Stürmer ruhig aufbauen.',
+      'Wingbacks können dauerhaft Breite geben und ihre Fünferkette auseinanderziehen.',
+      'Flügelstürmer können zwischen Außen- und Halbverteidiger auftauchen.',
+      'Unsere Restverteidigung hat gute Kontrolle gegen den ersten Konterball.',
+    ],
+    ourDangers: [
+      'Ihre Fünferkette nimmt Schnittstellen und Tiefe konsequent weg.',
+      'Ihre Vierer-Mittelfeldlinie kann unsere Doppelsechs isolieren.',
+      'Bei ungeduldigen Flanken verteidigen sie den Strafraum klar in Überzahl.',
+      'Konter über den Zielspieler können unsere hohen Wingbacks überspielen.',
+    ],
+    importantZones: [
+      'Halbräume vor ihrer Fünferkette.',
+      'Ballferner Flügel nach Seitenwechsel.',
+      'Rückraum an der Strafraumkante.',
+      'Räume hinter unseren Wingbacks.',
+    ],
+    pressing: [
+      'Nach Rückpässen schiebt unsere Front drei sofort auf ihre Fünferkette.',
+      'Mittelstürmer verhindert den Pass auf ihren Zielspieler.',
+      'Zentrumsspieler bleiben eng für zweite Bälle nach Klärungen.',
+      'Wingbacks sichern außen gegen direkte Befreiungspässe.',
+    ],
+    inPossession: [
+      'Über Halbverteidiger andribbeln und ihre Mittelfeldlinie herausziehen.',
+      'Wingbacks breit halten und nach Seitenwechsel sofort Tempo aufnehmen.',
+      'Flügelstürmer in den Halbraum einrücken lassen und Rückraum besetzen.',
+      'Flanken erst nach Durchbruch oder klarer Strafraumbesetzung spielen.',
+    ],
+    transition: [
+      'Nach Ballgewinn sofort Tempo aufnehmen, bevor ihr Block wieder steht.',
+      'Nach Ballverlust den ersten Pass auf ihren Zielspieler direkt attackieren.',
+      'Ballferner Wingback bleibt tiefer gegen lange Diagonalbälle.',
+    ],
+    liveCoaching: [
+      '„Geduldig bleiben!"',
+      '„Rückraum besetzen!"',
+      '„Seite wechseln!"',
+      '„Nicht blind flanken!"',
+    ],
+    adjustments: [
+      'Wenn der Block zu tief steht, einen Zentrumsspieler höher in den Zwischenraum schieben.',
+      'Bei wenig Durchbruch Flügelstürmer enger und Wingbacks noch breiter positionieren.',
+      'Bei Kontergefahr einen Halbverteidiger klar tiefer absichern lassen.',
+      'Bei Rückstand auf mehr Strafraumbesetzung mit enger Front drei gehen.',
+    ],
+  },
+  {
+    id: '3-4-3_vs_4-1-4-1',
+    ourSystem: '3-4-3',
+    opponentSystem: '4-1-4-1',
+    rating: 'vorteilhaft',
+    character:
+      'Unsere Dreierkette kann gegen ihren einzelnen Stürmer kontrolliert aufbauen und ihre Viererkette mit drei Angreifern binden. Wichtig ist, ihre breite Mittelfeldlinie nicht frei auf unsere Wingbacks schieben zu lassen.',
+    ourAdvantages: [
+      'Wir haben im Aufbau klare Überzahl gegen ihren einzelnen Stürmer.',
+      'Unsere Front drei kann ihre Viererkette breit binden.',
+      'Wingbacks können hinter ihre äußeren Mittelfeldspieler starten.',
+      'Halbverteidiger können neben ihrer ersten Pressinglinie andribbeln.',
+    ],
+    ourDangers: [
+      'Ihre Vierer-Mittelfeldlinie kann unsere Doppelsechs seitlich zustellen.',
+      'Ihre einzelne Sechs kann Pässe in den Zwischenraum abfangen.',
+      'Bei Ballverlust auf außen drohen schnelle Konter über ihre Flügelspieler.',
+      'Unser Zentrum kann isoliert werden, wenn die Wingbacks zu früh hoch stehen.',
+    ],
+    importantZones: [
+      'Halbräume neben ihrer Sechs.',
+      'Räume hinter ihren äußeren Mittelfeldspielern.',
+      'Zwischenraum vor ihrer Viererkette.',
+      'Außenkorridore gegen ihre Flügelspieler.',
+    ],
+    pressing: [
+      'Unsere Front drei presst ihre Viererkette und lenkt auf den Außenverteidiger.',
+      'Mittelstürmer stellt ihre Sechs im Deckungsschatten zu.',
+      'Ballnaher Flügelstürmer attackiert den Außenverteidiger nach außen.',
+      'Wingback schiebt auf ihren Flügelspieler, sobald der Pass breit kommt.',
+    ],
+    inPossession: [
+      'Halbverteidiger andribbeln lassen und ihre äußeren Mittelfeldspieler binden.',
+      'Flügelstürmer im Halbraum zwischen Außenverteidiger und Innenverteidiger suchen.',
+      'Wingbacks nach Klatschpass tief hinter ihre Mittelfeldlinie schicken.',
+      'Schnell verlagern, wenn ihre Vierer-Mittelfeldlinie ballnah zuschiebt.',
+    ],
+    transition: [
+      'Nach Ballgewinn sofort den Raum hinter ihrem äußeren Mittelfeldspieler nutzen.',
+      'Nach Ballverlust ihre Sechs direkt zustellen und den Konterkanal schließen.',
+      'Ballferner Halbverteidiger sichert gegen Diagonalbälle auf den Flügel.',
+    ],
+    liveCoaching: [
+      '„Sechs zustellen!"',
+      '„Wingback tief!"',
+      '„Halbraum finden!"',
+      '„Schnell verlagern!"',
+    ],
+    adjustments: [
+      'Wenn ihre Sechs viele Bälle abfängt, Flügelstürmer enger zwischen den Linien positionieren.',
+      'Bei Druck auf unsere Doppelsechs einen Halbverteidiger weiter ins Mittelfeld schieben.',
+      'Bei Kontergefahr ballfernen Wingback tiefer halten.',
+      'Bei Führung kompakter in ein 5-4-1 gegen den Ball wechseln.',
+    ],
+  },
 ]
+
 
