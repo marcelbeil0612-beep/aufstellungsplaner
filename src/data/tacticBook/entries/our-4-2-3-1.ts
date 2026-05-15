@@ -309,4 +309,98 @@ export const entriesOur4231: TacticBookEntry[] = [
       'Zehner höher neben den Stürmer schieben.',
     ],
   },
+  {
+    id: '4-2-3-1_vs_5-4-1',
+    ourSystem: '4-2-3-1',
+    opponentSystem: '5-4-1',
+    rating: 'vorteilhaft',
+    character:
+      'Wir können mit Zehner, Flügeln und Außenverteidigern konstant Druck gegen ihre tiefe Kette aufbauen. Wichtig ist Geduld, damit wir nicht in einfache Konter über ihren Zielspieler laufen.',
+    ourAdvantages: [
+      'Zehner kann Rückräume vor ihrer Fünferkette besetzen.',
+      'Flügel und Außenverteidiger können Breite und Überzahl schaffen.',
+      'Doppelsechs sichert zweite Bälle und Konterwege.',
+    ],
+    ourDangers: [
+      'Zu frühe Flanken gegen ihre defensive Überzahl.',
+      'Ballverluste im Zentrum öffnen direkte Konter.',
+      'Ihr einzelner Stürmer kann lange Bälle festmachen.',
+    ],
+    importantZones: [
+      'Rückraum vor ihrer Fünferkette.',
+      'Außenbahn gegen ihren Wingback.',
+      'Zentrum vor unserer Doppelsechs.',
+    ],
+    pressing: [
+      'Stürmer lenkt den Aufbau auf eine Seite.',
+      'Zehner stellt den zentralen Passweg zu.',
+      'Flügel presst den Wingback bei offener Ballannahme.',
+    ],
+    inPossession: [
+      'Geduldig verlagern und ihre Kette verschieben.',
+      'Zehner im Rückraum anspielbar halten.',
+      'Flanken erst nach Tempo oder Überzahl bringen.',
+    ],
+    transition: [
+      'Nach Ballgewinn sofort ihre ballferne Seite attackieren.',
+      'Nach Ballverlust direkten Pass auf den Stürmer blocken.',
+      'Ballferner Außenverteidiger bleibt zur Sicherung eingerückt.',
+    ],
+    liveCoaching: [
+      '„Nicht blind flanken!"',
+      '„Rückraum besetzen!"',
+    ],
+    adjustments: [
+      'Einen Sechser tiefer als Kontersicherung halten.',
+      'Außenverteidiger ballnah höher nachschieben lassen.',
+      'Zehner situativ neben den Stürmer schieben.',
+    ],
+  },
+  {
+    id: '4-2-3-1_vs_4-1-4-1',
+    ourSystem: '4-2-3-1',
+    opponentSystem: '4-1-4-1',
+    rating: 'ausgeglichen',
+    character:
+      'Ihre Mittelfeld-Fünferlinie kann unsere Verbindungen blockieren. Wir müssen den Raum neben ihrem Sechser finden und über Flügeltempo Lösungen erzwingen.',
+    ourAdvantages: [
+      'Zehner kann zwischen ihrem Sechser und den Innenverteidigern auftauchen.',
+      'Doppelsechs gibt Stabilität gegen zweite Bälle.',
+      'Flügel können ihre Außenverteidiger früh binden.',
+    ],
+    ourDangers: [
+      'Ihre Achter können unsere Doppelsechs anlaufen.',
+      'Zentrale Passwege können schnell zugestellt werden.',
+      'Ihr Sechser kann freie Bälle vor der Abwehr aufnehmen.',
+    ],
+    importantZones: [
+      'Raum neben ihrem Sechser.',
+      'Zehnerraum hinter ihrer Mittelfeldlinie.',
+      'Außenbahn hinter ihren Außenspielern.',
+    ],
+    pressing: [
+      'Stürmer stellt ihren Sechser im Deckungsschatten zu.',
+      'Zehner schiebt auf den ballnahen Innenverteidiger nach.',
+      'Flügel lenkt den Aufbau auf die Seitenlinie.',
+    ],
+    inPossession: [
+      'Zehner seitlich neben ihren Sechser bewegen.',
+      'Flügel nach Verlagerung direkt ins Eins-gegen-eins bringen.',
+      'Einen Sechser zur Spieleröffnung abkippen lassen.',
+    ],
+    transition: [
+      'Nach Ballgewinn sofort hinter ihre Außenspieler spielen.',
+      'Nach Ballverlust Pass auf ihren Sechser schließen.',
+      'Ballnaher Sechser sichert den Halbraum.',
+    ],
+    liveCoaching: [
+      '„Sechser rausziehen!"',
+      '„Tempo über außen!"',
+    ],
+    adjustments: [
+      'Zehner stärker auf eine Halbspur ziehen.',
+      'Flügelspieler situativ höher und breiter halten.',
+      'Außenverteidiger nur mit klarer Absicherung nachschieben.',
+    ],
+  },
 ]
