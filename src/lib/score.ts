@@ -6,6 +6,13 @@ import type { Player, Position, Skills } from '../types'
  * kommuniziert („fehlende Werte mit 50 ergänzt"). */
 export const DEFAULT_SKILL = 50
 
+/**
+ * Score-Bonus, wenn ein Feldspieler auf einer seiner Stammpositionen steht.
+ * Größenordnung bewusst klein: bricht Patt-Situationen in der Auto-Aufstellung,
+ * verdrängt aber keinen klar besser passenden Spieler.
+ */
+export const PREFERRED_POSITION_BONUS = 5
+
 /** Skills, die in der Positions-Score-Formel für Feldspieler verwendet werden. */
 export const fieldSkillKeys: Array<keyof Skills> = [
   'pace', 'shooting', 'passing', 'dribbling', 'defending', 'physical',
@@ -47,7 +54,9 @@ export function playerPositionScore(player: Player, position: Position): number 
     w.dribbling * skillValue(player, 'dribbling') +
     w.defending * skillValue(player, 'defending') +
     w.physical  * skillValue(player, 'physical')
-  return s / 100
+  const base = s / 100
+  const bonus = player.preferredPositions?.includes(position) ? PREFERRED_POSITION_BONUS : 0
+  return base + bonus
 }
 
 /** Anteil (0–1) der für eine Position relevanten Skills, die beim Spieler eingetragen sind. */

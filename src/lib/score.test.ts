@@ -1,6 +1,12 @@
 import { describe, expect, it } from 'vitest'
 import type { Player } from '../types'
-import { bestFieldPosition, completeness, DEFAULT_SKILL, playerPositionScore } from './score'
+import {
+  bestFieldPosition,
+  completeness,
+  DEFAULT_SKILL,
+  PREFERRED_POSITION_BONUS,
+  playerPositionScore,
+} from './score'
 
 const field = (skills: Player['skills'] = {}): Player => ({
   id: 'p',
@@ -36,6 +42,22 @@ describe('playerPositionScore', () => {
   it('bestraft Schwächen analog', () => {
     const slow = field({ pace: 1 })
     expect(playerPositionScore(slow, 'LW')).toBeLessThan(playerPositionScore(field(), 'LW'))
+  })
+
+  it('addiert den Stammpositions-Bonus genau einmal auf der präferierten Position', () => {
+    const player: Player = { ...field(), preferredPositions: ['CB', 'CM'] }
+    const baseline = playerPositionScore(field(), 'CB')
+    expect(playerPositionScore(player, 'CB')).toBeCloseTo(baseline + PREFERRED_POSITION_BONUS, 5)
+    // Außerhalb der Stammposition: kein Bonus.
+    expect(playerPositionScore(player, 'LW')).toBeCloseTo(
+      playerPositionScore(field(), 'LW'),
+      5,
+    )
+  })
+
+  it('gewährt Torhütern keinen Bonus auf Feldpositionen (Rolle dominiert)', () => {
+    const keeper: Player = { ...gk(), preferredPositions: ['ST'] }
+    expect(playerPositionScore(keeper, 'ST')).toBe(0)
   })
 })
 

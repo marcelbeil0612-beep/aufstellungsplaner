@@ -46,7 +46,9 @@ export function AutoLineupDialog({ open, onClose }: Props) {
 
   if (!open || !result) return null
 
-  const percent = Math.round((result.totalScore / result.maxPossibleScore) * 100)
+  // Score-Bonus für Stammpositionen kann den Gesamtwert über das theoretische
+  // Maximum drücken; auf 100 % deckeln, damit die Anzeige nicht verwirrt.
+  const percent = Math.min(100, Math.round((result.totalScore / result.maxPossibleScore) * 100))
   const incompleteCount = result.incompletePlayerIds.length
   const averageScore = result.totalScore / formation.slots.length
 

@@ -4,7 +4,7 @@ import { formationById, formations } from '../data/formations'
 import { initialPlayers } from '../data/players'
 import type { SystemId, TacticBookView } from '../data/tacticBook'
 import type { Phase } from '../lib/phaseShift'
-import type { Player, PlayerStatus, Role, Skills, Substitution } from '../types'
+import type { Player, PlayerStatus, Position, Role, Skills, Substitution } from '../types'
 import { lineupStorage } from './idbStorage'
 import { newPhotoId, usePhotoStore } from './photoStore'
 
@@ -76,6 +76,8 @@ type Actions = {
   setPlayerNumber: (playerId: string, number: number | null) => void
   /** Setzt oder löscht den Verfügbarkeitsstatus (undefined = verfügbar). */
   setPlayerStatus: (playerId: string, status: PlayerStatus | null) => void
+  /** Setzt die Stammpositionen des Spielers (leeres Array = keine Bevorzugung). */
+  setPlayerPreferredPositions: (playerId: string, positions: Position[]) => void
   /** Fügt einen neuen Spieler hinzu. Setzt `playerListIsUserManaged` auf true. */
   addPlayer: (name: string, role: Role) => void
   /**
@@ -393,6 +395,20 @@ export const useLineupStore = create<State & Actions>()(
         set({ players: next })
       },
 
+      setPlayerPreferredPositions: (playerId, positions) => {
+        // Duplikate raus, GK-Slot bei Feldspielern raus, Sortierung deterministisch.
+        const cleaned = Array.from(new Set(positions))
+        const next = get().players.map((p) => {
+          if (p.id !== playerId) return p
+          const filtered = p.role === 'GK' ? cleaned : cleaned.filter((pos) => pos !== 'GK')
+          return {
+            ...p,
+            preferredPositions: filtered.length > 0 ? filtered : undefined,
+          }
+        })
+        set({ players: next })
+      },
+
       addPlayer: (name, role) => {
         const trimmed = name.trim()
         if (!trimmed) return
@@ -525,6 +541,7 @@ export const useLineupStore = create<State & Actions>()(
               skills: saved.skills,
               number: saved.number,
               status: saved.status,
+              preferredPositions: saved.preferredPositions,
             }
           })
         }
@@ -587,6 +604,7 @@ export const useLineupStore = create<State & Actions>()(
               skills: saved.skills,
               number: saved.number,
               status: saved.status,
+              preferredPositions: saved.preferredPositions,
             }
           })
         }

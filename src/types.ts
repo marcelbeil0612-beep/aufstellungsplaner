@@ -41,6 +41,12 @@ export type Player = {
   number?: number
   /** Verfügbarkeitsstatus; undefined = einsatzbereit. */
   status?: PlayerStatus
+  /**
+   * Bevorzugte Spielpositionen (Stammposition[en]). Gibt der Auto-Aufstellung
+   * einen kleinen Score-Bonus, wenn der Spieler dort steht. Nur für Feldspieler
+   * relevant – Torhüter haben implizit GK als Stammposition.
+   */
+  preferredPositions?: Position[]
 }
 
 export type Slot = {

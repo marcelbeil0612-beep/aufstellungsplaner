@@ -1,10 +1,13 @@
 import { useRef, useState } from 'react'
+import { fieldWeights, positionLabel, positionShort } from '../data/positionWeights'
 import { downloadBackup, importBackupFile } from '../lib/backup'
 import { usePlayerPhotoUrl } from '../store/photoStore'
 import { useLineupStore } from '../store/useLineupStore'
-import type { Player, PlayerStatus, Role, Skills } from '../types'
+import type { Player, PlayerStatus, Position, Role, Skills } from '../types'
 import { fileToSquareBlob, initials } from '../lib/photoUtils'
 import { Modal } from './Modal'
+
+const fieldPositions = Object.keys(fieldWeights) as Position[]
 
 const statusOptions: { value: PlayerStatus | null; label: string; icon: string; color: string }[] = [
   { value: null,         label: 'Verfügbar', icon: '✓',  color: 'bg-emerald-500/20 text-emerald-200 ring-emerald-500/40' },
@@ -419,6 +422,90 @@ function SkillTable({
   )
 }
 
+function PreferredPositionsCard({ player }: { player: Player }) {
+  const setPlayerPreferredPositions = useLineupStore((s) => s.setPlayerPreferredPositions)
+  const photoUrl = usePlayerPhotoUrl(player)
+  const selected = new Set(player.preferredPositions ?? [])
+
+  const toggle = (pos: Position) => {
+    if (selected.has(pos)) {
+      setPlayerPreferredPositions(
+        player.id,
+        (player.preferredPositions ?? []).filter((p) => p !== pos),
+      )
+    } else {
+      setPlayerPreferredPositions(player.id, [...(player.preferredPositions ?? []), pos])
+    }
+  }
+
+  return (
+    <li className="flex flex-col gap-3 rounded-xl border border-slate-800 bg-slate-950/60 p-3 sm:flex-row sm:items-center">
+      <div className="flex shrink-0 items-center gap-2 sm:w-[180px]">
+        <div
+          className={[
+            'h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2 text-xs font-bold text-white',
+            'ring-sky-400',
+          ].join(' ')}
+        >
+          {photoUrl ? (
+            <img src={photoUrl} alt="" className="h-full w-full object-cover" />
+          ) : (
+            <span className="flex h-full w-full items-center justify-center bg-gradient-to-br from-sky-500 to-indigo-700">
+              {initials(player.name)}
+            </span>
+          )}
+        </div>
+        <span className="truncate text-sm font-medium text-white">{player.name}</span>
+      </div>
+      <div className="flex flex-wrap gap-1.5">
+        {fieldPositions.map((pos) => {
+          const active = selected.has(pos)
+          return (
+            <button
+              key={pos}
+              type="button"
+              role="checkbox"
+              aria-checked={active}
+              onClick={() => toggle(pos)}
+              title={positionLabel[pos]}
+              className={[
+                'rounded-md px-2 py-1 text-[11px] font-bold tracking-wide transition ring-1',
+                active
+                  ? 'bg-sky-600 text-white ring-sky-300/60 shadow-inner'
+                  : 'bg-slate-900 text-slate-400 ring-slate-700 hover:text-slate-200',
+              ].join(' ')}
+            >
+              {positionShort[pos]}
+            </button>
+          )
+        })}
+      </div>
+    </li>
+  )
+}
+
+function PreferredPositionsSection({ players }: { players: Player[] }) {
+  const fieldPlayers = players.filter((p) => p.role === 'FIELD')
+  if (fieldPlayers.length === 0) return null
+
+  return (
+    <section>
+      <h3 className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-sky-400/80">
+        <span aria-hidden>⭐</span> Stammpositionen
+      </h3>
+      <p className="mb-3 text-[11px] leading-snug text-slate-500">
+        Bevorzugte Positionen pro Feldspieler. Auf einer markierten Position bekommt der
+        Spieler einen kleinen Score-Bonus in der „Beste Aufstellung"-Berechnung.
+      </p>
+      <ul className="space-y-2">
+        {fieldPlayers.map((p) => (
+          <PreferredPositionsCard key={p.id} player={p} />
+        ))}
+      </ul>
+    </section>
+  )
+}
+
 function BackupSection() {
   const fileRef = useRef<HTMLInputElement>(null)
   const [status, setStatus] = useState<{ kind: 'ok' | 'err'; text: string } | null>(null)
@@ -519,6 +606,8 @@ export function RosterDialog({ open, onClose }: Props) {
           players={fieldPlayers}
           columns={fieldSkillColumns}
         />
+
+        <PreferredPositionsSection players={players} />
 
         <p className="pt-2 text-[11px] text-slate-500">
           Tipp: Klick auf einen Namen, um ihn umzubenennen. Leere Skill-Felder bedeuten
