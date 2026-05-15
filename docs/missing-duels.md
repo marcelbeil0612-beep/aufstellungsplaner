@@ -1,6 +1,6 @@
 # Systembuch · Fehlende Duelle + Workflow
 
-Stand: 2026-05-15 (zuletzt aktualisiert nach Einpflege 4-4-2 · 6 Duelle).
+Stand: 2026-05-15 (zuletzt aktualisiert nach Mixed-Batch · 4-4-2 komplett + 3-5-2 auf 5/9).
 Basis: `src/data/tacticBook/entries/*.ts` und `src/data/tacticBook/systems.ts`.
 
 ## Workflow (so funktioniert das mit Claude im Aufstellungsplaner)
@@ -18,7 +18,7 @@ Du brauchst dich **nicht** um Datei-Pfade, Imports oder Build-Schritte zu kümme
 
 ## Übersicht
 
-9 Systeme × 9 Gegner = **81 mögliche Duelle**. Aktuell erfasst: **74**. Offen: **7**.
+9 Systeme × 9 Gegner = **81 mögliche Duelle**. Aktuell erfasst: **77**. Offen: **4**.
 
 Selbst-Duelle (z. B. 4-3-3 gegen 4-3-3) sind mitgezählt – Spiegelpartien gibt es im echten Trainerleben oft genug. Wenn du sie auslassen willst, sind es 72 mögliche und entsprechend **55 offene**.
 
@@ -28,15 +28,15 @@ Selbst-Duelle (z. B. 4-3-3 gegen 4-3-3) sind mitgezählt – Spiegelpartien gibt
 |---             |:---:  |:---:    |:---:  |:---:        |:---:  |:---:  |:---:  |:---:  |:---:    |
 | **4-3-3**      |  ✅   |  ✅     |  ✅   |  ✅         |  ✅   |  ✅   |  ✅   |  ✅   |  ✅     |
 | **4-2-3-1**    |  ✅   |  ✅     |  ✅   |  ✅         |  ✅   |  ✅   |  ✅   |  ✅   |  ✅     |
-| **4-4-2**      |  ✅   |  ✅     |  ✅   |  ✅         |  ✅   |  ✅   |  ✅   |  ✅   |  ❌     |
+| **4-4-2**      |  ✅   |  ✅     |  ✅   |  ✅         |  ✅   |  ✅   |  ✅   |  ✅   |  ✅     |
 | **4-4-2-raute**|  ✅   |  ✅     |  ✅   |  ✅         |  ✅   |  ✅   |  ✅   |  ✅   |  ✅     |
-| **3-5-2**      |  ✅   |  ✅     |  ✅   |  ❌         |  ❌   |  ❌   |  ❌   |  ❌   |  ❌     |
+| **3-5-2**      |  ✅   |  ✅     |  ✅   |  ✅         |  ✅   |  ❌   |  ❌   |  ❌   |  ❌     |
 | **3-4-3**      |  ✅   |  ✅     |  ✅   |  ✅         |  ✅   |  ✅   |  ✅   |  ✅   |  ✅     |
 | **5-3-2**      |  ✅   |  ✅     |  ✅   |  ✅         |  ✅   |  ✅   |  ✅   |  ✅   |  ✅     |
 | **5-4-1**      |  ✅   |  ✅     |  ✅   |  ✅         |  ✅   |  ✅   |  ✅   |  ✅   |  ✅     |
 | **4-1-4-1**    |  ✅   |  ✅     |  ✅   |  ✅         |  ✅   |  ✅   |  ✅   |  ✅   |  ✅     |
 
-Komplett abgeschlossen: **4-3-3** 9/9, **4-2-3-1** 9/9, **4-4-2 (Raute)** 9/9, **3-4-3** 9/9, **4-1-4-1** 9/9, **5-3-2** 9/9, **5-4-1** 9/9. Nur noch 3-5-2 (3/9) und 4-4-2 (2/9) offen.
+Komplett abgeschlossen: **4-3-3** 9/9, **4-2-3-1** 9/9, **4-4-2** 9/9, **4-4-2 (Raute)** 9/9, **3-4-3** 9/9, **4-1-4-1** 9/9, **5-3-2** 9/9, **5-4-1** 9/9. Nur noch **3-5-2** offen (5/9).
 
 ---
 
@@ -58,7 +58,7 @@ Hak ab, was du schon erledigt / mir geschickt hast.
 - [x] 4-2-3-1 vs 5-4-1
 - [x] 4-2-3-1 vs 4-1-4-1
 
-### Unser System: 4-4-2 — 1 offen
+### Unser System: 4-4-2 — 0 offen ✓
 
 - [x] 4-4-2 vs 4-2-3-1
 - [x] 4-4-2 vs 4-4-2
@@ -66,7 +66,7 @@ Hak ab, was du schon erledigt / mir geschickt hast.
 - [x] 4-4-2 vs 3-5-2
 - [x] 4-4-2 vs 5-3-2
 - [x] 4-4-2 vs 5-4-1
-- [ ] 4-4-2 vs 4-1-4-1
+- [x] 4-4-2 vs 4-1-4-1
 
 ### Unser System: 4-4-2 (Raute) — 0 offen ✓
 
@@ -80,10 +80,10 @@ Hak ab, was du schon erledigt / mir geschickt hast.
 - [x] 4-4-2-raute vs 5-4-1
 - [x] 4-4-2-raute vs 4-1-4-1
 
-### Unser System: 3-5-2 — 6 offen
+### Unser System: 3-5-2 — 4 offen
 
-- [ ] 3-5-2 vs 4-4-2-raute
-- [ ] 3-5-2 vs 3-5-2
+- [x] 3-5-2 vs 4-4-2-raute
+- [x] 3-5-2 vs 3-5-2
 - [ ] 3-5-2 vs 3-4-3
 - [ ] 3-5-2 vs 5-3-2
 - [ ] 3-5-2 vs 5-4-1

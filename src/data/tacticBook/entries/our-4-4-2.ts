@@ -361,4 +361,51 @@ export const entriesOur442: TacticBookEntry[] = [
       'Ballfernen Flügel enger für Abschlüsse positionieren.',
     ],
   },
+  {
+    id: '4-4-2_vs_4-1-4-1',
+    ourSystem: '4-4-2',
+    opponentSystem: '4-1-4-1',
+    rating: 'ausgeglichen',
+    character:
+      'Ihre Fünfer-Mittelfeldstruktur kann unser Zentrum blockieren. Wir müssen mit zwei Spitzen Druck aufbauen und Angriffe konsequent über die Breite lösen.',
+    ourAdvantages: [
+      'Zwei Spitzen können ihre Innenverteidiger früh binden.',
+      'Flügel haben klare Räume hinter ihren Außenspielern.',
+      'Viererkette sichert gut gegen ihren einzelnen Stürmer.',
+    ],
+    ourDangers: [
+      'Zentrale Unterzahl gegen ihre Mittelfeldstaffelung.',
+      'Ihr Sechser kann zweite Bälle aufnehmen.',
+      'Zu große Abstände zwischen Sturm und Mittelfeld.',
+    ],
+    importantZones: [
+      'Raum neben ihrem Sechser.',
+      'Außenbahn hinter ihren Außenspielern.',
+      'Zentrum vor unserer Abwehr.',
+    ],
+    pressing: [
+      'Spitzen stellen Innenverteidiger und Sechser im Bogen zu.',
+      'Flügel lenkt den Aufbau auf die Seitenlinie.',
+      'Zentrales Mittelfeld bleibt eng gegen ihre Achter.',
+    ],
+    inPossession: [
+      'Schnell auf die Außenbahn verlagern.',
+      'Eine Spitze kommt kurz, die andere hält Tiefe.',
+      'Flügel nach Verlagerung direkt ins Tempo bringen.',
+    ],
+    transition: [
+      'Nach Ballgewinn sofort hinter ihre Außenspieler spielen.',
+      'Nach Ballverlust Pass auf ihren Sechser schließen.',
+      'Ballferner Flügel rückt zur Zentrumsicherung ein.',
+    ],
+    liveCoaching: [
+      '„Sechser zustellen!"',
+      '„Raus auf außen!"',
+    ],
+    adjustments: [
+      'Einen Stürmer tiefer auf ihren Sechser fallen lassen.',
+      'Ballfernen Flügel enger zur Mitte stellen.',
+      'Außenverteidiger ballnah kontrolliert nachschieben lassen.',
+    ],
+  },
 ]
