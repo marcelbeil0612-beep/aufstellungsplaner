@@ -214,4 +214,145 @@ export const entriesOur352: TacticBookEntry[] = [
       'Eine Spitze seitlich in den Flügelraum ausweichen lassen.',
     ],
   },
+  {
+    id: '3-5-2_vs_3-4-3',
+    ourSystem: '3-5-2',
+    opponentSystem: '3-4-3',
+    rating: 'ausgeglichen',
+    character:
+      'Wir haben im Zentrum Vorteile, ihre Front drei bindet aber unsere letzte Linie breit. Entscheidend ist, die Halbräume zu schützen und nach Ballgewinn schnell hinter ihre Wingbacks zu kommen.',
+    ourAdvantages: [
+      'Drei Zentrumsspieler gegen ihre zwei Mittelfeldspieler.',
+      'Zwei Spitzen können ihre Dreierkette direkt beschäftigen.',
+      'Wingbacks können Räume hinter ihren Wingbacks attackieren.',
+    ],
+    ourDangers: [
+      'Ihre Außenstürmer finden Räume neben unseren Innenverteidigern.',
+      'Wingback-Duelle können defensiv kippen.',
+      'Ballverluste im Zentrum öffnen direkte Angriffe auf unsere Dreierkette.',
+    ],
+    importantZones: [
+      'Halbraum neben dem äußeren Innenverteidiger.',
+      'Zentrum gegen ihre Doppelsechs.',
+      'Raum hinter ihren Wingbacks.',
+    ],
+    pressing: [
+      'Spitzen lenken auf einen äußeren Innenverteidiger.',
+      'Ballnaher Achter schiebt auf ihren zentralen Mittelfeldspieler.',
+      'Wingback stellt den Pass auf ihren Wingback unter Druck.',
+    ],
+    inPossession: [
+      'Zentrum nutzen und ihre Doppelsechs binden.',
+      'Nach Verlagerung sofort hinter den Wingback spielen.',
+      'Eine Spitze kurz anbieten, die andere Tiefe halten.',
+    ],
+    transition: [
+      'Nach Ballgewinn direkt die Außenbahn attackieren.',
+      'Nach Ballverlust Halbraum sofort schließen.',
+      'Ballferner Wingback bleibt zur Restverteidigung tiefer.',
+    ],
+    liveCoaching: [
+      '„Halbraum dicht!"',
+      '„Hinter den Wingback!"',
+    ],
+    adjustments: [
+      'Einen Achter ballnah weiter nach außen schieben.',
+      'Zentralen Innenverteidiger enger gegen die Tiefe halten.',
+      'Wingback bei Druck tiefer starten lassen.',
+    ],
+  },
+  {
+    id: '3-5-2_vs_5-3-2',
+    ourSystem: '3-5-2',
+    opponentSystem: '5-3-2',
+    rating: 'ausgeglichen',
+    character:
+      'Die Grundordnung ist fast gespiegelt, nur unsere Wingbacks starten meist höher. Vorteile entstehen über mutiges Andribbeln und saubere Besetzung der zweiten Bälle.',
+    ourAdvantages: [
+      'Zentrum kann direkten Zugriff gegen ihre drei Mittelfeldspieler herstellen.',
+      'Wingbacks können höher Druck aufbauen.',
+      'Drei Innenverteidiger sichern gut gegen zwei Spitzen.',
+    ],
+    ourDangers: [
+      'Ihre Fünferkette nimmt Tiefe gut weg.',
+      'Konter über zwei Spitzen bleiben gefährlich.',
+      'Spiel kann in engen Zonen festlaufen.',
+    ],
+    importantZones: [
+      'Wingback-Duelle an der Seitenlinie.',
+      'Zweite-Ball-Zone vor den Dreierketten.',
+      'Raum hinter ihren äußeren Innenverteidigern.',
+    ],
+    pressing: [
+      'Spitzen laufen äußere Innenverteidiger bogenförmig an.',
+      'Achter bleiben eng gegen ihre Zentrumsspieler.',
+      'Wingback presst erst mit klarer Absicherung.',
+    ],
+    inPossession: [
+      'Äußere Innenverteidiger mutig andribbeln lassen.',
+      'Wingbacks breit halten und schnell verlagern.',
+      'Spitzen versetzt zwischen ihre Innenverteidiger bewegen.',
+    ],
+    transition: [
+      'Nach Ballgewinn sofort hinter ihren Wingback spielen.',
+      'Nach Ballverlust Pass auf ihre Spitzen schließen.',
+      'Zentrum kompakt gegen zweite Bälle halten.',
+    ],
+    liveCoaching: [
+      '„Mutig andribbeln!"',
+      '„Zweite Bälle sichern!"',
+    ],
+    adjustments: [
+      'Einen Achter höher zwischen ihre Linien schieben.',
+      'Eine Spitze seitlich in den Flügelraum ausweichen lassen.',
+      'Ballfernen Wingback tiefer zur Sicherung halten.',
+    ],
+  },
+  {
+    id: '3-5-2_vs_5-4-1',
+    ourSystem: '3-5-2',
+    opponentSystem: '5-4-1',
+    rating: 'vorteilhaft',
+    character:
+      'Wir haben mehr Präsenz im Zentrum und zwei Spitzen gegen ihre tiefe letzte Linie. Wichtig ist Geduld, weil ihre kompakte Staffelung einfache Flanken gut verteidigt.',
+    ourAdvantages: [
+      'Drei Zentrumsspieler können zweite Bälle sichern.',
+      'Zwei Spitzen binden mehrere Innenverteidiger.',
+      'Wingbacks können dauerhaft Breite geben.',
+    ],
+    ourDangers: [
+      'Zu frühe Flanken gegen ihre Fünferkette.',
+      'Konter über ihren einzelnen Zielspieler.',
+      'Ballverluste im Rückraum öffnen lange Bälle.',
+    ],
+    importantZones: [
+      'Rückraum vor ihrer Fünferkette.',
+      'Außenbahn gegen ihren Wingback.',
+      'Zentrum vor ihrer Mittelfeldkette.',
+    ],
+    pressing: [
+      'Spitzen stellen Innenverteidiger und Rückpässe zu.',
+      'Wingback presst den Wingback erst bei offener Annahme.',
+      'Achter sichern den Rückraum konsequent.',
+    ],
+    inPossession: [
+      'Geduldig verlagern und ihre Kette verschieben.',
+      'Flanken erst nach Dynamik oder Rückpassoption bringen.',
+      'Eine Spitze kommt kurz, die andere attackiert Tiefe.',
+    ],
+    transition: [
+      'Nach Ballgewinn sofort Druck auf ihre letzte Linie halten.',
+      'Nach Ballverlust Pass auf den Zielspieler verhindern.',
+      'Ballferner Wingback bleibt zur Absicherung tiefer.',
+    ],
+    liveCoaching: [
+      '„Geduldig verlagern!"',
+      '„Rückraum besetzen!"',
+    ],
+    adjustments: [
+      'Einen Achter höher in den Zwischenraum schieben.',
+      'Zentralen Innenverteidiger als Andribbelspieler nutzen.',
+      'Wingbacks breiter und früher anspielbar machen.',
+    ],
+  },
 ]

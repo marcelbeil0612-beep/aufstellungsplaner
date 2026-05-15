@@ -1,6 +1,6 @@
 # Systembuch · Fehlende Duelle + Workflow
 
-Stand: 2026-05-15 (zuletzt aktualisiert nach Mixed-Batch · 4-4-2 komplett + 3-5-2 auf 5/9).
+Stand: 2026-05-15 (zuletzt aktualisiert nach Einpflege 3-5-2 · 8/9, nur noch vs 4-1-4-1 offen).
 Basis: `src/data/tacticBook/entries/*.ts` und `src/data/tacticBook/systems.ts`.
 
 ## Workflow (so funktioniert das mit Claude im Aufstellungsplaner)
@@ -18,7 +18,7 @@ Du brauchst dich **nicht** um Datei-Pfade, Imports oder Build-Schritte zu kümme
 
 ## Übersicht
 
-9 Systeme × 9 Gegner = **81 mögliche Duelle**. Aktuell erfasst: **77**. Offen: **4**.
+9 Systeme × 9 Gegner = **81 mögliche Duelle**. Aktuell erfasst: **80**. Offen: **1**.
 
 Selbst-Duelle (z. B. 4-3-3 gegen 4-3-3) sind mitgezählt – Spiegelpartien gibt es im echten Trainerleben oft genug. Wenn du sie auslassen willst, sind es 72 mögliche und entsprechend **55 offene**.
 
@@ -30,7 +30,7 @@ Selbst-Duelle (z. B. 4-3-3 gegen 4-3-3) sind mitgezählt – Spiegelpartien gibt
 | **4-2-3-1**    |  ✅   |  ✅     |  ✅   |  ✅         |  ✅   |  ✅   |  ✅   |  ✅   |  ✅     |
 | **4-4-2**      |  ✅   |  ✅     |  ✅   |  ✅         |  ✅   |  ✅   |  ✅   |  ✅   |  ✅     |
 | **4-4-2-raute**|  ✅   |  ✅     |  ✅   |  ✅         |  ✅   |  ✅   |  ✅   |  ✅   |  ✅     |
-| **3-5-2**      |  ✅   |  ✅     |  ✅   |  ✅         |  ✅   |  ❌   |  ❌   |  ❌   |  ❌     |
+| **3-5-2**      |  ✅   |  ✅     |  ✅   |  ✅         |  ✅   |  ✅   |  ✅   |  ✅   |  ❌     |
 | **3-4-3**      |  ✅   |  ✅     |  ✅   |  ✅         |  ✅   |  ✅   |  ✅   |  ✅   |  ✅     |
 | **5-3-2**      |  ✅   |  ✅     |  ✅   |  ✅         |  ✅   |  ✅   |  ✅   |  ✅   |  ✅     |
 | **5-4-1**      |  ✅   |  ✅     |  ✅   |  ✅         |  ✅   |  ✅   |  ✅   |  ✅   |  ✅     |
@@ -80,13 +80,13 @@ Hak ab, was du schon erledigt / mir geschickt hast.
 - [x] 4-4-2-raute vs 5-4-1
 - [x] 4-4-2-raute vs 4-1-4-1
 
-### Unser System: 3-5-2 — 4 offen
+### Unser System: 3-5-2 — 1 offen
 
 - [x] 3-5-2 vs 4-4-2-raute
 - [x] 3-5-2 vs 3-5-2
-- [ ] 3-5-2 vs 3-4-3
-- [ ] 3-5-2 vs 5-3-2
-- [ ] 3-5-2 vs 5-4-1
+- [x] 3-5-2 vs 3-4-3
+- [x] 3-5-2 vs 5-3-2
+- [x] 3-5-2 vs 5-4-1
 - [ ] 3-5-2 vs 4-1-4-1
 
 ### Unser System: 3-4-3 — 0 offen ✓
