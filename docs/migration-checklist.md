@@ -3,7 +3,7 @@
 Stand: 2026-05-15. Migration aller 81 Duelle vom alten Sammel-Schema
 ins **Vier-Phasen-Modell**.
 
-**Status: 42 / 81 migriert (52 %).**
+**Status: 43 / 81 migriert (53 %).**
 
 Diese Datei wird nach jedem Migrat aktualisiert. Du kannst sie zusätzlich
 zum [Migrations-Prompt](./migration-prompt.md) deiner externen KI mitgeben,
@@ -65,7 +65,7 @@ damit sie sieht, was noch fehlt und was schon fertig ist.
 - ✅ `4-4-2-raute_vs_5-4-1`
 - ✅ `4-4-2-raute_vs_4-1-4-1`
 
-## 3-5-2 · 6 / 9 migriert
+## 3-5-2 · 7 / 9 migriert
 
 - ✅ `3-5-2_vs_4-3-3`
 - ✅ `3-5-2_vs_4-4-2`
@@ -73,7 +73,7 @@ damit sie sieht, was noch fehlt und was schon fertig ist.
 - ✅ `3-5-2_vs_4-4-2-raute`
 - ✅ `3-5-2_vs_3-5-2`
 - ✅ `3-5-2_vs_3-4-3`
-- ⬜ `3-5-2_vs_5-3-2`
+- ✅ `3-5-2_vs_5-3-2`
 - ⬜ `3-5-2_vs_5-4-1`
 - ⬜ `3-5-2_vs_4-1-4-1`
 
@@ -185,6 +185,7 @@ Bereits im 4-Phasen-Schema (NICHT erneut migrieren):
 - 3-5-2 vs 4-4-2-raute
 - 3-5-2 vs 3-5-2
 - 3-5-2 vs 3-4-3
+- 3-5-2 vs 5-3-2
 
-Noch zu migrieren: 39 weitere Duelle.
+Noch zu migrieren: 38 weitere Duelle.
 ```
