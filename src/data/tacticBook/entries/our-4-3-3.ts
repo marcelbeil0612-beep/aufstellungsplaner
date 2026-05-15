@@ -666,43 +666,131 @@ export const entriesOur433: TacticBookEntry[] = [
     ourSystem: '4-3-3',
     opponentSystem: '5-4-1',
     rating: 'unangenehm',
-    character: 'Geduldsspiel gegen tiefen und kompakten Block.',
-    ourAdvantages: [
-      'Viel Ballbesitz',
-      'Außen können wir den Gegner binden',
-      'Rückraum kann frei werden',
-    ],
-    ourDangers: [
-      'Viele ungefährliche Flanken',
-      'Konter gegen offene Struktur',
-      'Zu langsames Balltempo',
-    ],
-    importantZones: [
-      'Halbräume vor der Kette',
-      'Rückraum an der Strafraumkante',
-      'Schnittstellen zwischen Außen- und Halbverteidiger',
-    ],
-    pressing: [
-      'Restverteidigung immer sauber',
-      'Konterspieler absichern',
-    ],
-    inPossession: [
-      'Geduld mit Tempowechseln',
-      'Rückpässe in den Rückraum',
-      'Läufe in den Halbraum statt nur außen entlang',
-    ],
-    transition: [
-      'Gegenpressing direkt nach Ballverlust',
-      'Zweite Bälle sichern',
-    ],
-    liveCoaching: [
-      'Nicht nur flanken',
-      'Mehr Halbraumläufe',
-      'Geduldig, aber scharf spielen',
-    ],
+    character:
+      'Geduldsspiel gegen einen tiefen und kompakten Block, in dem wir viel Ballbesitz haben, aber sauber Tempo und Tiefe erzeugen müssen. Schlüsselraum ist der Halbraum vor ihrer Fünferkette, Schlüsselrisiko sind Konter gegen unsere offene Struktur nach Ballverlust.',
+    phases: {
+      ownPossession: {
+        spaces: [
+          'Halbräume vor ihrer Fünferkette sind die wichtigste Angriffszone, weil dort unsere Achter zwischen Mittelfeldlinie und Abwehrkette auftauchen können.',
+          'Rückraum an der Strafraumkante wird frei, wenn wir ihre Fünferkette tief binden und den Ball sauber zurücklegen.',
+          'Schnittstelle zwischen Wingback und Halbverteidiger öffnet sich, wenn unser Flügel breit bleibt und der Achter diagonal einläuft.',
+          'Außenbahn kann eng werden, weil ihr Wingback und Außenspieler dort doppeln und uns zu frühen Flanken verleiten.',
+          'Ballferner Halbraum wird bespielbar, wenn wir eine Seite überladen und dann schnell verlagern.',
+        ],
+        advantages: [
+          'Wir bekommen viel Ballbesitz und können den Gegner dauerhaft in die eigene Hälfte drücken.',
+          'Unsere Breite bindet ihre Wingbacks und zieht die Fünferkette auseinander.',
+          'Durch Achterläufe in den Halbraum können wir mehr erzeugen als nur ungefährliche Flanken von außen.',
+          'Der Rückraum kann frei werden, weil ihre Abwehrkette oft sehr tief im Strafraum verteidigt.',
+        ],
+        dangers: [
+          'Zu viele frühe Flanken landen gegen drei Innenverteidiger und werden leicht verteidigt.',
+          'Zu langsames Balltempo lässt ihren tiefen Block kompakt bleiben und nimmt uns jede Dynamik.',
+          'Wenn beide Außenverteidiger hoch stehen, ist unsere Restverteidigung gegen Konter offen.',
+          'Zentrale Pässe ohne Anschlussoption können direkt in ihre Vierer-Mittelfeldlinie laufen.',
+        ],
+        keyActions: [
+          'Flügel halten Breite, gehen aber nicht blind zur Grundlinie; erst Tempo aufnehmen, dann Rückraum oder Schnittstelle suchen.',
+          'Achter starten diagonal in den Halbraum zwischen Wingback und Halbverteidiger, statt nur vor dem Block quer anzubieten.',
+          'Außenverteidiger schiebt versetzt nach und bleibt anspielbar für Rückpass, Verlagerung oder Gegenpressing.',
+          'Sechser bleibt zentral hinter dem Ball und sichert zweite Bälle sowie den ersten Konterpass auf ihren Stürmer.',
+          'Mittelstürmer bindet die drei Innenverteidiger und löst sich situativ kurz, um den Rückraum für den nachrückenden Achter zu öffnen.',
+        ],
+      },
+      afterLoss: {
+        spaces: [
+          'Zentrum um die Mittellinie ist die erste Sicherungszone, weil ihr einzelner Stürmer dort lange Bälle festmachen will.',
+          'Raum hinter unseren Außenverteidigern ist offen, wenn wir den tiefen Block mit vielen Spielern umstellt haben.',
+          'Ballnaher Halbraum vor unserer Restverteidigung wird kritisch, wenn ihr Außenspieler nach Ballgewinn innen andribbeln kann.',
+          'Rückraum vor ihrem Strafraum bleibt eng, dort entscheiden zweite Bälle über neuen Angriff oder Konter gegen uns.',
+        ],
+        advantages: [
+          'Weil der Gegner tief steht, können wir Ballverluste rund um den Strafraum oft sofort einkreisen.',
+          'Unsere Achter und Außenverteidiger sind ballnah meist nah genug, um den ersten Klärungsball zu attackieren.',
+          'Der Sechser kann zentrale Konterpässe blocken, wenn er nicht zu hoch in den Strafraum schiebt.',
+        ],
+        dangers: [
+          'Ein langer erster Ball auf ihren Stürmer kann unsere hoch stehende Restverteidigung sofort überspielen.',
+          'Ihre Außenspieler können in die Räume hinter unseren Außenverteidigern starten.',
+          'Wenn unser Gegenpressing nur nach vorne jagt, öffnen wir den zweiten Pass in den ballfernen Außenraum.',
+          'Bei schlechter Staffelung verlieren wir zweite Bälle an der Strafraumkante und kassieren den Konter aus der eigenen Angriffswelle.',
+        ],
+        keyActions: [
+          'Nach Ballverlust sofort den Ballführer stellen, aber den Pass auf ihren Stürmer zuerst blocken.',
+          'Sechser bleibt vor den Innenverteidigern und schiebt nur so weit, dass er zweite Bälle noch kontrollieren kann.',
+          'Ballnaher Achter presst aggressiv nach, ballferner Achter rückt in den Rückraum ein.',
+          'Außenverteidiger auf Ballseite verhindert den freien Befreiungspass auf ihren Außenspieler.',
+          'Innenverteidiger bleiben gestaffelt: einer sichert gegen den langen Ball, einer nimmt Kontakt zum Stürmer auf.',
+        ],
+      },
+      oppPossession: {
+        spaces: [
+          'Ihre erste Aufbaulinie steht oft tief, der zentrale Innenverteidiger kann bei fehlendem Druck einfache Bälle vorbereiten.',
+          'Außenbahn bei ihren Wingbacks ist die Pressingzone, weil sie sich dort aus dem 5-4-1 nach vorne lösen wollen.',
+          'Sechserraum vor unserer Abwehr muss kompakt bleiben, damit ihr Stürmer keine Ablagen in den Rückraum findet.',
+          'Ballferner Außenraum kann offen werden, wenn wir zu stark auf eine Seite pressen und ihre Verlagerung nicht vorbereiten.',
+        ],
+        advantages: [
+          'Unsere Front drei kann ihre erste Linie früh anlaufen und den Aufbau auf einen äußeren Innenverteidiger lenken.',
+          'Gegen ihren einzelnen Stürmer haben unsere Innenverteidiger grundsätzlich Überzahl und können mutig vorschieben.',
+          'Unsere drei zentralen Mittelfeldspieler können ihre beiden zentralen Mittelfeldspieler aufnehmen und zweite Bälle kontrollieren.',
+        ],
+        dangers: [
+          'Wenn wir ungeduldig anlaufen, kann ein langer Ball auf ihren Stürmer reichen, um den Block nach vorne zu schieben.',
+          'Ihre Außenspieler können nach Befreiungspässen sofort hinter unsere hoch stehenden Außenverteidiger starten.',
+          'Bei zu breitem Pressing öffnen wir den zentralen Raum für Ablagen ihres Stürmers.',
+          'Wenn der ballferne Flügel schläft, kann ihr Wingback nach Verlagerung frei nach vorne tragen.',
+        ],
+        keyActions: [
+          'Mittelstürmer läuft den zentralen Innenverteidiger bogenförmig an und lenkt auf einen äußeren Innenverteidiger.',
+          'Ballnaher Flügel presst den äußeren Innenverteidiger mit geschlossener Innenseite und verhindert den einfachen Pass ins Zentrum.',
+          'Außenverteidiger rückt erst auf den Wingback heraus, wenn der Flügel den Passweg nach innen geschlossen hat.',
+          'Sechser bleibt zentral vor der Kette und sammelt Ablagen ihres Stürmers ein.',
+          'Ballferner Flügel rückt ein, bleibt aber wach für die Verlagerung auf ihren ballfernen Wingback.',
+        ],
+      },
+      afterGain: {
+        spaces: [
+          'Halbraum hinter ihrer Mittelfeldlinie ist nach Ballgewinn kurz offen, bevor ihr 5-4-1 wieder tief steht.',
+          'Außenbahn hinter ihrem herausgerückten Wingback kann direkt attackiert werden.',
+          'Rückraum an der Strafraumkante bleibt eine gute zweite Option, wenn der direkte Tiefenpass nicht frei ist.',
+          'Schnittstelle zwischen Halbverteidiger und Wingback öffnet sich kurz, wenn ihre Kette nach Ballverlust seitlich verschoben steht.',
+        ],
+        advantages: [
+          'Nach Ballgewinn können wir den Gegner erwischen, bevor er wieder mit neun Feldspielern hinter dem Ball steht.',
+          'Unsere Flügel sind sofort als breite Konteroptionen verfügbar und können die Wingbacks in Rückwärtsläufe zwingen.',
+          'Achter können aus dem Zentrum in den freien Rückraum nachstoßen und den Angriff sauber fortsetzen.',
+          'Der Sechser gibt uns Absicherung, falls der schnelle Angriff nicht direkt durchbricht.',
+        ],
+        dangers: [
+          'Wenn der erste Pass zu langsam ist, steht ihr tiefer Block sofort wieder und der Vorteil ist weg.',
+          'Ein erzwungener Vertikalpass durch die Mitte kann direkt an ihrer engen Mittelfeldlinie hängen bleiben.',
+          'Zu viele Spieler starten vor den Ball und öffnen bei erneutem Ballverlust den Konter auf ihren Stürmer.',
+        ],
+        keyActions: [
+          'Erster Pass nach Ballgewinn spielt aus dem Druck heraus in den Halbraum oder auf den freien Flügel.',
+          'Ballnaher Flügel startet sofort hinter den Wingback und fordert den Ball in den Lauf.',
+          'Achter sprintet in den Rückraum an der Strafraumkante, falls der Flügel abbrechen und zurücklegen muss.',
+          'Mittelstürmer bindet die Innenverteidiger und öffnet mit Gegenbewegung die Schnittstelle für den Flügel.',
+          'Sechser bleibt zentral als Sicherung und verhindert den direkten Gegenkonter nach Ballverlust im Konter.',
+        ],
+      },
+    },
+    liveCoaching: ['„Nicht nur flanken!"', '„Mehr Halbraumläufe!"', '„Geduldig, scharf!"'],
     adjustments: [
-      'Einen Achter höher als Zehner interpretieren',
+      'Einen Achter höher als Zehner interpretieren, wenn vor ihrer Fünferkette zu wenig Präsenz entsteht.',
+      'Flügel und Außenverteidiger stärker versetzen, damit außen nicht nur statische Flankenpositionen entstehen.',
+      'Ballfernen Außenverteidiger tiefer halten, wenn ihre Konter hinter unsere Kette zu gefährlich werden.',
+      'Mittelstürmer häufiger kurz entgegenkommen lassen, um einen Innenverteidiger herauszuziehen und den Rückraum zu öffnen.',
+      'Bei festem Block schneller über den Sechser verlagern und die ballferne Schnittstelle zwischen Wingback und Halbverteidiger attackieren.',
     ],
+    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
+    ourAdvantages: [],
+    ourDangers: [],
+    importantZones: [],
+    pressing: [],
+    inPossession: [],
+    transition: [],
   },
   {
     id: '4-3-3_vs_4-3-3',
