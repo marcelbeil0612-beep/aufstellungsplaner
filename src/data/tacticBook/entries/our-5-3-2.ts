@@ -162,4 +162,124 @@ export const entriesOur532: TacticBookEntry[] = [
       'Ballferner Wingback bleibt tiefer zur Restverteidigung.',
     ],
   },
+  {
+    id: '5-3-2_vs_3-5-2',
+    ourSystem: '5-3-2',
+    opponentSystem: '3-5-2',
+    rating: 'ausgeglichen',
+    character:
+      'Beide Systeme spiegeln sich fast komplett. Kleine Vorteile entstehen über bessere Wingback-Positionen und klarere Besetzung der zweiten Bälle.',
+    ourAdvantages: [
+      'Drei Innenverteidiger sichern gut gegen zwei Spitzen.',
+      'Zentrales Mittelfeld kann direkten Zugriff herstellen.',
+    ],
+    ourDangers: [
+      'Lange Gleichzahl auf den Außenbahnen.',
+      'Zu wenig Tiefe, wenn beide Spitzen gebunden sind.',
+    ],
+    importantZones: [
+      'Wingback-Duelle an der Seitenlinie.',
+      'Raum hinter den äußeren Innenverteidigern.',
+    ],
+    pressing: [
+      'Spitzen lenken auf einen äußeren Innenverteidiger.',
+      'Ballnaher Achter schiebt sofort auf den zentralen Mittelfeldspieler.',
+    ],
+    inPossession: [
+      'Wingbacks früh einbinden und Gegner seitlich verschieben.',
+      'Eine Spitze lässt sich kurz fallen, die andere hält Tiefe.',
+    ],
+    transition: [
+      'Nach Ballgewinn sofort in den Rücken des Wingbacks spielen.',
+      'Nach Ballverlust Zentrum kompakt schließen.',
+    ],
+    liveCoaching: [
+      '„Wingback aktiv bleiben!"',
+      '„Zweite Bälle sichern!"',
+    ],
+    adjustments: [
+      'Einen Achter höher schieben, um ihren Aufbau früher zu stören.',
+      'Zentralen Innenverteidiger mutiger andribbeln lassen.',
+    ],
+  },
+  {
+    id: '5-3-2_vs_3-4-3',
+    ourSystem: '5-3-2',
+    opponentSystem: '3-4-3',
+    rating: 'unangenehm',
+    character:
+      'Ihre drei Angreifer können unsere letzte Linie breit binden. Wir brauchen saubere Abstände, damit die Halbräume neben den Innenverteidigern nicht offen werden.',
+    ourAdvantages: [
+      'Fünferkette gibt klare Absicherung gegen ihre Front drei.',
+      'Zwei Spitzen können ihre Dreierkette direkt anlaufen.',
+    ],
+    ourDangers: [
+      'Halbräume zwischen Wingback und Innenverteidiger.',
+      'Außenstürmer binden unsere Wingbacks tief.',
+    ],
+    importantZones: [
+      'Halbraum hinter dem ballnahen Wingback.',
+      'Zentrum vor unserer Fünferkette.',
+    ],
+    pressing: [
+      'Spitzen pressen die äußeren Innenverteidiger nach innen.',
+      'Ballnaher Achter unterstützt den Wingback gegen Außenstürmer.',
+    ],
+    inPossession: [
+      'Schnell hinter ihre hohen Wingbacks spielen.',
+      'Stürmer diagonal in die Schnittstellen der Dreierkette schicken.',
+    ],
+    transition: [
+      'Nach Ballgewinn sofort auf die ballferne Seite verlagern.',
+      'Nach Ballverlust Außenstürmer sofort doppeln.',
+    ],
+    liveCoaching: [
+      '„Halbraum dicht machen!"',
+      '„Raus aus Druck!"',
+    ],
+    adjustments: [
+      'Ballnaher Achter rückt früher nach außen.',
+      'Wingbacks bei Druck tiefer starten lassen.',
+    ],
+  },
+  {
+    id: '5-3-2_vs_5-3-2',
+    ourSystem: '5-3-2',
+    opponentSystem: '5-3-2',
+    rating: 'ausgeglichen',
+    character:
+      'Das Duell ist stark gespiegelt und oft eng. Entscheidend sind Mut im Andribbeln, Tempo über die Wingbacks und bessere Anschlussaktionen nach zweiten Bällen.',
+    ourAdvantages: [
+      'Klare defensive Zuordnung in allen Linien.',
+      'Gute Absicherung gegen direkte Bälle auf zwei Spitzen.',
+    ],
+    ourDangers: [
+      'Spiel kann zentral festlaufen.',
+      'Zu wenig Breite, wenn Wingbacks zu tief bleiben.',
+    ],
+    importantZones: [
+      'Zweite-Ball-Zone vor beiden Dreierketten.',
+      'Außenbahn hinter dem gegnerischen Wingback.',
+    ],
+    pressing: [
+      'Eine Spitze läuft an, die andere schließt den Rückpass.',
+      'Mittelfeld schiebt mannorientiert auf die drei Zentrumsspieler.',
+    ],
+    inPossession: [
+      'Äußere Innenverteidiger mit Tempo andribbeln lassen.',
+      'Wingbacks hoch und breit halten.',
+    ],
+    transition: [
+      'Nach Ballgewinn sofort vertikal auf eine Spitze klatschen.',
+      'Nach Ballverlust direkte Passwege ins Zentrum schließen.',
+    ],
+    liveCoaching: [
+      '„Mutig andribbeln!"',
+      '„Breite halten!"',
+    ],
+    adjustments: [
+      'Eine Spitze seitlich ausweichen lassen.',
+      'Einen Achter höher zwischen ihre Linien schieben.',
+    ],
+  },
 ]
