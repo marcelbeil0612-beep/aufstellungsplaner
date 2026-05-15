@@ -1,6 +1,6 @@
 # Systembuch · Fehlende Duelle + Workflow
 
-Stand: 2026-05-15 (zuletzt aktualisiert nach Einpflege 4-1-4-1 · 6 Duelle).
+Stand: 2026-05-15 (zuletzt aktualisiert nach Einpflege 4-1-4-1 · komplette Reihe).
 Basis: `src/data/tacticBook/entries/*.ts` und `src/data/tacticBook/systems.ts`.
 
 ## Workflow (so funktioniert das mit Claude im Aufstellungsplaner)
@@ -18,7 +18,7 @@ Du brauchst dich **nicht** um Datei-Pfade, Imports oder Build-Schritte zu kümme
 
 ## Übersicht
 
-9 Systeme × 9 Gegner = **81 mögliche Duelle**. Aktuell erfasst: **41**. Offen: **40**.
+9 Systeme × 9 Gegner = **81 mögliche Duelle**. Aktuell erfasst: **44**. Offen: **37**.
 
 Selbst-Duelle (z. B. 4-3-3 gegen 4-3-3) sind mitgezählt – Spiegelpartien gibt es im echten Trainerleben oft genug. Wenn du sie auslassen willst, sind es 72 mögliche und entsprechend **55 offene**.
 
@@ -34,9 +34,9 @@ Selbst-Duelle (z. B. 4-3-3 gegen 4-3-3) sind mitgezählt – Spiegelpartien gibt
 | **3-4-3**      |  ✅   |  ✅     |  ✅   |  ✅         |  ✅   |  ✅   |  ✅   |  ✅   |  ✅     |
 | **5-3-2**      |  ❌   |  ✅     |  ❌   |  ❌         |  ❌   |  ❌   |  ❌   |  ❌   |  ❌     |
 | **5-4-1**      |  ✅   |  ❌     |  ❌   |  ❌         |  ❌   |  ❌   |  ❌   |  ❌   |  ❌     |
-| **4-1-4-1**    |  ✅   |  ✅     |  ✅   |  ✅         |  ✅   |  ✅   |  ❌   |  ❌   |  ❌     |
+| **4-1-4-1**    |  ✅   |  ✅     |  ✅   |  ✅         |  ✅   |  ✅   |  ✅   |  ✅   |  ✅     |
 
-Komplett abgeschlossen: **4-4-2 (Raute)** 9/9, **3-4-3** 9/9. Keine komplett leere Reihe mehr – alle 9 Systeme haben mindestens einen Eintrag.
+Komplett abgeschlossen: **4-4-2 (Raute)** 9/9, **3-4-3** 9/9, **4-1-4-1** 9/9. Keine komplett leere Reihe mehr – alle 9 Systeme haben mindestens einen Eintrag.
 
 ---
 
@@ -123,7 +123,7 @@ Hak ab, was du schon erledigt / mir geschickt hast.
 - [ ] 5-4-1 vs 5-4-1
 - [ ] 5-4-1 vs 4-1-4-1
 
-### Unser System: 4-1-4-1 — 3 offen
+### Unser System: 4-1-4-1 — 0 offen ✓
 
 - [x] 4-1-4-1 vs 4-3-3
 - [x] 4-1-4-1 vs 4-2-3-1
@@ -131,9 +131,9 @@ Hak ab, was du schon erledigt / mir geschickt hast.
 - [x] 4-1-4-1 vs 4-4-2-raute
 - [x] 4-1-4-1 vs 3-5-2
 - [x] 4-1-4-1 vs 3-4-3
-- [ ] 4-1-4-1 vs 5-3-2
-- [ ] 4-1-4-1 vs 5-4-1
-- [ ] 4-1-4-1 vs 4-1-4-1
+- [x] 4-1-4-1 vs 5-3-2
+- [x] 4-1-4-1 vs 5-4-1
+- [x] 4-1-4-1 vs 4-1-4-1
 
 ---
 
