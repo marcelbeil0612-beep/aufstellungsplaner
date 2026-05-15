@@ -6,40 +6,134 @@ export const entriesOur4231: TacticBookEntry[] = [
     ourSystem: '4-2-3-1',
     opponentSystem: '4-4-2',
     rating: 'vorteilhaft',
-    character: 'Oft gutes Duell, wenn unser Zehner frei wird.',
-    ourAdvantages: [
-      'Zehner zwischen den Linien',
-      'Doppelsechs gibt Stabilität',
-      'Gute Balance zwischen Kontrolle und Tiefe',
-    ],
-    ourDangers: [
-      'Flügel können bei Ballverlust offen sein',
-      'Eine Sechs kann zu tief bleiben, eine zu hoch stehen',
-    ],
-    importantZones: [
-      'Zehnerraum',
-      'Halbräume neben deren Zentrum',
-      'Raum hinter deren Außenmittelfeld',
-    ],
-    pressing: [
-      'Zehner lenkt deren Sechser/Innenverteidiger',
-      'Flügel pressen aggressiv',
-    ],
-    inPossession: [
-      'Zehner zwischen den Linien finden',
-      'Außen + Außenverteidiger koppeln',
-    ],
-    transition: [
-      'Zehner sofort einbinden',
-      'Gegenpressing rund um den Ball',
-    ],
-    liveCoaching: [
-      'Zehner freibekommen',
-      'Doppelsechs versetzt staffeln',
-    ],
+    character:
+      'Gutes Duell für uns, wenn wir die zentrale Überzahl mit Doppelsechs und Zehner sauber ausspielen. Schlüsselraum ist der Zehnerraum hinter ihrer Doppelsechs, Schlüsselrisiko sind ihre zwei Spitzen gegen unseren Aufbau und gegen zweite Bälle.',
+    phases: {
+      ownPossession: {
+        spaces: [
+          'Zehnerraum hinter ihren zwei zentralen Mittelfeldspielern ist die wichtigste Zone, weil unser Zehner dort zwischen den Linien frei werden kann.',
+          'Sechserraum vor ihrer Mittelfeldlinie ist kontrollierbar, weil unsere Doppelsechs gegen ihre zwei Stürmer gute Anschlusswinkel bilden kann.',
+          'Halbräume neben ihrer Doppelsechs öffnen sich, wenn unser Zehner einen zentralen Spieler bindet und der ballnahe Sechser nachschiebt.',
+          'Außenbahn hinter ihren Außenmittelfeldspielern wird frei, wenn unser Außenverteidiger nachrückt und ihr Flügelspieler nach innen gebunden ist.',
+          'Ballferner Halbraum kann nach schneller Verlagerung bespielt werden, weil ihr 4-4-2 oft stark zur Ballseite schiebt.',
+        ],
+        advantages: [
+          'Mit Doppelsechs und Zehner haben wir gegen ihre zwei zentralen Mittelfeldspieler eine klare zentrale Überzahl.',
+          'Unser Zehner kann zwischen ihrer Mittelfeld- und Abwehrlinie auftauchen und ihre Innenverteidiger binden.',
+          'Die Doppelsechs gibt uns stabile Ballzirkulation gegen ihre zwei Spitzen und gute Absicherung bei Ballverlust.',
+          'Über Flügel und Außenverteidiger können wir ihre Außenmittelfeldspieler nach hinten drücken und ihre Konterwege verlängern.',
+        ],
+        dangers: [
+          'Ihre zwei Spitzen können unsere Innenverteidiger früh anlaufen und die erste Linie auf eine Seite lenken.',
+          'Wenn unsere Doppelsechs zu tief bleibt, ist der Zehner isoliert und der Abstand zur Offensive zu groß.',
+          'Zu langsames Balltempo lässt ihr 4-4-2 kompakt stehen und nimmt uns den Zwischenlinienraum.',
+          'Wenn beide Außenverteidiger gleichzeitig hochschieben, öffnen wir Räume hinter uns für ihre Außenmittelfeldspieler.',
+        ],
+        keyActions: [
+          'Ein Sechser lässt sich seitlich neben die Innenverteidiger fallen, der andere bleibt zentral als Verbindung zum Zehner.',
+          'Zehner bewegt sich ständig aus dem Deckungsschatten ihrer zentralen Mittelfeldspieler und fordert den Ball zwischen den Linien.',
+          'Ballnaher Flügel hält Breite, während der Außenverteidiger versetzt nachschiebt und die Überzahl außen vorbereitet.',
+          'Mittelstürmer bindet beide Innenverteidiger und lässt sich situativ kurz klatschen, damit der Zehner nachrücken kann.',
+          'Nach zentraler Bindung schnell auf den ballfernen Flügel verlagern und sofort Tempo gegen den Außenverteidiger aufnehmen.',
+        ],
+      },
+      afterLoss: {
+        spaces: [
+          'Zentrum vor unserer Doppelsechs muss sofort geschlossen werden, weil ihre zentralen Mittelfeldspieler dort den ersten Pass auf die Spitzen vorbereiten.',
+          'Raum hinter unserem ballnahen Außenverteidiger ist offen, wenn wir im Angriff über außen überladen haben.',
+          'Halbraum neben unserer Doppelsechs wird gefährlich, wenn unser Zehner nach Ballverlust zu spät zurückschaltet.',
+          'Zone um die Mittellinie entscheidet über zweite Bälle, weil ihre zwei Spitzen dort lange Bälle festmachen können.',
+        ],
+        advantages: [
+          'Unsere Doppelsechs kann den direkten Konterpass auf ihre zwei Spitzen besser absichern als eine einfache Sechs.',
+          'Ballverluste im Zentrum können durch Sechser, Zehner und ballnahen Flügel schnell eingekreist werden.',
+          'Auf außen können Flügel, Außenverteidiger und ballnaher Sechser sofort eine Pressingfalle gegen ihren Außenmittelfeldspieler stellen.',
+        ],
+        dangers: [
+          'Ihre zwei Spitzen können nach Ballgewinn sofort Tiefe attackieren und unsere Innenverteidiger in direkte Duelle zwingen.',
+          'Ihre Außenmittelfeldspieler können in die Räume hinter unseren Außenverteidigern starten.',
+          'Wenn der ballnahe Sechser zu weit herausrückt, öffnet sich der zentrale Passweg auf die zweite Spitze.',
+          'Schlechtes Gegenpressing lässt ihre Doppelsechs zweite Bälle kontrollieren und den Konter sauber fortsetzen.',
+        ],
+        keyActions: [
+          'Ballnaher Sechser stellt den Ballführer, während der zweite Sechser zentral vor den Innenverteidigern bleibt.',
+          'Zehner sprintet sofort zurück in den Passweg auf ihre zentralen Mittelfeldspieler.',
+          'Ballnaher Flügel verhindert den freien Pass nach außen und zwingt den Gegner zurück ins enge Zentrum.',
+          'Außenverteidiger sichert zuerst den Raum hinter sich, bevor er aggressiv ins Gegenpressing springt.',
+          'Innenverteidiger bleiben gegen die zwei Spitzen gestaffelt: einer attackiert den Zielspieler, einer sichert Tiefe.',
+        ],
+      },
+      oppPossession: {
+        spaces: [
+          'Ihre Innenverteidiger sind die erste Pressingzone, weil ihre zwei Spitzen im Aufbau keine zusätzliche zentrale Verbindung geben.',
+          'Zentrum um ihre beiden Mittelfeldspieler muss verdichtet werden, damit sie keine einfachen Vertikalpässe auf die Spitzen vorbereiten.',
+          'Außenbahn bei ihren Außenverteidigern ist eine gute Druckzone, wenn unser Flügel mit geschlossener Innenseite presst.',
+          'Raum zwischen unseren Innenverteidigern ist kritisch, weil ihre zwei Spitzen dort mit Kreuzläufen und Ablagen arbeiten können.',
+          'Ballferner Halbraum darf nicht offen werden, wenn unser ballferner Sechser zu stark zur Ballseite schiebt.',
+        ],
+        advantages: [
+          'Unsere Doppelsechs gibt klare Kontrolle vor der Abwehr und kann Ablagen ihrer zwei Spitzen aufnehmen.',
+          'Unser Zehner kann einen ihrer zentralen Mittelfeldspieler anlaufen und den Aufbau auf eine Seite lenken.',
+          'Die Flügel können ihre Außenverteidiger früh unter Druck setzen und ihr 4-4-2 an die Linie drücken.',
+          'Gegen ihre zwei zentralen Mittelfeldspieler können wir mit Zehner plus Doppelsechs im Zentrum Überzahl herstellen.',
+        ],
+        dangers: [
+          'Ihre zwei Spitzen können unsere Innenverteidiger binden und nach langen Bällen zweite Bälle erzwingen.',
+          'Wenn unser Zehner nicht sauber nach hinten arbeitet, haben ihre zentralen Mittelfeldspieler freie Drehungen.',
+          'Ihre Außenmittelfeldspieler können unsere Außenverteidiger tief drücken und Flanken auf zwei Zielspieler vorbereiten.',
+          'Bei zu hohem Pressing kann ein direkter Ball hinter unsere Kette reichen, um unsere Doppelsechs zu überspielen.',
+        ],
+        keyActions: [
+          'Mittelstürmer presst einen Innenverteidiger bogenförmig und lenkt den Aufbau auf eine Seite.',
+          'Zehner nimmt den ballnahen zentralen Mittelfeldspieler auf und blockt den einfachen Pass ins Zentrum.',
+          'Ballnaher Flügel presst den Außenverteidiger mit geschlossener Innenseite und zwingt ihn zur Linie.',
+          'Ballnaher Sechser schiebt auf den zweiten Ball, ballferner Sechser bleibt zentral als Absicherung.',
+          'Außenverteidiger rückt nur heraus, wenn der Flügel vor ihm Druck auf den Ball hat.',
+        ],
+      },
+      afterGain: {
+        spaces: [
+          'Zehnerraum hinter ihrer Doppelsechs ist nach Ballgewinn sofort offen, bevor ihre Mittelfeldlinie wieder kompakt steht.',
+          'Außenbahn hinter ihren Außenmittelfeldspielern kann direkt attackiert werden, wenn sie im eigenen Angriff hoch standen.',
+          'Schnittstelle zwischen Außenverteidiger und Innenverteidiger öffnet sich für Tiefenläufe unserer Flügel.',
+          'Ballferner Halbraum wird frei, wenn ihr 4-4-2 nach Ballverlust noch zur alten Ballseite verschoben ist.',
+        ],
+        advantages: [
+          'Unser Zehner ist nach Ballgewinn eine direkte Verbindung zwischen Balleroberung und Tiefe.',
+          'Die Flügel können sofort hinter ihre Außenverteidiger starten und ihre Viererkette in Rückwärtsbewegung bringen.',
+          'Mit der Doppelsechs bleibt eine zentrale Absicherung vorhanden, falls der erste Konterpass nicht durchkommt.',
+          'Der Mittelstürmer kann ihre Innenverteidiger binden und Räume für nachstoßende Zehner- oder Flügelläufe öffnen.',
+        ],
+        dangers: [
+          'Ihre zentralen Mittelfeldspieler können den ersten Pass auf unseren Zehner blocken, wenn er zu statisch im Zentrum wartet.',
+          'Wenn wir nach Ballgewinn zu langsam quer spielen, steht ihr 4-4-2 sofort wieder kompakt.',
+          'Zu viele Tiefenläufe vor den Ball nehmen uns die kurze Klatschoption und führen zu schnellen Ballverlusten.',
+          'Ein erneuter Ballverlust auf außen kann sofort den Konter über ihre zwei Spitzen auslösen.',
+        ],
+        keyActions: [
+          'Erster Pass nach Ballgewinn sucht den Zehner zwischen den Linien oder den freien Flügel hinter ihrem Außenmittelfeldspieler.',
+          'Zehner dreht nur auf, wenn der Raum offen ist; sonst klatscht er direkt auf den nachrückenden Sechser.',
+          'Ballnaher Flügel startet tief in die Schnittstelle zwischen Außenverteidiger und Innenverteidiger.',
+          'Mittelstürmer bindet beide Innenverteidiger und öffnet mit Gegenbewegung den Laufweg für den Flügel.',
+          'Ballferner Sechser bleibt zentral als Sicherung und verhindert den direkten Gegenkonter über ihre Spitzen.',
+        ],
+      },
+    },
+    liveCoaching: ['„Zehnerraum nutzen!"', '„Sechser staffeln!"', '„Spitzen absichern!"'],
     adjustments: [
-      'Auf 4-3-3 schieben, wenn mehr Kontrolle nötig ist',
+      'Einen Sechser höher neben den Zehner schieben, wenn unser Zehner zwischen den Linien isoliert ist.',
+      'Zehner gegen den Ball klar auf einen ihrer zentralen Mittelfeldspieler nehmen, wenn diese zu frei aufdrehen.',
+      'Ballfernen Außenverteidiger tiefer halten, wenn ihre Außenmittelfeldspieler zu oft in den Raum hinter uns starten.',
+      'Mittelstürmer häufiger kurz entgegenkommen lassen, wenn ihre Innenverteidiger den Zehnerraum nicht verlassen.',
+      'Bei starkem Pressing ihrer zwei Spitzen einen Sechser seitlich abkippen lassen und über den ballfernen Innenverteidiger lösen.',
     ],
+    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
+    ourAdvantages: [],
+    ourDangers: [],
+    importantZones: [],
+    pressing: [],
+    inPossession: [],
+    transition: [],
   },
   {
     id: '4-2-3-1_vs_4-3-3',
