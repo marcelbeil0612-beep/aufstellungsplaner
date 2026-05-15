@@ -1,6 +1,6 @@
 # Systembuch · Fehlende Duelle + Workflow
 
-Stand: 2026-05-15 (zuletzt aktualisiert nach Einpflege 4-3-3 · komplette Reihe).
+Stand: 2026-05-15 (zuletzt aktualisiert nach Einpflege 4-2-3-1 · 3 Duelle).
 Basis: `src/data/tacticBook/entries/*.ts` und `src/data/tacticBook/systems.ts`.
 
 ## Workflow (so funktioniert das mit Claude im Aufstellungsplaner)
@@ -18,7 +18,7 @@ Du brauchst dich **nicht** um Datei-Pfade, Imports oder Build-Schritte zu kümme
 
 ## Übersicht
 
-9 Systeme × 9 Gegner = **81 mögliche Duelle**. Aktuell erfasst: **63**. Offen: **18**.
+9 Systeme × 9 Gegner = **81 mögliche Duelle**. Aktuell erfasst: **66**. Offen: **15**.
 
 Selbst-Duelle (z. B. 4-3-3 gegen 4-3-3) sind mitgezählt – Spiegelpartien gibt es im echten Trainerleben oft genug. Wenn du sie auslassen willst, sind es 72 mögliche und entsprechend **55 offene**.
 
@@ -27,7 +27,7 @@ Selbst-Duelle (z. B. 4-3-3 gegen 4-3-3) sind mitgezählt – Spiegelpartien gibt
 |                | 4-3-3 | 4-2-3-1 | 4-4-2 | 4-4-2-raute | 3-5-2 | 3-4-3 | 5-3-2 | 5-4-1 | 4-1-4-1 |
 |---             |:---:  |:---:    |:---:  |:---:        |:---:  |:---:  |:---:  |:---:  |:---:    |
 | **4-3-3**      |  ✅   |  ✅     |  ✅   |  ✅         |  ✅   |  ✅   |  ✅   |  ✅   |  ✅     |
-| **4-2-3-1**    |  ✅   |  ❌     |  ✅   |  ❌         |  ✅   |  ❌   |  ✅   |  ❌   |  ❌     |
+| **4-2-3-1**    |  ✅   |  ✅     |  ✅   |  ✅         |  ✅   |  ✅   |  ✅   |  ❌   |  ❌     |
 | **4-4-2**      |  ✅   |  ❌     |  ❌   |  ❌         |  ❌   |  ✅   |  ❌   |  ❌   |  ❌     |
 | **4-4-2-raute**|  ✅   |  ✅     |  ✅   |  ✅         |  ✅   |  ✅   |  ✅   |  ✅   |  ✅     |
 | **3-5-2**      |  ✅   |  ✅     |  ✅   |  ❌         |  ❌   |  ❌   |  ❌   |  ❌   |  ❌     |
@@ -50,11 +50,11 @@ Hak ab, was du schon erledigt / mir geschickt hast.
 - [x] 4-3-3 vs 5-3-2
 - [x] 4-3-3 vs 4-1-4-1
 
-### Unser System: 4-2-3-1 — 5 offen
+### Unser System: 4-2-3-1 — 2 offen
 
-- [ ] 4-2-3-1 vs 4-2-3-1
-- [ ] 4-2-3-1 vs 4-4-2-raute
-- [ ] 4-2-3-1 vs 3-4-3
+- [x] 4-2-3-1 vs 4-2-3-1
+- [x] 4-2-3-1 vs 4-4-2-raute
+- [x] 4-2-3-1 vs 3-4-3
 - [ ] 4-2-3-1 vs 5-4-1
 - [ ] 4-2-3-1 vs 4-1-4-1
 

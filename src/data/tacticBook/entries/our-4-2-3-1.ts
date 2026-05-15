@@ -168,4 +168,145 @@ export const entriesOur4231: TacticBookEntry[] = [
       'Zweiten Stürmer bringen oder auf 4-4-2/4-3-3 schieben',
     ],
   },
+  {
+    id: '4-2-3-1_vs_4-2-3-1',
+    ourSystem: '4-2-3-1',
+    opponentSystem: '4-2-3-1',
+    rating: 'ausgeglichen',
+    character:
+      'Das Duell ist gespiegelt und wird über Zehnerraum, Flügeltempo und bessere Restverteidigung entschieden. Kleine Abstandsfehler öffnen sofort Umschalträume.',
+    ourAdvantages: [
+      'Klare Zuordnung in allen Linien.',
+      'Doppelsechs kann Zentrum und zweite Bälle sichern.',
+      'Zehner kann zwischen ihren Sechsern und Innenverteidigern auftauchen.',
+    ],
+    ourDangers: [
+      'Ihr Zehner findet Raum hinter unserer Doppelsechs.',
+      'Räume hinter unseren Außenverteidigern.',
+      'Mittelstürmer kann isoliert werden.',
+    ],
+    importantZones: [
+      'Zehnerraum vor unserer Abwehr.',
+      'Halbräume neben ihrer Doppelsechs.',
+      'Außenbahn hinter ihren Außenverteidigern.',
+    ],
+    pressing: [
+      'Stürmer lenkt den Aufbau auf eine Seite.',
+      'Zehner stellt ihre Doppelsechs im Deckungsschatten zu.',
+      'Flügel presst Außenverteidiger mit Zugriff nach vorne.',
+    ],
+    inPossession: [
+      'Zehner flexibel zwischen den Linien bewegen.',
+      'Flügel breit starten und diagonal einrücken.',
+      'Außenverteidiger nur mit Absicherung hochschieben.',
+    ],
+    transition: [
+      'Nach Ballgewinn sofort hinter ihren Außenverteidiger spielen.',
+      'Nach Ballverlust Zehnerraum direkt schließen.',
+      'Ballferner Sechser bleibt als Sicherung zentral.',
+    ],
+    liveCoaching: [
+      '„Zehnerraum kontrollieren!"',
+      '„Außen Tempo machen!"',
+    ],
+    adjustments: [
+      'Einen Sechser klar tiefer halten.',
+      'Zehner stärker auf ihren Sechser setzen.',
+      'Flügelspieler situativ enger starten lassen.',
+    ],
+  },
+  {
+    id: '4-2-3-1_vs_4-4-2-raute',
+    ourSystem: '4-2-3-1',
+    opponentSystem: '4-4-2-raute',
+    rating: 'vorteilhaft',
+    character:
+      'Wir haben klare Breite gegen ihre enge Raute. Wichtig ist, die zentrale Überladung zu überstehen und dann schnell über Außen zu lösen.',
+    ourAdvantages: [
+      'Flügel haben viel Raum gegen ihre schmale Staffelung.',
+      'Doppelsechs kann den Zehnerraum absichern.',
+      'Außenverteidiger können Überzahl auf den Flügeln herstellen.',
+    ],
+    ourDangers: [
+      'Ihre Raute kann unser Zentrum überladen.',
+      'Ihr Zehner kann zwischen unseren Sechsern auftauchen.',
+      'Zweite Bälle im Zentrum können kippen.',
+    ],
+    importantZones: [
+      'Außenbahn neben ihrer Raute.',
+      'Zehnerraum vor unserer Doppelsechs.',
+      'Rückraum nach Flügelangriffen.',
+    ],
+    pressing: [
+      'Stürmer lenkt auf einen Innenverteidiger nach außen.',
+      'Zehner schließt ihren Sechser konsequent.',
+      'Ballnaher Sechser verfolgt ihren Zehner eng.',
+    ],
+    inPossession: [
+      'Schnell auf die freie Außenbahn verlagern.',
+      'Flügel breit halten und Außenverteidiger nachschieben.',
+      'Zehner in den Rückraum statt in die Enge fallen lassen.',
+    ],
+    transition: [
+      'Nach Ballgewinn sofort raus aus dem Zentrum.',
+      'Nach Ballverlust Pass auf ihren Zehner blocken.',
+      'Ballferner Sechser sichert gegen diagonale Läufe.',
+    ],
+    liveCoaching: [
+      '„Raus auf außen!"',
+      '„Zehner eng nehmen!"',
+    ],
+    adjustments: [
+      'Einen Sechser enger an ihren Zehner binden.',
+      'Flügelspieler höher und breiter halten.',
+      'Außenverteidiger ballnah früher nachschieben lassen.',
+    ],
+  },
+  {
+    id: '4-2-3-1_vs_3-4-3',
+    ourSystem: '4-2-3-1',
+    opponentSystem: '3-4-3',
+    rating: 'unangenehm',
+    character:
+      'Ihre Front drei kann unsere Viererkette breit binden. Wir müssen die Halbräume schützen und nach Ballgewinn sofort hinter ihre Wingbacks kommen.',
+    ourAdvantages: [
+      'Doppelsechs kann vor der Abwehr kompakt sichern.',
+      'Flügel können Räume hinter ihren Wingbacks attackieren.',
+      'Zehner kann hinter ihrer Mittelfeldlinie frei werden.',
+    ],
+    ourDangers: [
+      'Außenstürmer greifen die Räume neben unseren Innenverteidigern an.',
+      'Ihre Wingbacks können unsere Flügel tief drücken.',
+      'Dreierkette kann unseren Stürmer leicht isolieren.',
+    ],
+    importantZones: [
+      'Halbraum neben unseren Innenverteidigern.',
+      'Raum hinter ihren Wingbacks.',
+      'Zehnerraum hinter ihrer Doppelsechs.',
+    ],
+    pressing: [
+      'Stürmer lenkt auf einen äußeren Innenverteidiger.',
+      'Flügel schließt Passweg auf den Wingback.',
+      'Ballnaher Sechser sichert den Halbraum.',
+    ],
+    inPossession: [
+      'Nach Verlagerung sofort hinter ihren Wingback spielen.',
+      'Zehner zwischen ihrer Doppelsechs anbieten.',
+      'Stürmer diagonal zwischen die Innenverteidiger bewegen.',
+    ],
+    transition: [
+      'Nach Ballgewinn direkt die Außenbahn attackieren.',
+      'Nach Ballverlust Außenstürmer sofort aufnehmen.',
+      'Ballferner Außenverteidiger rückt früh zur Sicherung ein.',
+    ],
+    liveCoaching: [
+      '„Halbraum dicht!"',
+      '„Hinter den Wingback!"',
+    ],
+    adjustments: [
+      'Einen Sechser tiefer als Schutz vor die Kette stellen.',
+      'Flügelspieler ballnah defensiver starten lassen.',
+      'Zehner höher neben den Stürmer schieben.',
+    ],
+  },
 ]
