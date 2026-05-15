@@ -1,6 +1,6 @@
 # Systembuch · Fehlende Duelle + Workflow
 
-Stand: 2026-05-15 (zuletzt aktualisiert nach Einpflege 5-4-1 · komplette Reihe).
+Stand: 2026-05-15 (zuletzt aktualisiert nach Einpflege 4-3-3 · komplette Reihe).
 Basis: `src/data/tacticBook/entries/*.ts` und `src/data/tacticBook/systems.ts`.
 
 ## Workflow (so funktioniert das mit Claude im Aufstellungsplaner)
@@ -18,7 +18,7 @@ Du brauchst dich **nicht** um Datei-Pfade, Imports oder Build-Schritte zu kümme
 
 ## Übersicht
 
-9 Systeme × 9 Gegner = **81 mögliche Duelle**. Aktuell erfasst: **60**. Offen: **21**.
+9 Systeme × 9 Gegner = **81 mögliche Duelle**. Aktuell erfasst: **63**. Offen: **18**.
 
 Selbst-Duelle (z. B. 4-3-3 gegen 4-3-3) sind mitgezählt – Spiegelpartien gibt es im echten Trainerleben oft genug. Wenn du sie auslassen willst, sind es 72 mögliche und entsprechend **55 offene**.
 
@@ -26,7 +26,7 @@ Selbst-Duelle (z. B. 4-3-3 gegen 4-3-3) sind mitgezählt – Spiegelpartien gibt
 
 |                | 4-3-3 | 4-2-3-1 | 4-4-2 | 4-4-2-raute | 3-5-2 | 3-4-3 | 5-3-2 | 5-4-1 | 4-1-4-1 |
 |---             |:---:  |:---:    |:---:  |:---:        |:---:  |:---:  |:---:  |:---:  |:---:    |
-| **4-3-3**      |  ❌   |  ✅     |  ✅   |  ✅         |  ✅   |  ✅   |  ❌   |  ✅   |  ❌     |
+| **4-3-3**      |  ✅   |  ✅     |  ✅   |  ✅         |  ✅   |  ✅   |  ✅   |  ✅   |  ✅     |
 | **4-2-3-1**    |  ✅   |  ❌     |  ✅   |  ❌         |  ✅   |  ❌   |  ✅   |  ❌   |  ❌     |
 | **4-4-2**      |  ✅   |  ❌     |  ❌   |  ❌         |  ❌   |  ✅   |  ❌   |  ❌   |  ❌     |
 | **4-4-2-raute**|  ✅   |  ✅     |  ✅   |  ✅         |  ✅   |  ✅   |  ✅   |  ✅   |  ✅     |
@@ -36,7 +36,7 @@ Selbst-Duelle (z. B. 4-3-3 gegen 4-3-3) sind mitgezählt – Spiegelpartien gibt
 | **5-4-1**      |  ✅   |  ✅     |  ✅   |  ✅         |  ✅   |  ✅   |  ✅   |  ✅   |  ✅     |
 | **4-1-4-1**    |  ✅   |  ✅     |  ✅   |  ✅         |  ✅   |  ✅   |  ✅   |  ✅   |  ✅     |
 
-Komplett abgeschlossen: **4-4-2 (Raute)** 9/9, **3-4-3** 9/9, **4-1-4-1** 9/9, **5-3-2** 9/9, **5-4-1** 9/9. Keine komplett leere Reihe mehr – alle 9 Systeme haben mindestens einen Eintrag.
+Komplett abgeschlossen: **4-3-3** 9/9, **4-4-2 (Raute)** 9/9, **3-4-3** 9/9, **4-1-4-1** 9/9, **5-3-2** 9/9, **5-4-1** 9/9. Keine komplett leere Reihe mehr – alle 9 Systeme haben mindestens einen Eintrag.
 
 ---
 
@@ -44,11 +44,11 @@ Komplett abgeschlossen: **4-4-2 (Raute)** 9/9, **3-4-3** 9/9, **4-1-4-1** 9/9, *
 
 Hak ab, was du schon erledigt / mir geschickt hast.
 
-### Unser System: 4-3-3 — 3 offen
+### Unser System: 4-3-3 — 0 offen ✓
 
-- [ ] 4-3-3 vs 4-3-3
-- [ ] 4-3-3 vs 5-3-2
-- [ ] 4-3-3 vs 4-1-4-1
+- [x] 4-3-3 vs 4-3-3
+- [x] 4-3-3 vs 5-3-2
+- [x] 4-3-3 vs 4-1-4-1
 
 ### Unser System: 4-2-3-1 — 5 offen
 

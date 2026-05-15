@@ -263,4 +263,145 @@ export const entriesOur433: TacticBookEntry[] = [
       'Einen Achter höher als Zehner interpretieren',
     ],
   },
+  {
+    id: '4-3-3_vs_4-3-3',
+    ourSystem: '4-3-3',
+    opponentSystem: '4-3-3',
+    rating: 'ausgeglichen',
+    character:
+      'Das Duell ist stark gespiegelt und wird über Tempo, Abstände und bessere Flügelbesetzung entschieden. Wer den Sechserraum sauber kontrolliert, bekommt mehr Kontrolle.',
+    ourAdvantages: [
+      'Klare Pressingzuordnung gegen ihre Viererkette.',
+      'Flügel können ihre Außenverteidiger früh binden.',
+      'Achter können flexibel in Halbräume schieben.',
+    ],
+    ourDangers: [
+      'Räume hinter unseren Außenverteidigern.',
+      'Ihr Sechser kann frei aufdrehen.',
+      'Gleichzahl auf den Flügeln kann kippen.',
+    ],
+    importantZones: [
+      'Sechserraum vor unserer Abwehr.',
+      'Halbräume neben ihrem Sechser.',
+      'Außenbahn hinter ihren Außenverteidigern.',
+    ],
+    pressing: [
+      'Front drei lenkt den Aufbau auf eine Seite.',
+      'Ballnaher Achter springt auf ihren Sechser.',
+      'Außenverteidiger rückt nur mit klarer Absicherung heraus.',
+    ],
+    inPossession: [
+      'Flügel breit halten und Außenverteidiger versetzt einbinden.',
+      'Achter in die Räume neben ihrem Sechser schieben.',
+      'Nach Verlagerung sofort Tempo gegen den Außenverteidiger aufnehmen.',
+    ],
+    transition: [
+      'Nach Ballgewinn sofort hinter ihren Außenverteidiger spielen.',
+      'Nach Ballverlust mit Achter und Flügel sofort gegenpressen.',
+      'Sechser bleibt zentral als Restverteidigung.',
+    ],
+    liveCoaching: [
+      '„Sechser sichern!"',
+      '„Breite halten!"',
+    ],
+    adjustments: [
+      'Einen Achter tiefer halten, wenn ihr Sechser zu frei wird.',
+      'Außenverteidiger ballfern früher einrücken lassen.',
+      'Flügelspieler situativ innen starten lassen.',
+    ],
+  },
+  {
+    id: '4-3-3_vs_5-3-2',
+    ourSystem: '4-3-3',
+    opponentSystem: '5-3-2',
+    rating: 'ausgeglichen',
+    character:
+      'Wir haben Breite und können ihre Wingbacks binden. Schwierig wird es, wenn ihre zwei Spitzen unsere Innenverteidiger früh unter Druck setzen.',
+    ourAdvantages: [
+      'Flügel können die Breite gegen ihre Fünferkette halten.',
+      'Außenverteidiger können Überzahl gegen Wingbacks schaffen.',
+      'Drei zentrale Spieler sichern zweite Bälle gut.',
+    ],
+    ourDangers: [
+      'Konter über ihre zwei Spitzen.',
+      'Zu frühe Flanken gegen drei Innenverteidiger.',
+      'Ballverluste im Zentrum gegen ihre enge Staffelung.',
+    ],
+    importantZones: [
+      'Außenbahn gegen ihre Wingbacks.',
+      'Rückraum vor ihrer Fünferkette.',
+      'Raum hinter unseren Außenverteidigern.',
+    ],
+    pressing: [
+      'Mittelstürmer lenkt auf einen äußeren Innenverteidiger.',
+      'Flügel presst Wingback erst bei offenem Pass.',
+      'Achter sichern den Pass auf ihre Zentrumsspieler.',
+    ],
+    inPossession: [
+      'Geduldig verlagern und ihre Fünferkette verschieben.',
+      'Flügel breit halten, Achter in den Halbraum schieben.',
+      'Flanken erst nach Tempo oder Rückpassoption bringen.',
+    ],
+    transition: [
+      'Nach Ballgewinn sofort die ballferne Seite suchen.',
+      'Nach Ballverlust direkten Pass auf ihre Spitzen blocken.',
+      'Außenverteidiger ballfern früh absichern.',
+    ],
+    liveCoaching: [
+      '„Nicht blind flanken!"',
+      '„Rückraum besetzen!"',
+    ],
+    adjustments: [
+      'Einen Außenverteidiger tiefer zur Kontersicherung halten.',
+      'Mittelstürmer häufiger kurz entgegenkommen lassen.',
+      'Achter ballnah enger an den Wingback-Raum schieben.',
+    ],
+  },
+  {
+    id: '4-3-3_vs_4-1-4-1',
+    ourSystem: '4-3-3',
+    opponentSystem: '4-1-4-1',
+    rating: 'ausgeglichen',
+    character:
+      'Ihre Fünfer-Mittelfeldstruktur kann unsere Zentrale blockieren. Wir müssen ihren Sechser bewegen und dann schnell über Flügel oder Halbraum durchbrechen.',
+    ourAdvantages: [
+      'Flügel können ihre Außenverteidiger direkt binden.',
+      'Achter können neben ihrem Sechser Überladungen schaffen.',
+      'Gute Restverteidigung gegen ihren einzelnen Stürmer.',
+    ],
+    ourDangers: [
+      'Ihre Mittelfeldlinie schließt zentrale Passwege.',
+      'Ihr Sechser kann zweite Bälle kontrollieren.',
+      'Außenspieler können unsere Außenverteidiger früh attackieren.',
+    ],
+    importantZones: [
+      'Raum neben ihrem Sechser.',
+      'Außenbahn hinter ihren Außenspielern.',
+      'Zentrum vor unserer Abwehr.',
+    ],
+    pressing: [
+      'Mittelstürmer stellt ihren Sechser im Deckungsschatten zu.',
+      'Flügel leiten den Aufbau auf den Außenverteidiger.',
+      'Achter schieben aggressiv auf ihre Achter.',
+    ],
+    inPossession: [
+      'Sechser über kurze Ablagen herausziehen.',
+      'Achter diagonal in den Halbraum starten lassen.',
+      'Flügel nach Verlagerung schnell ins Eins-gegen-eins bringen.',
+    ],
+    transition: [
+      'Nach Ballgewinn sofort hinter ihre Außenspieler spielen.',
+      'Nach Ballverlust Pass auf ihren Sechser schließen.',
+      'Innenverteidiger sichern früh gegen lange Bälle.',
+    ],
+    liveCoaching: [
+      '„Sechser bewegen!"',
+      '„Tempo nach außen!"',
+    ],
+    adjustments: [
+      'Einen Achter tiefer zur Spieleröffnung abkippen lassen.',
+      'Flügel situativ innen positionieren.',
+      'Außenverteidiger ballnah höher als Überzahlspieler nutzen.',
+    ],
+  },
 ]
