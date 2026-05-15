@@ -141,39 +141,133 @@ export const entriesOur4231: TacticBookEntry[] = [
     opponentSystem: '4-3-3',
     rating: 'ausgeglichen',
     character:
-      'Stark davon abhängig, ob wir deren Sechser oder sie unseren Zehner besser kontrollieren.',
-    ourAdvantages: [
-      'Zehner kann Schlüsselspieler sein',
-      'Doppelsechs sichert Konter gut ab',
-    ],
-    ourDangers: [
-      'Im Zentrum kann ein 2 gegen 3 entstehen',
-      'Flügelarbeit gegen deren Außenverteidiger ist intensiv',
-    ],
-    importantZones: [
-      'Zehnerraum',
-      'Räume neben ihrem Sechser',
-      'Tiefe hinter ihren Außenverteidigern',
-    ],
-    pressing: [
-      'Zehner lenkt auf eine Seite',
-      'Flügel arbeiten tief mit',
-    ],
-    inPossession: [
-      'Nicht flach im Zentrum festspielen',
-      'Zehner über dritte Spieler freispielen',
-    ],
-    transition: [
-      'Schnell über Zehner und Flügel',
-      'Gegenpressing auf zweite Bälle',
-    ],
-    liveCoaching: [
-      'Zentrum nicht verlieren',
-      'Zehner aktiv bewegen',
-    ],
+      'Ausgeglichenes Duell, in dem unsere Doppelsechs Stabilität gibt, aber ihr 4-3-3 mit Front drei und zwei Achtern viel Druck auf unseren Aufbau bringen kann. Schlüsselraum ist der Bereich neben ihrem Sechser, Schlüsselrisiko sind Ballverluste gegen ihr Gegenpressing in unseren Halbräumen.',
+    phases: {
+      ownPossession: {
+        spaces: [
+          'Raum neben ihrem Sechser ist die wichtigste Zone, weil unser Zehner dort seitlich ausweichen und Überzahl gegen ihren alleinigen Sechser herstellen kann.',
+          'Halbraum hinter ihrem ballnahen Achter öffnet sich, wenn einer unserer Sechser ihn herauszieht und der Zehner höher bleibt.',
+          'Außenbahn hinter ihren Flügelspielern wird frei, wenn unser Außenverteidiger nachrückt und ihr Flügelspieler im Pressing gebunden ist.',
+          'Schnittstelle zwischen Außenverteidiger und Innenverteidiger ist offen, wenn unser Flügel breit bindet und der Mittelstürmer diagonal ausweicht.',
+          'Sechserraum vor unserer Abwehr muss sauber besetzt bleiben, weil ihr 4-3-3 nach Ballverlust sofort Druck auf zweite Bälle macht.',
+        ],
+        advantages: [
+          'Unsere Doppelsechs gibt uns im Aufbau mehr Stabilität gegen ihren Mittelstürmer und ermöglicht seitliche Anschlusswinkel.',
+          'Unser Zehner kann ihren alleinigen Sechser binden und Räume für nachrückende Sechser oder einrückende Flügel öffnen.',
+          'Wenn wir ihren ballnahen Achter herauslocken, entstehen gute Passwege in den Halbraum hinter ihm.',
+          'Über breite Flügel können wir ihre Außenverteidiger binden und die Schnittstellen daneben attackieren.',
+        ],
+        dangers: [
+          'Ihre Front drei kann unsere Innenverteidiger und Außenverteidiger früh anlaufen und uns auf eine Seite festsetzen.',
+          'Ihre Achter können aggressiv auf unsere Doppelsechs springen und zentrale Drehungen verhindern.',
+          'Wenn unser Zehner zu statisch vor ihrem Sechser steht, wird der Zwischenlinienraum zugestellt.',
+          'Bei gleichzeitig hohen Außenverteidigern öffnen wir Räume hinter uns für ihre Flügelspieler.',
+        ],
+        keyActions: [
+          'Ein Sechser bietet sich seitlich neben den Innenverteidigern an, der andere bleibt zentral als Verbindung zum Zehner.',
+          'Zehner bewegt sich seitlich neben ihren Sechser und fordert den Ball nicht dauerhaft direkt in dessen Rücken.',
+          'Ballnaher Flügel hält Breite, während der Außenverteidiger versetzt nachschiebt und nicht auf derselben Linie steht.',
+          'Mittelstürmer bindet die Innenverteidiger und weicht situativ in die Schnittstelle neben dem Außenverteidiger aus.',
+          'Nach Druck auf einer Seite schnell über die Doppelsechs oder den Innenverteidiger auf den ballfernen Flügel verlagern.',
+        ],
+      },
+      afterLoss: {
+        spaces: [
+          'Halbraum neben unserer Doppelsechs ist sofort kritisch, weil ihre Achter dort nach Ballgewinn aufdrehen können.',
+          'Raum hinter unserem aufgerückten Außenverteidiger wird offen für den direkten Lauf ihres Flügelspielers.',
+          'Zentrum vor unseren Innenverteidigern muss geschlossen bleiben, damit ihr Mittelstürmer keine Ablagen in den Rückraum bekommt.',
+          'Ballferne Außenbahn kann nach ihrem ersten Pass frei sein, wenn unser ballferner Flügel zu spät einrückt.',
+        ],
+        advantages: [
+          'Unsere Doppelsechs kann nach Ballverlust zentral besser absichern und den ersten Pass auf ihren Mittelstürmer blocken.',
+          'Ballverluste im Halbraum können mit Sechser, Zehner und Flügel schnell eingekreist werden.',
+          'Der ballferne Sechser kann zweite Bälle sichern, wenn der ballnahe Sechser ins Gegenpressing geht.',
+        ],
+        dangers: [
+          'Ihr 4-3-3 kann nach Ballgewinn sofort über Flügel und Mittelstürmer Tiefe attackieren.',
+          'Ihre Achter können freie zweite Bälle aufnehmen, wenn unsere Doppelsechs beide zum Ball springt.',
+          'Wenn unser Zehner nicht zurückschaltet, entsteht ein freier Passweg auf ihren Sechser.',
+          'Ein diagonaler Befreiungspass auf den ballfernen Flügel kann unser Gegenpressing überspielen.',
+        ],
+        keyActions: [
+          'Ballnaher Sechser presst den Ballführer, während der zweite Sechser zentral vor der Kette bleibt.',
+          'Zehner schließt sofort den Passweg auf ihren Sechser und verhindert die einfache Verlagerung.',
+          'Ballnaher Flügel arbeitet rückwärts und blockt den ersten Pass auf ihren Außenverteidiger oder Flügelspieler.',
+          'Außenverteidiger sichert zuerst die Tiefe hinter sich, bevor er aggressiv nach vorne springt.',
+          'Innenverteidiger bleiben gestaffelt: einer hält Kontakt zum Mittelstürmer, der andere sichert den Raum dahinter.',
+        ],
+      },
+      oppPossession: {
+        spaces: [
+          'Ihr Sechserraum ist die zentrale Pressingzone, weil ihr Sechser bei freiem Aufdrehen das Spieltempo bestimmt.',
+          'Halbräume neben unserer Doppelsechs werden gefährlich, wenn ihre Achter zwischen Flügel und Sechser auftauchen.',
+          'Außenbahn bei ihren Außenverteidigern ist eine gute Falle, wenn unser Flügel mit geschlossener Innenseite anlaufen kann.',
+          'Raum hinter unseren Außenverteidigern bleibt kritisch, weil ihre Flügelspieler dort diagonal in die Tiefe starten.',
+          'Zwischenraum vor unserer Abwehr muss kompakt bleiben, damit ihr Mittelstürmer keine Klatschbälle auf nachrückende Achter spielen kann.',
+        ],
+        advantages: [
+          'Unser Zehner kann ihren Sechser direkt aufnehmen und den wichtigsten Verbindungsspieler aus dem Aufbau nehmen.',
+          'Unsere Doppelsechs schützt den Raum vor der Abwehr und kann die Läufe ihrer Achter besser übergeben.',
+          'Unsere Flügel können ihre Außenverteidiger früh unter Druck setzen und ihr 4-3-3 an die Linie lenken.',
+          'Gegen ihren Mittelstürmer haben wir mit zwei Innenverteidigern und Doppelsechs gute Absicherung für zweite Bälle.',
+        ],
+        dangers: [
+          'Ihre Achter können unsere Sechser auseinanderziehen, wenn wir zu mannorientiert verteidigen.',
+          'Wenn unser Zehner ihren Sechser nicht kontrolliert, kann dieser frei aufdrehen und die Flügelwechsel vorbereiten.',
+          'Ihre Flügel können unsere Außenverteidiger binden und Räume für nachstoßende Außenverteidiger öffnen.',
+          'Bei zu passiver Flügelarbeit geraten unsere Außenverteidiger in 2-gegen-1-Situationen.',
+        ],
+        keyActions: [
+          'Mittelstürmer läuft einen Innenverteidiger bogenförmig an und lenkt den Aufbau auf eine Seite.',
+          'Zehner hält ihren Sechser im Deckungsschatten oder nimmt ihn bei offenem Pass direkt auf.',
+          'Ballnaher Flügel presst ihren Außenverteidiger mit geschlossener Innenseite und zwingt ihn zur Linie.',
+          'Ballnaher Sechser schiebt auf ihren Achter, ballferner Sechser bleibt zentral als Absicherung.',
+          'Außenverteidiger rückt nur heraus, wenn der Flügel vor ihm Druck auf den Ball hat und der Sechser den Halbraum sichert.',
+        ],
+      },
+      afterGain: {
+        spaces: [
+          'Raum hinter ihren Außenverteidigern ist nach Ballgewinn sofort offen, wenn sie im eigenen Angriff hochgeschoben haben.',
+          'Zehnerraum neben ihrem Sechser öffnet sich kurz, bevor ihre Achter ins Gegenpressing zurückschieben.',
+          'Ballferne Außenbahn ist frei, wenn ihr 4-3-3 nach Ballverlust stark zur Ballseite kippt.',
+          'Schnittstelle zwischen Innenverteidiger und Außenverteidiger kann mit diagonalen Läufen unserer Flügel attackiert werden.',
+        ],
+        advantages: [
+          'Unser Zehner ist nach Ballgewinn sofort als Verbindungsspieler zwischen Doppelsechs und Angriff verfügbar.',
+          'Unsere Flügel können direkt hinter ihre Außenverteidiger starten und ihre Viererkette in Rückwärtsbewegung zwingen.',
+          'Die Doppelsechs gibt uns eine sichere Klatsch- und Absicherungsoption, falls der erste Tiefenpass nicht frei ist.',
+          'Der Mittelstürmer kann ihre Innenverteidiger binden und Räume für Flügel- oder Zehnerläufe öffnen.',
+        ],
+        dangers: [
+          'Ihr Gegenpressing ist im 4-3-3 oft sehr nah am Ball und kann uns bei unsauberen ersten Pässen direkt wieder einschnüren.',
+          'Ihr Sechser kann zentrale Konterpässe abfangen, wenn unser Zehner nicht seitlich ausweicht.',
+          'Wenn alle Offensivspieler sofort tief starten, fehlt eine kurze Verbindung und wir verlieren den Ball direkt wieder.',
+          'Ein erneuter Ballverlust im Halbraum öffnet sofort den Weg auf ihre Flügelspieler.',
+        ],
+        keyActions: [
+          'Erster Pass nach Ballgewinn sucht den Zehner seitlich neben ihrem Sechser oder den freien Flügel hinter ihrem Außenverteidiger.',
+          'Zehner dreht nur auf, wenn der Druck weg ist; sonst klatscht er direkt auf den nachrückenden Sechser.',
+          'Ballnaher Flügel startet in die Tiefe und fordert den Ball in den Lauf.',
+          'Mittelstürmer bindet beide Innenverteidiger und öffnet mit diagonaler Bewegung die Schnittstelle.',
+          'Ballferner Sechser bleibt zentral als Sicherung gegen das direkte Gegenpressing.',
+        ],
+      },
+    },
+    liveCoaching: ['„Sechser staffeln!"', '„Zehner lösen!"', '„Außen sichern!"'],
     adjustments: [
-      'Einen Sechser höher schieben, fast 4-3-3-artig',
+      'Einen Sechser tiefer zwischen oder neben die Innenverteidiger abkippen lassen, wenn ihre Front drei unseren Aufbau zu stark presst.',
+      'Zehner seitlicher positionieren, wenn ihr Sechser ihn zentral aus dem Spiel nimmt.',
+      'Ballfernen Außenverteidiger tiefer halten, wenn ihre Flügel nach Ballgewinn zu oft hinter unsere Kette kommen.',
+      'Flügel situativ innen starten lassen, um ihren Außenverteidiger mitzuziehen und den Außenverteidiger außen freizubekommen.',
+      'Gegen den Ball kompakter ins 4-4-1-1 fallen lassen, wenn ihre Achter zu oft in die Halbräume kommen.',
     ],
+    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
+    ourAdvantages: [],
+    ourDangers: [],
+    importantZones: [],
+    pressing: [],
+    inPossession: [],
+    transition: [],
   },
   {
     id: '4-2-3-1_vs_3-5-2',
