@@ -398,46 +398,129 @@ export const entriesOur442: TacticBookEntry[] = [
     opponentSystem: '4-4-2',
     rating: 'ausgeglichen',
     character:
-      'Das Duell ist klar gespiegelt und wird über Intensität, zweite Bälle und Flügelqualität entschieden. Kleine Abstände in der Mittelfeldkette öffnen sofort Räume.',
-    ourAdvantages: [
-      'Klare Zuordnung in allen Mannschaftsteilen.',
-      'Zwei Spitzen können konstant Druck aufbauen.',
-      'Flügelangriffe sind einfach und direkt anzulegen.',
-    ],
-    ourDangers: [
-      'Zentrale Gleichzahl kann bei schlechtem Timing kippen.',
-      'Flanken auf den ballfernen Pfosten bleiben gefährlich.',
-      'Zu große Abstände zwischen Sturm und Mittelfeld.',
-    ],
-    importantZones: [
-      'Zweite-Ball-Zone im Zentrum.',
-      'Außenbahn vor unseren Außenverteidigern.',
-      'Raum zwischen ihrer Abwehr- und Mittelfeldlinie.',
-    ],
-    pressing: [
-      'Spitzen lenken den Aufbau konsequent auf eine Seite.',
-      'Ballnaher Flügel presst nach vorne, nicht seitlich passiv.',
-      'Zentrum bleibt eng hinter dem Pressing.',
-    ],
-    inPossession: [
-      'Eine Spitze kurz einbinden, die andere attackiert Tiefe.',
-      'Flügel breit halten und Außenverteidiger versetzt nutzen.',
-      'Nach Seitenwechsel sofort Tempo aufnehmen.',
-    ],
-    transition: [
-      'Nach Ballgewinn direkt auf die ballnahe Spitze klatschen.',
-      'Nach Ballverlust sofort Zentrum schließen.',
-      'Ballferner Außenverteidiger sichert gegen Diagonalbälle.',
-    ],
-    liveCoaching: [
-      '„Abstände eng halten!"',
-      '„Zweite Bälle holen!"',
-    ],
+      'Gespiegeltes Duell, das über Intensität, zweite Bälle, Flügelqualität und saubere Abstände entschieden wird. Schlüsselraum ist die zweite-Ball-Zone im Zentrum, Schlüsselrisiko sind zu große Abstände zwischen Sturm und Mittelfeld, die sofort Zwischenräume öffnen.',
+    phases: {
+      ownPossession: {
+        spaces: [
+          'Raum zwischen ihrer Abwehr- und Mittelfeldlinie wird bespielbar, wenn eine Spitze kurz kommt und die andere Tiefe hält.',
+          'Außenbahn vor ihren Außenverteidigern ist die klare Angriffszone, wenn unser Flügel breit bleibt und der Außenverteidiger versetzt nachschiebt.',
+          'Ballferner Halbraum öffnet sich nach Seitenwechsel, weil ihr 4-4-2 stark zur Ballseite verschiebt.',
+          'Zweite-Ball-Zone im Zentrum ist wichtig, wenn wir direkt auf die Spitzen spielen und nachrücken.',
+          'Rückraum vor ihrer Viererkette wird frei, wenn ihre zentralen Mittelfeldspieler auf unsere kurze Spitze herausrücken.',
+        ],
+        advantages: [
+          'Die Zuordnungen sind klar und unsere Spieler finden schnell einfache Pass- und Laufwege.',
+          'Zwei Spitzen binden ihre Innenverteidiger direkt und geben uns eine kurze sowie eine tiefe Option.',
+          'Flügelangriffe sind einfach und direkt anzulegen, besonders nach schnellen Seitenwechseln.',
+        ],
+        dangers: [
+          'Zentrale Gleichzahl kann kippen, wenn unsere beiden Mittelfeldspieler flach stehen oder zu spät nachrücken.',
+          'Zu große Abstände zwischen Sturm und Mittelfeld isolieren die Spitzen und geben zweite Bälle ab.',
+          'Frühe Flanken ohne besetzten Rückraum laufen in ihre Viererkette und laden zum Konter ein.',
+          'Wenn beide Außenverteidiger gleichzeitig hochschieben, öffnen wir Räume für ihre Flügel nach Ballgewinn.',
+        ],
+        keyActions: [
+          'Eine Spitze kommt kurz entgegen und lässt klatschen, die andere attackiert die Tiefe hinter den Innenverteidigern.',
+          'Zentrale Mittelfeldspieler stehen versetzt: einer unterstützt den Ball, einer sichert zweite Bälle.',
+          'Flügel halten Breite und nehmen nach Seitenwechsel sofort Tempo gegen den Außenverteidiger auf.',
+          'Außenverteidiger schiebt ballnah versetzt nach, bleibt aber nicht auf gleicher Linie mit dem Flügel.',
+          'Nach direktem Ball auf die Spitze sofort geschlossen nachrücken und den zweiten Ball im Zentrum attackieren.',
+        ],
+      },
+      afterLoss: {
+        spaces: [
+          'Zweite-Ball-Zone im Zentrum muss sofort geschlossen werden, weil ihr 4-4-2 dort direkt auf die Spitzen klatschen kann.',
+          'Raum hinter unserem aufgerückten Außenverteidiger wird gefährlich für ihren ballnahen Flügel.',
+          'Halbraum neben unserem zentralen Mittelfeld öffnet sich, wenn einer nach Ballverlust zu weit nach außen gezogen wird.',
+          'Ballferner Pfosten bleibt kritisch, wenn sie nach Ballgewinn schnell auf die Außenbahn kommen und flanken.',
+        ],
+        advantages: [
+          'Unsere zwei Viererketten können nach Ballverlust schnell wieder klare Kompaktheit herstellen.',
+          'Zwei Spitzen können den ersten Rückpass auf ihre Innenverteidiger sofort unter Druck setzen.',
+          'Bei kurzen Abständen sind wir in der zweiten-Ball-Zone schnell in Gleichzahl und können den Angriff erneuern.',
+        ],
+        dangers: [
+          'Zu große Abstände zwischen Sturm und Mittelfeld öffnen ihnen den ersten Pass ins Zentrum.',
+          'Ihre Flügel können nach Ballgewinn sofort hinter unsere Außenverteidiger starten.',
+          'Flanken auf den ballfernen Pfosten bleiben gefährlich, wenn unser ballferner Außenverteidiger zu spät einrückt.',
+          'Wenn beide zentralen Mittelfeldspieler zum Ball springen, wird der Rückraum vor der Abwehr frei.',
+        ],
+        keyActions: [
+          'Nach Ballverlust sofort Zentrum schließen und den Pass auf ihre kurze Spitze blocken.',
+          'Ballnaher zentraler Mittelfeldspieler stellt den Ballführer, der andere bleibt vor der Abwehr als Sicherung.',
+          'Ballnaher Flügel arbeitet zurück und verhindert den freien Pass auf ihren Außenverteidiger.',
+          'Ballferner Außenverteidiger rückt früh ein und sichert gegen Diagonalball oder Flanke am zweiten Pfosten.',
+          'Spitzen setzen den Rückpass unter Druck und verhindern, dass ihre Innenverteidiger ohne Druck verlagern.',
+        ],
+      },
+      oppPossession: {
+        spaces: [
+          'Außenbahn vor unseren Außenverteidigern ist die zentrale Druckzone, weil dort Flügel und Außenverteidiger direkt aufeinandertreffen.',
+          'Zweite-Ball-Zone im Zentrum entscheidet, ob ihre direkten Pässe auf die Spitzen gefährlich werden.',
+          'Raum zwischen unserer Abwehr- und Mittelfeldlinie muss eng bleiben, damit ihre kurze Spitze nicht frei aufdreht.',
+          'Ballferner Pfosten ist gefährlich, sobald ihr Flügel Zeit für Flanken aus dem Halbfeld bekommt.',
+          'Halbraum hinter unserem ballnahen Flügel wird offen, wenn er nur seitlich begleitet statt nach vorne zu pressen.',
+        ],
+        advantages: [
+          'Unsere zwei Spitzen können den Aufbau konsequent auf eine Seite lenken und ihre Innenverteidiger unter Druck setzen.',
+          'Klare Zuordnung in allen Mannschaftsteilen erleichtert Übergaben und Pressingauslöser.',
+          'Wenn das Zentrum eng bleibt, zwingen wir sie häufig zu Flügelangriffen aus statischer Position.',
+        ],
+        dangers: [
+          'Zentrale Gleichzahl kann bei schlechtem Timing kippen, wenn einer unserer Mittelfeldspieler zu früh herausrückt.',
+          'Zu große Abstände zwischen Sturm und Mittelfeld geben ihren zentralen Spielern Zeit für zweite Bälle.',
+          'Ihr ballnaher Flügel kann unseren Außenverteidiger binden und den Außenverteidiger hinterlaufen lassen.',
+          'Flanken auf den ballfernen Pfosten bleiben gefährlich, wenn unsere Kette nicht rechtzeitig einrückt.',
+        ],
+        keyActions: [
+          'Spitzen lenken den Aufbau bogenförmig auf eine Seite und schließen den Querpass zwischen den Innenverteidigern.',
+          'Ballnaher Flügel presst nach vorne auf den Außenverteidiger und bleibt nicht passiv neben ihm.',
+          'Zentrales Mittelfeld bleibt eng hinter dem Pressing und nimmt die kurze Spitze sowie zweite Bälle auf.',
+          'Außenverteidiger rückt auf den Flügel nur heraus, wenn unser Flügel Druck auf den Ball hat.',
+          'Ballferner Flügel und Außenverteidiger rücken ein und sichern den zweiten Pfosten sowie den Halbraum.',
+        ],
+      },
+      afterGain: {
+        spaces: [
+          'Raum hinter ihrem ballnahen Außenverteidiger ist nach Ballgewinn sofort offen, wenn er im Angriff hochgeschoben hat.',
+          'Zwischenraum hinter ihrer Mittelfeldkette wird kurz frei, bevor ihre zentralen Spieler zurückfallen.',
+          'Ballferne Außenbahn ist nach direkter Verlagerung offen, wenn ihr Block noch zur alten Ballseite steht.',
+          'Zweite-Ball-Zone vor ihrer Abwehr ist bespielbar, wenn eine Spitze klatschen lässt und das Mittelfeld nachrückt.',
+        ],
+        advantages: [
+          'Unsere zwei Spitzen geben sofort klare Optionen: eine als Wandspieler, eine in der Tiefe.',
+          'Flügel können direkt und einfach in freie Außenräume starten.',
+          'Nach Ballgewinn können wir mit wenigen Pässen Tempo aufnehmen, bevor ihre zwei Ketten wieder geordnet sind.',
+        ],
+        dangers: [
+          'Wenn der erste Pass ungenau auf die Spitze kommt, verlieren wir den Ball sofort wieder in zentraler Gleichzahl.',
+          'Zu viele Läufe vor den Ball nehmen uns die Klatschoption und den zweiten Ball.',
+          'Ein langsamer Querpass erlaubt ihnen, sofort wieder in zwei kompakte Viererketten zu fallen.',
+        ],
+        keyActions: [
+          'Erster Pass nach Ballgewinn sucht direkt die ballnahe Spitze zum Klatschen oder den Flügel hinter ihrem Außenverteidiger.',
+          'Kurze Spitze sichert den Ball mit dem ersten Kontakt und legt auf den nachrückenden zentralen Mittelfeldspieler ab.',
+          'Tiefe Spitze startet zwischen Innenverteidiger und Außenverteidiger und bindet die Kette nach hinten.',
+          'Ballnaher Flügel sprintet in den freien Außenraum und fordert den Ball in den Lauf.',
+          'Ein zentraler Mittelfeldspieler rückt auf den zweiten Ball nach, der andere bleibt als Absicherung im Zentrum.',
+        ],
+      },
+    },
+    liveCoaching: ['„Abstände eng halten!"', '„Zweite Bälle holen!"', '„Tempo nach außen!"'],
     adjustments: [
-      'Einen Stürmer tiefer zwischen die Linien fallen lassen.',
-      'Flügelspieler ballfern früher einrücken lassen.',
-      'Außenverteidiger bei Dominanz höher schieben.',
+      'Einen Stürmer tiefer zwischen die Linien fallen lassen, wenn beide Spitzen isoliert sind.',
+      'Flügelspieler ballfern früher einrücken lassen, wenn der zweite Pfosten oder zentrale Rückraum offen wird.',
+      'Außenverteidiger bei Dominanz höher schieben, wenn ihr Flügel tief gebunden ist und wir außen Überzahl brauchen.',
+      'Einen zentralen Mittelfeldspieler klar tiefer halten, wenn ihre kurze Spitze zu oft zwischen den Linien frei wird.',
+      'Nach Ballgewinn häufiger direkt auf den ballfernen Flügel verlagern, wenn die Mitte in Gleichzahl festläuft.',
     ],
+    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
+    ourAdvantages: [],
+    ourDangers: [],
+    importantZones: [],
+    pressing: [],
+    inPossession: [],
+    transition: [],
   },
   {
     id: '4-4-2_vs_4-4-2-raute',
