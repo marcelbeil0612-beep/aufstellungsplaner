@@ -7,7 +7,101 @@ export const entriesOur433: TacticBookEntry[] = [
     opponentSystem: '4-4-2',
     rating: 'vorteilhaft',
     character:
-      'Wir haben meist die bessere Kontrolle, wenn wir das Zentrum mit unserem Dreier-Mittelfeld sauber besetzen.',
+      'Wir haben meist die bessere Kontrolle, wenn wir das Zentrum mit unserem Dreier-Mittelfeld sauber besetzen. Schlüsselraum ist das Mittelfeld 3 gegen 2, Schlüsselrisiko ihre zwei Spitzen im eigenen Aufbau.',
+    phases: {
+      ownPossession: {
+        spaces: [
+          'Sechserraum vor ihrer Doppelsechs ist frei, weil ihre zwei Spitzen hochschieben',
+          'Halbräume neben ihren zentralen Mittelfeldspielern öffnen sich, wenn die Achter dort einrücken',
+          'Raum hinter ihrem Außenmittelfeld, sobald unser Außenverteidiger nachschiebt und Überzahl auf außen entsteht',
+          'Zwischenlinie zwischen ihrer Mittelfeld- und Abwehrkette wird groß, wenn wir das Zentrum binden',
+        ],
+        advantages: [
+          'Drei zentrale Mittelfeldspieler gegen ihre zwei → strukturelle Aufbau-Überzahl',
+          'Sechser kann meist frei aufdrehen und das Spiel lenken',
+          'Flügel halten Breite, Achter besetzen die Halbräume — klare Aufbaustruktur',
+        ],
+        dangers: [
+          'Ihre zwei Spitzen können unseren Innenverteidiger-Aufbau direkt anlaufen, wenn wir zu lange am Ball klebten',
+          'Zu langsames Tempo lässt ihren kompakten Block stehen und macht den Aufbau wirkungslos',
+          'Wenn beide Außenverteidiger gleichzeitig hochschieben, fehlt Restverteidigung',
+        ],
+        keyActions: [
+          'Sechser bietet sich zwischen den Innenverteidigern an, lenkt das Spiel',
+          'Achter zwischen ihre Linien einrücken, im Halbraum anspielbar machen',
+          'Außenverteidiger nachschieben, wenn Flügel diagonal einrückt',
+          'Bei zentraler Bindung schnell Seitenwechsel suchen, ihre Flügel in Laufduelle zwingen',
+        ],
+      },
+      afterLoss: {
+        spaces: [
+          'Zwischen unseren Innenverteidigern öffnet sich Raum für lange Bälle auf ihre zwei Spitzen',
+          'Hinter unseren aufgerückten Außenverteidigern ist der ballnahe Korridor sehr verwundbar',
+          'Halbraum hinter unserem ballnahen Achter wird zur Konterautobahn',
+        ],
+        advantages: [
+          'Sechser steht zentral und kann sofort den ersten Vertikalpass blocken',
+          'Drei zentrale Spieler ermöglichen Gegenpressing auf engem Raum',
+        ],
+        dangers: [
+          'Ihre zwei Spitzen können den ersten langen Ball ausspielen und sofort 2-gegen-2 erzwingen',
+          'Ihre Außenmittelfeldspieler haben freie Außenbahnen für Konter über außen',
+          'Wenn unser Außenverteidiger nicht zurückkommt, drohen direkte Flanken aus dem Lauf',
+        ],
+        keyActions: [
+          'Sechser bleibt zentral, sichert gegen den vertikalen Pass auf die Spitzen',
+          'Ballnaher Achter presst sofort den Ballführer, kein passives Zurückfallen',
+          'Flügel lassen sich nach hinten fallen, doppeln den Außenmittelfeldspieler',
+          'Zweite Bälle im Zentrum aggressiv jagen, nicht ihrem Spieler überlassen',
+        ],
+      },
+      oppPossession: {
+        spaces: [
+          'Ihr zentraler Aufbau ist eng — ihre Innenverteidiger haben keinen freien Mann mehr (wir sind 3-gegen-2-Pressing)',
+          'Halbräume vor ihren Außenverteidigern sind die Druckzonen, dort lenken wir hin',
+          'Sechserraum vor unserer Abwehr muss zentral geschlossen bleiben — kein Aufdrehen erlaubt',
+        ],
+        advantages: [
+          'Front drei kann mannorientiert pressen: Stürmer auf einen Innenverteidiger, Flügel auf die Außenverteidiger',
+          'Achter können auf ihre beiden Zentrumsspieler springen — keine Überzahl möglich',
+          'Klare Pressingauslöser: Rückpass zum Innenverteidiger, schlechter erster Kontakt, langer Ball',
+        ],
+        dangers: [
+          'Beide Spitzen suchen den langen Ball — unsere Innenverteidiger müssen die zweiten Bälle gewinnen',
+          'Wenn wir zu hoch pressen und sie überspielen, sind ihre Spitzen vor unserer Kette frei',
+          'Bei Überladung einer Seite kann ihr Außenverteidiger ballfern unbesetzt nachstoßen',
+        ],
+        keyActions: [
+          'Stürmer lenkt den Aufbau bogenförmig auf eine Seite, blockt Querpass',
+          'Ballnaher Flügel presst den Außenverteidiger aggressiv, Innenseite zu',
+          'Ballnaher Achter springt auf ihren zentralen Mittelfeldspieler',
+          'Sechser bleibt zentral als Restverteidigung, nicht mannorientiert nach vorne ziehen',
+          'Außenverteidiger sichert hinter dem hochschiebenden Flügel ab',
+        ],
+      },
+      afterGain: {
+        spaces: [
+          'Hinter ihren aufgerückten Außenmittelfeldspielern bleibt die Außenbahn offen für unseren Flügel',
+          'Tiefe zwischen ihren Innenverteidigern, sobald die nach Ballverlust kurz unsortiert sind',
+          'Halbraum-Diagonale auf den ballfernen Flügel ist nach Verlagerungen besonders ergiebig',
+        ],
+        advantages: [
+          'Drei schnelle Angreifer können sofort in die Tiefe attackieren',
+          'Sechser sichert hinten, Achter nutzen freie Räume in der Mitte',
+          'Klare Konteroption über außen, weil ihre Außenmittelfeldspieler weite Wege zurück haben',
+        ],
+        dangers: [
+          'Ihre Doppelsechs steht meist zentral, schnelle vertikale Pässe können geblockt werden',
+          'Wenn wir zentral kontern statt über außen, laufen wir oft direkt in ihre Spitzen-Sicherung',
+        ],
+        keyActions: [
+          'Erster Pass sucht den ballnahen Flügel in die Tiefe oder den Achter im Zwischenraum',
+          'Flügel attackiert sofort die Außenbahn, nicht im Fuß bleiben',
+          'Außenverteidiger schiebt nach für Doppelpass oder zweite Welle',
+          'Stürmer bindet ihre Innenverteidiger durch Tiefenläufe, schafft Raum für Achter',
+        ],
+      },
+    },
     ourAdvantages: [
       'Zentrum oft 3 gegen 2',
       'Flügel + Außenverteidiger geben klare Breite',
@@ -41,12 +135,11 @@ export const entriesOur433: TacticBookEntry[] = [
     liveCoaching: [
       '„Zentrum besetzen!"',
       '„Schnell verlagern!"',
-      '„Außenverteidiger nachschieben!"',
     ],
     adjustments: [
-      'Auf 4-2-3-1 kippen',
-      'Einen Achter tiefer für mehr Aufbausicherheit',
-      'Zehnerraum im nächsten Schritt stärker besetzen',
+      'Auf 4-2-3-1 kippen, wenn der Zehnerraum zu wenig besetzt wird',
+      'Einen Achter tiefer abkippen lassen für mehr Aufbausicherheit',
+      'Bei zwei aktiven Außenverteidigern einen als Restverteidiger zurückhalten',
     ],
   },
   {

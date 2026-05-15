@@ -1,7 +1,14 @@
 import { useState } from 'react'
-import type { DuelRating, PhaseTab, SectionKey, SystemId, TacticBookEntry, TacticBookView } from '../../data/tacticBook'
-import { systemLabels } from '../../data/tacticBook'
-import { PhaseHighlighter, phaseSections } from './PhaseHighlighter'
+import type {
+  DuelRating,
+  PhaseAnalysis,
+  PhaseKey,
+  SystemId,
+  TacticBookEntry,
+  TacticBookView,
+} from '../../data/tacticBook'
+import { phaseMeta, phaseOrder, systemLabels } from '../../data/tacticBook'
+import { PhaseHighlighter } from './PhaseHighlighter'
 
 type Props = {
   ourSystem: SystemId
@@ -10,41 +17,102 @@ type Props = {
   view: TacticBookView
 }
 
-type Section = {
-  key: SectionKey
-  title: string
-  icon: string
-  items: string[]
-  color: string
-  /** Welche Views zeigen diesen Abschnitt überhaupt? */
-  showIn: TacticBookView[]
-}
-
 const ratingStyle: Record<DuelRating, { bg: string; text: string; label: string }> = {
   vorteilhaft:  { bg: 'bg-emerald-500/15 ring-emerald-500/50', text: 'text-emerald-300', label: 'vorteilhaft' },
   ausgeglichen: { bg: 'bg-amber-500/15 ring-amber-500/50',     text: 'text-amber-300',   label: 'ausgeglichen' },
   unangenehm:   { bg: 'bg-rose-500/15 ring-rose-500/50',       text: 'text-rose-300',    label: 'unangenehm' },
 }
 
-function buildSections(entry: TacticBookEntry): Section[] {
-  const all: Section[] = [
-    { key: 'ourAdvantages',  title: 'Unsere Vorteile',           icon: '✅', items: entry.ourAdvantages,   color: 'border-emerald-700/50', showIn: ['matchday', 'coach', 'training'] },
-    { key: 'ourDangers',     title: 'Unsere Gefahren',           icon: '⚠',  items: entry.ourDangers,      color: 'border-rose-700/50',    showIn: ['matchday', 'coach', 'training'] },
-    { key: 'liveCoaching',   title: 'Live-Coaching',             icon: '📣', items: entry.liveCoaching,    color: 'border-sky-700/50',     showIn: ['matchday', 'coach', 'training'] },
-    { key: 'adjustments',    title: 'Mögliche Ingame-Anpassung', icon: '🔁', items: entry.adjustments,     color: 'border-indigo-700/50',  showIn: ['matchday', 'coach', 'training'] },
-    { key: 'importantZones', title: 'Wichtige Räume',            icon: '🗺', items: entry.importantZones,  color: 'border-slate-700',      showIn: ['coach', 'training'] },
-    { key: 'pressing',       title: 'Pressing-Zuordnung',        icon: '🛡', items: entry.pressing,        color: 'border-slate-700',      showIn: ['coach', 'training'] },
-    { key: 'inPossession',   title: 'Ballbesitz-Lösung',         icon: '⚽', items: entry.inPossession,    color: 'border-slate-700',      showIn: ['coach', 'training'] },
-    { key: 'transition',     title: 'Umschaltmomente',           icon: '⚡', items: entry.transition,      color: 'border-slate-700',      showIn: ['coach', 'training'] },
-  ]
-  if (entry.trainingForms?.length) {
-    all.push({ key: 'trainingForms', title: 'Trainingsformen', icon: '🎯', items: entry.trainingForms, color: 'border-slate-700', showIn: ['training'] })
+const phaseAccent: Record<PhaseKey, string> = {
+  ownPossession: 'border-emerald-700/40 bg-emerald-950/20',
+  afterLoss:     'border-rose-700/40 bg-rose-950/20',
+  oppPossession: 'border-sky-700/40 bg-sky-950/20',
+  afterGain:     'border-amber-700/40 bg-amber-950/20',
+}
+
+const pillarMeta: Array<{
+  key: keyof PhaseAnalysis
+  label: string
+  icon: string
+  tone: string
+}> = [
+  { key: 'spaces',     label: 'Räume / Engpässe',     icon: '🗺', tone: 'text-slate-300' },
+  { key: 'advantages', label: 'Unsere Vorteile',       icon: '✅', tone: 'text-emerald-300' },
+  { key: 'dangers',    label: 'Unsere Gefahren',       icon: '⚠',  tone: 'text-rose-300' },
+  { key: 'keyActions', label: 'Konkrete Aktionen',     icon: '🎯', tone: 'text-sky-300' },
+]
+
+function BulletList({ items }: { items: string[] }) {
+  if (!items.length) {
+    return <p className="text-sm italic text-slate-500">– noch keine Einträge –</p>
   }
-  return all
+  return (
+    <ul className="list-disc space-y-1 pl-5 text-sm text-slate-200">
+      {items.map((item, i) => (
+        <li key={i}>{item}</li>
+      ))}
+    </ul>
+  )
+}
+
+function PhaseCard({ phaseKey, analysis }: { phaseKey: PhaseKey; analysis: PhaseAnalysis }) {
+  const meta = phaseMeta[phaseKey]
+  return (
+    <section className={`rounded-xl border p-4 ${phaseAccent[phaseKey]}`}>
+      <header className="mb-3 flex items-baseline justify-between gap-3">
+        <h4 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-white">
+          <span aria-hidden>{meta.icon}</span>
+          {meta.label}
+        </h4>
+        <span className="text-[10px] uppercase tracking-wider text-slate-500">{meta.tooltip}</span>
+      </header>
+      <div className="space-y-3">
+        {pillarMeta.map((pillar) => (
+          <div key={pillar.key}>
+            <h5 className={`mb-1 flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider ${pillar.tone}`}>
+              <span aria-hidden>{pillar.icon}</span>
+              {pillar.label}
+            </h5>
+            <BulletList items={analysis[pillar.key]} />
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+/** Legacy-Rendering, solange ein Eintrag noch keine 4-Phasen-Struktur hat. */
+function LegacyView({ entry, view }: { entry: TacticBookEntry; view: TacticBookView }) {
+  const sections: Array<{ title: string; icon: string; items: string[]; color: string; showIn: TacticBookView[] }> = [
+    { title: 'Unsere Vorteile',           icon: '✅', items: entry.ourAdvantages,  color: 'border-emerald-700/50', showIn: ['matchday', 'coach', 'training'] },
+    { title: 'Unsere Gefahren',           icon: '⚠',  items: entry.ourDangers,     color: 'border-rose-700/50',    showIn: ['matchday', 'coach', 'training'] },
+    { title: 'Wichtige Räume',            icon: '🗺', items: entry.importantZones, color: 'border-slate-700',      showIn: ['coach', 'training'] },
+    { title: 'Pressing-Zuordnung',        icon: '🛡', items: entry.pressing,       color: 'border-slate-700',      showIn: ['coach', 'training'] },
+    { title: 'Ballbesitz-Lösung',         icon: '⚽', items: entry.inPossession,   color: 'border-slate-700',      showIn: ['coach', 'training'] },
+    { title: 'Umschaltmomente',           icon: '⚡', items: entry.transition,     color: 'border-slate-700',      showIn: ['coach', 'training'] },
+  ]
+  return (
+    <>
+      <div className="rounded-xl border border-dashed border-slate-800 bg-slate-950/40 px-4 py-2 text-[11px] text-slate-500">
+        Dieses Duell ist noch im alten Schema. Migration ins 4-Phasen-Modell folgt.
+      </div>
+      {sections
+        .filter((s) => s.showIn.includes(view))
+        .map((s) => (
+          <section key={s.title} className={`rounded-xl border bg-slate-950/50 p-4 ${s.color}`}>
+            <h4 className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-300">
+              <span aria-hidden>{s.icon}</span>
+              {s.title}
+            </h4>
+            <BulletList items={s.items} />
+          </section>
+        ))}
+    </>
+  )
 }
 
 export function DuelDetail({ ourSystem, opponentSystem, entry, view }: Props) {
-  const [phase, setPhase] = useState<PhaseTab | null>(null)
+  const [phaseFilter, setPhaseFilter] = useState<PhaseKey | null>(null)
 
   if (!opponentSystem) {
     return (
@@ -60,16 +128,32 @@ export function DuelDetail({ ourSystem, opponentSystem, entry, view }: Props) {
         <p className="font-semibold text-slate-200">
           Noch nicht erfasst: {systemLabels[ourSystem]} gegen {systemLabels[opponentSystem]}
         </p>
-        <p className="text-xs text-slate-500">
-          In der nächsten Ausbaustufe wird dieses Duell ergänzt.
-        </p>
+        <p className="text-xs text-slate-500">In der nächsten Ausbaustufe wird dieses Duell ergänzt.</p>
       </div>
     )
   }
 
-  const sections = buildSections(entry).filter((s) => s.showIn.includes(view))
-  const emphasizedKeys = phase ? new Set<SectionKey>(phaseSections[phase]) : null
+  const hasNewSchema = !!entry.phases
   const style = ratingStyle[entry.rating]
+
+  // Coaching-Tools (Live-Coaching + Anpassungen) erscheinen prominent
+  // in allen Views — das ist die Spieltag-Realität.
+  const coachingTools = (
+    <div className="grid gap-3 sm:grid-cols-2">
+      <section className="rounded-xl border border-sky-700/50 bg-slate-950/50 p-4">
+        <h4 className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-sky-300">
+          <span aria-hidden>📣</span> Live-Coaching
+        </h4>
+        <BulletList items={entry.liveCoaching} />
+      </section>
+      <section className="rounded-xl border border-indigo-700/50 bg-slate-950/50 p-4">
+        <h4 className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-indigo-300">
+          <span aria-hidden>🔁</span> Mögliche Ingame-Anpassung
+        </h4>
+        <BulletList items={entry.adjustments} />
+      </section>
+    </div>
+  )
 
   return (
     <article className="flex h-full flex-col gap-4 overflow-hidden">
@@ -88,48 +172,26 @@ export function DuelDetail({ ourSystem, opponentSystem, entry, view }: Props) {
         <p className="text-sm leading-snug text-slate-200">{entry.character}</p>
       </header>
 
-      {/* Phasen-Highlighter: nur in Trainer- und Training-Ansicht zeigen */}
-      {view !== 'matchday' && (
+      {/* Phasen-Filter: nur Trainer/Training, nur wenn neues Schema vorhanden */}
+      {hasNewSchema && view !== 'matchday' && (
         <div className="shrink-0">
-          <PhaseHighlighter value={phase} onChange={setPhase} />
+          <PhaseHighlighter value={phaseFilter} onChange={setPhaseFilter} />
         </div>
       )}
 
-      {/* Abschnitte */}
+      {/* Hauptinhalt */}
       <div className="flex-1 space-y-3 overflow-y-auto pr-1">
-        {sections.map((s) => {
-          const dimmed = emphasizedKeys && !emphasizedKeys.has(s.key)
-          const emphasized = emphasizedKeys && emphasizedKeys.has(s.key)
-          return (
-            <section
-              key={s.key}
-              className={[
-                'rounded-xl border bg-slate-950/50 p-4 transition-opacity',
-                s.color,
-                emphasized ? 'ring-2 ring-sky-500/50' : '',
-                dimmed ? 'opacity-50' : '',
-              ].join(' ')}
-            >
-              <h4 className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-300">
-                <span aria-hidden>{s.icon}</span>
-                {s.title}
-              </h4>
-              {s.items.length === 0 ? (
-                <p className="text-sm italic text-slate-500">– noch keine Einträge –</p>
-              ) : (
-                <ul className="list-disc space-y-1 pl-5 text-sm text-slate-200">
-                  {s.items.map((item, i) => (
-                    <li key={i}>{item}</li>
-                  ))}
-                </ul>
-              )}
-            </section>
-          )
-        })}
-        {view === 'training' && !entry.trainingForms?.length && (
-          <div className="rounded-xl border border-dashed border-slate-800 bg-slate-950/40 p-4 text-center text-xs text-slate-500">
-            Trainingsformen und typische Probleme folgen in der nächsten Ausbaustufe.
-          </div>
+        {/* Coaching-Tools immer ganz oben */}
+        {coachingTools}
+
+        {hasNewSchema && entry.phases ? (
+          // ─── Neues 4-Phasen-Schema ──────────────────────────────────
+          phaseOrder
+            .filter((k) => phaseFilter === null || phaseFilter === k)
+            .map((key) => <PhaseCard key={key} phaseKey={key} analysis={entry.phases![key]} />)
+        ) : (
+          // ─── Legacy-Fallback ────────────────────────────────────────
+          <LegacyView entry={entry} view={view} />
         )}
       </div>
     </article>
