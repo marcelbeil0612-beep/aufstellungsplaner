@@ -1,4 +1,5 @@
 import { entriesOur343 } from './entries/our-3-4-3'
+import { entriesOur4141 } from './entries/our-4-1-4-1'
 import { entriesOur4231 } from './entries/our-4-2-3-1'
 import { entriesOur433 } from './entries/our-4-3-3'
 import { entriesOur442 } from './entries/our-4-4-2'
@@ -20,6 +21,7 @@ export const tacticBook: TacticBookEntry[] = [
   ...entriesOur442Raute,
   ...entriesOur532,
   ...entriesOur541,
+  ...entriesOur4141,
 ]
 
 /** Findet einen Eintrag per Systemen – null, wenn noch nicht erfasst. */
