@@ -6,40 +6,130 @@ export const entriesOur442: TacticBookEntry[] = [
     ourSystem: '4-4-2',
     opponentSystem: '4-3-3',
     rating: 'unangenehm',
-    character: 'Eher unangenehm, wenn wir das Zentrum nicht sauber verteidigen.',
-    ourAdvantages: [
-      'Zwei Spitzen im Pressing',
-      'Gute Kompaktheit in zwei Ketten',
-      'Klare Umschalträume',
-    ],
-    ourDangers: [
-      'Zentrum 2 gegen 3',
-      'Halbräume schwer zu kontrollieren',
-      'Außenverteidiger unter Druck',
-    ],
-    importantZones: [
-      'Halbräume neben unserem Zentrum',
-      'Raum hinter unseren Außenmittelfeldspielern',
-    ],
-    pressing: [
-      'Stürmer lenken clever, nicht nur anlaufen',
-      'Ketten eng halten',
-    ],
-    inPossession: [
-      'Schnell nach vorne spielen',
-      'Nicht zu lange flach im Zentrum bleiben',
-    ],
-    transition: [
-      'Direkt vertikal',
-      'Zweite Bälle jagen',
-    ],
-    liveCoaching: [
-      'Zentrum eng halten',
-      'Wege nach außen kurz halten',
-    ],
+    character:
+      'Unangenehmes Duell, weil wir im Zentrum oft 2 gegen 3 verteidigen und ihre Achter die Halbräume neben unserem Mittelfeld besetzen können. Schlüsselraum sind die Halbräume neben unserem Zentrum, Schlüsselrisiko ist zu passives Verschieben, wodurch unsere Außenverteidiger dauerhaft unter Druck geraten.',
+    phases: {
+      ownPossession: {
+        spaces: [
+          'Raum hinter ihren hochschiebenden Außenverteidigern ist nach schnellen Pässen auf unsere Flügel oder Spitzen bespielbar.',
+          'Zwischenraum hinter ihren Achtern öffnet sich, wenn ihre Mittelfeldspieler früh auf unsere zwei zentralen Spieler pressen.',
+          'Außenbahn hinter ihren Flügelspielern wird frei, wenn unser Außenverteidiger mutig nachrückt und ihr Flügel nicht zurückarbeitet.',
+          'Zentrum gegen ihren Sechser und zwei Achter ist eng, dort dürfen wir nicht zu lange flach kombinieren.',
+          'Zone um zweite Bälle vor ihrer Viererkette wird wichtig, wenn wir unsere Spitzen direkt anspielen.',
+        ],
+        advantages: [
+          'Mit zwei Spitzen haben wir direkte Zielspieler, um ihren hohen Druck zu überspielen.',
+          'Unsere zwei Viererketten geben klare Breite und einfache Anschlussoptionen über Außen.',
+          'Schnelles vertikales Spiel kann ihre Achter überspielen, bevor ihr 4-3-3 ins Gegenpressing kommt.',
+        ],
+        dangers: [
+          'Ihr Dreier-Mittelfeld kann unsere zwei zentralen Spieler zustellen und Ballverluste im Zentrum erzwingen.',
+          'Ihre Flügel können unsere Außenverteidiger früh anlaufen und uns auf eine Seite festsetzen.',
+          'Wenn unsere Außenmittelfeldspieler zu tief stehen, fehlen Entlastungswege nach vorne.',
+          'Zu viele flache Pässe durchs Zentrum laufen direkt in ihren Sechser und ihre Achter.',
+        ],
+        keyActions: [
+          'Innenverteidiger suchen früh den vertikalen Pass auf eine Spitze oder den diagonalen Ball auf den ballnahen Flügel.',
+          'Zentrale Mittelfeldspieler bieten sich versetzt an und vermeiden beide gleichzeitig vor ihrem Sechser zu stehen.',
+          'Außenmittelfeldspieler starten breit und nehmen nach Ballgewinn oder Verlagerung sofort Tempo nach vorne auf.',
+          'Eine Spitze kommt kurz entgegen, die andere bindet Tiefe zwischen ihren Innenverteidigern.',
+          'Außenverteidiger schiebt nur nach, wenn der ballnahe zentrale Mittelfeldspieler hinter ihm absichert.',
+        ],
+      },
+      afterLoss: {
+        spaces: [
+          'Halbraum neben unserem ballnahen zentralen Mittelfeldspieler ist sofort kritisch, weil ihre Achter dort nach Ballgewinn aufdrehen können.',
+          'Raum hinter unserem Außenmittelfeldspieler öffnet sich, wenn ihr Außenverteidiger sofort nachstößt.',
+          'Zentrum vor unserer Abwehr muss geschlossen bleiben, damit ihr Sechser nicht frei den nächsten Pass spielen kann.',
+          'Ballferne Außenbahn wird gefährlich, wenn ihr 4-3-3 nach Ballgewinn direkt verlagert.',
+        ],
+        advantages: [
+          'Unsere zwei Ketten können nach Ballverlust schnell kompakt werden und den Gegner nach außen lenken.',
+          'Zwei Spitzen können den ersten Rückpass auf ihre Innenverteidiger sofort unter Druck setzen.',
+          'Bei vertikalen Ballverlusten sind wir oft in Ballnähe und können zweite Bälle aggressiv jagen.',
+        ],
+        dangers: [
+          'Ihr Dreier-Mittelfeld kann den ersten freien Ball aufnehmen, wenn unsere beiden zentralen Spieler zu weit auseinander stehen.',
+          'Ihre Flügel können direkt in den Rücken unserer Außenverteidiger starten.',
+          'Wenn unsere Außenmittelfeldspieler nicht zurückschalten, entstehen 2-gegen-1-Situationen gegen unsere Außenverteidiger.',
+          'Ihr Sechser kann nach Ballgewinn frei aufdrehen, wenn unsere Spitzen nicht sofort den Rückpass blocken.',
+        ],
+        keyActions: [
+          'Ballnaher zentraler Mittelfeldspieler attackiert den Ballführer, während der andere den Sechserraum schließt.',
+          'Außenmittelfeldspieler sprintet sofort zurück und blockt den Pass auf ihren Außenverteidiger oder Flügel.',
+          'Ballnahe Spitze setzt den Rückpass unter Druck, die zweite Spitze nimmt ihren Sechser in den Deckungsschatten.',
+          'Außenverteidiger sichert zuerst die Tiefe hinter sich, bevor er auf den Flügel herausrückt.',
+          'Innenverteidiger bleiben gestaffelt und attackieren zweite Bälle vor der Kette aggressiv.',
+        ],
+      },
+      oppPossession: {
+        spaces: [
+          'Halbräume neben unseren zwei zentralen Mittelfeldspielern sind die gefährlichsten Zonen, weil ihre Achter dort Überzahl schaffen.',
+          'Raum hinter unseren Außenmittelfeldspielern wird kritisch, wenn ihre Außenverteidiger hoch nachschieben.',
+          'Sechserraum vor unserer Abwehr muss eng bleiben, damit ihr Mittelstürmer keine Ablagen auf nachrückende Achter spielen kann.',
+          'Außenbahn ist unsere Pressingzone, wenn wir sie mit Spitze, Außenmittelfeldspieler und Außenverteidiger sauber einschließen.',
+          'Ballferner Halbraum darf nicht offen werden, wenn wir zu stark auf die Ballseite schieben.',
+        ],
+        advantages: [
+          'Unsere zwei Spitzen können ihre Innenverteidiger früh lenken und den Aufbau auf eine Seite zwingen.',
+          'Die zwei Viererketten geben klare Kompaktheit, wenn Abstände zwischen Mittelfeld und Abwehr kurz bleiben.',
+          'Außen können wir mit Außenmittelfeldspieler und Außenverteidiger Druck herstellen, sobald der Pass auf ihren Flügel kommt.',
+        ],
+        dangers: [
+          'Im Zentrum verteidigen wir oft 2 gegen 3, wenn ihre Achter und ihr Sechser sauber gestaffelt sind.',
+          'Ihre Halbraumbesetzung kann unsere zentralen Mittelfeldspieler auseinanderziehen.',
+          'Unsere Außenverteidiger geraten unter Druck, wenn ihre Flügel breit bleiben und Außenverteidiger nachrücken.',
+          'Wenn unsere Spitzen nur anlaufen statt zu lenken, spielt ihr Sechser frei zwischen den Linien.',
+        ],
+        keyActions: [
+          'Erste Spitze läuft den Innenverteidiger bogenförmig an und lenkt den Aufbau nach außen.',
+          'Zweite Spitze stellt ihren Sechser in den Deckungsschatten und verhindert freies Aufdrehen.',
+          'Ballnaher zentraler Mittelfeldspieler schiebt auf ihren Achter, der zweite bleibt zentral vor der Abwehr.',
+          'Außenmittelfeldspieler presst ihren Außenverteidiger mit geschlossener Innenseite und hält den Weg nach außen kurz.',
+          'Außenverteidiger rückt nur heraus, wenn der Außenmittelfeldspieler Druck auf den Ball hat und der Innenverteidiger die Tiefe sichert.',
+        ],
+      },
+      afterGain: {
+        spaces: [
+          'Raum hinter ihren Außenverteidigern ist nach Ballgewinn sofort offen, wenn sie im Angriff hochgeschoben haben.',
+          'Halbraum hinter ihren Achtern kann direkt bespielt werden, bevor ihr Sechser Zugriff bekommt.',
+          'Zone vor ihrer Abwehr ist für zweite Bälle offen, wenn unsere Spitzen lange oder vertikale Pässe festmachen.',
+          'Ballferne Außenbahn wird frei, wenn ihr 4-3-3 nach Ballverlust noch zur alten Ballseite verschoben ist.',
+        ],
+        advantages: [
+          'Unsere zwei Spitzen geben sofort zwei vertikale Optionen für den ersten Pass nach Ballgewinn.',
+          'Außenmittelfeldspieler können die klaren Umschalträume hinter ihren Außenverteidigern attackieren.',
+          'Direktes Spiel nimmt ihrem Gegenpressing die Zeit, sich um den Ball zu schließen.',
+        ],
+        dangers: [
+          'Wenn der erste Pass langsam ins Zentrum kommt, fängt ihr Dreier-Mittelfeld den Konter früh ab.',
+          'Zu ungenaue lange Bälle kommen sofort zurück, weil ihr Sechser zweite Bälle gut sichern kann.',
+          'Bei zu vielen Spielern vor dem Ball fehlt uns die Kompaktheit für den erneuten Ballverlust.',
+        ],
+        keyActions: [
+          'Erster Pass nach Ballgewinn geht direkt vertikal auf eine Spitze oder diagonal in den Lauf des Außenmittelfeldspielers.',
+          'Ballnahe Spitze kommt entgegen und legt auf den nachrückenden zentralen Mittelfeldspieler oder die zweite Spitze ab.',
+          'Ballferne Spitze startet sofort in die Tiefe und bindet den ballfernen Innenverteidiger.',
+          'Außenmittelfeldspieler attackiert den Raum hinter dem Außenverteidiger und fordert den Ball in den Lauf.',
+          'Ein zentraler Mittelfeldspieler rückt auf den zweiten Ball, der andere bleibt als Absicherung vor der Kette.',
+        ],
+      },
+    },
+    liveCoaching: ['„Zentrum eng halten!"', '„Nach außen lenken!"', '„Direkt vertikal!"'],
     adjustments: [
-      '4-4-1-1 oder 4-1-4-1 zur Stabilisierung',
+      'Auf 4-4-1-1 umstellen, wenn ihr Sechser zu frei aufdreht und wir zwischen den Linien keinen Zugriff bekommen.',
+      'Auf 4-1-4-1 stabilisieren, wenn ihre Achter dauerhaft die Halbräume neben unserem Zentrum besetzen.',
+      'Außenmittelfeldspieler tiefer starten lassen, wenn ihre Außenverteidiger unsere Außenverteidiger zu oft doppeln.',
+      'Eine Spitze klar auf ihren Sechser setzen, wenn unser Pressing zu leicht überspielt wird.',
+      'Nach Ballgewinn früher auf die zweite Spitze oder den ballfernen Flügel verlagern, wenn ihr Gegenpressing unsere erste Option zustellt.',
     ],
+    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
+    ourAdvantages: [],
+    ourDangers: [],
+    importantZones: [],
+    pressing: [],
+    inPossession: [],
+    transition: [],
   },
   {
     id: '4-4-2_vs_3-4-3',
