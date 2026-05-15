@@ -1,6 +1,7 @@
 # Systembuch · Fehlende Duelle + Workflow
 
-Stand: 2026-05-15. Basis: `src/data/tacticBook/entries/*.ts` und `src/data/tacticBook/systems.ts`.
+Stand: 2026-05-15 (zuletzt aktualisiert nach Einpflege 4-4-2-raute · 3 Duelle).
+Basis: `src/data/tacticBook/entries/*.ts` und `src/data/tacticBook/systems.ts`.
 
 ## Workflow (so funktioniert das mit Claude im Aufstellungsplaner)
 
@@ -17,7 +18,7 @@ Du brauchst dich **nicht** um Datei-Pfade, Imports oder Build-Schritte zu kümme
 
 ## Übersicht
 
-9 Systeme × 9 Gegner = **81 mögliche Duelle**. Aktuell erfasst: **17**. Offen: **64**.
+9 Systeme × 9 Gegner = **81 mögliche Duelle**. Aktuell erfasst: **20**. Offen: **61**.
 
 Selbst-Duelle (z. B. 4-3-3 gegen 4-3-3) sind mitgezählt – Spiegelpartien gibt es im echten Trainerleben oft genug. Wenn du sie auslassen willst, sind es 72 mögliche und entsprechend **55 offene**.
 
@@ -28,14 +29,14 @@ Selbst-Duelle (z. B. 4-3-3 gegen 4-3-3) sind mitgezählt – Spiegelpartien gibt
 | **4-3-3**      |  ❌   |  ✅     |  ✅   |  ✅         |  ✅   |  ✅   |  ❌   |  ✅   |  ❌     |
 | **4-2-3-1**    |  ✅   |  ❌     |  ✅   |  ❌         |  ✅   |  ❌   |  ✅   |  ❌   |  ❌     |
 | **4-4-2**      |  ✅   |  ❌     |  ❌   |  ❌         |  ❌   |  ✅   |  ❌   |  ❌   |  ❌     |
-| **4-4-2-raute**|  ❌   |  ❌     |  ❌   |  ❌         |  ❌   |  ❌   |  ❌   |  ❌   |  ❌     |
+| **4-4-2-raute**|  ✅   |  ✅     |  ✅   |  ❌         |  ❌   |  ❌   |  ❌   |  ❌   |  ❌     |
 | **3-5-2**      |  ✅   |  ✅     |  ✅   |  ❌         |  ❌   |  ❌   |  ❌   |  ❌   |  ❌     |
 | **3-4-3**      |  ❌   |  ❌     |  ❌   |  ❌         |  ❌   |  ❌   |  ❌   |  ❌   |  ❌     |
 | **5-3-2**      |  ❌   |  ✅     |  ❌   |  ❌         |  ❌   |  ❌   |  ❌   |  ❌   |  ❌     |
 | **5-4-1**      |  ✅   |  ❌     |  ❌   |  ❌         |  ❌   |  ❌   |  ❌   |  ❌   |  ❌     |
 | **4-1-4-1**    |  ❌   |  ❌     |  ❌   |  ❌         |  ❌   |  ❌   |  ❌   |  ❌   |  ❌     |
 
-Drei komplette Reihen leer: **4-4-2 (Raute)**, **3-4-3**, **4-1-4-1**.
+Zwei komplette Reihen noch leer: **3-4-3** und **4-1-4-1** (4-4-2-Raute hat jetzt drei Einträge).
 
 ---
 
@@ -67,11 +68,11 @@ Hak ab, was du schon erledigt / mir geschickt hast.
 - [ ] 4-4-2 vs 5-4-1
 - [ ] 4-4-2 vs 4-1-4-1
 
-### Unser System: 4-4-2 (Raute) — 9 offen
+### Unser System: 4-4-2 (Raute) — 6 offen
 
-- [ ] 4-4-2-raute vs 4-3-3
-- [ ] 4-4-2-raute vs 4-2-3-1
-- [ ] 4-4-2-raute vs 4-4-2
+- [x] 4-4-2-raute vs 4-3-3
+- [x] 4-4-2-raute vs 4-2-3-1
+- [x] 4-4-2-raute vs 4-4-2
 - [ ] 4-4-2-raute vs 4-4-2-raute
 - [ ] 4-4-2-raute vs 3-5-2
 - [ ] 4-4-2-raute vs 3-4-3

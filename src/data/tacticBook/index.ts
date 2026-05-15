@@ -1,6 +1,7 @@
 import { entriesOur4231 } from './entries/our-4-2-3-1'
 import { entriesOur433 } from './entries/our-4-3-3'
 import { entriesOur442 } from './entries/our-4-4-2'
+import { entriesOur442Raute } from './entries/our-4-4-2-raute'
 import { entriesOur532 } from './entries/our-5-3-2'
 import { entriesOur541 } from './entries/our-5-4-1'
 import { entriesOur352 } from './entries/our-3-5-2'
@@ -14,6 +15,7 @@ export const tacticBook: TacticBookEntry[] = [
   ...entriesOur4231,
   ...entriesOur352,
   ...entriesOur442,
+  ...entriesOur442Raute,
   ...entriesOur532,
   ...entriesOur541,
 ]
