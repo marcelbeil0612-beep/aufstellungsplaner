@@ -355,4 +355,51 @@ export const entriesOur352: TacticBookEntry[] = [
       'Wingbacks breiter und früher anspielbar machen.',
     ],
   },
+  {
+    id: '3-5-2_vs_4-1-4-1',
+    ourSystem: '3-5-2',
+    opponentSystem: '4-1-4-1',
+    rating: 'ausgeglichen',
+    character:
+      'Ihre Fünfer-Mittelfeldlinie kann unser Zentrum blockieren. Wir müssen ihren Sechser binden und dann schnell über Wingbacks oder Tiefenläufe lösen.',
+    ourAdvantages: [
+      'Drei Innenverteidiger sichern stabil gegen ihren einzelnen Stürmer.',
+      'Zwei Spitzen können ihre Innenverteidiger direkt unter Druck setzen.',
+      'Wingbacks geben Breite gegen ihre kompakte Mittelfeldlinie.',
+    ],
+    ourDangers: [
+      'Ihre Achter können unsere Zentrumsspieler früh anlaufen.',
+      'Ihr Sechser kann zweite Bälle vor der Abwehr aufnehmen.',
+      'Außenspieler können unsere Wingbacks tief binden.',
+    ],
+    importantZones: [
+      'Raum neben ihrem Sechser.',
+      'Außenbahn hinter ihren Außenspielern.',
+      'Zweite-Ball-Zone vor unserer Dreierkette.',
+    ],
+    pressing: [
+      'Spitzen laufen Innenverteidiger an und decken den Sechser ab.',
+      'Achter schieben aggressiv auf ihre Achter.',
+      'Wingback presst erst bei offenem Pass auf den Außenverteidiger.',
+    ],
+    inPossession: [
+      'Eine Spitze kurz auf ihren Sechser fallen lassen.',
+      'Wingbacks früh breit einbinden und schnell verlagern.',
+      'Achter in die Räume neben ihrem Sechser schieben.',
+    ],
+    transition: [
+      'Nach Ballgewinn sofort hinter ihre Außenspieler spielen.',
+      'Nach Ballverlust Pass auf ihren Sechser schließen.',
+      'Zentraler Innenverteidiger sichert gegen lange Bälle.',
+    ],
+    liveCoaching: [
+      '„Sechser binden!"',
+      '„Wingback frei machen!"',
+    ],
+    adjustments: [
+      'Einen Achter tiefer zur Spieleröffnung halten.',
+      'Zentralen Innenverteidiger mutiger andribbeln lassen.',
+      'Wingbacks höher starten lassen, wenn Druck fehlt.',
+    ],
+  },
 ]
