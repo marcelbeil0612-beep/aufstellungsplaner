@@ -1,18 +1,18 @@
 # Systembuch-Migration · Checkliste
 
-Stand: 2026-05-15. Migration aller 81 Duelle vom alten Sammel-Schema
+Stand: 2026-05-17. Migration aller 81 Duelle vom alten Sammel-Schema
 ins **Vier-Phasen-Modell**.
 
-**Status: 49 / 81 migriert (60 %).**
+**Status: 81 / 81 migriert (100 %) — abgeschlossen ✅**
 
-Diese Datei wird nach jedem Migrat aktualisiert. Du kannst sie zusätzlich
-zum [Migrations-Prompt](./migration-prompt.md) deiner externen KI mitgeben,
-damit sie sieht, was noch fehlt und was schon fertig ist.
+Alle neun „Unser-System"-Reihen sind vollständig ins 4-Phasen-Schema
+(ownPossession / afterLoss / oppPossession / afterGain mit den vier
+Säulen spaces / advantages / dangers / keyActions) überführt. Die
+Legacy-Felder sind in allen Einträgen leer.
 
 ## Statussymbole
 
 - ✅ = im neuen 4-Phasen-Schema gepflegt
-- ⬜ = noch im alten Schema, Migration offen
 - 🟨 = Pilot (manuell von Claude migriert als Qualitäts-Anker)
 
 ---
@@ -77,121 +77,65 @@ damit sie sieht, was noch fehlt und was schon fertig ist.
 - ✅ `3-5-2_vs_5-4-1`
 - ✅ `3-5-2_vs_4-1-4-1`
 
-## 3-4-3 · 4 / 9 migriert
+## 3-4-3 · 9 / 9 migriert ✨
 
 - ✅ `3-4-3_vs_4-3-3`
 - ✅ `3-4-3_vs_4-2-3-1`
 - ✅ `3-4-3_vs_4-4-2`
 - ✅ `3-4-3_vs_4-4-2-raute`
-- ⬜ `3-4-3_vs_3-5-2`
-- ⬜ `3-4-3_vs_3-4-3`
-- ⬜ `3-4-3_vs_5-3-2`
-- ⬜ `3-4-3_vs_5-4-1`
-- ⬜ `3-4-3_vs_4-1-4-1`
+- ✅ `3-4-3_vs_3-5-2`
+- ✅ `3-4-3_vs_3-4-3`
+- ✅ `3-4-3_vs_5-3-2`
+- ✅ `3-4-3_vs_5-4-1`
+- ✅ `3-4-3_vs_4-1-4-1`
 
-## 5-3-2 · 0 / 9 migriert
+## 5-3-2 · 9 / 9 migriert ✨
 
-- ⬜ `5-3-2_vs_4-2-3-1`
-- ⬜ `5-3-2_vs_4-3-3`
-- ⬜ `5-3-2_vs_4-4-2`
-- ⬜ `5-3-2_vs_4-4-2-raute`
-- ⬜ `5-3-2_vs_3-5-2`
-- ⬜ `5-3-2_vs_3-4-3`
-- ⬜ `5-3-2_vs_5-3-2`
-- ⬜ `5-3-2_vs_5-4-1`
-- ⬜ `5-3-2_vs_4-1-4-1`
+- ✅ `5-3-2_vs_4-2-3-1`
+- ✅ `5-3-2_vs_4-3-3`
+- ✅ `5-3-2_vs_4-4-2`
+- ✅ `5-3-2_vs_4-4-2-raute`
+- ✅ `5-3-2_vs_3-5-2`
+- ✅ `5-3-2_vs_3-4-3`
+- ✅ `5-3-2_vs_5-3-2`
+- ✅ `5-3-2_vs_5-4-1`
+- ✅ `5-3-2_vs_4-1-4-1`
 
-## 5-4-1 · 0 / 9 migriert
+## 5-4-1 · 9 / 9 migriert ✨
 
-- ⬜ `5-4-1_vs_4-3-3`
-- ⬜ `5-4-1_vs_4-2-3-1`
-- ⬜ `5-4-1_vs_4-4-2`
-- ⬜ `5-4-1_vs_4-4-2-raute`
-- ⬜ `5-4-1_vs_3-5-2`
-- ⬜ `5-4-1_vs_3-4-3`
-- ⬜ `5-4-1_vs_5-3-2`
-- ⬜ `5-4-1_vs_5-4-1`
-- ⬜ `5-4-1_vs_4-1-4-1`
+- ✅ `5-4-1_vs_4-3-3`
+- ✅ `5-4-1_vs_4-2-3-1`
+- ✅ `5-4-1_vs_4-4-2`
+- ✅ `5-4-1_vs_4-4-2-raute`
+- ✅ `5-4-1_vs_3-5-2`
+- ✅ `5-4-1_vs_3-4-3`
+- ✅ `5-4-1_vs_5-3-2`
+- ✅ `5-4-1_vs_5-4-1`
+- ✅ `5-4-1_vs_4-1-4-1`
 
-## 4-1-4-1 · 0 / 9 migriert
+## 4-1-4-1 · 9 / 9 migriert ✨
 
-- ⬜ `4-1-4-1_vs_4-3-3`
-- ⬜ `4-1-4-1_vs_4-2-3-1`
-- ⬜ `4-1-4-1_vs_4-4-2`
-- ⬜ `4-1-4-1_vs_4-4-2-raute`
-- ⬜ `4-1-4-1_vs_3-5-2`
-- ⬜ `4-1-4-1_vs_3-4-3`
-- ⬜ `4-1-4-1_vs_5-3-2`
-- ⬜ `4-1-4-1_vs_5-4-1`
-- ⬜ `4-1-4-1_vs_4-1-4-1`
+- ✅ `4-1-4-1_vs_4-3-3`
+- ✅ `4-1-4-1_vs_4-2-3-1`
+- ✅ `4-1-4-1_vs_4-4-2`
+- ✅ `4-1-4-1_vs_4-4-2-raute`
+- ✅ `4-1-4-1_vs_3-5-2`
+- ✅ `4-1-4-1_vs_3-4-3`
+- ✅ `4-1-4-1_vs_5-3-2`
+- ✅ `4-1-4-1_vs_5-4-1`
+- ✅ `4-1-4-1_vs_4-1-4-1`
 
 ---
 
-## Empfohlene Reihenfolge
+## Nächste Schritte (nach Abschluss der Migration)
 
-1. **4-3-3-Reihe abschließen** (noch 6 offen) — Pilot + 2 weitere als
-   Qualitäts-Anker und Vergleichbarkeit.
-2. **Dann reihenweise:**
-   `4-2-3-1` → `4-4-2` → `3-5-2` → `3-4-3` → `4-4-2-raute` → `4-1-4-1` → `5-3-2` → `5-4-1`
-3. Nach jedem Batch mir den Output zurückschicken, ich pflege ein und
-   aktualisiere diese Datei.
-
-## Kurzfassung zum Copy-Paste in deine externe KI
-
-Hier eine reduzierte Statusliste, die du als zusätzlichen Kontext in
-deine KI klatschen kannst, damit sie nicht doppelt migriert:
-
-```
-Bereits im 4-Phasen-Schema (NICHT erneut migrieren):
-- 4-3-3 vs 4-4-2
-- 4-3-3 vs 4-2-3-1
-- 4-3-3 vs 4-4-2-raute
-- 4-3-3 vs 3-5-2
-- 4-3-3 vs 3-4-3
-- 4-3-3 vs 5-4-1
-- 4-3-3 vs 4-3-3
-- 4-3-3 vs 4-1-4-1
-- 4-3-3 vs 5-3-2
-- 4-2-3-1 vs 4-4-2
-- 4-2-3-1 vs 4-3-3
-- 4-2-3-1 vs 3-5-2
-- 4-2-3-1 vs 5-3-2
-- 4-2-3-1 vs 4-2-3-1
-- 4-2-3-1 vs 4-4-2-raute
-- 4-2-3-1 vs 3-4-3
-- 4-2-3-1 vs 5-4-1
-- 4-2-3-1 vs 4-1-4-1
-- 4-4-2 vs 4-3-3
-- 4-4-2 vs 3-4-3
-- 4-4-2 vs 4-2-3-1
-- 4-4-2 vs 4-4-2
-- 4-4-2 vs 4-4-2-raute
-- 4-4-2 vs 3-5-2
-- 4-4-2 vs 5-3-2
-- 4-4-2 vs 5-4-1
-- 4-4-2 vs 4-1-4-1
-- 4-4-2-raute vs 4-3-3
-- 4-4-2-raute vs 4-2-3-1
-- 4-4-2-raute vs 4-4-2
-- 4-4-2-raute vs 4-4-2-raute
-- 4-4-2-raute vs 3-5-2
-- 4-4-2-raute vs 3-4-3
-- 4-4-2-raute vs 5-3-2
-- 4-4-2-raute vs 5-4-1
-- 4-4-2-raute vs 4-1-4-1
-- 3-5-2 vs 4-3-3
-- 3-5-2 vs 4-4-2
-- 3-5-2 vs 4-2-3-1
-- 3-5-2 vs 4-4-2-raute
-- 3-5-2 vs 3-5-2
-- 3-5-2 vs 3-4-3
-- 3-5-2 vs 5-3-2
-- 3-5-2 vs 5-4-1
-- 3-5-2 vs 4-1-4-1
-- 3-4-3 vs 4-3-3
-- 3-4-3 vs 4-2-3-1
-- 3-4-3 vs 4-4-2
-- 3-4-3 vs 4-4-2-raute
-
-Noch zu migrieren: 32 weitere Duelle.
-```
+1. **Legacy-Code entfernen:** `LegacyView` in `DuelDetail.tsx`,
+   die `@deprecated` Legacy-Felder im `TacticBookEntry`-Typ und die
+   leeren `ourAdvantages`/`ourDangers`/… in allen 81 Einträgen können
+   jetzt gestrichen werden. `phases` kann von optional auf Pflichtfeld
+   umgestellt werden.
+2. **Inhaltliche Verifizierung:** Stichprobe der von der externen KI
+   gelieferten Duelle gegen die Pilot-Qualität (`4-3-3 vs 4-4-2`)
+   prüfen — siehe `docs/TODO.md` (Systembuch-Verifizierung A/B/D).
+3. **Ampel-Konsistenz:** rating-Verteilung querchecken (vorteilhaft /
+   ausgeglichen / unangenehm wirkt plausibel pro Reihe).
