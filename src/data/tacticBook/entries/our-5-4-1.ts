@@ -251,9 +251,9 @@ export const entriesOur541: TacticBookEntry[] = [
     id: '5-4-1_vs_4-4-2',
     ourSystem: '5-4-1',
     opponentSystem: '4-4-2',
-    rating: 'vorteilhaft',
+    rating: 'unangenehm',
     character:
-      'Wir haben in der letzten Linie klare Überzahl gegen ihre zwei Spitzen. Wichtig ist, dass unser Mittelfeld nicht zu tief fällt und der Stürmer Anschluss bekommt.',
+      'Unangenehmes Duell, weil ihr balldominantes 4-4-2 uns mit zwei Spitzen, Breite und nachrückenden Außenverteidigern dauerhaft tief drückt. Schlüsselvorteil ist unsere Überzahl in der letzten Linie gegen ihre zwei Spitzen, Schlüsselrisiko ist ein zu tief fallendes Mittelfeld ohne Anschluss an den isolierten Stürmer.',
     phases: {
       ownPossession: {
         spaces: [

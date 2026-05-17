@@ -627,9 +627,9 @@ export const entriesOur532: TacticBookEntry[] = [
     id: '5-3-2_vs_3-4-3',
     ourSystem: '5-3-2',
     opponentSystem: '3-4-3',
-    rating: 'unangenehm',
+    rating: 'ausgeglichen',
     character:
-      'Ihre drei Angreifer können unsere letzte Linie breit binden. Wir brauchen saubere Abstände, damit die Halbräume neben den Innenverteidigern nicht offen werden.',
+      'Ausgeglichenes Duell, weil ihre Front drei unsere letzte Linie breit bindet, unsere kompakte Fünferkette mit zwei Konterspitzen aber stabil dagegenhält. Schlüsselraum sind die Halbräume neben unseren Innenverteidigern, Schlüsselrisiko ist das breite Auseinanderziehen unserer Kette durch ihre Wingbacks.',
     phases: {
       ownPossession: {
         spaces: [

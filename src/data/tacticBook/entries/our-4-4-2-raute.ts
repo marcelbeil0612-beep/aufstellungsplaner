@@ -134,9 +134,9 @@ export const entriesOur442Raute: TacticBookEntry[] = [
     id: '4-4-2-raute_vs_4-2-3-1',
     ourSystem: '4-4-2-raute',
     opponentSystem: '4-2-3-1',
-    rating: 'vorteilhaft',
+    rating: 'ausgeglichen',
     character:
-      'Vorteilhaftes Duell, weil unsere Raute ihre Doppelsechs zentral dauerhaft binden und im Zwischenraum Überzahl schaffen kann. Schlüsselraum ist der Raum um ihre Doppelsechs, Schlüsselrisiko ist ihr Zehner, wenn er sich hinter unserer ersten Pressinglinie frei drehen kann.',
+      'Ausgeglichenes Tradeoff-Duell: unsere Raute schafft im Zentrum Überzahl und bindet ihre Doppelsechs, ihr 4-2-3-1 zwingt uns dafür über die Außenbahnen weite Wege auf. Schlüsselraum ist der Raum um ihre Doppelsechs, Schlüsselrisiko ist ihr Zehner, wenn er sich hinter unserer ersten Pressinglinie frei drehen kann.',
     phases: {
       ownPossession: {
         spaces: [

@@ -5,9 +5,9 @@ export const entriesOur343: TacticBookEntry[] = [
     id: '3-4-3_vs_4-3-3',
     ourSystem: '3-4-3',
     opponentSystem: '4-3-3',
-    rating: 'unangenehm',
+    rating: 'ausgeglichen',
     character:
-      'Unangenehmes Duell, weil ihr 4-3-3 unser zentrales Mittelfeld mit drei Spielern überladen kann und ihre Flügel unsere Halbverteidiger in direkte Laufduelle ziehen. Schlüsselraum ist das Zentrum um unsere beiden Mittelfeldspieler, Schlüsselrisiko ist ihr freier Sechser, wenn unser Pressing nicht sauber lenkt.',
+      'Ausgeglichenes, intensives Duell: ihr 4-3-3 kann unser zentrales Mittelfeld mit drei Spielern überladen, wir gleichen das aber mit Front drei und Wingback-Breite gegen ihre Viererkette aus. Schlüsselraum ist das Zentrum um unsere beiden Mittelfeldspieler, Schlüsselrisiko ist ihr freier Sechser, wenn unser Pressing nicht sauber lenkt.',
     phases: {
       ownPossession: {
         spaces: [
@@ -771,9 +771,9 @@ export const entriesOur343: TacticBookEntry[] = [
     id: '3-4-3_vs_5-3-2',
     ourSystem: '3-4-3',
     opponentSystem: '5-3-2',
-    rating: 'unangenehm',
+    rating: 'ausgeglichen',
     character:
-      'Unangenehmes Duell, weil ihr 5-3-2 Zentrum und Strafraum sehr kompakt verteidigt und gegen unsere Front drei viel Absicherung hat. Schlüsselraum sind die Halbräume neben ihren äußeren Innenverteidigern, Schlüsselrisiko sind schnelle Konter auf ihre zwei Spitzen nach Ballverlusten in hoher Wingback-Position.',
+      'Ausgeglichenes Kontrolle-gegen-Konter-Duell: ihr 5-3-2 verteidigt Zentrum und Strafraum sehr kompakt, wir gewinnen aber über Front drei und Wingbacks Territorium und Breite. Schlüsselraum sind die Halbräume neben ihren äußeren Innenverteidigern, Schlüsselrisiko sind schnelle Konter auf ihre zwei Spitzen nach Ballverlusten in hoher Wingback-Position.',
     phases: {
       ownPossession: {
         spaces: [

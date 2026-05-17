@@ -642,9 +642,9 @@ export const entriesOur4231: TacticBookEntry[] = [
     id: '4-2-3-1_vs_4-4-2-raute',
     ourSystem: '4-2-3-1',
     opponentSystem: '4-4-2-raute',
-    rating: 'vorteilhaft',
+    rating: 'ausgeglichen',
     character:
-      'Vorteilhaftes Duell, weil wir klare Breite gegen ihre enge Raute haben und sie auf den Außenbahnen weite Wege verteidigen muss. Schlüsselraum ist die Außenbahn neben ihrer Raute, Schlüsselrisiko ist ihre zentrale Überladung mit Zehner und zwei Spitzen nach Ballverlust.',
+      'Ausgeglichenes Tradeoff-Duell: wir haben klare Breite gegen ihre enge Raute und zwingen sie zu weiten Außenwegen, sie schafft dafür im Zentrum mit Zehner und zwei Spitzen Überzahl. Schlüsselraum ist die Außenbahn neben ihrer Raute, Schlüsselrisiko ist ihre zentrale Überladung mit Zehner und zwei Spitzen nach Ballverlust.',
     phases: {
       ownPossession: {
         spaces: [

@@ -360,9 +360,9 @@ export const entriesOur433: TacticBookEntry[] = [
     id: '4-3-3_vs_3-4-3',
     ourSystem: '4-3-3',
     opponentSystem: '3-4-3',
-    rating: 'unangenehm',
+    rating: 'ausgeglichen',
     character:
-      'Sehr forderndes Duell auf den Flügeln und in den Halbräumen, weil ihre Wingbacks Breite geben und ihre vordere Dreierreihe unsere letzte Linie bindet. Schlüsselraum ist der Bereich hinter ihren Wingbacks, Schlüsselrisiko sind offene Halbräume neben unserem Sechser.',
+      'Ausgeglichenes, forderndes Duell auf den Flügeln und in den Halbräumen: ihre Wingbacks geben Breite und ihre vordere Dreierreihe bindet unsere letzte Linie, wir bekommen aber über die zentrale Mittelfeld-Überzahl Kontrolle. Schlüsselraum ist der Bereich hinter ihren Wingbacks, Schlüsselrisiko sind offene Halbräume neben unserem Sechser.',
     phases: {
       ownPossession: {
         spaces: [
