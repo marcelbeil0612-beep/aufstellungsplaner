@@ -484,9 +484,9 @@ export const entriesOur433: TacticBookEntry[] = [
     id: '4-3-3_vs_4-4-2-raute',
     ourSystem: '4-3-3',
     opponentSystem: '4-4-2-raute',
-    rating: 'vorteilhaft',
+    rating: 'ausgeglichen',
     character:
-      'Meist gutes Duell für uns, wenn wir Breite sauber nutzen und die Raute dauerhaft zum Verschieben zwingen. Schlüsselraum sind beide Außenbahnen, Schlüsselrisiko ist ihr enger Zwischenlinienraum mit Zehner und zwei Spitzen.',
+      'Ausgeglichenes Tradeoff-Duell: wir nutzen Breite gegen ihre enge Raute, sie schafft dafür im Zwischenlinienraum mit Zehner und zwei Spitzen zentrale Überzahl. Schlüsselraum sind beide Außenbahnen, Schlüsselrisiko ist ihr enger Zwischenlinienraum mit Zehner und zwei Spitzen.',
     phases: {
       ownPossession: {
         spaces: [
@@ -607,9 +607,9 @@ export const entriesOur433: TacticBookEntry[] = [
     id: '4-3-3_vs_5-4-1',
     ourSystem: '4-3-3',
     opponentSystem: '5-4-1',
-    rating: 'unangenehm',
+    rating: 'vorteilhaft',
     character:
-      'Geduldsspiel gegen einen tiefen und kompakten Block, in dem wir viel Ballbesitz haben, aber sauber Tempo und Tiefe erzeugen müssen. Schlüsselraum ist der Halbraum vor ihrer Fünferkette, Schlüsselrisiko sind Konter gegen unsere offene Struktur nach Ballverlust.',
+      'Vorteilhaftes Geduldsspiel: gegen ihren tiefen, kompakten Block haben wir klar das Spiel, müssen aber sauber Tempo und Tiefe erzeugen. Schlüsselraum ist der Halbraum vor ihrer Fünferkette, Schlüsselrisiko sind Konter gegen unsere offene Struktur nach Ballverlust.',
     phases: {
       ownPossession: {
         spaces: [

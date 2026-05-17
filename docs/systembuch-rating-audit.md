@@ -57,34 +57,66 @@ taktische Substanz unverändert): `our-4-3-3.ts`, `our-3-4-3.ts` (2×),
 
 Nach den Korrekturen: **0 harte Widersprüche**, Audit-Test grün.
 
-### Verbleibende 20 weiche Asymmetrien
+### 20 weiche Asymmetrien — aufgelöst
 
-Kein logischer Fehler, aber ein klares **systematisches Muster**: In
-fast allen Fällen hat die *früher* und sorgfältiger erzeugte Reihe
-(4-3-3, 4-2-3-1, 4-4-2) ein scharfes Vorzeichen, während die *zuletzt*
-erzeugte Gegen-Reihe (3-5-2, 3-4-3, 5-3-2, 5-4-1, 4-1-4-1, 4-4-2-raute)
-auf `ausgeglichen` ausweicht.
+Ursache war ein **Generierungs-Drift**: zuletzt erzeugte Reihen
+(3-5-2, 3-4-3, 5-3-2, 5-4-1, 4-1-4-1, 4-4-2-raute) wichen systematisch
+auf `ausgeglichen` aus, während die früher/am Pilot geankerten Reihen
+(4-3-3, 4-2-3-1, 4-4-2) scharfe Vorzeichen hatten.
 
-Beispiel: `4-2-3-1 vs 3-5-2 = unangenehm`, aber
-`3-5-2 vs 4-2-3-1 = ausgeglichen` — wenn das 4-2-3-1 dieses Duell als
-schwer einschätzt, müsste das 3-5-2 es spiegelbildlich als vorteilhaft
-sehen, nicht als ausgeglichen.
+Alle 20 Paare wurden inhaltlich einzeln aus beiden `character`-Texten
+entschieden (kein Bauchgefühl). Dabei wurde ein konsistentes
+Regelsystem abgeleitet und über alle Paare hinweg angewandt:
 
-**Interpretation:** Das ist ein Generierungs-Drift der späten Reihen
-(Tendenz zu „ausgeglichen"), keine bewusste taktische Bewertung.
+**R1 — Balldominante Struktur mit echter Breite vs. tiefer 5-4-1-Block:**
+angreifende Seite `vorteilhaft`, 5-4-1 `unangenehm`. Gilt für 4-4-2,
+4-2-3-1, 4-3-3, 3-4-3 (alle haben Flügel/Wingback-Breite).
 
-**Empfohlene Auflösungsregel (noch offen, nicht angewendet):** Pro
-weichem Paar gilt die Seite mit dem schärferen Vorzeichen als Referenz
-(in der Regel die früher erzeugte, am Pilot `4-3-3 vs 4-4-2` geankerte
-Reihe); der `ausgeglichen`-Spiegel wird auf das inverse Vorzeichen
-gesetzt — **es sei denn**, eine kurze Inhaltsprüfung zeigt, dass das
-Duell wirklich ausgeglichen ist (dann wird stattdessen die scharfe
-Seite auf `ausgeglichen` gezogen).
+**R2 — Enge Raute (4-4-2-raute):** gegen jedes Wingback-System
+(3-5-2, 3-4-3, 5-3-2, 5-4-1) ist die Raute `unangenehm`, das
+Wingback-System `vorteilhaft` (fehlende natürliche Breite der Raute);
+gegen die *flache* 4-4-2 dagegen Raute `vorteilhaft` / 4-4-2
+`unangenehm` (zentrale Überzahl ist dort lehrbuchmäßig entscheidend);
+gegen Viererketten *mit* natürlicher Breite (4-3-3, 4-2-3-1, 4-1-4-1)
+echtes Tradeoff → beide `ausgeglichen`.
 
-Diese ~20 Paare wurden bewusst **nicht** automatisch umgesetzt, weil
-jede Entscheidung eine kurze inhaltliche Einzelprüfung braucht — genau
-das, was bei den 4 harten Paaren gemacht wurde. Als gescopter
-Folge-Schritt jederzeit nachholbar.
+**R3 — Zentrale Überzahl entscheidet:** 3-5-2 / 4-1-4-1 (drei zentrale
+MF) gegen Doppelsechs-Systeme → Überzahl-Seite `vorteilhaft`,
+Gegenseite `unangenehm`, sofern die Texte keine echte Gegenstärke
+belegen.
+
+**R4 — Kontrolle-gegen-Konter ohne klaren Vorteil** (z. B. Possession-
+System vs. kompaktes 5-3-2; zwei Fünferketten gegeneinander): beide
+`ausgeglichen`.
+
+Entscheidungs-Übersicht (Referenzseite → Spiegel angepasst):
+
+| Paar | Ergebnis | Regel |
+|---|---|---|
+| 4-3-3 ↔ 4-4-2-raute | beide `ausgeglichen` | R2 |
+| 4-3-3 / 5-4-1 | 4-3-3 `vorteilhaft`, 5-4-1 `unangenehm` | R1 |
+| 4-2-3-1 / 4-4-2 | 4-2-3-1 `vorteilhaft`, 4-4-2 `unangenehm` | R3 |
+| 4-2-3-1 / 3-5-2 | 4-2-3-1 `unangenehm`, 3-5-2 `vorteilhaft` | R3 |
+| 4-2-3-1 / 3-4-3 | 4-2-3-1 `unangenehm`, 3-4-3 `vorteilhaft` | R3 |
+| 4-2-3-1 / 5-4-1 | 4-2-3-1 `vorteilhaft`, 5-4-1 `unangenehm` | R1 |
+| 4-4-2 / 4-4-2-raute | raute `vorteilhaft`, 4-4-2 `unangenehm` | R2 |
+| 4-4-2 ↔ 5-3-2 | beide `ausgeglichen` | R4 |
+| 4-4-2 / 4-1-4-1 | 4-1-4-1 `vorteilhaft`, 4-4-2 `unangenehm` | R3 |
+| 4-4-2-raute / 3-5-2 | raute `unangenehm`, 3-5-2 `vorteilhaft` | R2 |
+| 4-4-2-raute / 3-4-3 | raute `unangenehm`, 3-4-3 `vorteilhaft` | R2 |
+| 4-4-2-raute / 5-3-2 | raute `unangenehm`, 5-3-2 `vorteilhaft` | R2 |
+| 4-4-2-raute / 5-4-1 | raute `unangenehm`, 5-4-1 `vorteilhaft` | R2 |
+| 4-4-2-raute ↔ 4-1-4-1 | beide `ausgeglichen` | R2 |
+| 3-5-2 / 3-4-3 | 3-5-2 `vorteilhaft`, 3-4-3 `unangenehm` | R3 |
+| 3-5-2 / 4-1-4-1 | 3-5-2 `vorteilhaft`, 4-1-4-1 `unangenehm` | R3 |
+| 3-4-3 / 5-4-1 | 3-4-3 `vorteilhaft`, 5-4-1 `unangenehm` | R1 |
+| 3-4-3 / 4-1-4-1 | 3-4-3 `vorteilhaft`, 4-1-4-1 `unangenehm` | R3 |
+| 5-3-2 ↔ 5-4-1 | beide `ausgeglichen` | R4 |
+| 5-3-2 ↔ 4-1-4-1 | beide `ausgeglichen` | R4 |
+
+21 Einträge geändert (Rating + angeglichener `character`-Text,
+taktische Substanz erhalten). Danach: **0 harte Widersprüche, 0 weiche
+Asymmetrien** — die komplette 81-Duell-Matrix ist spiegel-konsistent.
 
 ## Regressions-Guard
 

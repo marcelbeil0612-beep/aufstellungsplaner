@@ -261,9 +261,9 @@ export const entriesOur352: TacticBookEntry[] = [
     id: '3-5-2_vs_4-2-3-1',
     ourSystem: '3-5-2',
     opponentSystem: '4-2-3-1',
-    rating: 'ausgeglichen',
+    rating: 'vorteilhaft',
     character:
-      'Ausgeglichenes Duell, weil unser zentrales Dreieck Stabilität gibt, ihr Zehner aber genau zwischen unseren Linien gefährlich werden kann. Schlüsselraum ist der Bereich neben ihrer Doppelsechs, Schlüsselrisiko sind Kombinationen aus Außenverteidiger und Flügel gegen unsere Wingbacks.',
+      'Vorteilhaftes Duell, weil unsere Wingbacks ihre Außenverteidiger binden und unsere zwei Spitzen ihre Innenverteidiger dauerhaft beschäftigen, während unser zentrales Dreieck Stabilität gibt. Schlüsselraum ist der Bereich neben ihrer Doppelsechs, Schlüsselrisiko sind Kombinationen aus Außenverteidiger und Flügel gegen unsere Wingbacks.',
     phases: {
       ownPossession: {
         spaces: [
@@ -389,9 +389,9 @@ export const entriesOur352: TacticBookEntry[] = [
     id: '3-5-2_vs_4-4-2-raute',
     ourSystem: '3-5-2',
     opponentSystem: '4-4-2-raute',
-    rating: 'ausgeglichen',
+    rating: 'vorteilhaft',
     character:
-      'Ausgeglichenes Zentrumduell, weil beide Teams die Mitte besetzen, wir aber über die Wingbacks klare Breite bekommen. Schlüsselraum ist die Außenbahn neben ihrer Raute, Schlüsselrisiko ist ihr Zehner vor unserem zentralen Innenverteidiger nach Ballverlusten im Zentrum.',
+      'Vorteilhaftes Duell, weil unsere Wingbacks die fehlende Breite ihrer engen Raute bestrafen und unsere Dreierkette ihre zwei Spitzen sicher aufnimmt. Schlüsselraum ist die Außenbahn neben ihrer Raute, Schlüsselrisiko ist ihr Zehner vor unserem zentralen Innenverteidiger nach Ballverlusten im Zentrum.',
     phases: {
       ownPossession: {
         spaces: [
@@ -646,9 +646,9 @@ export const entriesOur352: TacticBookEntry[] = [
     id: '3-5-2_vs_3-4-3',
     ourSystem: '3-5-2',
     opponentSystem: '3-4-3',
-    rating: 'ausgeglichen',
+    rating: 'vorteilhaft',
     character:
-      'Ausgeglichenes Duell, weil wir im Zentrum gegen ihre Doppelsechs Vorteile haben, ihre Front drei aber unsere letzte Linie breit bindet. Schlüsselraum ist der Halbraum neben dem äußeren Innenverteidiger, Schlüsselrisiko sind ihre Außenstürmer in den Räumen neben unserer Dreierkette.',
+      'Vorteilhaftes Duell, weil unsere drei zentralen Mittelfeldspieler ihre Doppelsechs klar überzahlen, auch wenn ihre Front drei unsere letzte Linie breit bindet. Schlüsselraum ist der Halbraum neben dem äußeren Innenverteidiger, Schlüsselrisiko sind ihre Außenstürmer in den Räumen neben unserer Dreierkette.',
     phases: {
       ownPossession: {
         spaces: [
@@ -1031,9 +1031,9 @@ export const entriesOur352: TacticBookEntry[] = [
     id: '3-5-2_vs_4-1-4-1',
     ourSystem: '3-5-2',
     opponentSystem: '4-1-4-1',
-    rating: 'ausgeglichen',
+    rating: 'vorteilhaft',
     character:
-      'Ausgeglichenes Duell, weil ihre Fünfer-Mittelfeldlinie unser Zentrum blockieren kann, wir aber über Wingbacks, Andribbeln und zwei Spitzen gute Lösungen haben. Schlüsselraum ist der Bereich neben ihrem Sechser, Schlüsselrisiko ist ihr Sechser bei zweiten Bällen vor der Abwehr.',
+      'Vorteilhaftes Duell, weil unsere Wingbacks ihre Außenverteidiger binden und unsere zwei Spitzen ihre Viererkette mit einzelnem Sechser unter Druck setzen, trotz ihrer kompakten Mittelfeldlinie. Schlüsselraum ist der Bereich neben ihrem Sechser, Schlüsselrisiko ist ihr Sechser bei zweiten Bällen vor der Abwehr.',
     phases: {
       ownPossession: {
         spaces: [

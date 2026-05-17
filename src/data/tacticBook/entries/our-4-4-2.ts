@@ -251,9 +251,9 @@ export const entriesOur442: TacticBookEntry[] = [
     id: '4-4-2_vs_4-2-3-1',
     ourSystem: '4-4-2',
     opponentSystem: '4-2-3-1',
-    rating: 'ausgeglichen',
+    rating: 'unangenehm',
     character:
-      'Ausgeglichenes Duell, weil wir ihre Innenverteidiger mit zwei Spitzen früh unter Druck setzen können, aber ihr Zehner gefährlich hinter unseren beiden zentralen Mittelfeldspielern auftaucht. Schlüsselraum ist der Zehnerraum vor unserer Abwehr, Schlüsselrisiko ist ihre Doppelsechs, wenn sie zweite Bälle und Verlagerungen kontrolliert.',
+      'Unangenehmes Duell, weil ihre Doppelsechs plus Zehner im Zentrum Überzahl gegen unsere zwei Mittelfeldspieler schafft und ihr Zehner hinter ihnen frei auftaucht. Schlüsselraum ist der Zehnerraum vor unserer Abwehr, Schlüsselrisiko ist ihre Doppelsechs, wenn sie zweite Bälle und Verlagerungen kontrolliert.',
     phases: {
       ownPossession: {
         spaces: [
@@ -498,9 +498,9 @@ export const entriesOur442: TacticBookEntry[] = [
     id: '4-4-2_vs_4-4-2-raute',
     ourSystem: '4-4-2',
     opponentSystem: '4-4-2-raute',
-    rating: 'ausgeglichen',
+    rating: 'unangenehm',
     character:
-      'Ausgeglichenes Duell, weil ihre Raute das Zentrum überlädt, wir dafür aber klare Breite auf den Außenbahnen haben. Schlüsselraum ist die Außenbahn neben ihrer engen Staffelung, Schlüsselrisiko ist ihr Zehner zwischen unseren Linien nach Ballverlusten im Zentrum.',
+      'Unangenehmes Duell, weil ihre Raute gegen unsere flache Doppelsechs klare zentrale Überzahl schafft und wir nur über Außenverteidiger-Breite gegenhalten. Schlüsselraum ist die Außenbahn neben ihrer engen Staffelung, Schlüsselrisiko ist ihr Zehner zwischen unseren Linien nach Ballverlusten im Zentrum.',
     phases: {
       ownPossession: {
         spaces: [
@@ -1010,9 +1010,9 @@ export const entriesOur442: TacticBookEntry[] = [
     id: '4-4-2_vs_4-1-4-1',
     ourSystem: '4-4-2',
     opponentSystem: '4-1-4-1',
-    rating: 'ausgeglichen',
+    rating: 'unangenehm',
     character:
-      'Ausgeglichenes Duell, weil ihre Fünfer-Mittelfeldstruktur unser Zentrum blockieren kann, wir aber mit zwei Spitzen und klarer Breite Druck aufbauen. Schlüsselraum ist der Raum neben ihrem Sechser, Schlüsselrisiko sind zu große Abstände zwischen Sturm und Mittelfeld, durch die ihr Sechser zweite Bälle kontrolliert.',
+      'Unangenehmes Duell, weil ihre Fünfer-Mittelfeldstruktur mit Sechs und zwei Achtern unser Zentrum blockiert und unsere zwei Mittelfeldspieler überzahlt. Schlüsselraum ist der Raum neben ihrem Sechser, Schlüsselrisiko sind zu große Abstände zwischen Sturm und Mittelfeld, durch die ihr Sechser zweite Bälle kontrolliert.',
     phases: {
       ownPossession: {
         spaces: [

@@ -132,9 +132,9 @@ export const entriesOur343: TacticBookEntry[] = [
     id: '3-4-3_vs_4-2-3-1',
     ourSystem: '3-4-3',
     opponentSystem: '4-2-3-1',
-    rating: 'ausgeglichen',
+    rating: 'vorteilhaft',
     character:
-      'Ausgeglichenes Duell, weil unsere Front drei ihre Viererkette breit binden kann, ihr Zehner und die Doppelsechs aber zentrale Kontrolle gegen unsere zwei Mittelfeldspieler suchen. Schlüsselraum ist der Zehnerraum vor unserer Dreierkette, Schlüsselrisiko sind Ballverluste auf außen mit direkten Kontern über ihre Flügel.',
+      'Vorteilhaftes Duell, weil unsere Front drei ihre Viererkette breit bindet und unsere Wingbacks ihre Flügel tief drücken, auch wenn Zehner und Doppelsechs zentrale Kontrolle suchen. Schlüsselraum ist der Zehnerraum vor unserer Dreierkette, Schlüsselrisiko sind Ballverluste auf außen mit direkten Kontern über ihre Flügel.',
     phases: {
       ownPossession: {
         spaces: [
@@ -388,9 +388,9 @@ export const entriesOur343: TacticBookEntry[] = [
     id: '3-4-3_vs_4-4-2-raute',
     ourSystem: '3-4-3',
     opponentSystem: '4-4-2-raute',
-    rating: 'ausgeglichen',
+    rating: 'vorteilhaft',
     character:
-      'Ausgeglichenes Duell, weil ihre Raute im Zentrum Überzahl sucht, wir sie aber über Wingbacks und breite Front drei auseinanderziehen können. Schlüsselraum sind die Außenbahnen neben ihrer Raute, Schlüsselrisiko ist ihr Zehner im Rücken unserer Mittelfeldlinie nach Ballverlusten im Zentrum.',
+      'Vorteilhaftes Duell, weil wir ihre enge Raute über Wingbacks und breite Front drei auseinanderziehen, während ihr die natürliche Breite fehlt. Schlüsselraum sind die Außenbahnen neben ihrer Raute, Schlüsselrisiko ist ihr Zehner im Rücken unserer Mittelfeldlinie nach Ballverlusten im Zentrum.',
     phases: {
       ownPossession: {
         spaces: [
@@ -900,9 +900,9 @@ export const entriesOur343: TacticBookEntry[] = [
     id: '3-4-3_vs_5-4-1',
     ourSystem: '3-4-3',
     opponentSystem: '5-4-1',
-    rating: 'ausgeglichen',
+    rating: 'vorteilhaft',
     character:
-      'Ausgeglichenes Geduldsspiel, weil wir viel Ballbesitz und ruhigen Aufbau bekommen, ihr tiefer 5-4-1-Block aber Schnittstellen und Strafraum konsequent schließt. Schlüsselraum ist der Rückraum an der Strafraumkante, Schlüsselrisiko sind ungeduldige Flanken und Konter über den Zielspieler hinter unsere hohen Wingbacks.',
+      'Vorteilhaftes Geduldsspiel, weil wir mit Front drei und hohen Wingbacks viel Breite und Druck gegen ihren tiefen 5-4-1-Block aufbauen. Schlüsselraum ist der Rückraum an der Strafraumkante, Schlüsselrisiko sind ungeduldige Flanken und Konter über den Zielspieler hinter unsere hohen Wingbacks.',
     phases: {
       ownPossession: {
         spaces: [

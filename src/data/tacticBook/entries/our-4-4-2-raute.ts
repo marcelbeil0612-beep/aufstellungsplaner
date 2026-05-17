@@ -1036,9 +1036,9 @@ export const entriesOur442Raute: TacticBookEntry[] = [
     id: '4-4-2-raute_vs_4-1-4-1',
     ourSystem: '4-4-2-raute',
     opponentSystem: '4-1-4-1',
-    rating: 'vorteilhaft',
+    rating: 'ausgeglichen',
     character:
-      'Vorteilhaftes Duell, weil wir ihre einzelne Sechs mit Zehner und Achtern konstant überladen können. Schlüsselraum ist der Bereich links und rechts neben ihrer Sechs, Schlüsselrisiko sind ihre äußeren Mittelfeldspieler, wenn sie unsere Außenverteidiger früh anlaufen und unsere Raute seitlich auseinanderziehen.',
+      'Ausgeglichenes Tradeoff-Duell: wir überladen zentral ihre einzelne Sechs mit Zehner und Achtern, ihre breiten äußeren Mittelfeldspieler ziehen dafür unsere enge Raute auseinander. Schlüsselraum ist der Bereich links und rechts neben ihrer Sechs, Schlüsselrisiko sind ihre äußeren Mittelfeldspieler, wenn sie unsere Außenverteidiger früh anlaufen und unsere Raute seitlich auseinanderziehen.',
     phases: {
       ownPossession: {
         spaces: [

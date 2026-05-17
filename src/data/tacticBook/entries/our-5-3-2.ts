@@ -252,9 +252,9 @@ export const entriesOur532: TacticBookEntry[] = [
     id: '5-3-2_vs_4-4-2',
     ourSystem: '5-3-2',
     opponentSystem: '4-4-2',
-    rating: 'vorteilhaft',
+    rating: 'ausgeglichen',
     character:
-      'Wir haben im Zentrum meist einen Mann mehr und können zweite Bälle gut sichern. Gefährlich sind breite Angriffe mit Außenverteidiger und Außenspieler gegen unseren Wingback.',
+      'Ausgeglichenes Duell: wir haben im Zentrum meist einen Mann mehr und sichern zweite Bälle gut, ihre zwei Spitzen und die Flügelbreite gleichen das aber aus. Schlüsselraum ist das Zentrum mit unserer Überzahl, Schlüsselrisiko sind breite Angriffe mit Außenverteidiger und Außenspieler gegen unseren Wingback.',
     phases: {
       ownPossession: {
         spaces: [
@@ -377,9 +377,9 @@ export const entriesOur532: TacticBookEntry[] = [
     id: '5-3-2_vs_4-4-2-raute',
     ourSystem: '5-3-2',
     opponentSystem: '4-4-2-raute',
-    rating: 'ausgeglichen',
+    rating: 'vorteilhaft',
     character:
-      'Beide Teams wollen das Zentrum kontrollieren. Unsere Wingbacks können viel Raum nutzen, müssen aber nach Ballverlust sofort gegen die Raute einrücken.',
+      'Vorteilhaftes Duell, weil unsere Fünferkette das Zentrum gegen ihre Raute verdichtet und unsere Wingbacks die fehlende Breite der engen Raute bestrafen. Schlüsselraum sind die Außenbahnen über unsere Wingbacks, Schlüsselrisiko ist ihre zentrale Bindung, wenn wir nach Ballverlust nicht sofort gegen die Raute einrücken.',
     phases: {
       ownPossession: {
         spaces: [
@@ -877,9 +877,9 @@ export const entriesOur532: TacticBookEntry[] = [
     id: '5-3-2_vs_5-4-1',
     ourSystem: '5-3-2',
     opponentSystem: '5-4-1',
-    rating: 'vorteilhaft',
+    rating: 'ausgeglichen',
     character:
-      'Wir haben mit zwei Spitzen mehr Präsenz gegen ihre tiefe letzte Linie. Entscheidend ist Geduld, weil ihre Mittelfeldkette zentrale Räume lange schließt.',
+      'Ausgeglichenes Geduldsspiel zwischen zwei stabilen Fünferketten: unsere zwei Spitzen geben etwas mehr Präsenz, ihre kompakte Mittelfeldkette schließt aber zentrale Räume lange. Schlüsselraum ist der Rückraum vor ihrer Kette, Schlüsselrisiko ist ein zu geduldloses Spiel gegen ihren tiefen Block.',
     phases: {
       ownPossession: {
         spaces: [

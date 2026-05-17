@@ -5,9 +5,9 @@ export const entriesOur541: TacticBookEntry[] = [
     id: '5-4-1_vs_4-3-3',
     ourSystem: '5-4-1',
     opponentSystem: '4-3-3',
-    rating: 'ausgeglichen',
+    rating: 'unangenehm',
     character:
-      'Klassisches Geduldsspiel für den Gegner und gutes Kompaktheitsduell für uns. Wir können Flügel und Tiefe stabil schließen, brauchen aber klare erste Bälle, damit aus dem tiefen Block echte Entlastung entsteht.',
+      'Unangenehmes Duell, weil ihr balldominantes 4-3-3 uns mit Flügelbreite und Tiefe dauerhaft tief drückt. Schlüsselvorteil ist unsere kompakte Fünferkette gegen Flügel und Tiefe, Schlüsselrisiko ist fehlende Entlastung ohne klare erste Bälle aus dem tiefen Block.',
     phases: {
       ownPossession: {
         spaces: [
@@ -127,9 +127,9 @@ export const entriesOur541: TacticBookEntry[] = [
     id: '5-4-1_vs_4-2-3-1',
     ourSystem: '5-4-1',
     opponentSystem: '4-2-3-1',
-    rating: 'ausgeglichen',
+    rating: 'unangenehm',
     character:
-      'Wir können ihre offensive Dreierreihe gut aufnehmen. Gefährlich wird es, wenn ihr Zehner zwischen unserer Mittelfeld- und Abwehrlinie frei drehen darf.',
+      'Unangenehmes Duell, weil ihr 4-2-3-1 mit Zehner, Flügeln und Außenverteidigern konstant Druck gegen unsere tiefe Kette aufbaut. Schlüsselvorteil ist unsere Überzahl in der letzten Linie, Schlüsselrisiko ist ihr Zehner, wenn er zwischen unserer Mittelfeld- und Abwehrlinie frei dreht.',
     phases: {
       ownPossession: {
         spaces: [
@@ -375,9 +375,9 @@ export const entriesOur541: TacticBookEntry[] = [
     id: '5-4-1_vs_4-4-2-raute',
     ourSystem: '5-4-1',
     opponentSystem: '4-4-2-raute',
-    rating: 'ausgeglichen',
+    rating: 'vorteilhaft',
     character:
-      'Ihre Raute kann unser Zentrum stark binden. Dafür haben wir außen Räume, wenn Wingbacks und Außenspieler sauber gestaffelt bleiben.',
+      'Vorteilhaftes Duell, weil ihre enge Raute keine natürliche Breite hat und an unserem kompakten Block hängen bleibt, während wir über die Außenräume kontern. Schlüsselraum sind die Außenbahnen neben ihrer Raute, Schlüsselrisiko ist ihre zentrale Bindung, wenn Wingbacks und Außenspieler nicht sauber gestaffelt bleiben.',
     phases: {
       ownPossession: {
         spaces: [

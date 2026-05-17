@@ -638,9 +638,9 @@ export const entriesOur4141: TacticBookEntry[] = [
     id: '4-1-4-1_vs_3-4-3',
     ourSystem: '4-1-4-1',
     opponentSystem: '3-4-3',
-    rating: 'ausgeglichen',
+    rating: 'unangenehm',
     character:
-      'Wir haben zentrale Überzahl gegen ihre Doppelsechs, müssen aber ihre Breite und Front drei sauber kontrollieren. Das Duell kippt darüber, ob wir ihre Wingbacks binden oder selbst auf den Flügeln festgedrückt werden.',
+      'Unangenehmes Duell, weil ihre Front drei und hohen Wingbacks uns auf den Flügeln festdrücken und ihre Dreierkette gegen unseren einzelnen Stürmer ruhig aufbaut. Schlüsselvorteil ist unsere zentrale Überzahl gegen ihre Doppelsechs, Schlüsselrisiko ist ihre Breite, wenn wir ihre Wingbacks nicht binden.',
     phases: {
       ownPossession: {
         spaces: [
@@ -764,9 +764,9 @@ export const entriesOur4141: TacticBookEntry[] = [
     id: '4-1-4-1_vs_5-3-2',
     ourSystem: '4-1-4-1',
     opponentSystem: '5-3-2',
-    rating: 'unangenehm',
+    rating: 'ausgeglichen',
     character:
-      'Ihr 5-3-2 ist kompakt im Zentrum und hat mit zwei Spitzen gute Konteroptionen. Wir müssen die Breite nutzen, ohne unsere Außenverteidiger ungesichert gegen ihre Wingbacks zu öffnen.',
+      'Ausgeglichenes Kontrolle-gegen-Konter-Duell: ihr 5-3-2 ist zentral kompakt und kontert über zwei Spitzen, wir haben Ball und Breite, müssen aber unsere Außenverteidiger gegen ihre Wingbacks absichern. Schlüsselraum ist die Breite neben ihrem kompakten Block, Schlüsselrisiko sind ihre zwei Konterspitzen bei ungesicherten Außenverteidigern.',
     phases: {
       ownPossession: {
         spaces: [
