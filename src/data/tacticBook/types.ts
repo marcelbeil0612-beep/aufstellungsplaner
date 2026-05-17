@@ -49,37 +49,14 @@ export type TacticBookEntry = {
   rating: DuelRating
   character: string
 
-  /**
-   * Vier-Phasen-Analyse — die neue Hauptstruktur. Optional während der Migration
-   * (81 Einträge werden schrittweise ins neue Schema überführt). Sobald gesetzt,
-   * rendert die UI die Phase-Karten und ignoriert die alten Felder unten.
-   */
-  phases?: Record<PhaseKey, PhaseAnalysis>
+  /** Vier-Phasen-Analyse — die Hauptstruktur aller Systemduelle. */
+  phases: Record<PhaseKey, PhaseAnalysis>
 
   /** 1–3 wichtigste Coaching-Zurufe für DIESES Match. */
   liveCoaching: string[]
   /** Ingame-Anpassungen, wenn das Duell kippt. */
   adjustments: string[]
 
-  // ─── Legacy-Felder (Stand vor 4-Phasen-Migration) ──────────────────────
-  // Bleiben befüllt, bis das jeweilige Duell ins neue Schema migriert ist.
-  // Sobald alle 81 Einträge `phases` haben, werden diese Felder entfernt.
-  /** @deprecated Wandert in den jeweiligen `phases.*.advantages` */
-  ourAdvantages: string[]
-  /** @deprecated Wandert in den jeweiligen `phases.*.dangers` */
-  ourDangers: string[]
-  /** @deprecated Wandert in den jeweiligen `phases.*.spaces` */
-  importantZones: string[]
-  /** @deprecated Wandert in `phases.oppPossession.keyActions` */
-  pressing: string[]
-  /** @deprecated Wandert in `phases.ownPossession.keyActions` */
-  inPossession: string[]
-  /** @deprecated Wird gesplittet in `phases.afterLoss` und `phases.afterGain` */
-  transition: string[]
-  /** @deprecated Komplett entfernt — kein Trainings-Modul mehr im Scope */
-  trainingForms?: string[]
-  /** @deprecated Komplett entfernt */
-  typicalProblems?: { problem: string; solution: string }[]
 }
 
 /** Anzeigename + Kürzel für die 4 Phasen, zentral gepflegt. */

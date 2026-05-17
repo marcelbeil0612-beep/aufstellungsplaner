@@ -1,4 +1,4 @@
-import type { TacticBookEntry } from '../types'
+﻿import type { TacticBookEntry } from '../types'
 
 export const entriesOur532: TacticBookEntry[] = [
   {
@@ -122,12 +122,6 @@ export const entriesOur532: TacticBookEntry[] = [
     adjustments: [
       'Auf 5-4-1 abkippen, wenn mehr Flügelstabilität nötig ist',
     ],
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '5-3-2_vs_4-3-3',
@@ -253,12 +247,6 @@ export const entriesOur532: TacticBookEntry[] = [
       'Wenn ihre Flügel dominieren, auf 5-4-1 abkippen und den ballfernen Achter breiter verteidigen lassen.',
       'Bei eigenem Ballbesitz einen Wingback bewusst tiefer halten, damit die Gegenseite mutiger starten kann.',
     ],
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '5-3-2_vs_4-4-2',
@@ -384,12 +372,6 @@ export const entriesOur532: TacticBookEntry[] = [
       'Bei dauerhaftem Flügeldruck ballnahen Achter konsequent nach außen schieben.',
       'Bei eigener Dominanz eine Spitze häufiger abkippen lassen, um ihre Doppelsechs zu binden.',
     ],
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '5-3-2_vs_4-4-2-raute',
@@ -515,12 +497,6 @@ export const entriesOur532: TacticBookEntry[] = [
       'Wenn ihre Raute das Zentrum dominiert, eine Spitze konsequent auf ihren Sechser fallen lassen.',
       'Bei eigenem Druck Wingbacks höher halten und Achter unter den Ball staffeln.',
     ],
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '5-3-2_vs_3-5-2',
@@ -646,12 +622,6 @@ export const entriesOur532: TacticBookEntry[] = [
       'Wenn die Wingbacks isoliert sind, ballnahen Achter näher an die Seitenlinie schieben.',
       'Bei eigener Führung Wingbacks tiefer halten und nur nach klarer Sicherung starten lassen.',
     ],
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '5-3-2_vs_3-4-3',
@@ -777,12 +747,6 @@ export const entriesOur532: TacticBookEntry[] = [
       'Bei dauerhaftem Flügeldruck auf 5-4-1 abkippen und den ballfernen Achter breiter verteidigen lassen.',
       'Bei eigenem Ballbesitz eine Spitze häufiger klatschen lassen, damit die andere diagonal starten kann.',
     ],
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '5-3-2_vs_5-3-2',
@@ -908,12 +872,6 @@ export const entriesOur532: TacticBookEntry[] = [
       'Wenn ihr Pressing passiv bleibt, äußere Innenverteidiger konsequent andribbeln lassen.',
       'Bei eigener Führung Wingbacks tiefer starten lassen und Konter über die ausweichende Spitze suchen.',
     ],
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '5-3-2_vs_5-4-1',
@@ -1038,12 +996,6 @@ export const entriesOur532: TacticBookEntry[] = [
       'Zentralen Innenverteidiger mutiger andribbeln lassen.',
       'Bei Kontergefahr nur einen Wingback gleichzeitig hochschieben.',
     ],
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '5-3-2_vs_4-1-4-1',
@@ -1169,11 +1121,5 @@ export const entriesOur532: TacticBookEntry[] = [
       'Achter enger an ihren Sechser heranschieben.',
       'Wenn ihr Fünfermittelfeld das Zentrum schließt, häufiger über den zentralen Innenverteidiger andribbeln.',
     ],
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
 ]

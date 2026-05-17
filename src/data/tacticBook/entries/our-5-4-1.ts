@@ -1,4 +1,4 @@
-import type { TacticBookEntry } from '../types'
+﻿import type { TacticBookEntry } from '../types'
 
 export const entriesOur541: TacticBookEntry[] = [
   {
@@ -122,12 +122,6 @@ export const entriesOur541: TacticBookEntry[] = [
     adjustments: [
       'Zweiten Stürmer bringen, wenn Entlastung fehlt',
     ],
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '5-4-1_vs_4-2-3-1',
@@ -252,12 +246,6 @@ export const entriesOur541: TacticBookEntry[] = [
       'Ballnahen Wingback früher herausrücken lassen.',
       'Außenspieler höher starten lassen, wenn Konter fehlen.',
     ],
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '5-4-1_vs_4-4-2',
@@ -382,12 +370,6 @@ export const entriesOur541: TacticBookEntry[] = [
       'Ballnahen Außenspieler aggressiver pressen lassen.',
       'Wingback ballfern tiefer zur Flankensicherung halten.',
     ],
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '5-4-1_vs_4-4-2-raute',
@@ -512,12 +494,6 @@ export const entriesOur541: TacticBookEntry[] = [
       'Außenspieler höher halten, um Entlastung zu schaffen.',
       'Wingback auf Ballseite mutiger nachschieben lassen.',
     ],
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '5-4-1_vs_3-5-2',
@@ -642,12 +618,6 @@ export const entriesOur541: TacticBookEntry[] = [
       'Stürmer seitlich auf den äußeren Innenverteidiger lenken lassen.',
       'Wingback bei Druck früher herausrücken lassen.',
     ],
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '5-4-1_vs_3-4-3',
@@ -772,12 +742,6 @@ export const entriesOur541: TacticBookEntry[] = [
       'Einen Sechser klar ballnah verschieben lassen.',
       'Stürmer stärker auf die ballferne Tiefe ausrichten.',
     ],
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '5-4-1_vs_5-3-2',
@@ -902,12 +866,6 @@ export const entriesOur541: TacticBookEntry[] = [
       'Außenspieler enger ziehen, wenn das Zentrum kippt.',
       'Wingback ballnah früher in den freien Raum nachschieben.',
     ],
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '5-4-1_vs_5-4-1',
@@ -1031,12 +989,6 @@ export const entriesOur541: TacticBookEntry[] = [
       'Außenspieler enger starten lassen, wenn Anschluss fehlt.',
       'Äußeren Innenverteidiger mutiger andribbeln lassen.',
     ],
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '5-4-1_vs_4-1-4-1',
@@ -1161,11 +1113,5 @@ export const entriesOur541: TacticBookEntry[] = [
       'Außenspieler situativ enger gegen ihre Achter positionieren.',
       'Wingback ballnah früher als Konterstation freigeben.',
     ],
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
 ]

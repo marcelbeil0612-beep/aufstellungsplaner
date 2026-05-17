@@ -1,4 +1,4 @@
-import type { TacticBookEntry } from '../types'
+﻿import type { TacticBookEntry } from '../types'
 
 export const entriesOur442Raute: TacticBookEntry[] = [
   {
@@ -129,13 +129,6 @@ export const entriesOur442Raute: TacticBookEntry[] = [
       'Bei Druck im Aufbau auf Dreier-Aufbau mit abkippender Sechs wechseln, damit die Außenverteidiger kontrollierter nachschieben können.',
       'Zehner enger auf ihre Sechs setzen, wenn sie Seitenwechsel auf die Flügel zu ruhig vorbereiten kann.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '4-4-2-raute_vs_4-2-3-1',
@@ -265,13 +258,6 @@ export const entriesOur442Raute: TacticBookEntry[] = [
       'Bei Druck im Zentrum häufiger über den ballfernen Außenverteidiger lösen.',
       'Eine Spitze leicht ballnah fallen lassen, wenn ihre Doppelsechs unser Zentrum zu sauber kontrolliert.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '4-4-2-raute_vs_4-4-2',
@@ -401,13 +387,6 @@ export const entriesOur442Raute: TacticBookEntry[] = [
       'Bei Führung die Raute etwas tiefer und kompakter halten.',
       'Außenverteidiger später hochschieben lassen, wenn Konter über außen zu gefährlich werden.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '4-4-2-raute_vs_4-4-2-raute',
@@ -537,13 +516,6 @@ export const entriesOur442Raute: TacticBookEntry[] = [
       'Bei vielen langen Bällen die zweite Spitze etwas tiefer für zweite Bälle positionieren.',
       'Außenverteidiger als spätere Breite nutzen, wenn wir im Zentrum zu früh festgespielt werden.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '4-4-2-raute_vs_3-5-2',
@@ -672,13 +644,6 @@ export const entriesOur442Raute: TacticBookEntry[] = [
       'Bei Führung tiefer verteidigen und Konter hinter ihre Flügelverteidiger suchen.',
       'Eine Spitze klarer auf den zentralen Innenverteidiger setzen, wenn dieser zu oft ungestört andribbelt.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '4-4-2-raute_vs_3-4-3',
@@ -808,13 +773,6 @@ export const entriesOur442Raute: TacticBookEntry[] = [
       'Bei zu viel Druck in ein flaches 4-4-2 gegen den Ball kippen.',
       'Außenverteidiger tiefer halten, wenn Diagonalbälle hinter unsere Kette zu häufig durchkommen.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '4-4-2-raute_vs_5-3-2',
@@ -944,13 +902,6 @@ export const entriesOur442Raute: TacticBookEntry[] = [
       'Bei Rückstand Zehner näher an die Spitzen schieben und zweite Bälle erzwingen.',
       'Die Sechs tiefer halten, wenn lange Bälle auf ihre zwei Spitzen unsere Restverteidigung zu stark binden.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '4-4-2-raute_vs_5-4-1',
@@ -1080,13 +1031,6 @@ export const entriesOur442Raute: TacticBookEntry[] = [
       'Bei Rückstand auf mehr Strafraumbesetzung mit engeren Spitzen gehen.',
       'Zehner stärker ballfern positionieren, wenn ihre Mittelfeldlinie den ballnahen Halbraum dauerhaft zuschiebt.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '4-4-2-raute_vs_4-1-4-1',
@@ -1216,12 +1160,5 @@ export const entriesOur442Raute: TacticBookEntry[] = [
       'Bei Führung kompakter bleiben und ihre Sechs weiter im Deckungsschatten halten.',
       'Außenverteidiger nur mit klarer Achterabsicherung hochschieben, wenn ihre äußeren Mittelfeldspieler früh anlaufen.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
 ]

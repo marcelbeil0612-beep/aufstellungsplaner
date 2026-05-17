@@ -1,4 +1,4 @@
-import type { TacticBookEntry } from '../types'
+﻿import type { TacticBookEntry } from '../types'
 
 export const entriesOur433: TacticBookEntry[] = [
   {
@@ -102,36 +102,6 @@ export const entriesOur433: TacticBookEntry[] = [
         ],
       },
     },
-    ourAdvantages: [
-      'Zentrum oft 3 gegen 2',
-      'Flügel + Außenverteidiger geben klare Breite',
-      'Sechser kann das Spiel lenken',
-    ],
-    ourDangers: [
-      'Zwei Spitzen stressen unseren Aufbau',
-      'Außenverteidiger sind nach Ballverlust offen',
-      'Zu langsames Spiel macht ihren Block stark',
-    ],
-    importantZones: [
-      'Sechserraum vor deren Mittelfeld',
-      'Halbräume neben deren zentralen Spielern',
-      'Raum hinter deren Außenmittelfeld',
-    ],
-    pressing: [
-      'Neuner lenkt den Aufbau auf eine Seite',
-      'Flügel pressen Außenverteidiger aggressiv',
-      'Achter schieben auf deren Zentrum',
-    ],
-    inPossession: [
-      'Achter zwischen den Linien anbieten',
-      'Außenverteidiger mutig nachschieben',
-      'Seitenwechsel nach Ballbindung suchen',
-    ],
-    transition: [
-      'Nach Ballgewinn sofort Tiefe über außen',
-      'Nach Ballverlust Sechser zentral sichern',
-      'Zweite Bälle im Zentrum jagen',
-    ],
     liveCoaching: [
       '„Zentrum besetzen!"',
       '„Schnell verlagern!"',
@@ -260,13 +230,6 @@ export const entriesOur433: TacticBookEntry[] = [
       'Bei festgefahrenem Zentrum Flügel breiter halten und Außenverteidiger nur auf klaren Auslöser nachschieben lassen.',
       'Mittelstürmer häufiger kurz entgegenkommen lassen, um ihre Doppelsechs herauszuziehen und Achterläufe in den Halbraum zu öffnen.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '4-3-3_vs_3-5-2',
@@ -392,13 +355,6 @@ export const entriesOur433: TacticBookEntry[] = [
       'Ballfernen Außenverteidiger konsequent als Restverteidiger halten, wenn sie nach Ballverlust schnell auf zwei Stürmer kontern.',
       'Flügel breiter und höher positionieren, wenn die Räume hinter den Wingbacks nicht konsequent attackiert werden.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '4-3-3_vs_3-4-3',
@@ -523,13 +479,6 @@ export const entriesOur433: TacticBookEntry[] = [
       'Flügel höher und breiter positionieren, wenn wir die Räume hinter den Wingbacks nach Ballgewinn nicht finden.',
       'Bei Unterzahl auf außen den ballnahen Achter früher zur Seite schieben lassen und den Sechser zentral halten.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '4-3-3_vs_4-4-2-raute',
@@ -653,13 +602,6 @@ export const entriesOur433: TacticBookEntry[] = [
       'Wenn außen keine Überzahl entsteht, ballnahen Außenverteidiger höher schieben und den ballnahen Achter darunter sichern lassen.',
       'Wenn ihre zwei Spitzen unseren Aufbau stressen, Sechser situativ zwischen die Innenverteidiger abkippen lassen und über außen eröffnen.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '4-3-3_vs_5-4-1',
@@ -784,13 +726,6 @@ export const entriesOur433: TacticBookEntry[] = [
       'Mittelstürmer häufiger kurz entgegenkommen lassen, um einen Innenverteidiger herauszuziehen und den Rückraum zu öffnen.',
       'Bei festem Block schneller über den Sechser verlagern und die ballferne Schnittstelle zwischen Wingback und Halbverteidiger attackieren.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '4-3-3_vs_4-3-3',
@@ -917,13 +852,6 @@ export const entriesOur433: TacticBookEntry[] = [
       'Gegen den Ball kurzzeitig ins 4-1-4-1 fallen lassen, wenn ihre Achter zu oft in die Halbräume kommen.',
       'Bei festgefahrenem Flügelduell schneller verlagern und den ballfernen Flügel direkt ins Eins-gegen-eins bringen.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '4-3-3_vs_5-3-2',
@@ -1049,13 +977,6 @@ export const entriesOur433: TacticBookEntry[] = [
       'Sechser situativ zwischen die Innenverteidiger abkippen lassen, wenn ihre zwei Spitzen unseren Aufbau früh stressen.',
       'Bei zu vielen ungefährlichen Flanken den ballfernen Achter höher in den Rückraum schieben und konsequent auf Rücklagen spielen.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '4-3-3_vs_4-1-4-1',
@@ -1183,12 +1104,5 @@ export const entriesOur433: TacticBookEntry[] = [
       'Mittelstürmer häufiger kurz entgegenkommen lassen, um ihren Sechser herauszuziehen und Läufe in den Rückraum zu öffnen.',
       'Ballfernen Außenverteidiger tiefer halten, wenn ihre Außenspieler nach Ballverlust zu oft hinter unsere Kette kommen.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
 ]

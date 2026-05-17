@@ -1,4 +1,4 @@
-import type { TacticBookEntry } from '../types'
+﻿import type { TacticBookEntry } from '../types'
 
 export const entriesOur352: TacticBookEntry[] = [
   {
@@ -127,13 +127,6 @@ export const entriesOur352: TacticBookEntry[] = [
       'Eine Spitze öfter kurz fallen lassen, wenn ihr Sechser unsere zentralen Pässe abfängt.',
       'Nach Ballgewinn konsequenter direkt auf den Wingback oder die zweite Spitze spielen, wenn ihr Gegenpressing unser Zentrum zuschiebt.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '3-5-2_vs_4-4-2',
@@ -263,13 +256,6 @@ export const entriesOur352: TacticBookEntry[] = [
       'Wingbacks wechselseitig hochschieben lassen, wenn offene Außenräume bei Ballverlust zu groß werden.',
       'Sechser tiefer vor der Dreierkette halten, wenn ihre zwei Spitzen lange Bälle zu oft festmachen.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '3-5-2_vs_4-2-3-1',
@@ -398,13 +384,6 @@ export const entriesOur352: TacticBookEntry[] = [
       'Wingbacks wechselseitig hochschieben lassen, wenn die Außenräume nach Ballverlust zu offen werden.',
       'Eine Spitze häufiger kurz kommen lassen, wenn der direkte Pass in die Tiefe gegen ihre Viererkette nicht greift.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '3-5-2_vs_4-4-2-raute',
@@ -533,13 +512,6 @@ export const entriesOur352: TacticBookEntry[] = [
       'Ballfernen Wingback tiefer halten, wenn ihre Verlagerungen nach Ballverlust zu gefährlich werden.',
       'Eine Spitze stärker auf ihre Sechs setzen, wenn sie ihre Raute zu ruhig steuert.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '3-5-2_vs_3-5-2',
@@ -669,13 +641,6 @@ export const entriesOur352: TacticBookEntry[] = [
       'Ballfernen Wingback tiefer halten, wenn schnelle Verlagerungen in unseren Rücken gefährlich werden.',
       'Bei Führung die Wingbacks etwas vorsichtiger staffeln und das Zentrum enger für zweite Bälle halten.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '3-5-2_vs_3-4-3',
@@ -803,13 +768,6 @@ export const entriesOur352: TacticBookEntry[] = [
       'Eine Spitze stärker auf den äußeren Innenverteidiger lenken lassen, wenn ihre Dreierkette zu frei aufbaut.',
       'Nach Ballgewinn konsequenter sofort hinter ihren Wingback spielen, wenn wir im Zentrum ins Gegenpressing laufen.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '3-5-2_vs_5-3-2',
@@ -939,13 +897,6 @@ export const entriesOur352: TacticBookEntry[] = [
       'Zentralen Innenverteidiger stärker als Aufbauspieler nutzen, wenn die äußeren Innenverteidiger zugestellt werden.',
       'Bei Rückstand beide Wingbacks höher halten und einen Achter konsequenter in den Rückraum vor ihrer Kette schieben.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '3-5-2_vs_5-4-1',
@@ -1075,13 +1026,6 @@ export const entriesOur352: TacticBookEntry[] = [
       'Ballfernen Wingback tiefer halten, wenn lange Diagonalbälle nach Ballverlust gefährlich werden.',
       'Flanken reduzieren und stärker auf Rücklagen spielen, wenn ihre drei Innenverteidiger die Strafraumbälle dominieren.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '3-5-2_vs_4-1-4-1',
@@ -1211,12 +1155,5 @@ export const entriesOur352: TacticBookEntry[] = [
       'Eine Spitze häufiger auf ihren Sechser fallen lassen, wenn er zweite Bälle zu sauber kontrolliert.',
       'Ballfernen Wingback tiefer sichern lassen, wenn ihre Außenspieler nach Ballgewinn zu oft in unseren Rücken kommen.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
 ]

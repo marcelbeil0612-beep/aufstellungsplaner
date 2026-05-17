@@ -79,34 +79,6 @@ function PhaseCard({ phaseKey, analysis }: { phaseKey: PhaseKey; analysis: Phase
   )
 }
 
-/** Legacy-Rendering, solange ein Eintrag noch keine 4-Phasen-Struktur hat. */
-function LegacyView({ entry }: { entry: TacticBookEntry }) {
-  const sections: Array<{ title: string; icon: string; items: string[]; color: string }> = [
-    { title: 'Unsere Vorteile',           icon: '✅', items: entry.ourAdvantages,  color: 'border-emerald-700/50' },
-    { title: 'Unsere Gefahren',           icon: '⚠',  items: entry.ourDangers,     color: 'border-rose-700/50' },
-    { title: 'Wichtige Räume',            icon: '🗺', items: entry.importantZones, color: 'border-slate-700' },
-    { title: 'Pressing-Zuordnung',        icon: '🛡', items: entry.pressing,       color: 'border-slate-700' },
-    { title: 'Ballbesitz-Lösung',         icon: '⚽', items: entry.inPossession,   color: 'border-slate-700' },
-    { title: 'Umschaltmomente',           icon: '⚡', items: entry.transition,     color: 'border-slate-700' },
-  ]
-  return (
-    <>
-      <div className="rounded-xl border border-dashed border-slate-800 bg-slate-950/40 px-4 py-2 text-[11px] text-slate-500">
-        Dieses Duell ist noch im alten Schema. Migration ins 4-Phasen-Modell folgt.
-      </div>
-      {sections.map((s) => (
-        <section key={s.title} className={`rounded-xl border bg-slate-950/50 p-4 ${s.color}`}>
-          <h4 className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-300">
-            <span aria-hidden>{s.icon}</span>
-            {s.title}
-          </h4>
-          <BulletList items={s.items} />
-        </section>
-      ))}
-    </>
-  )
-}
-
 export function DuelDetail({ ourSystem, opponentSystem, entry }: Props) {
   const [phaseFilter, setPhaseFilter] = useState<PhaseKey | null>(null)
 
@@ -129,7 +101,6 @@ export function DuelDetail({ ourSystem, opponentSystem, entry }: Props) {
     )
   }
 
-  const hasNewSchema = !!entry.phases
   const style = ratingStyle[entry.rating]
 
   // Coaching-Tools (Live-Coaching + Anpassungen) erscheinen prominent oben —
@@ -168,27 +139,18 @@ export function DuelDetail({ ourSystem, opponentSystem, entry }: Props) {
         <p className="text-sm leading-snug text-slate-200">{entry.character}</p>
       </header>
 
-      {/* Phasen-Filter: nur wenn neues Schema vorhanden */}
-      {hasNewSchema && (
-        <div className="shrink-0">
-          <PhaseHighlighter value={phaseFilter} onChange={setPhaseFilter} />
-        </div>
-      )}
+      <div className="shrink-0">
+        <PhaseHighlighter value={phaseFilter} onChange={setPhaseFilter} />
+      </div>
 
       {/* Hauptinhalt */}
       <div className="flex-1 space-y-3 overflow-y-auto pr-1">
         {/* Coaching-Tools immer ganz oben */}
         {coachingTools}
 
-        {hasNewSchema && entry.phases ? (
-          // ─── Neues 4-Phasen-Schema ──────────────────────────────────
-          phaseOrder
-            .filter((k) => phaseFilter === null || phaseFilter === k)
-            .map((key) => <PhaseCard key={key} phaseKey={key} analysis={entry.phases![key]} />)
-        ) : (
-          // ─── Legacy-Fallback ────────────────────────────────────────
-          <LegacyView entry={entry} />
-        )}
+        {phaseOrder
+          .filter((k) => phaseFilter === null || phaseFilter === k)
+          .map((key) => <PhaseCard key={key} phaseKey={key} analysis={entry.phases[key]} />)}
       </div>
     </article>
   )

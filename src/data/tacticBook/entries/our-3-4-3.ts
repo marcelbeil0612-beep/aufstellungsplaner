@@ -1,4 +1,4 @@
-import type { TacticBookEntry } from '../types'
+﻿import type { TacticBookEntry } from '../types'
 
 export const entriesOur343: TacticBookEntry[] = [
   {
@@ -127,13 +127,6 @@ export const entriesOur343: TacticBookEntry[] = [
       'Bei Führung kompakter in ein 5-4-1 gegen den Ball kippen.',
       'Ballfernen Wingback tiefer halten, wenn Diagonalbälle hinter unsere letzte Linie zu oft durchkommen.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '3-4-3_vs_4-2-3-1',
@@ -262,13 +255,6 @@ export const entriesOur343: TacticBookEntry[] = [
       'Bei Kontergefahr den ballfernen Wingback tiefer in der Restverteidigung halten.',
       'Halbverteidiger aggressiver andribbeln lassen, wenn ihre Doppelsechs zu passiv bleibt.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '3-4-3_vs_4-4-2',
@@ -397,13 +383,6 @@ export const entriesOur343: TacticBookEntry[] = [
       'Bei Führung mit tieferen Wingbacks in ein stabiles 5-2-3 fallen.',
       'Nach Ballgewinn konsequenter über den freien Wingback lösen, wenn das Zentrum in Gleichzahl festläuft.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '3-4-3_vs_4-4-2-raute',
@@ -532,13 +511,6 @@ export const entriesOur343: TacticBookEntry[] = [
       'Bei Führung in ein kompakteres 5-4-1 gegen den Ball kippen.',
       'Mittelstürmer konsequenter auf ihre Sechs setzen, wenn sie Verlagerungen zu ruhig vorbereiten kann.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '3-4-3_vs_3-5-2',
@@ -666,12 +638,6 @@ export const entriesOur343: TacticBookEntry[] = [
       'Bei Rückstand Mittelstürmer höher auf den zentralen Innenverteidiger pressen lassen.',
       'Ballfernen Wingback tiefer halten, wenn Diagonalbälle nach Ballverlust zu gefährlich werden.',
     ],
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '3-4-3_vs_3-4-3',
@@ -800,12 +766,6 @@ export const entriesOur343: TacticBookEntry[] = [
       'Bei Führung Wingbacks tiefer setzen und Konter über ballferne Verlagerungen suchen.',
       'Zentrumsspieler enger vor der Dreierkette staffeln, wenn zweite Bälle zu oft verloren gehen.',
     ],
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '3-4-3_vs_5-3-2',
@@ -935,12 +895,6 @@ export const entriesOur343: TacticBookEntry[] = [
       'Bei Rückstand Mittelstürmer enger an die Innenverteidiger stellen und zweite Bälle erzwingen.',
       'Halbverteidiger stärker andribbeln lassen, wenn ihre Spitzen passiv bleiben.',
     ],
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '3-4-3_vs_5-4-1',
@@ -1069,12 +1023,6 @@ export const entriesOur343: TacticBookEntry[] = [
       'Bei Kontergefahr einen Halbverteidiger klar tiefer absichern lassen.',
       'Bei Rückstand auf mehr Strafraumbesetzung mit enger Front drei gehen.',
     ],
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '3-4-3_vs_4-1-4-1',
@@ -1203,11 +1151,5 @@ export const entriesOur343: TacticBookEntry[] = [
       'Bei Kontergefahr ballfernen Wingback tiefer halten.',
       'Bei Führung kompakter in ein 5-4-1 gegen den Ball wechseln.',
     ],
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
 ]

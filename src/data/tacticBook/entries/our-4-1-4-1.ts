@@ -1,4 +1,4 @@
-import type { TacticBookEntry } from '../types'
+﻿import type { TacticBookEntry } from '../types'
 
 export const entriesOur4141: TacticBookEntry[] = [
   {
@@ -127,12 +127,6 @@ export const entriesOur4141: TacticBookEntry[] = [
       'Bei isoliertem Stürmer einen Achter früher in die Zehnerzone nachschieben lassen.',
       'Bei Führung kompakter bleiben und Konter über die äußeren Mittelfeldspieler suchen.',
     ],
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '4-1-4-1_vs_4-2-3-1',
@@ -260,12 +254,6 @@ export const entriesOur4141: TacticBookEntry[] = [
       'Bei eigenem Ballbesitz äußere Mittelfeldspieler enger einrücken lassen.',
       'Bei Kontergefahr Außenverteidiger nicht gleichzeitig hochschieben.',
     ],
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '4-1-4-1_vs_4-4-2',
@@ -393,12 +381,6 @@ export const entriesOur4141: TacticBookEntry[] = [
       'Bei eigenem Druck einen Achter höher in die Zehnerzone schieben.',
       'Bei Führung kompakt im 4-1-4-1 bleiben und ihre Flügel nach außen lenken.',
     ],
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '4-1-4-1_vs_4-4-2-raute',
@@ -526,12 +508,6 @@ export const entriesOur4141: TacticBookEntry[] = [
       'Bei eigenem Ballbesitz Außenverteidiger höher schieben und Breite verdoppeln.',
       'Bei Führung kompakter bleiben und Konter über die Flügel suchen.',
     ],
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '4-1-4-1_vs_3-5-2',
@@ -657,12 +633,6 @@ export const entriesOur4141: TacticBookEntry[] = [
       'Bei eigenem Ballbesitz schneller über den ballfernen Flügel lösen.',
       'Bei Führung tiefer im Block bleiben und Konter hinter ihre Wingbacks suchen.',
     ],
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '4-1-4-1_vs_3-4-3',
@@ -789,12 +759,6 @@ export const entriesOur4141: TacticBookEntry[] = [
       'Bei eigenem Druck einen Achter höher in die Zehnerzone stellen.',
       'Bei Führung kompakter im 4-5-1 verteidigen und Flügelkonter suchen.',
     ],
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '4-1-4-1_vs_5-3-2',
@@ -921,12 +885,6 @@ export const entriesOur4141: TacticBookEntry[] = [
       'Bei wenig Durchbruch äußere Mittelfeldspieler enger in die Halbräume ziehen.',
       'Bei Rückstand zweiten Achter höher in die Zehnerzone schieben.',
     ],
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '4-1-4-1_vs_5-4-1',
@@ -1052,12 +1010,6 @@ export const entriesOur4141: TacticBookEntry[] = [
       'Bei Kontergefahr Außenverteidiger versetzt und nicht gleichzeitig hochstellen.',
       'Bei Rückstand auf 4-2-3-1 kippen und mehr Präsenz zwischen den Linien schaffen.',
     ],
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '4-1-4-1_vs_4-1-4-1',
@@ -1184,11 +1136,5 @@ export const entriesOur4141: TacticBookEntry[] = [
       'Bei eigenem Druck einen Achter dauerhaft in die Zehnerzone schieben.',
       'Bei Führung enger im 4-5-1 verteidigen und Konter über die Flügel suchen.',
     ],
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
 ]

@@ -1,4 +1,4 @@
-import type { TacticBookEntry } from '../types'
+﻿import type { TacticBookEntry } from '../types'
 
 export const entriesOur442: TacticBookEntry[] = [
   {
@@ -123,13 +123,6 @@ export const entriesOur442: TacticBookEntry[] = [
       'Eine Spitze klar auf ihren Sechser setzen, wenn unser Pressing zu leicht überspielt wird.',
       'Nach Ballgewinn früher auf die zweite Spitze oder den ballfernen Flügel verlagern, wenn ihr Gegenpressing unsere erste Option zustellt.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '4-4-2_vs_3-4-3',
@@ -253,13 +246,6 @@ export const entriesOur442: TacticBookEntry[] = [
       'Eine Spitze klar auf ihren Sechserraum setzen, wenn ihre Doppelsechs ungestört verlagern kann.',
       'Nach Ballgewinn den ersten Pass konsequent hinter den Wingback spielen, wenn wir zu oft im Zentrum ins Gegenpressing laufen.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '4-4-2_vs_4-2-3-1',
@@ -384,13 +370,6 @@ export const entriesOur442: TacticBookEntry[] = [
       'Außenverteidiger nur noch wechselseitig nachschieben lassen, wenn ihre Flügel zu oft in unserem Rücken starten.',
       'Nach Ballgewinn konsequenter hinter ihre Außenverteidiger spielen, wenn wir im Zentrum in ihre Doppelsechs laufen.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '4-4-2_vs_4-4-2',
@@ -514,13 +493,6 @@ export const entriesOur442: TacticBookEntry[] = [
       'Einen zentralen Mittelfeldspieler klar tiefer halten, wenn ihre kurze Spitze zu oft zwischen den Linien frei wird.',
       'Nach Ballgewinn häufiger direkt auf den ballfernen Flügel verlagern, wenn die Mitte in Gleichzahl festläuft.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '4-4-2_vs_4-4-2-raute',
@@ -649,13 +621,6 @@ export const entriesOur442: TacticBookEntry[] = [
       'Zentrale Mittelfeldspieler tiefer und enger staffeln, wenn zweite Bälle im Zentrum dauerhaft an ihre Raute gehen.',
       'Nach Ballgewinn konsequenter auf den ballfernen Flügel verlagern, wenn wir auf der Ballseite in ihre zentrale Enge laufen.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '4-4-2_vs_3-5-2',
@@ -783,13 +748,6 @@ export const entriesOur442: TacticBookEntry[] = [
       'Auf 4-4-1-1 verdichten, wenn wir im Zentrum dauerhaft in Unterzahl geraten.',
       'Nach Ballgewinn konsequenter den ersten Pass hinter den Wingback suchen, wenn wir zu oft in ihrer Mittelfeldüberzahl hängen bleiben.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '4-4-2_vs_5-3-2',
@@ -918,13 +876,6 @@ export const entriesOur442: TacticBookEntry[] = [
       'Ballfernen Außenverteidiger früher einrücken lassen, wenn ihre Konter diagonal hinter unsere Kette kommen.',
       'Flanken reduzieren und stärker auf Rücklagen spielen, wenn ihre drei Innenverteidiger unsere Hereingaben dominieren.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '4-4-2_vs_5-4-1',
@@ -1054,13 +1005,6 @@ export const entriesOur442: TacticBookEntry[] = [
       'Einen zentralen Mittelfeldspieler tiefer halten, wenn ihr Zielspieler lange Bälle zu oft festmacht.',
       'Flanken reduzieren und stärker auf Rücklagen spielen, wenn wir im Strafraum trotz zwei Spitzen keinen klaren Abschluss bekommen.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
   {
     id: '4-4-2_vs_4-1-4-1',
@@ -1189,12 +1133,5 @@ export const entriesOur442: TacticBookEntry[] = [
       'Zentrale Mittelfeldspieler enger und versetzter staffeln, wenn die zentrale Unterzahl zu groß wird.',
       'Nach Ballgewinn konsequenter hinter ihre Außenspieler spielen, wenn wir im Zentrum in ihre Fünfer-Mittelfeldlinie laufen.',
     ],
-    // Legacy-Felder leer — Inhalte sind ins neue phases-Schema migriert.
-    ourAdvantages: [],
-    ourDangers: [],
-    importantZones: [],
-    pressing: [],
-    inPossession: [],
-    transition: [],
   },
 ]
