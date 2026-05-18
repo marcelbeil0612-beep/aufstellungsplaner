@@ -15,6 +15,7 @@ import { Bench } from './components/Bench'
 import { Header } from './components/Header'
 import { IOSInstallHint } from './components/IOSInstallHint'
 import { ImportShareDialog } from './components/ImportShareDialog'
+import { Onboarding } from './components/Onboarding'
 import { PaywallDialog } from './components/PaywallDialog'
 import { PhaseToggle } from './components/PhaseToggle'
 import { Pitch } from './components/Pitch'
@@ -179,6 +180,7 @@ export default function App() {
     >
       <div className="flex min-h-[100svh] flex-col bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
         <Header />
+        <Onboarding />
         <IOSInstallHint />
 
         {warning && (

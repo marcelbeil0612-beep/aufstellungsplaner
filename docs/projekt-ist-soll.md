@@ -42,6 +42,12 @@ reibungsarm.
   Wechselplan, Systembuch (3 Schaufenster-Duelle frei, Rest Pro).
 - Offen: nur noch P4 (echter Paddle-Checkout + Lizenz-Validierung).
 
+**Wachstums-Polish:**
+- S4 Onboarding ist live: First-Run-Overlay mit drei Schritten
+  („Kader anlegen → Aufstellung bauen → Teilen"), einmalig über eigenen
+  localStorage-Key, ohne Store-Migration.
+- Offen: S2 Branding-Footer (wartet auf Markenname) und S5 Demo-Link.
+
 **Dokumentation:** TODO, Rating-Audit, Migration (archiviert),
 Live-Coaching-Ausbau-Prompt, dieses IST/SOLL — alle auf Live-Stand.
 
@@ -54,7 +60,7 @@ Live-Coaching-Ausbau-Prompt, dieses IST/SOLL — alle auf Live-Stand.
 | Systembuch-Inhalt | liveCoaching 5–6 (alle 81) | — | **0** (fertig, Audit-Gate 5–6 aktiv) |
 | Marke/Domain | nicht entschieden | Name fix, Domain, Stores geprüft | **S1/E1** offen (No-Code, deine Aufgabe) |
 | Monetarisierung | Feature-Gates + Paywall live (P2+P3) | + echter Checkout/Lizenz | **P4** offen (Paddle) |
-| Wachstums-Polish | — | Onboarding, Demo-Link, Branding-Footer | **S2/S4/S5** offen |
+| Wachstums-Polish | Onboarding erledigt | Demo-Link, Branding-Footer | **S2/S5** offen |
 | Validierung | KI-Hypothesen | Trainer-Befragung | **S6** offen (No-Code) |
 | Skalierung | 1 Team, DE | Multi-Team, i18n, EN | **Monat 3–4+** (bewusst später) |
 
@@ -62,7 +68,7 @@ Live-Coaching-Ausbau-Prompt, dieses IST/SOLL — alle auf Live-Stand.
 am Ziel. Die Distanz zum Umsatz-Ziel ist rein: (1) eine externe
 Marken-Entscheidung (S1, kein Code), (2) der Monetarisierungs-Block
 (P2 + P3 erledigt → nur noch P4 Paddle: echter Checkout + Lizenz),
-(3) etwas Wachstums-Polish (S2/S4/S5). Inhaltlich ist am Systembuch
+(3) etwas Wachstums-Polish (S2/S5). Inhaltlich ist am Systembuch
 nichts mehr offen.
 
 ## Empfohlener Pfad zum Ziel (kürzeste sinnvolle Linie)
@@ -72,7 +78,7 @@ nichts mehr offen.
 3. ~~P2 Feature-Flags~~ ~~P3 Paywall-UI~~ (erledigt) → **P4 Paddle** —
    echter Checkout + Lizenz-Validierung; letzter Baustein des
    Monetarisierungs-Blocks.
-4. **S4 Onboarding + S5 Demo-Link** parallel (Reichweite).
+4. **S5 Demo-Link** (Reichweite); **S4 Onboarding** ist erledigt.
 5. **S6 Trainer-Befragung** (du) validiert Preis/Naming vor P4-Launch.
 6. Danach Skalierung (Multi-Team, i18n, EN) laut Backlog Monat 3–4+.
 

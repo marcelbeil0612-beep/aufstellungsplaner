@@ -52,11 +52,12 @@ Ursprüngliche Spezifikation (umgesetzt) — Pure Datenfunktion über
 
 Ausgabe Konsole, Exit-Code ≠ 0 bei kritischen Verstößen (CI-fähig).
 
-### S4 · Onboarding-Polish (2 h, Code)
+### S4 · Onboarding-Polish — ERLEDIGT (2026-05-18)
 
 First-Run-Overlay mit 3-Schritte-Hinweis: „Kader anlegen → Aufstellung
-bauen → Teilen". Einmalig anzeigen, in localStorage als gesehen
-markieren.
+bauen → Teilen". Einmalig anzeigen, in eigenem localStorage-Key
+`aufstellungsplaner:onboarding-seen` als gesehen markieren (bewusst
+nicht im persistierten Zustand-Store).
 
 Trainer sollen in 3 Minuten verstehen, was das Tool macht.
 
@@ -416,3 +417,8 @@ In neuer Session:
   Systembuch (3 Schaufenster-Duelle frei) verdrahtet & browser-
   verifiziert (Free + Pro-Pfad). test 39/39, tsc 0, build ✓.
   Nächster Code-Schritt: P4 Paddle (echter Checkout + Lizenz).
+- **2026-05-18 (Folge 5):** S4 Onboarding-Polish erledigt: First-Run-
+  Overlay direkt nach dem Header, drei Schritte („Kader anlegen →
+  Aufstellung bauen → Teilen"), eigener SSR-sicherer localStorage-Key
+  `aufstellungsplaner:onboarding-seen`, kein Store-/Migrations-Eingriff.
+  Nach Schließen erscheint das Overlay beim Reload nicht erneut.
