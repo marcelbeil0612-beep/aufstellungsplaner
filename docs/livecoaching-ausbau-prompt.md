@@ -1,5 +1,11 @@
 # Q2-Content · Generierungs-Prompt: Live-Coaching auf 5–6 ausbauen
 
+> **Status: ERLEDIGT (Commit 6bf13b8, 2026-05-18).** Umgesetzt nicht
+> über externe KI, sondern regelbasiert & nachvollziehbar via
+> `scripts/gen-livecoaching.mjs` (System-Basis + Gegner-Signatur aus
+> den keyActions) + `scripts/apply-livecoaching.mjs`. Audit-Gate steht
+> auf 5–6. Dieses Dokument bleibt als Spezifikation/Provenienz.
+
 Zweck: das Feld `liveCoaching` jedes der 81 Duelle von aktuell 1–3 auf
 **5–6 kurze Coaching-Zurufe** ausbauen — gleicher externer-KI-Workflow
 wie die Systembuch-Migration (Codex/KI erzeugt pro Duell den Block, wird

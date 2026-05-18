@@ -114,15 +114,14 @@ Default-Tab = erste Phase. tsc + build grün. (Tab-Label „Im Spiel"
 gewählt statt „Coaching" gemäß früherer Vorgabe „der Block soll im
 Spiel/Live heißen" + Q1-Deutsch-Prinzip; trivial änderbar.)
 
-**Q2-Content — OFFEN (bewusst deferred mit Mechanismus):**
-`liveCoaching` pro Duell von 1–3 auf **5–6** ausbauen, alle 81.
-- Generierungs-Prompt + Einpfleg-Workflow + Gate liegen bereit in
-  `docs/livecoaching-ausbau-prompt.md` (gleicher externer-KI-Workflow
-  wie die Systembuch-Migration — 450+ trennscharfe Zurufe sind eine
-  Content-Aufgabe, keine mechanische Transformation).
-- **Gate:** Audit-Spanne bleibt auf **1–3**, bis ALLE 81 auf 5–6 sind;
-  dann `tacticBook.audit.test.ts` Spanne `1–3` → `5–6`, Suite grün,
-  committen.
+**Q2-Content — ERLEDIGT (Commit 6bf13b8):** `liveCoaching` aller 81
+Duelle auf **5–6** ausgebaut. Regelbasiert & nachvollziehbar:
+4 System-Basis-Zurufe (aus den wiederkehrenden keyActions der
+Grundordnung) + 2–3 Gegner-Signatur-Zurufe, dedupliziert,
+glossarkonform; Spiegelduelle eigener Satz. Deterministisch eingefügt
+via `scripts/gen-livecoaching.mjs` + `scripts/apply-livecoaching.mjs`
+(re-runnbar). Audit-Gate `1–3` → `5–6` umgestellt; verify-duels 6/6,
+build + tsc grün.
 
 ### Q3 · Rating-Realismus (Bias-Cluster) + Systembuch-Vorwort/Erklärseite
 
@@ -365,7 +364,8 @@ In neuer Session:
   Bias-Check + Coverage, missing-duels.md entfernt). Q3a erledigt
   (Bias-Cluster 3-5-2 + 5-3-2 matrix-weit rebalanciert). Q1 erledigt
   (Terminologie skriptweit vereinheitlicht, Glossar). Q2-UI erledigt
-  (DuelTabs, „Alles" raus, „Im Spiel"-Reiter). Q2-Content bewusst
-  deferred mit Mechanismus (`docs/livecoaching-ausbau-prompt.md`,
-  Audit-Gate 1–3→5–6). Q3b erledigt (Vorwort/Erklärseite im
-  Leerzustand). Projekt-IST/SOLL: `docs/projekt-ist-soll.md`.
+  (DuelTabs, „Alles" raus, „Im Spiel"-Reiter). Q2-Content erledigt
+  (liveCoaching aller 81 auf 5–6, regelbasiert via scripts/, Audit-Gate
+  5–6). Q3b erledigt (Vorwort/Erklärseite im Leerzustand).
+  Projekt-IST/SOLL: `docs/projekt-ist-soll.md`. → Qualität/UX-Block
+  (S3, Q1, Q2, Q3) vollständig abgeschlossen.
