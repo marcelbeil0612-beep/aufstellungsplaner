@@ -114,11 +114,7 @@ export const entriesOur532: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: [
-      '„Zehner zu!"',
-      '„Zweiter Ball!"',
-      '„Sofort vertikal!"',
-    ],
+    liveCoaching: ['„Fünferkette kompakt!"', '„Zwei Spitzen als Konter!"', '„Mitte zustellen!"', '„Zweite Bälle sichern!"', '„Zehnerraum zu!"', '„Doppelsechs binden!"'],
     adjustments: [
       'Auf 5-4-1 abkippen, wenn mehr Flügelstabilität nötig ist',
     ],
@@ -236,11 +232,7 @@ export const entriesOur532: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: [
-      '„Schienenspieler nicht locken!"',
-      '„Direkt in Tiefe!"',
-      '„Halbraum zu!"',
-    ],
+    liveCoaching: ['„Fünferkette kompakt!"', '„Zwei Spitzen als Konter!"', '„Mitte zustellen!"', '„Zweite Bälle sichern!"', '„Ihren Sechser zustellen!"', '„Flügel-Duelle gewinnen!"'],
     adjustments: [
       'Ballnaher Achter hilft konsequent auf dem Flügel.',
       'Eine Spitze lässt sich auf ihren Sechser fallen.',
@@ -361,11 +353,7 @@ export const entriesOur532: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: [
-      '„Zentrum gehört uns!"',
-      '„Flanke früh blocken!"',
-      '„Zweiter Pfosten!"',
-    ],
+    liveCoaching: ['„Fünferkette kompakt!"', '„Zwei Spitzen als Konter!"', '„Mitte zustellen!"', '„Zweite Bälle sichern!"', '„Flügel hinterlaufen!"', '„Zweite Bälle erobern!"'],
     adjustments: [
       'Schienenspieler tiefer halten, wenn ihre Seite überlädt.',
       'Äußerer Innenverteidiger darf ins Mittelfeld andribbeln.',
@@ -486,11 +474,7 @@ export const entriesOur532: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: [
-      '„Zehner eng nehmen!"',
-      '„Außen ist frei!"',
-      '„Nicht durchs Zentrum verlieren!"',
-    ],
+    liveCoaching: ['„Fünferkette kompakt!"', '„Zwei Spitzen als Konter!"', '„Mitte zustellen!"', '„Zweite Bälle sichern!"', '„Raus auf außen!"', '„Zehner nicht drehen lassen!"'],
     adjustments: [
       'Zentraler Innenverteidiger rückt mutig auf den Zehner heraus.',
       'Ballferner Schienenspieler bleibt tiefer zur Restverteidigung.',
@@ -611,11 +595,7 @@ export const entriesOur532: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: [
-      '„Schienenspieler aktiv bleiben!"',
-      '„Zweite Bälle sichern!"',
-      '„Eine kommt, eine geht!"',
-    ],
+    liveCoaching: ['„Fünferkette kompakt!"', '„Zwei Spitzen als Konter!"', '„Mitte zustellen!"', '„Zweite Bälle sichern!"', '„Hinter den Schienenspieler!"', '„Zentrum eng halten!"'],
     adjustments: [
       'Einen Achter höher schieben, um ihren Aufbau früher zu stören.',
       'Zentralen Innenverteidiger mutiger andribbeln lassen.',
@@ -736,11 +716,7 @@ export const entriesOur532: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: [
-      '„Halbraum dicht machen!"',
-      '„Raus aus Druck!"',
-      '„Ballfern lösen!"',
-    ],
+    liveCoaching: ['„Fünferkette kompakt!"', '„Zwei Spitzen als Konter!"', '„Mitte zustellen!"', '„Zweite Bälle sichern!"', '„Halbraum dicht!"', '„Diagonal absichern!"'],
     adjustments: [
       'Ballnaher Achter rückt früher nach außen.',
       'Schienenspieler bei Druck tiefer starten lassen.',
@@ -861,11 +837,7 @@ export const entriesOur532: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: [
-      '„Mutig andribbeln!"',
-      '„Breite halten!"',
-      '„Zweiter Ball!"',
-    ],
+    liveCoaching: ['„Fünferkette kompakt!"', '„Zwei Spitzen als Konter!"', '„Mitte zustellen!"', '„Zweite Bälle sichern!"', '„Abstände eng halten!"', '„Erste Aktion sauber!"'],
     adjustments: [
       'Eine Spitze seitlich ausweichen lassen.',
       'Einen Achter höher zwischen ihre Linien schieben.',
@@ -985,11 +957,7 @@ export const entriesOur532: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: [
-      '„Geduldig verlagern!"',
-      '„Rückraum besetzen!"',
-      '„Zielspieler zu!"',
-    ],
+    liveCoaching: ['„Fünferkette kompakt!"', '„Zwei Spitzen als Konter!"', '„Mitte zustellen!"', '„Zweite Bälle sichern!"', '„Geduldig verlagern!"', '„Zielspieler zustellen!"'],
     adjustments: [
       'Einen Achter höher zwischen ihre Linien schieben.',
       'Schienenspieler breiter und früher anspielbar machen.',
@@ -1110,11 +1078,7 @@ export const entriesOur532: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: [
-      '„Sechser binden!"',
-      '„Ballferne Seite!"',
-      '„Zentrum blocken!"',
-    ],
+    liveCoaching: ['„Fünferkette kompakt!"', '„Zwei Spitzen als Konter!"', '„Mitte zustellen!"', '„Zweite Bälle sichern!"', '„Ihren Sechser binden!"', '„Tempo über außen!"'],
     adjustments: [
       'Eine Spitze tiefer als Verbindungsspieler einsetzen.',
       'Schienenspieler auf der Ballseite höher positionieren.',

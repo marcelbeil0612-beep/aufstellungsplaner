@@ -114,11 +114,7 @@ export const entriesOur541: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: [
-      '„Abstände klein!"',
-      '„Box verteidigen!"',
-      '„Konter klar!"',
-    ],
+    liveCoaching: ['„Tiefer Block kompakt!"', '„Stürmer Anschluss geben!"', '„Konter über außen!"', '„Rückraum gegen langen Ball!"', '„Ihren Sechser zustellen!"', '„Flügel-Duelle gewinnen!"'],
     adjustments: [
       'Zweiten Stürmer bringen, wenn Entlastung fehlt',
     ],
@@ -236,11 +232,7 @@ export const entriesOur541: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: [
-      '„Zehner eng halten!"',
-      '„Sofort nach außen!"',
-      '„Stürmer stützen!"',
-    ],
+    liveCoaching: ['„Tiefer Block kompakt!"', '„Stürmer Anschluss geben!"', '„Konter über außen!"', '„Rückraum gegen langen Ball!"', '„Zehnerraum zu!"', '„Doppelsechs binden!"'],
     adjustments: [
       'Einen Sechser enger an ihren Zehner binden.',
       'Ballnahen Schienenspieler früher herausrücken lassen.',
@@ -360,11 +352,7 @@ export const entriesOur541: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: [
-      '„Nicht nur tief!"',
-      '„Zweite Bälle sichern!"',
-      '„Stürmer nachschieben!"',
-    ],
+    liveCoaching: ['„Tiefer Block kompakt!"', '„Stürmer Anschluss geben!"', '„Konter über außen!"', '„Rückraum gegen langen Ball!"', '„Flügel hinterlaufen!"', '„Zweite Bälle erobern!"'],
     adjustments: [
       'Einen zentralen Mittelfeldspieler höher neben den Stürmer schieben.',
       'Ballnahen Außenspieler aggressiver pressen lassen.',
@@ -484,11 +472,7 @@ export const entriesOur541: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: [
-      '„Raus auf außen!"',
-      '„Zehner nicht drehen!"',
-      '„Versetzt stehen!"',
-    ],
+    liveCoaching: ['„Tiefer Block kompakt!"', '„Stürmer Anschluss geben!"', '„Konter über außen!"', '„Rückraum gegen langen Ball!"', '„Raus auf außen!"', '„Zehner nicht drehen lassen!"'],
     adjustments: [
       'Einen Mittelfeldspieler klar auf ihren Zehner setzen.',
       'Außenspieler höher halten, um Entlastung zu schaffen.',
@@ -608,11 +592,7 @@ export const entriesOur541: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: [
-      '„Zentrum eng halten!"',
-      '„Hinter den Schienenspieler!"',
-      '„Stürmer stützen!"',
-    ],
+    liveCoaching: ['„Tiefer Block kompakt!"', '„Stürmer Anschluss geben!"', '„Konter über außen!"', '„Rückraum gegen langen Ball!"', '„Hinter den Schienenspieler!"', '„Zentrum eng halten!"'],
     adjustments: [
       'Einen Außenspieler enger ins Zentrum ziehen.',
       'Stürmer seitlich auf den äußeren Innenverteidiger lenken lassen.',
@@ -732,11 +712,7 @@ export const entriesOur541: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: [
-      '„Halbraum zu!"',
-      '„Schnell hinter Schienenspieler!"',
-      '„Ballfern raus!"',
-    ],
+    liveCoaching: ['„Tiefer Block kompakt!"', '„Stürmer Anschluss geben!"', '„Konter über außen!"', '„Rückraum gegen langen Ball!"', '„Halbraum dicht!"', '„Diagonal absichern!"'],
     adjustments: [
       'Außenspieler tiefer starten lassen, wenn wir überladen werden.',
       'Einen Sechser klar ballnah verschieben lassen.',
@@ -856,11 +832,7 @@ export const entriesOur541: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: [
-      '„Stürmer anbinden!"',
-      '„Außen mutig sein!"',
-      '„Zweite Bälle!"',
-    ],
+    liveCoaching: ['„Tiefer Block kompakt!"', '„Stürmer Anschluss geben!"', '„Konter über außen!"', '„Rückraum gegen langen Ball!"', '„Nicht blind flanken!"', '„Rückraum besetzen!"'],
     adjustments: [
       'Einen zentralen Mittelfeldspieler höher neben den Stürmer schieben.',
       'Außenspieler enger ziehen, wenn das Zentrum kippt.',
@@ -979,11 +951,7 @@ export const entriesOur541: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: [
-      '„Geduldig bleiben!"',
-      '„Rückraum besetzen!"',
-      '„Nicht blind flanken!"',
-    ],
+    liveCoaching: ['„Tiefer Block kompakt!"', '„Stürmer Anschluss geben!"', '„Konter über außen!"', '„Rückraum gegen langen Ball!"', '„Abstände eng halten!"', '„Erste Aktion sauber!"'],
     adjustments: [
       'Einen Mittelfeldspieler höher neben den Stürmer schieben.',
       'Außenspieler enger starten lassen, wenn Anschluss fehlt.',
@@ -1103,11 +1071,7 @@ export const entriesOur541: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: [
-      '„Sechser zustellen!"',
-      '„Außen Tempo machen!"',
-      '„Stürmer stützen!"',
-    ],
+    liveCoaching: ['„Tiefer Block kompakt!"', '„Stürmer Anschluss geben!"', '„Konter über außen!"', '„Rückraum gegen langen Ball!"', '„Ihren Sechser binden!"', '„Tempo über außen!"'],
     adjustments: [
       'Einen zentralen Mittelfeldspieler höher zum Stürmer schieben.',
       'Außenspieler situativ enger gegen ihre Achter positionieren.',

@@ -119,7 +119,7 @@ export const entriesOur4231: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Zehnerraum nutzen!"', '„Sechser staffeln!"', '„Spitzen absichern!"'],
+    liveCoaching: ['„Sechser löst sich!"', '„Zehner zwischen die Linien!"', '„Flügel hält Breite!"', '„Ballfern absichern!"', '„Flügel hinterlaufen!"', '„Zweite Bälle erobern!"'],
     adjustments: [
       'Einen Sechser höher neben den Zehner schieben, wenn unser Zehner zwischen den Linien isoliert ist.',
       'Zehner gegen den Ball klar auf einen ihrer zentralen Mittelfeldspieler nehmen, wenn diese zu frei aufdrehen.',
@@ -246,7 +246,7 @@ export const entriesOur4231: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Sechser staffeln!"', '„Zehner lösen!"', '„Außen sichern!"'],
+    liveCoaching: ['„Sechser löst sich!"', '„Zehner zwischen die Linien!"', '„Flügel hält Breite!"', '„Ballfern absichern!"', '„Ihren Sechser zustellen!"', '„Flügel-Duelle gewinnen!"'],
     adjustments: [
       'Einen Sechser tiefer zwischen oder neben die Innenverteidiger abkippen lassen, wenn ihre Front drei unseren Aufbau zu stark presst.',
       'Zehner seitlicher positionieren, wenn ihr Sechser ihn zentral aus dem Spiel nimmt.',
@@ -372,7 +372,7 @@ export const entriesOur4231: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Schienenspieler im Blick!"', '„Zentrum kompakt!"', '„Hinter Schienenspieler!"'],
+    liveCoaching: ['„Sechser löst sich!"', '„Zehner zwischen die Linien!"', '„Flügel hält Breite!"', '„Ballfern absichern!"', '„Hinter den Schienenspieler!"', '„Zentrum eng halten!"'],
     adjustments: [
       'Gegen den Ball situativ ins 4-4-1-1 fallen lassen, damit die Flügel die Schienenspieler klarer aufnehmen.',
       'Einen Sechser häufiger abkippen lassen, wenn ihre zwei Spitzen unseren Aufbau früh stressen.',
@@ -500,7 +500,7 @@ export const entriesOur4231: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Zehner rotieren!"', '„Rückraum besetzen!"', '„Nicht blind flanken!"'],
+    liveCoaching: ['„Sechser löst sich!"', '„Zehner zwischen die Linien!"', '„Flügel hält Breite!"', '„Ballfern absichern!"', '„Nicht blind flanken!"', '„Rückraum besetzen!"'],
     adjustments: [
       'Zweiten Stürmer bringen oder auf 4-4-2 schieben, wenn der Mittelstürmer gegen drei Innenverteidiger dauerhaft isoliert ist.',
       'Zehner stärker in die Halbspur ziehen, wenn ihre drei zentralen Mittelfeldspieler den zentralen Raum komplett schließen.',
@@ -629,7 +629,7 @@ export const entriesOur4231: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Zehnerraum kontrollieren!"', '„Außen Tempo!"', '„Sechser sichern!"'],
+    liveCoaching: ['„Sechser löst sich!"', '„Zehner zwischen die Linien!"', '„Flügel hält Breite!"', '„Ballfern absichern!"', '„Abstände eng halten!"', '„Erste Aktion sauber!"'],
     adjustments: [
       'Einen Sechser klar tiefer halten, wenn ihr Zehner zu oft hinter unserer Doppelsechs frei wird.',
       'Zehner stärker auf ihre ballnahe Sechs setzen, wenn sie im Aufbau zu frei aufdrehen.',
@@ -758,7 +758,7 @@ export const entriesOur4231: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Raus auf außen!"', '„Zehner eng nehmen!"', '„Rückraum besetzen!"'],
+    liveCoaching: ['„Sechser löst sich!"', '„Zehner zwischen die Linien!"', '„Flügel hält Breite!"', '„Ballfern absichern!"', '„Raus auf außen!"', '„Zehner nicht drehen lassen!"'],
     adjustments: [
       'Einen Sechser enger an ihren Zehner binden, wenn er nach Ballgewinnen frei aufdreht.',
       'Flügelspieler höher und breiter halten, wenn wir ihre schmale Raute zu selten auseinanderziehen.',
@@ -887,7 +887,7 @@ export const entriesOur4231: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Halbraum dicht!"', '„Hinter den Schienenspieler!"', '„Sechser sichern!"'],
+    liveCoaching: ['„Sechser löst sich!"', '„Zehner zwischen die Linien!"', '„Flügel hält Breite!"', '„Ballfern absichern!"', '„Halbraum dicht!"', '„Diagonal absichern!"'],
     adjustments: [
       'Einen Sechser tiefer als Schutz vor die Kette stellen, wenn ihre Außenstürmer die Halbräume zu oft attackieren.',
       'Flügelspieler ballnah defensiver starten lassen, wenn der Schienenspieler dauerhaft frei andribbeln kann.',
@@ -1016,7 +1016,7 @@ export const entriesOur4231: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Nicht blind flanken!"', '„Rückraum besetzen!"', '„Stürmer sichern!"'],
+    liveCoaching: ['„Sechser löst sich!"', '„Zehner zwischen die Linien!"', '„Flügel hält Breite!"', '„Ballfern absichern!"', '„Geduldig verlagern!"', '„Zielspieler zustellen!"'],
     adjustments: [
       'Einen Sechser tiefer als klare Kontersicherung halten, wenn ihr Zielspieler lange Bälle zu oft festmacht.',
       'Außenverteidiger ballnah höher nachschieben lassen, wenn ihr Schienenspieler tief gebunden ist und wir außen Überzahl brauchen.',
@@ -1145,7 +1145,7 @@ export const entriesOur4231: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Sechser rausziehen!"', '„Tempo über außen!"', '„Zentrum sichern!"'],
+    liveCoaching: ['„Sechser löst sich!"', '„Zehner zwischen die Linien!"', '„Flügel hält Breite!"', '„Ballfern absichern!"', '„Ihren Sechser binden!"', '„Tempo über außen!"'],
     adjustments: [
       'Zehner stärker auf eine Halbspur ziehen, wenn ihr Sechser zentrale Pässe zu oft abfängt.',
       'Flügelspieler situativ höher und breiter halten, wenn ihre Außenspieler zu tief gebunden werden sollen.',

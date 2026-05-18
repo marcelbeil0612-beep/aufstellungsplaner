@@ -119,7 +119,7 @@ export const entriesOur352: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Schienenspieler absichern!"', '„Zentrum dominant!"', '„Schnell verlagern!"'],
+    liveCoaching: ['„Ruhig aus der Dreierkette!"', '„Schienenspieler hoch!"', '„Achter in den Halbraum!"', '„Sechser sichert den Konter!"', '„Ihren Sechser zustellen!"', '„Flügel-Duelle gewinnen!"'],
     adjustments: [
       'Auf 5-3-2 tiefer werden, wenn die Außen überlastet sind und ihre Flügel zu oft in den Rücken kommen.',
       'Ballnahen Achter früher nach außen schieben lassen, wenn Schienenspieler gegen Flügel und Außenverteidiger isoliert wird.',
@@ -248,7 +248,7 @@ export const entriesOur352: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Zentrum fordern!"', '„Nicht nur außen!"', '„Schienenspieler sichern!"'],
+    liveCoaching: ['„Ruhig aus der Dreierkette!"', '„Schienenspieler hoch!"', '„Achter in den Halbraum!"', '„Sechser sichert den Konter!"', '„Flügel hinterlaufen!"', '„Zweite Bälle erobern!"'],
     adjustments: [
       'Einen Achter tiefer halten, wenn wir noch mehr Kontrolle gegen ihre zwei zentralen Mittelfeldspieler brauchen.',
       'Ballfernen Schienenspieler konsequenter einrücken lassen, wenn schnelle Verlagerungen auf unsere Außenräume gefährlich werden.',
@@ -376,7 +376,7 @@ export const entriesOur352: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Zehnerraum zu!"', '„Schienenspieler staffeln!"', '„Direkt in Spitze!"'],
+    liveCoaching: ['„Ruhig aus der Dreierkette!"', '„Schienenspieler hoch!"', '„Achter in den Halbraum!"', '„Sechser sichert den Konter!"', '„Zehnerraum zu!"', '„Doppelsechs binden!"'],
     adjustments: [
       'Eine 5-3-2-Staffelung gegen den Ball stärker betonen, wenn ihre Flügel-Außenverteidiger-Kombinationen unsere Schienenspieler binden.',
       'Sechser klarer am Zehnerraum halten, wenn ihr Zehner zu oft zwischen den Linien frei wird.',
@@ -504,7 +504,7 @@ export const entriesOur352: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Zehner eng nehmen!"', '„Außen ist frei!"', '„Schienenspieler sichern!"'],
+    liveCoaching: ['„Ruhig aus der Dreierkette!"', '„Schienenspieler hoch!"', '„Achter in den Halbraum!"', '„Sechser sichert den Konter!"', '„Raus auf außen!"', '„Zehner nicht drehen lassen!"'],
     adjustments: [
       'Zentralen Innenverteidiger mutiger auf den Zehner schieben, wenn er vor unserer Kette frei wird.',
       'Einen Achter tiefer zur Zentrumsicherung halten, wenn ihre Raute zweite Bälle kontrolliert.',
@@ -633,7 +633,7 @@ export const entriesOur352: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Mutig andribbeln!"', '„Schienenspieler aktiv!"', '„Zweite Bälle!"'],
+    liveCoaching: ['„Ruhig aus der Dreierkette!"', '„Schienenspieler hoch!"', '„Achter in den Halbraum!"', '„Sechser sichert den Konter!"', '„Abstände eng halten!"', '„Erste Aktion sauber!"'],
     adjustments: [
       'Einen Achter höher zwischen ihre Linien schieben, wenn unsere Spitzen zu isoliert sind.',
       'Zentralen Innenverteidiger stärker als Aufbauspieler nutzen, wenn die äußeren Innenverteidiger zugestellt werden.',
@@ -760,7 +760,7 @@ export const entriesOur352: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Halbraum dicht!"', '„Hinter den Schienenspieler!"', '„Schienenspieler sichern!"'],
+    liveCoaching: ['„Ruhig aus der Dreierkette!"', '„Schienenspieler hoch!"', '„Achter in den Halbraum!"', '„Sechser sichert den Konter!"', '„Halbraum dicht!"', '„Diagonal absichern!"'],
     adjustments: [
       'Einen Achter ballnah weiter nach außen schieben, wenn ihr Schienenspieler und Außenstürmer unseren Außenraum überladen.',
       'Zentralen Innenverteidiger enger gegen die Tiefe halten, wenn ihre zentrale Spitze Ablagen und Tiefenläufe verbindet.',
@@ -889,7 +889,7 @@ export const entriesOur352: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Mutig andribbeln!"', '„Zweite Bälle sichern!"', '„Schienenspieler absichern!"'],
+    liveCoaching: ['„Ruhig aus der Dreierkette!"', '„Schienenspieler hoch!"', '„Achter in den Halbraum!"', '„Sechser sichert den Konter!"', '„Nicht blind flanken!"', '„Rückraum besetzen!"'],
     adjustments: [
       'Einen Achter höher zwischen ihre Linien schieben, wenn ihre Fünferkette unsere Spitzen zu leicht kontrolliert.',
       'Eine Spitze seitlich in den Flügelraum ausweichen lassen, wenn die Schienenspieler-Duelle festlaufen.',
@@ -1018,7 +1018,7 @@ export const entriesOur352: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Geduldig verlagern!"', '„Rückraum besetzen!"', '„Zielspieler zu!"'],
+    liveCoaching: ['„Ruhig aus der Dreierkette!"', '„Schienenspieler hoch!"', '„Achter in den Halbraum!"', '„Sechser sichert den Konter!"', '„Geduldig verlagern!"', '„Zielspieler zustellen!"'],
     adjustments: [
       'Einen Achter höher in den Zwischenraum schieben, wenn der Rückraum vor ihrer Fünferkette zu leer bleibt.',
       'Zentralen Innenverteidiger stärker als Andribbelspieler nutzen, wenn ihr Zielspieler passiv bleibt.',
@@ -1147,7 +1147,7 @@ export const entriesOur352: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Sechser binden!"', '„Schienenspieler frei!"', '„Zweite Bälle!"'],
+    liveCoaching: ['„Ruhig aus der Dreierkette!"', '„Schienenspieler hoch!"', '„Achter in den Halbraum!"', '„Sechser sichert den Konter!"', '„Ihren Sechser binden!"', '„Tempo über außen!"'],
     adjustments: [
       'Einen Achter tiefer zur Spieleröffnung halten, wenn ihre Achter unser Zentrum früh anlaufen.',
       'Zentralen Innenverteidiger mutiger andribbeln lassen, wenn ihr einzelner Stürmer passiv bleibt.',

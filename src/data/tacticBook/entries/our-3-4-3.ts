@@ -119,7 +119,7 @@ export const entriesOur343: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Sechs zustellen!"', '„Schienenspieler sichern!"', '„Halbraum schließen!"'],
+    liveCoaching: ['„Front drei bindet!"', '„Hinter den Schienenspieler!"', '„Doppelsechs eng!"', '„Konter absichern!"', '„Ihren Sechser zustellen!"', '„Flügel-Duelle gewinnen!"'],
     adjustments: [
       'Bei Unterzahl im Zentrum einen Flügelstürmer tiefer neben die Mittelfeldlinie ziehen.',
       'Wenn ihre Außenverteidiger frei werden, Schienenspieler früher herausschieben lassen.',
@@ -247,7 +247,7 @@ export const entriesOur343: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Zehner eng!"', '„Außen Druck!"', '„Tiefe suchen!"'],
+    liveCoaching: ['„Front drei bindet!"', '„Hinter den Schienenspieler!"', '„Doppelsechs eng!"', '„Konter absichern!"', '„Zehnerraum zu!"', '„Doppelsechs binden!"'],
     adjustments: [
       'Wenn ihr Zehner frei wird, den zentralen Innenverteidiger enger herausverteidigen lassen.',
       'Bei Problemen gegen die Doppelsechs einen Flügelstürmer tiefer einrücken lassen.',
@@ -375,7 +375,7 @@ export const entriesOur343: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Freier Mann vor!"', '„Breite halten!"', '„Zweite Bälle!"'],
+    liveCoaching: ['„Front drei bindet!"', '„Hinter den Schienenspieler!"', '„Doppelsechs eng!"', '„Konter absichern!"', '„Flügel hinterlaufen!"', '„Zweite Bälle erobern!"'],
     adjustments: [
       'Wenn ihre Flügelspieler unsere Schienenspieler binden, Flügelstürmer breiter starten lassen.',
       'Bei langen Bällen Zentrumsspieler enger vor der Dreierkette positionieren.',
@@ -503,7 +503,7 @@ export const entriesOur343: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Breite nutzen!"', '„Zehner aufnehmen!"', '„Zentrum sichern!"'],
+    liveCoaching: ['„Front drei bindet!"', '„Hinter den Schienenspieler!"', '„Doppelsechs eng!"', '„Konter absichern!"', '„Raus auf außen!"', '„Zehner nicht drehen lassen!"'],
     adjustments: [
       'Bei zentraler Unterzahl einen Flügelstürmer tiefer neben die Mittelfeldlinie ziehen.',
       'Wenn ihre Außenverteidiger frei werden, Schienenspieler früher herausschieben lassen.',
@@ -630,7 +630,7 @@ export const entriesOur343: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Achter aufnehmen!"', '„Hinter Schienenspieler!"', '„Zweite Bälle!"'],
+    liveCoaching: ['„Front drei bindet!"', '„Hinter den Schienenspieler!"', '„Doppelsechs eng!"', '„Konter absichern!"', '„Zentrum eng halten!"'],
     adjustments: [
       'Bei dauerhafter Unterzahl im Zentrum einen Flügelstürmer tiefer einrücken lassen.',
       'Wenn ihre Schienenspieler dominieren, Schienenspieler tiefer und kompakter verteidigen lassen.',
@@ -758,7 +758,7 @@ export const entriesOur343: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Halbraum finden!"', '„Schienenspieler tief!"', '„Seite wechseln!"'],
+    liveCoaching: ['„Front drei bindet!"', '„Hinter den Schienenspieler!"', '„Doppelsechs eng!"', '„Konter absichern!"', '„Abstände eng halten!"', '„Erste Aktion sauber!"'],
     adjustments: [
       'Wenn ihre Flügelstürmer frei werden, Halbverteidiger enger und Schienenspieler tiefer halten.',
       'Bei stockendem Aufbau zentralen Innenverteidiger stärker andribbeln lassen.',
@@ -887,7 +887,7 @@ export const entriesOur343: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Schienenspieler binden!"', '„Halbraum attackieren!"', '„Konter stoppen!"'],
+    liveCoaching: ['„Front drei bindet!"', '„Hinter den Schienenspieler!"', '„Doppelsechs eng!"', '„Konter absichern!"', '„Nicht blind flanken!"', '„Rückraum besetzen!"'],
     adjustments: [
       'Bei zentraler Unterzahl einen Flügelstürmer tiefer neben die Doppelsechs ziehen.',
       'Wenn ihre Fünferkette alles wegverteidigt, häufiger Rückraum und Seitenwechsel suchen.',
@@ -1016,7 +1016,7 @@ export const entriesOur343: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Geduldig bleiben!"', '„Rückraum besetzen!"', '„Seite wechseln!"'],
+    liveCoaching: ['„Front drei bindet!"', '„Hinter den Schienenspieler!"', '„Doppelsechs eng!"', '„Konter absichern!"', '„Geduldig verlagern!"', '„Zielspieler zustellen!"'],
     adjustments: [
       'Wenn der Block zu tief steht, einen Zentrumsspieler höher in den Zwischenraum schieben.',
       'Bei wenig Durchbruch Flügelstürmer enger und Schienenspieler noch breiter positionieren.',
@@ -1144,7 +1144,7 @@ export const entriesOur343: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Sechs zustellen!"', '„Schienenspieler tief!"', '„Halbraum finden!"'],
+    liveCoaching: ['„Front drei bindet!"', '„Hinter den Schienenspieler!"', '„Doppelsechs eng!"', '„Konter absichern!"', '„Ihren Sechser binden!"', '„Tempo über außen!"'],
     adjustments: [
       'Wenn ihre Sechs viele Bälle abfängt, Flügelstürmer enger zwischen den Linien positionieren.',
       'Bei Druck auf unsere Doppelsechs einen Halbverteidiger weiter ins Mittelfeld schieben.',

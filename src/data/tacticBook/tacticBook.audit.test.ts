@@ -94,8 +94,8 @@ describe('Systembuch-Audit · Struktur (Stufe 2)', () => {
           }
         }
       }
-      if (e.liveCoaching.length < 1 || e.liveCoaching.length > 3) {
-        issues.push(`${e.id}: liveCoaching ${e.liveCoaching.length} Items (Soll 1-3)`)
+      if (e.liveCoaching.length < 5 || e.liveCoaching.length > 6) {
+        issues.push(`${e.id}: liveCoaching ${e.liveCoaching.length} Items (Soll 5-6)`)
       }
       if (e.adjustments.length < 1) {
         issues.push(`${e.id}: adjustments leer`)

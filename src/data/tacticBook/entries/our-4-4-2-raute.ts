@@ -121,7 +121,7 @@ export const entriesOur442Raute: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Zentrum schließen!"', '„Flügel sichern!"', '„Sechs zustellen!"'],
+    liveCoaching: ['„Zentrum überladen!"', '„Zehner zeigt sich!"', '„Spät die Breite suchen!"', '„Sechser sichert ab!"', '„Ihren Sechser zustellen!"', '„Flügel-Duelle gewinnen!"'],
     adjustments: [
       'Bei Problemen außen den ballnahen Achter früher nach außen schieben, damit der Außenverteidiger nicht isoliert wird.',
       'Bei eigenem Ballbesitz einen Außenverteidiger tiefer lassen, wenn ihre Flügel zu oft in den Rücken kommen.',
@@ -250,7 +250,7 @@ export const entriesOur442Raute: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Zehner eng!"', '„Sechser anlaufen!"', '„Klatsch und tief!"'],
+    liveCoaching: ['„Zentrum überladen!"', '„Zehner zeigt sich!"', '„Spät die Breite suchen!"', '„Sechser sichert ab!"', '„Zehnerraum zu!"', '„Doppelsechs binden!"'],
     adjustments: [
       'Wenn ihr Zehner frei wird, unsere Sechs klar mannorientierter spielen lassen.',
       'Bei Flügelproblemen den ballnahen Achter tiefer neben den Außenverteidiger ziehen.',
@@ -379,7 +379,7 @@ export const entriesOur442Raute: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Mitte nutzen!"', '„Zweite Bälle!"', '„Außen absichern!"'],
+    liveCoaching: ['„Zentrum überladen!"', '„Zehner zeigt sich!"', '„Spät die Breite suchen!"', '„Sechser sichert ab!"', '„Flügel hinterlaufen!"', '„Zweite Bälle erobern!"'],
     adjustments: [
       'Wenn ihre Flügel dominieren, den ballnahen Achter breiter verteidigen lassen.',
       'Bei langen Bällen eine Spitze tiefer für zweite Bälle positionieren.',
@@ -508,7 +508,7 @@ export const entriesOur442Raute: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Zehner aufnehmen!"', '„Breite spät!"', '„Zweite Bälle!"'],
+    liveCoaching: ['„Zentrum überladen!"', '„Zehner zeigt sich!"', '„Spät die Breite suchen!"', '„Sechser sichert ab!"', '„Abstände eng halten!"', '„Erste Aktion sauber!"'],
     adjustments: [
       'Wenn das Zentrum blockiert ist, häufiger über Außenverteidiger verlagern.',
       'Bei Problemen gegen ihren Zehner unsere Sechs enger und tiefer halten.',
@@ -636,7 +636,7 @@ export const entriesOur442Raute: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Halbverteidiger pressen!"', '„Flügel sichern!"', '„Zehner finden!"'],
+    liveCoaching: ['„Zentrum überladen!"', '„Zehner zeigt sich!"', '„Spät die Breite suchen!"', '„Sechser sichert ab!"', '„Hinter den Schienenspieler!"', '„Zentrum eng halten!"'],
     adjustments: [
       'Bei freiem Aufbau einen Achter höher auf den zentralen Innenverteidiger schieben.',
       'Bei Flügelproblemen ballnah eine 4-4-2-Staffelung herstellen, damit Außenverteidiger und Achter den Schienenspieler gemeinsam aufnehmen.',
@@ -765,7 +765,7 @@ export const entriesOur442Raute: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Schienenspieler kontrollieren!"', '„Halbraum dicht!"', '„Diagonal sichern!"'],
+    liveCoaching: ['„Zentrum überladen!"', '„Zehner zeigt sich!"', '„Spät die Breite suchen!"', '„Sechser sichert ab!"', '„Halbraum dicht!"', '„Diagonal absichern!"'],
     adjustments: [
       'Bei dauerhafter Unterzahl außen den ballnahen Achter breiter verteidigen lassen.',
       'Wenn ihre Dreierkette frei bleibt, den Zehner höher in die erste Linie schieben.',
@@ -894,7 +894,7 @@ export const entriesOur442Raute: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Breite halten!"', '„Schienenspieler sichern!"', '„Zwischenraum suchen!"'],
+    liveCoaching: ['„Zentrum überladen!"', '„Zehner zeigt sich!"', '„Spät die Breite suchen!"', '„Sechser sichert ab!"', '„Nicht blind flanken!"', '„Rückraum besetzen!"'],
     adjustments: [
       'Bei zu engem Spiel einen Achter breiter im Halbraum positionieren.',
       'Wenn ihre Schienenspieler frei werden, ballnah auf eine 4-4-2-Staffelung kippen.',
@@ -1023,7 +1023,7 @@ export const entriesOur442Raute: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Geduldig bleiben!"', '„Rückraum besetzen!"', '„Nicht blind flanken!"'],
+    liveCoaching: ['„Zentrum überladen!"', '„Zehner zeigt sich!"', '„Spät die Breite suchen!"', '„Sechser sichert ab!"', '„Geduldig verlagern!"', '„Zielspieler zustellen!"'],
     adjustments: [
       'Wenn der Block zu tief steht, einen Achter höher neben den Zehner schieben.',
       'Bei wenig Durchbruch über außen häufiger Grundlinienläufe erzwingen.',
@@ -1152,7 +1152,7 @@ export const entriesOur442Raute: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Sechs überladen!"', '„Zwischenlinie finden!"', '„Außen wach!"'],
+    liveCoaching: ['„Zentrum überladen!"', '„Zehner zeigt sich!"', '„Spät die Breite suchen!"', '„Sechser sichert ab!"', '„Ihren Sechser binden!"', '„Tempo über außen!"'],
     adjustments: [
       'Wenn ihre Sechs stark abräumt, den Zehner seitlich in den Halbraum ziehen.',
       'Bei Druck auf unsere Außenverteidiger Achter früher als Klatschoption anbieten.',

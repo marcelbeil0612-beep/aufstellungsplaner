@@ -115,7 +115,7 @@ export const entriesOur442: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Zentrum eng halten!"', '„Nach außen lenken!"', '„Direkt vertikal!"'],
+    liveCoaching: ['„Spitzen versetzt staffeln!"', '„Zentrum eng halten!"', '„Zweite Bälle holen!"', '„Direkt vertikal!"', '„Ihren Sechser zustellen!"', '„Flügel-Duelle gewinnen!"'],
     adjustments: [
       'Auf 4-4-1-1 umstellen, wenn ihr Sechser zu frei aufdreht und wir zwischen den Linien keinen Zugriff bekommen.',
       'Auf 4-1-4-1 stabilisieren, wenn ihre Achter dauerhaft die Halbräume neben unserem Zentrum besetzen.',
@@ -238,7 +238,7 @@ export const entriesOur442: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Außen doppeln!"', '„Kette eng!"', '„Hinter Schienenspieler!"'],
+    liveCoaching: ['„Spitzen versetzt staffeln!"', '„Zentrum eng halten!"', '„Zweite Bälle holen!"', '„Direkt vertikal!"', '„Halbraum dicht!"', '„Diagonal absichern!"'],
     adjustments: [
       'Auf 5-3-2 reagieren, wenn Schienenspieler und Flügelspieler unsere Außenverteidiger dauerhaft überladen.',
       'Auf 4-5-1 tiefer verteidigen, wenn wir im Zentrum gegen ihre Doppelsechs und nachrückende Flügel keinen Zugriff bekommen.',
@@ -362,7 +362,7 @@ export const entriesOur442: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Zehner eng halten!"', '„Schnell nach außen!"', '„Ballfern einrücken!"'],
+    liveCoaching: ['„Spitzen versetzt staffeln!"', '„Zentrum eng halten!"', '„Zweite Bälle holen!"', '„Direkt vertikal!"', '„Zehnerraum zu!"', '„Doppelsechs binden!"'],
     adjustments: [
       'Einen zentralen Mittelfeldspieler tiefer als Absicherung halten, wenn ihr Zehner zu oft zwischen den Linien frei wird.',
       'Eine Spitze auf ihre Doppelsechs fallen lassen, wenn sie zweite Bälle und Verlagerungen kontrolliert.',
@@ -485,7 +485,7 @@ export const entriesOur442: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Abstände eng halten!"', '„Zweite Bälle holen!"', '„Tempo nach außen!"'],
+    liveCoaching: ['„Spitzen versetzt staffeln!"', '„Zentrum eng halten!"', '„Zweite Bälle holen!"', '„Direkt vertikal!"', '„Abstände eng halten!"', '„Erste Aktion sauber!"'],
     adjustments: [
       'Einen Stürmer tiefer zwischen die Linien fallen lassen, wenn beide Spitzen isoliert sind.',
       'Flügelspieler ballfern früher einrücken lassen, wenn der zweite Pfosten oder zentrale Rückraum offen wird.',
@@ -613,7 +613,7 @@ export const entriesOur442: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Raus auf außen!"', '„Zehner nicht drehen!"', '„Ballfern einrücken!"'],
+    liveCoaching: ['„Spitzen versetzt staffeln!"', '„Zentrum eng halten!"', '„Zweite Bälle holen!"', '„Direkt vertikal!"', '„Raus auf außen!"', '„Zehner nicht drehen lassen!"'],
     adjustments: [
       'Einen Stürmer auf ihren Sechser fallen lassen, wenn ihre Raute den Aufbau zu leicht durchs Zentrum löst.',
       'Ballfernen Flügel enger zur Zentrumsicherung stellen, wenn ihr Zehner oder ihre Halbspieler zu oft frei werden.',
@@ -740,7 +740,7 @@ export const entriesOur442: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Zentrum eng halten!"', '„Hinter den Schienenspieler!"', '„Ballfern einrücken!"'],
+    liveCoaching: ['„Spitzen versetzt staffeln!"', '„Zentrum eng halten!"', '„Zweite Bälle holen!"', '„Direkt vertikal!"', '„Hinter den Schienenspieler!"'],
     adjustments: [
       'Einen Stürmer tiefer auf ihren Sechser fallen lassen, wenn ihre drei Zentrumsspieler zu frei kombinieren.',
       'Ballfernen Flügel enger zur Zentrumsicherung stellen, wenn zweite Bälle vor unserer Abwehr kippen.',
@@ -868,7 +868,7 @@ export const entriesOur442: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Nicht blind flanken!"', '„Rückraum besetzen!"', '„Spitzen blocken!"'],
+    liveCoaching: ['„Spitzen versetzt staffeln!"', '„Zentrum eng halten!"', '„Zweite Bälle holen!"', '„Direkt vertikal!"', '„Nicht blind flanken!"', '„Rückraum besetzen!"'],
     adjustments: [
       'Einen zentralen Mittelfeldspieler tiefer zur Kontersicherung halten, wenn ihre zwei Spitzen lange Bälle zu oft festmachen.',
       'Eine Spitze seitlich in den Flügelraum ausweichen lassen, wenn unsere Flügel gegen die Schienenspieler keine saubere Überzahl herstellen.',
@@ -997,7 +997,7 @@ export const entriesOur442: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Geduldig verlagern!"', '„Zielspieler zustellen!"', '„Rückraum besetzen!"'],
+    liveCoaching: ['„Spitzen versetzt staffeln!"', '„Zentrum eng halten!"', '„Zweite Bälle holen!"', '„Direkt vertikal!"', '„Geduldig verlagern!"', '„Zielspieler zustellen!"'],
     adjustments: [
       'Einen Stürmer kurz zwischen die Linien fallen lassen, wenn beide Spitzen zwischen ihren Innenverteidigern festhängen.',
       'Außenverteidiger ballnah höher als Überzahlspieler nutzen, wenn ihr Schienenspieler dauerhaft isoliert verteidigt.',
@@ -1125,7 +1125,7 @@ export const entriesOur442: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Sechser zustellen!"', '„Raus auf außen!"', '„Abstände halten!"'],
+    liveCoaching: ['„Spitzen versetzt staffeln!"', '„Zentrum eng halten!"', '„Zweite Bälle holen!"', '„Direkt vertikal!"', '„Ihren Sechser binden!"', '„Tempo über außen!"'],
     adjustments: [
       'Einen Stürmer tiefer auf ihren Sechser fallen lassen, wenn er zweite Bälle und Verlagerungen kontrolliert.',
       'Ballfernen Flügel enger zur Mitte stellen, wenn ihre Achter im Halbraum zu oft frei werden.',

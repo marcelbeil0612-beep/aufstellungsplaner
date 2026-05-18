@@ -120,7 +120,7 @@ export const entriesOur4141: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Sechs zustellen!"', '„Flügel doppeln!"', '„Achter mutig!"'],
+    liveCoaching: ['„Sechser absichern!"', '„Achter in den Halbraum!"', '„Außen die Breite nutzen!"', '„Zentrum überzahlen!"', '„Ihren Sechser zustellen!"', '„Flügel-Duelle gewinnen!"'],
     adjustments: [
       'Wenn ihr Sechser frei bleibt, einen Achter höher auf ihn schieben.',
       'Bei Flügelproblemen äußeren Mittelfeldspieler tiefer neben den Außenverteidiger ziehen.',
@@ -247,7 +247,7 @@ export const entriesOur4141: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Zehner eng!"', '„Sechser pressen!"', '„Seite wechseln!"'],
+    liveCoaching: ['„Sechser absichern!"', '„Achter in den Halbraum!"', '„Außen die Breite nutzen!"', '„Zentrum überzahlen!"', '„Zehnerraum zu!"', '„Doppelsechs binden!"'],
     adjustments: [
       'Wenn ihr Zehner frei wird, unsere Sechs klar mannorientierter spielen lassen.',
       'Bei Problemen gegen die Doppelsechs einen Achter höher und den anderen tiefer staffeln.',
@@ -374,7 +374,7 @@ export const entriesOur4141: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Mitte nutzen!"', '„Zweite Bälle!"', '„Sechs anbieten!"'],
+    liveCoaching: ['„Sechser absichern!"', '„Achter in den Halbraum!"', '„Außen die Breite nutzen!"', '„Zentrum überzahlen!"', '„Flügel hinterlaufen!"', '„Zweite Bälle erobern!"'],
     adjustments: [
       'Wenn ihre Spitzen unseren Aufbau blocken, Außenverteidiger tiefer als Ausweg anbieten.',
       'Bei vielen langen Bällen Sechs enger vor die Innenverteidiger ziehen.',
@@ -501,7 +501,7 @@ export const entriesOur4141: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Breite nutzen!"', '„Zehner eng!"', '„Mitte sichern!"'],
+    liveCoaching: ['„Sechser absichern!"', '„Achter in den Halbraum!"', '„Außen die Breite nutzen!"', '„Zentrum überzahlen!"', '„Raus auf außen!"', '„Zehner nicht drehen lassen!"'],
     adjustments: [
       'Wenn ihr Zehner frei wird, unsere Sechs klar mannorientierter spielen lassen.',
       'Bei zentraler Unterzahl äußeren Mittelfeldspieler ballnah enger einrücken lassen.',
@@ -622,11 +622,7 @@ export const entriesOur4141: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: [
-      '„Schienenspieler stellen!"',
-      '„Zweite Bälle!"',
-      '„Hinter Schienenspieler!"',
-    ],
+    liveCoaching: ['„Sechser absichern!"', '„Achter in den Halbraum!"', '„Außen die Breite nutzen!"', '„Zentrum überzahlen!"', '„Hinter den Schienenspieler!"', '„Zentrum eng halten!"'],
     adjustments: [
       'Wenn ihre Dreierkette frei aufbaut, einen Achter höher neben den Stürmer schieben.',
       'Bei Problemen außen äußeren Mittelfeldspieler tiefer neben den Außenverteidiger ziehen.',
@@ -748,11 +744,7 @@ export const entriesOur4141: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: [
-      '„Doppelsechs überladen!"',
-      '„Halbraum dicht!"',
-      '„Hinter Schienenspieler!"',
-    ],
+    liveCoaching: ['„Sechser absichern!"', '„Achter in den Halbraum!"', '„Außen die Breite nutzen!"', '„Zentrum überzahlen!"', '„Halbraum dicht!"', '„Diagonal absichern!"'],
     adjustments: [
       'Wenn ihre Schienenspieler dominieren, äußere Mittelfeldspieler tiefer verteidigen lassen.',
       'Bei freiem Andribbeln der Halbverteidiger Achter früher herausschieben.',
@@ -874,11 +866,7 @@ export const entriesOur4141: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: [
-      '„Schienenspieler binden!"',
-      '„Konter sichern!"',
-      '„Seite wechseln!"',
-    ],
+    liveCoaching: ['„Sechser absichern!"', '„Achter in den Halbraum!"', '„Außen die Breite nutzen!"', '„Zentrum überzahlen!"', '„Nicht blind flanken!"', '„Rückraum besetzen!"'],
     adjustments: [
       'Wenn ihre Dreierkette frei aufbaut, einen Achter höher neben den Stürmer schieben.',
       'Bei Kontergefahr nur einen Außenverteidiger gleichzeitig hochschieben.',
@@ -999,11 +987,7 @@ export const entriesOur4141: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: [
-      '„Geduldig bleiben!"',
-      '„Rückraum besetzen!"',
-      '„Nicht blind flanken!"',
-    ],
+    liveCoaching: ['„Sechser absichern!"', '„Achter in den Halbraum!"', '„Außen die Breite nutzen!"', '„Zentrum überzahlen!"', '„Geduldig verlagern!"', '„Zielspieler zustellen!"'],
     adjustments: [
       'Wenn der Stürmer isoliert ist, einen Achter näher an ihn heranschieben.',
       'Bei wenig Durchbruch außen häufiger Hinterlaufen bis zur Grundlinie suchen.',
@@ -1125,11 +1109,7 @@ export const entriesOur4141: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: [
-      '„Sechs zustellen!"',
-      '„Achter tief!"',
-      '„Seite wechseln!"',
-    ],
+    liveCoaching: ['„Sechser absichern!"', '„Achter in den Halbraum!"', '„Außen die Breite nutzen!"', '„Zentrum überzahlen!"', '„Abstände eng halten!"', '„Erste Aktion sauber!"'],
     adjustments: [
       'Wenn ihr Sechser zu frei wird, einen Achter höher im Deckungsschatten positionieren.',
       'Bei stockendem Aufbau Außenverteidiger tiefer als klare Passoption anbieten.',

@@ -102,10 +102,7 @@ export const entriesOur433: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: [
-      '„Zentrum besetzen!"',
-      '„Schnell verlagern!"',
-    ],
+    liveCoaching: ['„Sechser zeigt sich!"', '„Achter in den Halbraum!"', '„Flügel breit, dann Tempo!"', '„Restverteidigung sichern!"', '„Flügel hinterlaufen!"', '„Zweite Bälle erobern!"'],
     adjustments: [
       'Auf 4-2-3-1 kippen, wenn der Zehnerraum zu wenig besetzt wird',
       'Einen Achter tiefer abkippen lassen für mehr Aufbausicherheit',
@@ -223,7 +220,7 @@ export const entriesOur433: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Sechser nicht allein!"', '„Zehnerraum zu!"', '„Balltempo hoch!"'],
+    liveCoaching: ['„Sechser zeigt sich!"', '„Achter in den Halbraum!"', '„Flügel breit, dann Tempo!"', '„Restverteidigung sichern!"', '„Zehnerraum zu!"', '„Doppelsechs binden!"'],
     adjustments: [
       'Einen Achter tiefer für mehr Aufbaukontrolle halten, wenn ihr Zehner unseren Sechser isoliert.',
       'Gegen den Ball situativ in ein 4-1-4-1 fallen lassen, damit die Flügel ihre Außenspieler sauber aufnehmen.',
@@ -347,7 +344,7 @@ export const entriesOur433: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Außen nicht isolieren!"', '„Zentrum schließen!"', '„Hinter Schienenspieler!"'],
+    liveCoaching: ['„Sechser zeigt sich!"', '„Achter in den Halbraum!"', '„Flügel breit, dann Tempo!"', '„Restverteidigung sichern!"', '„Hinter den Schienenspieler!"', '„Zentrum eng halten!"'],
     adjustments: [
       'Gegen den Ball situativ auf 4-2-3-1 oder 4-4-2 wechseln, damit die Flügel die Schienenspieler klar aufnehmen.',
       'Sechser häufiger zwischen die Innenverteidiger abkippen lassen, wenn ihre zwei Stürmer unseren Aufbau dauerhaft stressen.',
@@ -471,7 +468,7 @@ export const entriesOur433: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Halbräume schließen!"', '„Außen doppeln!"', '„Konter absichern!"'],
+    liveCoaching: ['„Sechser zeigt sich!"', '„Achter in den Halbraum!"', '„Flügel breit, dann Tempo!"', '„Restverteidigung sichern!"', '„Halbraum dicht!"', '„Diagonal absichern!"'],
     adjustments: [
       'Gegen den Ball situativ in ein 4-1-4-1 fallen lassen, damit die Flügel die Schienenspieler klar aufnehmen.',
       'Einen Achter tiefer halten, wenn die Halbräume neben unserem Sechser zu oft offen werden.',
@@ -594,7 +591,7 @@ export const entriesOur433: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Feld groß machen!"', '„Nicht zentral verrennen!"', '„Außenüberzahl schaffen!"'],
+    liveCoaching: ['„Sechser zeigt sich!"', '„Achter in den Halbraum!"', '„Flügel breit, dann Tempo!"', '„Restverteidigung sichern!"', '„Raus auf außen!"', '„Zehner nicht drehen lassen!"'],
     adjustments: [
       'Grundordnung halten und zuerst Rollenverhalten anpassen: Flügel breit, Außenverteidiger versetzt, Achter nicht auf einer Linie.',
       'Wenn das Zentrum zugestellt wird, einen Achter kurz abkippen lassen und danach schnell auf den freien Flügel verlagern.',
@@ -718,7 +715,7 @@ export const entriesOur433: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Nicht nur flanken!"', '„Mehr Halbraumläufe!"', '„Geduldig, scharf!"'],
+    liveCoaching: ['„Sechser zeigt sich!"', '„Achter in den Halbraum!"', '„Flügel breit, dann Tempo!"', '„Restverteidigung sichern!"', '„Geduldig verlagern!"', '„Zielspieler zustellen!"'],
     adjustments: [
       'Einen Achter höher als Zehner interpretieren, wenn vor ihrer Fünferkette zu wenig Präsenz entsteht.',
       'Flügel und Außenverteidiger stärker versetzen, damit außen nicht nur statische Flankenpositionen entstehen.',
@@ -844,7 +841,7 @@ export const entriesOur433: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Sechser sichern!"', '„Breite halten!"', '„Tempo nach außen!"'],
+    liveCoaching: ['„Sechser zeigt sich!"', '„Achter in den Halbraum!"', '„Flügel breit, dann Tempo!"', '„Restverteidigung sichern!"', '„Abstände eng halten!"', '„Erste Aktion sauber!"'],
     adjustments: [
       'Einen Achter tiefer halten, wenn ihr Sechser zu frei aufdrehen kann.',
       'Ballfernen Außenverteidiger früher einrücken lassen, wenn die Räume hinter unserer Kette zu groß werden.',
@@ -969,7 +966,7 @@ export const entriesOur433: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Nicht blind flanken!"', '„Rückraum besetzen!"', '„Spitzenpass zu!"'],
+    liveCoaching: ['„Sechser zeigt sich!"', '„Achter in den Halbraum!"', '„Flügel breit, dann Tempo!"', '„Restverteidigung sichern!"', '„Nicht blind flanken!"', '„Rückraum besetzen!"'],
     adjustments: [
       'Einen Außenverteidiger tiefer zur Kontersicherung halten, wenn ihre zwei Spitzen zu oft hinter unsere Kette kommen.',
       'Mittelstürmer häufiger kurz entgegenkommen lassen, um einen Innenverteidiger herauszuziehen und Flügelläufe zu öffnen.',
@@ -1096,7 +1093,7 @@ export const entriesOur433: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Sechser bewegen!"', '„Tempo nach außen!"', '„Zentrum sichern!"'],
+    liveCoaching: ['„Sechser zeigt sich!"', '„Achter in den Halbraum!"', '„Flügel breit, dann Tempo!"', '„Restverteidigung sichern!"', '„Ihren Sechser binden!"', '„Tempo über außen!"'],
     adjustments: [
       'Einen Achter tiefer zur Spieleröffnung abkippen lassen, wenn ihre Mittelfeldlinie unsere zentralen Passwege komplett schließt.',
       'Flügel situativ innen starten lassen, um ihren Außenverteidiger mitzuziehen und den Außenverteidiger außen freizumachen.',
