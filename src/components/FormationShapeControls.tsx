@@ -1,4 +1,4 @@
-import { SHAPE_MAX, SHAPE_MIN } from '../lib/phaseShift'
+import { PRESSING_PRESETS, SHAPE_MAX, SHAPE_MIN, type PressingHeight } from '../lib/phaseShift'
 import { useLineupStore } from '../store/useLineupStore'
 
 const pct = (v: number) => `${Math.round(v * 100)}%`
@@ -48,6 +48,35 @@ export function FormationShapeControls() {
           </label>
         ))}
       </div>
+
+      {phase === 'withoutBall' && (
+        <div className="mt-2.5 border-t border-slate-800 pt-2">
+          <span className="mb-1.5 block text-[10px] font-semibold uppercase tracking-wide text-slate-500">
+            Pressinghöhe
+          </span>
+          <div className="flex gap-1.5">
+            {(Object.keys(PRESSING_PRESETS) as PressingHeight[]).map((key) => {
+              const preset = PRESSING_PRESETS[key]
+              const active = Math.abs(shape.height - preset.height) < 0.02
+              return (
+                <button
+                  key={key}
+                  type="button"
+                  onClick={() => setPhaseShape('withoutBall', { height: preset.height })}
+                  className={[
+                    'flex-1 rounded-md px-2 py-1.5 text-[11px] font-semibold transition',
+                    active
+                      ? 'bg-amber-500 text-slate-950'
+                      : 'border border-slate-700 bg-slate-900/60 text-slate-300 hover:bg-slate-800',
+                  ].join(' ')}
+                >
+                  {preset.label}
+                </button>
+              )
+            })}
+          </div>
+        </div>
+      )}
     </div>
   )
 }

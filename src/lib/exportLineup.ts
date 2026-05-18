@@ -1,12 +1,20 @@
 import { positionShort } from '../data/positionWeights'
 import { usePhotoStore } from '../store/photoStore'
 import type { Formation, Player, PlayerStatus, Slot } from '../types'
-import { shapeSlots, type PhaseShape } from './phaseShift'
+import {
+  PRESSING_ZONE_DEPTH,
+  pressingLineY,
+  shapeSlots,
+  type Phase,
+  type PhaseShape,
+} from './phaseShift'
 import { initials } from './photoUtils'
 
 type ExportInput = {
   formation: Formation
   shape: PhaseShape
+  /** Bestimmt, ob die Pressingzone/Störer-Linie gezeichnet wird. */
+  phase: Phase
   assignments: Record<string, string | null>
   players: Player[]
   /** Anzeigetitel über dem Spielfeld (z. B. „Heimspiel · 4-3-3"). */
@@ -309,6 +317,39 @@ export async function renderLineupPng(input: ExportInput): Promise<Blob> {
   const photos = await loadPhotos(input)
 
   const slots = shapeSlots(input.formation.slots, input.shape)
+
+  // Defensiv: Pressingzone + Linie des ersten Störers unter die Chips legen.
+  if (input.phase === 'withoutBall') {
+    const lineY = pressingLineY(slots)
+    const lineCy = ((100 - lineY) / 100) * H
+    const bandH = Math.min((PRESSING_ZONE_DEPTH / 100) * H, H * 0.92 - lineCy)
+    ctx.save()
+    if (bandH > 0) {
+      ctx.fillStyle = 'rgba(251,191,36,0.12)'
+      ctx.fillRect(0, lineCy, W, bandH)
+    }
+    ctx.strokeStyle = 'rgba(252,211,77,0.7)'
+    ctx.lineWidth = Math.max(2, W * 0.004)
+    ctx.setLineDash([W * 0.02, W * 0.015])
+    ctx.beginPath()
+    ctx.moveTo(0, lineCy)
+    ctx.lineTo(W, lineCy)
+    ctx.stroke()
+    ctx.setLineDash([])
+    const label = '1. STÖRER'
+    ctx.font = `700 ${Math.round(H * 0.018)}px Inter, system-ui, sans-serif`
+    const tw = ctx.measureText(label).width
+    const padX = W * 0.012
+    ctx.fillStyle = 'rgba(245,158,11,0.88)'
+    roundedRect(ctx, 16, lineCy - H * 0.018, tw + padX * 2, H * 0.032, 5)
+    ctx.fill()
+    ctx.fillStyle = '#0f172a'
+    ctx.textAlign = 'left'
+    ctx.textBaseline = 'middle'
+    ctx.fillText(label, 16 + padX, lineCy + 1)
+    ctx.restore()
+  }
+
   const slotRadius = Math.min(W, H) * 0.06
   for (const slot of slots) {
     const cx = (slot.x / 100) * W

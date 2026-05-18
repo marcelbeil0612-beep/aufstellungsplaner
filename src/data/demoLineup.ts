@@ -68,6 +68,7 @@ export const demoLineup = {
 export function demoExportInput(): {
   formation: ReturnType<typeof formationById>
   shape: PhaseShape
+  phase: 'withBall'
   assignments: Record<string, string>
   players: Player[]
   title: string
@@ -75,6 +76,7 @@ export function demoExportInput(): {
   return {
     formation: formationById(DEMO_FORMATION_ID),
     shape: { ...defaultPhaseShape.withBall },
+    phase: 'withBall',
     assignments: demoAssignments,
     players: demoPlayers,
     title: DEMO_TITLE,

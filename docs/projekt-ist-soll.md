@@ -21,10 +21,11 @@ korrekter Build verifiziert) — installierbare PWA, weltweit erreichbar.
 **Kern-App (stabil, getestet):**
 - Aufstellungsbau, Kader-CRUD, Hungarian-Auto-Aufstellung, Wechselplan,
   PNG-Export, Share-Link, Backup, PWA.
-- **Form-Regler pro Phase (F1 Stufe A):** Breite/Höhe nutzergesteuert,
-  je Phase gespeichert; Mit-/Gegen-Ball-Switch = offensive/defensive
-  Ausrichtung (ersetzt die alte feste Phasen-Verschiebung). Offen:
-  F1 Stufe B (3 Pressinghöhen + Zone + Störer-Linie).
+- **Form-Regler pro Phase (F1):** Breite/Höhe nutzergesteuert, je
+  Phase gespeichert; Mit-/Gegen-Ball-Switch = offensive/defensive
+  Ausrichtung (ersetzt die alte feste Phasen-Verschiebung). Defensiv
+  zusätzlich 3 Pressinghöhen-Presets + Pressingzone + Störer-Linie
+  (Feld + PNG). F1 komplett (A+B).
 - Persistenz versioniert (Store v10); Testsuite grün (`npm run test`
   52/52), `npm run build` sauber.
 

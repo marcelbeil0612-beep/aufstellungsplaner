@@ -2,6 +2,8 @@ import { describe, expect, it } from 'vitest'
 import type { Slot } from '../types'
 import {
   defaultPhaseShape,
+  PRESSING_PRESETS,
+  pressingLineY,
   sanitizePhaseShape,
   SHAPE_MAX,
   SHAPE_MIN,
@@ -60,6 +62,22 @@ describe('Phasen-Form-Defaults', () => {
   it('defensiv ist kompakter als offensiv', () => {
     expect(defaultPhaseShape.withoutBall.width).toBeLessThan(defaultPhaseShape.withBall.width)
     expect(defaultPhaseShape.withoutBall.height).toBeLessThan(defaultPhaseShape.withBall.height)
+  })
+})
+
+describe('pressingLineY', () => {
+  it('nimmt den vordersten Feldspieler, ignoriert den Torwart', () => {
+    const slots: Slot[] = [
+      slot({ id: 'gk', position: 'GK', y: 6 }),
+      slot({ id: 'cb', position: 'CB', y: 22 }),
+      slot({ id: 'st', position: 'ST', y: 70 }),
+    ]
+    expect(pressingLineY(slots)).toBe(70)
+  })
+
+  it('Presets: hoch presst höher als tief', () => {
+    expect(PRESSING_PRESETS.high.height).toBeGreaterThan(PRESSING_PRESETS.mid.height)
+    expect(PRESSING_PRESETS.mid.height).toBeGreaterThan(PRESSING_PRESETS.low.height)
   })
 })
 

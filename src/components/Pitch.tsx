@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { shapeSlots } from '../lib/phaseShift'
+import { PRESSING_ZONE_DEPTH, pressingLineY, shapeSlots } from '../lib/phaseShift'
 import { useLineupStore } from '../store/useLineupStore'
 import type { Formation } from '../types'
 import { SlotDropZone } from './SlotDropZone'
@@ -105,6 +105,33 @@ export function Pitch({ formation }: Props) {
       <div className="pointer-events-none absolute bottom-2 left-2 rounded-md bg-black/40 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-white/80 backdrop-blur">
         Eigenes Tor ↓
       </div>
+
+      {phase === 'withoutBall' &&
+        (() => {
+          const lineY = pressingLineY(slots)
+          const bandTop = 100 - lineY
+          const bandHeight = Math.min(PRESSING_ZONE_DEPTH, 92 - bandTop)
+          return (
+            <div className="pointer-events-none absolute inset-0">
+              {bandHeight > 0 && (
+                <div
+                  className="absolute inset-x-0 bg-amber-400/12"
+                  style={{ top: `${bandTop}%`, height: `${bandHeight}%` }}
+                />
+              )}
+              <div
+                className="absolute inset-x-0 border-t-2 border-dashed border-amber-300/70"
+                style={{ top: `${bandTop}%` }}
+              />
+              <div
+                className="absolute left-2 -translate-y-1/2 rounded bg-amber-500/85 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-slate-950"
+                style={{ top: `${bandTop}%` }}
+              >
+                1. Störer
+              </div>
+            </div>
+          )
+        })()}
 
       <div className="absolute inset-0">
         {slots.map((slot) => (

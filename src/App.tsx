@@ -109,7 +109,7 @@ export default function App() {
     setExporting(true)
     try {
       await downloadLineupPng(
-        { formation, shape: phaseShape[phase], assignments, players, title: formation.name },
+        { formation, shape: phaseShape[phase], phase, assignments, players, title: formation.name },
         suggestedLineupFilename(formation.name),
       )
     } catch (e) {

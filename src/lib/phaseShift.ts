@@ -49,6 +49,33 @@ export function shapeSlots(slots: Slot[], shape: PhaseShape): Slot[] {
   })
 }
 
+/**
+ * Pressinghöhen für die Defensivphase: Presets des Höhe-Reglers.
+ * hoch = Angriffspressing, mittel = Mittelfeldpressing, tief = Abwehrpressing.
+ */
+export type PressingHeight = 'high' | 'mid' | 'low'
+
+export const PRESSING_PRESETS: Record<
+  PressingHeight,
+  { label: string; height: number }
+> = {
+  high: { label: 'Angriffspressing', height: 1.08 },
+  mid: { label: 'Mittelfeldpressing', height: 0.82 },
+  low: { label: 'Abwehrpressing', height: 0.6 },
+}
+
+/** Tiefe der Pressingzone (in y-Einheiten 0–100) hinter dem ersten Störer. */
+export const PRESSING_ZONE_DEPTH = 24
+
+/**
+ * y des vordersten Feldspielers = Linie des ersten Störers. Der Torwart
+ * zählt nicht. Leeres/GK-only Input → Mittellinie als Fallback.
+ */
+export function pressingLineY(slots: Slot[]): number {
+  const ys = slots.filter((s) => s.position !== 'GK').map((s) => s.y)
+  return ys.length ? Math.max(...ys) : 50
+}
+
 /** Normalisiert/klemmt eine evtl. unvollständige Form auf gültige Werte. */
 export function sanitizePhaseShape(raw: unknown, fallback: PhaseShape): PhaseShape {
   const o = (raw ?? {}) as Partial<PhaseShape>

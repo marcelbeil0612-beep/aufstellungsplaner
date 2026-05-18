@@ -175,10 +175,16 @@ die Form. Browser-verifiziert (Regler live, Persistenz + Phasen-
 Trennung über Reload, mobil ohne Overflow, 0 Console-Errors).
 test 52/52, tsc 0, build ✓.
 
-**Stufe B — OFFEN:** „Gegen den Ball" mit 3 Pressinghöhen
-(Angriffs-/Mittelfeld-/Abwehrpressing) als Presets des Höhe-Reglers
-in der Defensivphase + schattierte Pressingzone + Linie des ersten
-Angreifers/Störers als Overlay (Feld + PNG-Export).
+**Stufe B — ERLEDIGT (2026-05-18):** In der Defensivphase 3
+Pressinghöhen-Presets (Angriffs-/Mittelfeld-/Abwehrpressing) als
+Schnellwahl des Höhe-Reglers (`PRESSING_PRESETS`), aktiver Button
+hervorgehoben. Overlay nur „Gegen den Ball": schattierte
+Pressingzone-Band + gestrichelte Linie des ersten Störers
+(`pressingLineY` = vorderster Feldspieler) mit Label, im Feld und
+im PNG-Export. Browser-verifiziert: Presets verschieben Linie/Zone
+(hoch ~12 % ↔ tief ~48 %), Mit-Ball ohne Overlay, 0 Console-Errors.
+PNG-Export code-parallel zum verifizierten Feld-Overlay (gleiche
+Koordinaten-Mathematik wie die Chips), tsc/build grün. test 54/54.
 
 ## 🟡 Nach Schnellstart: Pro-System (Monat 2)
 
@@ -493,3 +499,9 @@ In neuer Session:
   defensiv). test 52/52, tsc 0, build ✓, browser-verifiziert.
   Offen: F1 Stufe B (3 Pressinghöhen + Zone + Störer-Linie),
   P4 (MoR-Account von dir), DPMA-Anmeldung, S6.
+- **2026-05-18 (Folge 9):** F1 Stufe B erledigt: 3 Pressinghöhen-
+  Presets in der Defensivphase + Pressingzone-Band + Linie des ersten
+  Störers (Feld + PNG-Export), nur „Gegen den Ball". Browser-
+  verifiziert (Presets verschieben Linie hoch↔tief, Mit-Ball clean).
+  test 54/54, tsc 0, build ✓. Damit F1 komplett. Offene Code-Arbeit:
+  nur noch P4 (MoR-Account von dir). Rest extern: DPMA, S6.
