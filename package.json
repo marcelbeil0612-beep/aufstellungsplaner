@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "verify-duels": "vitest run src/data/tacticBook/tacticBook.audit.test.ts --reporter=dot"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.1.0",

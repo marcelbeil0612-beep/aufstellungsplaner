@@ -162,3 +162,47 @@ describe('Systembuch-Audit · Spiegel-Konsistenz (Stufe 1)', () => {
     expect(hard, `\n${hard.join('\n')}\n`).toEqual([])
   })
 })
+
+describe('Systembuch-Audit · Bias-Cluster + Coverage (Stufe 3)', () => {
+  it('gibt Coverage-Report aus (ersetzt manuelle Pflege)', () => {
+    const lines: string[] = []
+    let total = 0
+    for (const our of SYSTEMS) {
+      const row = tacticBook.filter((e) => e.ourSystem === our)
+      total += row.length
+      lines.push(`  ${our.padEnd(12)} ${row.length}/9`)
+    }
+    console.warn(
+      `\n[Audit] Coverage ${total}/81 erfasst:\n` + lines.join('\n') + '\n',
+    )
+    expect(total).toBe(81)
+  })
+
+  it('meldet Bias-Cluster (Reihe ohne unangenehm bzw. ohne vorteilhaft)', () => {
+    // Eine Reihe sollte über ihre 9 Duelle eine plausible Mischung haben.
+    // 0x unangenehm  -> System verliert nie  -> KI zu wohlwollend.
+    // 0x vorteilhaft -> System gewinnt nie   -> KI zu streng.
+    // Beratend (kein Fail): Rebalance ist menschliche Entscheidung (Q3a).
+    const flags: string[] = []
+    const table: string[] = []
+    for (const our of SYSTEMS) {
+      const row = tacticBook.filter((e) => e.ourSystem === our)
+      const v = row.filter((e) => e.rating === 'vorteilhaft').length
+      const a = row.filter((e) => e.rating === 'ausgeglichen').length
+      const u = row.filter((e) => e.rating === 'unangenehm').length
+      table.push(`  ${our.padEnd(12)} V:${v}  A:${a}  U:${u}`)
+      if (u === 0) flags.push(`${our}: 0x unangenehm (verliert nie — zu wohlwollend?)`)
+      if (v === 0) flags.push(`${our}: 0x vorteilhaft (gewinnt nie — zu streng?)`)
+    }
+    console.warn(
+      `\n[Audit] Rating-Verteilung je Reihe:\n` +
+        table.join('\n') +
+        (flags.length
+          ? `\n\n[Audit] ${flags.length} Bias-Cluster (beratend, kein Fehler — Q3a):\n` +
+            flags.map((f) => '  ' + f).join('\n')
+          : '\n\n[Audit] Keine Bias-Cluster.') +
+        '\n',
+    )
+    expect(SYSTEMS.length).toBe(9)
+  })
+})
