@@ -75,6 +75,47 @@ Output: validierte Hypothesen statt KI-Empfehlungen.
 
 ---
 
+## 🟡 Qualität & UX Systembuch (parallel zum Schnellstart möglich)
+
+### Q1 · Formulierungs- & Terminologie-Vereinheitlichung (global, alle 81 Einträge)
+
+Durchgängig klare, einheitliche deutsche Sprache statt Jargon/Anglizismen
+über das **gesamte** `tacticBook` (alle `our-*.ts`, alle Phasen-Säulen +
+character + liveCoaching + adjustments).
+
+Bekannte Auffälligkeiten (nicht abschließend):
+- **„Wingback"** → ein einheitlicher Begriff (Kandidat: „Schienenspieler";
+  aktuell gemischt mit „Flügelverteidiger"/„Wingback"). Soll-Begriff
+  vorab festlegen.
+- `auf „Rücklagen" spielen` → verständliche Formulierung
+  (z. B. „den Ball zurücklegen" / „kurzer Rückpass aus der Tiefe").
+- `Flanken am ersten „Kontakt" klären` → Klartext
+  (z. B. „Flanken direkt im ersten Zweikampf klären").
+
+Vorgehen: zuerst **Glossar / Soll-Begriffsliste** definieren (DE-Begriff
+je Konzept), dann skriptweit konsistent ersetzen. Audit-Test
+(`tacticBook.audit.test.ts`) muss grün bleiben (Mindestlänge/keine
+Platzhalter). Synergie mit S3: der verify-duels-Lint kann verbotene
+Begriffe künftig automatisch flaggen (Forbidden-Term-Check ergänzen).
+
+### Q2 · Eigener Reiter „Im Spiel" + Live-Coaching-Ausbau
+
+UI-Umbau in `DuelDetail.tsx`: Live-Coaching und „Mögliche
+Ingame-Anpassung" aus der Phasen-Detailansicht herauslösen und in einen
+**eigenen Tab** bündeln. Tab-Name: „Im Spiel" oder „Live".
+
+- **Content:** `liveCoaching` pro Duell von aktuell 1–3 auf **5–6
+  Anweisungen** ausbauen (alle 81, KI-gestützt wie die Migration; Pilot-
+  Anker `4-3-3 vs 4-4-2`, gleicher Workflow wie Systembuch-Migration).
+- **Abhängigkeit:** Audit-Test prüft `liveCoaching` aktuell auf 1–3 →
+  Spanne auf 5–6 anpassen, sonst schlägt die Suite fehl.
+- **Offen / zu klären:** Kommt der „Im Spiel"-Tab als Umschalter *neben*
+  einem „Phasen"-Tab (= faktisch wieder ein View-Switch in
+  `DuelDetail`, der früher bewusst entfernt wurde)? Bewusste
+  Designentscheidung vor Implementierung.
+
+---
+
 ## 🟡 Nach Schnellstart: Pro-System (Monat 2)
 
 ### P1 · Marken-Rebrand (1 h Code + Design)
@@ -278,3 +319,8 @@ In neuer Session:
 - **2026-05-15:** drei externe Marktanalysen eingegangen, Synthese
   erstellt, TODO neu priorisiert nach Monetarisierungs-Ausrichtung.
   Schnellstart-Block (S1–S6) als nächste 14 Tage definiert.
+- **2026-05-18:** Systembuch-Migration (81/81) + Legacy-Cleanup +
+  Rating-Audit (0 Widersprüche, voll spiegel-konsistent) + Browser-
+  Smoke-Test abgeschlossen. Q1 (Formulierungs-/Terminologie-
+  Vereinheitlichung) und Q2 (Reiter „Im Spiel" + Live-Coaching-Ausbau
+  5–6) als Qualität/UX-Block ergänzt.
