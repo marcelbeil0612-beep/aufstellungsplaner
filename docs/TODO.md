@@ -369,3 +369,15 @@ In neuer Session:
   5–6). Q3b erledigt (Vorwort/Erklärseite im Leerzustand).
   Projekt-IST/SOLL: `docs/projekt-ist-soll.md`. → Qualität/UX-Block
   (S3, Q1, Q2, Q3) vollständig abgeschlossen.
+- **2026-05-18 (Folge 2):** Q-Block-Browser-Smoke-Test tatsächlich
+  ausgeführt (war zuvor nur dokumentarisch vorweggenommen) und
+  bestanden: Vorwort/Leerzustand scrollbar & ohne Overflow; Duell-Detail
+  genau 5 Reiter (4 Phasen + „Im Spiel"), stets genau einer aktiv, kein
+  „Alles"-Tab; „Im Spiel" zeigt Live-Coaching (6 Zurufe) + Mögliche
+  Ingame-Anpassung; Rating-Stichproben bestätigt (3-5-2 vs 4-2-3-1 =
+  unangenehm, 5-3-2 vs 4-3-3 = unangenehm); mobile 390px ohne
+  horizontalen Overflow, 0 Console-Errors. Verifikation grün: test
+  31/31, tsc 0, verify-duels 6/6, keine Bias-Cluster. Keine Code-Fixes
+  nötig. Neu (untracked): `.claude/launch.json` für das Preview-Tooling.
+  → Damit ist der gesamte Systembuch-Komplex auch UI-seitig live
+  verifiziert; nächster Engpass ist rein extern (S1 Marken-Check).

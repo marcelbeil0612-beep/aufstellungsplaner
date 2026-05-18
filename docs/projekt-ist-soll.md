@@ -68,5 +68,10 @@ Systembuch nichts mehr offen.
 (Q2-Content liveCoaching-Ausbau ist erledigt — war vormals Schritt 2.)
 
 Engpass ist nicht die Technik, sondern die externen Entscheidungen
-(Marke, Preis, Bezahl-Account) — die liegen bei dir und blocken den
-restlichen Code-Pfad.
+(Marke, Preis, Bezahl-Account) — die liegen bei dir. **Wichtig:** sie
+blocken nur **P1 (Rebrand)** und **S2 (Branding-Footer)**. Der größte
+Code-Block **P2 (Feature-Flag-Architektur)** hängt nicht am
+Marken-Entscheid und kann sofort starten; P3 (Paywall-UI) braucht nur
+den bereits in der Synthese festgelegten Preis, P4 (Paddle) den
+Bezahl-Account. Heißt: an der Monetarisierung lässt sich auch ohne S1
+unmittelbar echter Fortschritt machen.
