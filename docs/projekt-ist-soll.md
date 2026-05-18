@@ -43,10 +43,14 @@ reibungsarm.
 - Offen: nur noch P4 (echter Paddle-Checkout + Lizenz-Validierung).
 
 **Marke (S1/P1):**
-- Name = **FormaXI**, `formaxi.de` gesichert. Rebrand-Code-Teil live
+- Name = **FormaXI**, `formaxi.de` gesichert. Rebrand live
   (Titel/Manifest/UI = FormaXI; Storage-IDs bewusst unverändert →
-  kein Datenverlust). Offen extern: Logo-Grafik + DPMA-Anmeldung nach
-  Profi-Markenrecherche (`formaxi.it` gegenprüfen).
+  kein Datenverlust). Logo/App-Icons live: FormaXI-Motiv als
+  `assets/icon-source.png`, reproduzierbare Pipeline `npm run icons`
+  → apple-touch/pwa/maskable/favicon. Browser-verifiziert (Favicon
+  16 px fein → optionale bolder Sondervariante als Nachzug).
+- Offen extern: optionale Favicon-Sondervariante + DPMA-Anmeldung
+  nach Profi-Markenrecherche (`formaxi.it` gegenprüfen).
 
 **Wachstums-Polish:**
 - S4 Onboarding live: First-Run-Overlay mit drei Schritten, einmalig

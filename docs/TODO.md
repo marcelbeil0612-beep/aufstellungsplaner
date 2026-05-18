@@ -174,10 +174,21 @@ Browser-verifiziert: Titel/H1 = FormaXI, Bestandsdaten (16 Spieler,
 isPro) überleben den Rebrand, 0 Console-Errors. test 47/47, tsc 0,
 build ✓.
 
-**Offen (kein Code, separat):** Logo-/Favicon-/PWA-Icon-*Grafik*
-(aktuell Default-Assets) + formale DPMA-Markenanmeldung nach
-professioneller Markenrecherche (Hinweis: `formaxi.it` als bestehende
-Fußball-Trainingsseite gegenprüfen lassen).
+**Logo/Icons — ERLEDIGT (2026-05-18):** FormaXI-Markenmotiv als
+`assets/icon-source.png` (randloses Grün, Motiv in Maskable-Safe-Zone).
+Pipeline `scripts/generate-pwa-icons.mjs` (`npm run icons`) erzeugt
+apple-touch / pwa-192 / pwa-512 / maskable-512 / favicon(48/32) nach
+`public/`. index.html + vite.config auf PNG-Favicon umgestellt, alte
+Brand-SVGs entfernt. Browser-verifiziert: App-/PWA-/Maskable-Icons sehr
+gut, Favicon 32 px ok, **16 px zu fein** (verschwimmt). Optionaler
+Nachzug: bolder Favicon-Sondervariante (siehe unten).
+
+**Offen (kein Code, deine Aufgabe):**
+- Optional: extra-fette Favicon-Variante (nur dickes X/I, keine
+  Pfeil-/Tor-Details) für klare 16-px-Darstellung im Browser-Tab —
+  als `assets/favicon-source.png` liefern, dann Pipeline darauf zeigen.
+- Formale DPMA-Markenanmeldung nach professioneller Markenrecherche
+  (`formaxi.it` als bestehende Fußball-Trainingsseite gegenprüfen).
 
 ### P2 · Feature-Flag-Architektur — ERLEDIGT (2026-05-18)
 
