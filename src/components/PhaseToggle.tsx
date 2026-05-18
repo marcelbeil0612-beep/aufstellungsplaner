@@ -1,4 +1,5 @@
 import type { Phase } from '../lib/phaseShift'
+import { useProGuard } from '../lib/proAccess'
 import { useLineupStore } from '../store/useLineupStore'
 
 type Option = {
@@ -18,6 +19,7 @@ const options: Option[] = [
 export function PhaseToggle() {
   const phase = useLineupStore((s) => s.phase)
   const setPhase = useLineupStore((s) => s.setPhase)
+  const { allowed: withoutBallAllowed, guard } = useProGuard('phase-without-ball')
 
   return (
     <div
@@ -27,13 +29,18 @@ export function PhaseToggle() {
     >
       {options.map((opt) => {
         const active = phase === opt.value
+        const locked = opt.value === 'withoutBall' && !withoutBallAllowed
         return (
           <button
             key={opt.value}
             role="radio"
             aria-checked={active}
-            onClick={() => setPhase(opt.value)}
-            title={opt.hint}
+            onClick={() =>
+              opt.value === 'withoutBall'
+                ? guard(() => setPhase('withoutBall'))
+                : setPhase(opt.value)
+            }
+            title={locked ? `${opt.hint} · Pro` : opt.hint}
             className={[
               'flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition sm:text-sm',
               active
@@ -46,6 +53,7 @@ export function PhaseToggle() {
             <span aria-hidden className="text-sm sm:text-base">{opt.icon}</span>
             <span className="hidden sm:inline">{opt.label}</span>
             <span className="sm:hidden">{opt.shortLabel}</span>
+            {locked && <span aria-hidden className="text-[10px] opacity-70">🔒</span>}
           </button>
         )
       })}

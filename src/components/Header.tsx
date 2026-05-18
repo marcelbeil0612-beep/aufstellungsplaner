@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useProGuard } from '../lib/proAccess'
 import { useLineupStore } from '../store/useLineupStore'
 import { AutoLineupDialog } from './AutoLineupDialog'
 import { FormationPicker } from './FormationPicker'
@@ -16,6 +17,7 @@ export function Header() {
   const [autoOpen, setAutoOpen] = useState(false)
   const [bookOpen, setBookOpen] = useState(false)
   const [matchesOpen, setMatchesOpen] = useState(false)
+  const { allowed: autoAllowed, guard: guardAuto } = useProGuard('auto-lineup')
 
   return (
     <>
@@ -38,13 +40,18 @@ export function Header() {
         <div className="flex flex-wrap items-center gap-2 sm:flex-nowrap sm:gap-3">
           <FormationPicker />
           <button
-            onClick={() => setAutoOpen(true)}
+            onClick={() => guardAuto(() => setAutoOpen(true))}
             className="flex items-center gap-1.5 rounded-lg border border-amber-600 bg-amber-800/40 px-3 py-1.5 text-sm font-medium text-amber-100 shadow-inner transition hover:bg-amber-700/50"
-            title="Aufstellung automatisch nach Skill-Score optimieren"
+            title={
+              autoAllowed
+                ? 'Aufstellung automatisch nach Skill-Score optimieren'
+                : 'Aufstellung automatisch optimieren · Pro'
+            }
           >
             <span aria-hidden>⚡</span>
             <span className="hidden sm:inline">Beste Aufstellung</span>
             <span className="sm:hidden">Auto</span>
+            {!autoAllowed && <span aria-hidden className="text-[10px] opacity-70">🔒</span>}
           </button>
           <button
             onClick={() => setRosterOpen(true)}

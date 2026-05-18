@@ -6,6 +6,8 @@ type Props = {
   onOurSystemChange: (s: SystemId) => void
   opponent: SystemId | null
   onOpponentChange: (s: SystemId) => void
+  /** Liefert true, wenn das Duell gegen `opp` ohne Pro gesperrt ist. */
+  isLocked?: (opp: SystemId) => boolean
 }
 
 const ratingDot: Record<DuelRating, string> = {
@@ -19,7 +21,7 @@ const ratingLabel: Record<DuelRating, string> = {
   unangenehm:   'unangenehm',
 }
 
-export function SystemNav({ ourSystem, onOurSystemChange, opponent, onOpponentChange }: Props) {
+export function SystemNav({ ourSystem, onOurSystemChange, opponent, onOpponentChange, isLocked }: Props) {
   return (
     <nav className="flex h-full flex-col gap-3 overflow-hidden">
       <label className="block text-xs text-slate-400">
@@ -49,6 +51,7 @@ export function SystemNav({ ourSystem, onOurSystemChange, opponent, onOpponentCh
             const entry = findEntry(ourSystem, opp)
             const isActive = opp === opponent
             const isSelf = opp === ourSystem
+            const locked = !!entry && !isActive && isLocked?.(opp) === true
             return (
               <li key={opp}>
                 <button
@@ -64,19 +67,32 @@ export function SystemNav({ ourSystem, onOurSystemChange, opponent, onOpponentCh
                     isSelf ? 'italic' : '',
                   ].join(' ')}
                   title={
-                    entry
+                    locked
+                      ? `${systemLabels[opp]} – mit Pro freischalten`
+                      : entry
                       ? `${systemLabels[opp]} – ${ratingLabel[entry.rating]}`
                       : 'Noch nicht erfasst'
                   }
                 >
-                  <span
-                    aria-hidden
-                    className={[
-                      'h-2.5 w-2.5 shrink-0 rounded-full',
-                      entry ? ratingDot[entry.rating] : 'bg-slate-700',
-                    ].join(' ')}
-                  />
+                  {locked ? (
+                    <span aria-hidden className="shrink-0 text-[11px] leading-none text-slate-500">
+                      🔒
+                    </span>
+                  ) : (
+                    <span
+                      aria-hidden
+                      className={[
+                        'h-2.5 w-2.5 shrink-0 rounded-full',
+                        entry ? ratingDot[entry.rating] : 'bg-slate-700',
+                      ].join(' ')}
+                    />
+                  )}
                   <span className="flex-1 truncate font-medium">{systemLabels[opp]}</span>
+                  {locked && (
+                    <span className="shrink-0 text-[10px] uppercase tracking-wide text-slate-500">
+                      Pro
+                    </span>
+                  )}
                   {!entry && (
                     <span className="shrink-0 text-[10px] uppercase tracking-wide text-slate-600">
                       offen

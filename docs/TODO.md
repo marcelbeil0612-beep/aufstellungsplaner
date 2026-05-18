@@ -193,17 +193,27 @@ Pro-Features laut Synthese:
 - Share-Link-Import (Read-only frei, Import Pro)
 - Backup-Import (Export bleibt frei)
 
-### P3 · Paywall-UI (6 h)
+### P3 · Paywall-UI — ERLEDIGT (2026-05-18)
 
-Dialog „Mit Pro freischalten" für gesperrte Features. Trigger-Stellen:
-- Klick auf „Gegen Ball"-Phase (frei: Mit Ball)
-- Klick auf „Beste Aufstellung"
-- Klick auf Wechselplan-Button
-- Klick auf gesperrtes Systembuch-Duell
-- Hover/Tap auf neuen Multi-Team-Picker
+Umgesetzt: `usePaywallStore` (ephemer, NICHT persistiert),
+`PaywallDialog` (Wert-Liste + 3 Preisstufen €24,90/J · €3,90/M · €49
+Lifetime, feature-spezifische Anreißzeile, „Vielleicht später"; Plan-
+Klick zeigt „Bezahlung folgt in Kürze" — echter Checkout = P4).
+`useProGuard(feature)` für klick-gegatete Aktionen. Trigger verdrahtet
+& browser-verifiziert:
+- „Gegen Ball"-Phase (PhaseToggle) — 🔒, Klick → Paywall
+- „Beste Aufstellung" (Header) — 🔒, Klick → Paywall
+- Wechselplan (Bench) — 🔒, Klick → Paywall
+- Systembuch: nur die 3 Schaufenster-Duelle frei (4-3-3 vs 4-4-2,
+  4-2-3-1 vs 5-3-2, 3-5-2 vs 4-3-3), alle anderen 🔒/„Pro" → Paywall;
+  persistiertes gesperrtes Duell wird beim Öffnen nicht wiederhergestellt;
+  Rating-Ampel gesperrter Duelle neutralisiert (kein Info-Leak).
+- Multi-Team-Picker: existiert noch nicht (Skalierung) — übersprungen.
 
-Dialog soll klar machen, was Pro umfasst, mit Preis (laut Synthese:
-€24,90/J · €3,90/M · €49 Lifetime Early Supporter limitiert).
+Browser-Smoke-Test bestanden: Free zeigt Schlösser & Paywall, freie
+Schaufenster-Duelle öffnen normal; mit `isPro=true` (per IndexedDB
+gesetzt) alle Schlösser weg, alle Features frei; 390px ohne Overflow,
+0 Console-Errors. test 39/39, tsc 0, build ✓.
 
 ### P4 · Paddle-Integration (1–2 Tage)
 
@@ -400,3 +410,9 @@ In neuer Session:
   `<FeatureGate>`-Komponente; `isPro` bewusst aus Backup ausgeklammert).
   test 36/36, tsc 0, build ✓. Noch nicht an Call-Sites verdrahtet
   (bewusst → P3). Nächster Code-Schritt: P3 Paywall-UI.
+- **2026-05-18 (Folge 4):** P3 Paywall-UI erledigt — `usePaywallStore`,
+  `PaywallDialog` (3 Preisstufen, Checkout-Stub → P4), `useProGuard`;
+  Trigger an Gegen-Ball-Phase / Beste Aufstellung / Wechselplan /
+  Systembuch (3 Schaufenster-Duelle frei) verdrahtet & browser-
+  verifiziert (Free + Pro-Pfad). test 39/39, tsc 0, build ✓.
+  Nächster Code-Schritt: P4 Paddle (echter Checkout + Lizenz).

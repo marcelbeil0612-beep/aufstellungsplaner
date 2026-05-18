@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { migratePersistedState } from '../store/useLineupStore'
-import { isProFeature, type ProFeature } from './proAccess'
+import { isProFeature, isShowcaseDuel, SHOWCASE_DUELS, type ProFeature } from './proAccess'
 
 describe('isProFeature', () => {
   const gated: ProFeature[] = [
@@ -15,6 +15,25 @@ describe('isProFeature', () => {
 
   it('alle Synthese-Pro-Features sind Pro-pflichtig', () => {
     for (const f of gated) expect(isProFeature(f)).toBe(true)
+  })
+})
+
+describe('isShowcaseDuel', () => {
+  it('die drei Synthese-Schaufenster-Duelle sind frei', () => {
+    expect(isShowcaseDuel('4-3-3', '4-4-2')).toBe(true)
+    expect(isShowcaseDuel('4-2-3-1', '5-3-2')).toBe(true)
+    expect(isShowcaseDuel('3-5-2', '4-3-3')).toBe(true)
+    expect(SHOWCASE_DUELS).toHaveLength(3)
+  })
+
+  it('ist gerichtet – der Spiegel eines Schaufenster-Duells ist nicht frei', () => {
+    expect(isShowcaseDuel('4-4-2', '4-3-3')).toBe(false)
+    expect(isShowcaseDuel('5-3-2', '4-2-3-1')).toBe(false)
+  })
+
+  it('beliebige andere Duelle sind gesperrt', () => {
+    expect(isShowcaseDuel('4-4-2', '3-5-2')).toBe(false)
+    expect(isShowcaseDuel('5-4-1', '4-1-4-1')).toBe(false)
   })
 })
 

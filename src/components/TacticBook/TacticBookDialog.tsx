@@ -6,7 +6,9 @@ import {
   systemOrder,
   type SystemId,
 } from '../../data/tacticBook'
+import { isShowcaseDuel, useProStatus } from '../../lib/proAccess'
 import { useEscapeKey } from '../../lib/useEscapeKey'
+import { usePaywallStore } from '../../store/paywallStore'
 import { useLineupStore } from '../../store/useLineupStore'
 import { DuelDetail } from './DuelDetail'
 import { SystemNav } from './SystemNav'
@@ -20,6 +22,13 @@ export function TacticBookDialog({ open, onClose }: Props) {
   const formationId = useLineupStore((s) => s.formationId)
   const lastViewed = useLineupStore((s) => s.lastViewedDuel)
   const setLastViewed = useLineupStore((s) => s.setLastViewedDuel)
+  const isPro = useProStatus()
+  const requestUnlock = usePaywallStore((s) => s.requestUnlock)
+
+  // Ein Duell ist gesperrt, wenn der Nutzer kein Pro hat und es nicht zu den
+  // drei freien Schaufenster-Duellen gehört.
+  const isLockedDuel = (our: SystemId, opp: SystemId): boolean =>
+    !isPro && !isShowcaseDuel(our, opp)
 
   // Bei Öffnen: unser System aus aktueller Formation übernehmen, sofern nichts
   // Besseres gespeichert ist. Gegner aus lastViewed.
@@ -33,9 +42,13 @@ export function TacticBookDialog({ open, onClose }: Props) {
   // Beim erneuten Öffnen den gespeicherten Zustand laden
   useEffect(() => {
     if (!open) return
-    setOurSystem(lastViewed?.our ?? formationIdToSystemId(formationId))
-    setOpponent(lastViewed?.opp ?? null)
-  }, [open, lastViewed, formationId])
+    const our = lastViewed?.our ?? formationIdToSystemId(formationId)
+    const opp = lastViewed?.opp ?? null
+    setOurSystem(our)
+    // Persistiertes Duell nicht wiederherstellen, wenn es ohne Pro gesperrt
+    // wäre – sonst sähe ein Free-Nutzer gesperrten Inhalt nach Reload.
+    setOpponent(opp && !isLockedDuel(our, opp) ? opp : null)
+  }, [open, lastViewed, formationId, isPro])
 
   // ESC schließt
   useEscapeKey(open, onClose)
@@ -49,11 +62,17 @@ export function TacticBookDialog({ open, onClose }: Props) {
   // Bei Wechsel "unser System" Gegner zurücksetzen, wenn das bisherige Duell nicht existiert
   const handleOurChange = (s: SystemId) => {
     setOurSystem(s)
-    if (opponent && !findEntry(s, opponent)) setOpponent(null)
+    if (opponent && (!findEntry(s, opponent) || isLockedDuel(s, opponent))) {
+      setOpponent(null)
+    }
   }
 
   const handleOppChange = (s: SystemId) => {
     if (!findEntry(ourSystem, s)) return
+    if (isLockedDuel(ourSystem, s)) {
+      requestUnlock('systembuch-full')
+      return
+    }
     setOpponent(s)
   }
 
@@ -123,6 +142,7 @@ export function TacticBookDialog({ open, onClose }: Props) {
               onOurSystemChange={handleOurChange}
               opponent={opponent}
               onOpponentChange={handleOppChange}
+              isLocked={(opp) => isLockedDuel(ourSystem, opp)}
             />
           </aside>
           <main

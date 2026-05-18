@@ -33,12 +33,14 @@ reibungsarm.
 - Regressions-Guard `npm run verify-duels` (Schema + Spiegel = harte
   Fails; Bias + Coverage = Report). Browser-Smoke-Test bestanden.
 
-**Monetarisierung (Architektur, P2):**
-- `isPro` im Store (Migration v8→v9, lokal persistiert, NICHT in
-  Backups), `proAccess.ts` (ProFeature/isProFeature/useProStatus/
-  useFeatureAccess), `<FeatureGate>`. Primitive stehen & sind getestet;
-  noch nicht an Call-Sites verdrahtet (bewusst → P3, keine UX-Regression
-  ohne Paywall).
+**Monetarisierung (P2 + P3):**
+- P2: `isPro` im Store (Migration v8→v9, lokal persistiert, NICHT in
+  Backups), `proAccess.ts`, `<FeatureGate>`.
+- P3: `usePaywallStore` + `PaywallDialog` (Wert + 3 Preisstufen,
+  Checkout-Stub → P4) + `useProGuard`. Trigger verdrahtet &
+  browser-verifiziert: Gegen-Ball-Phase, Beste Aufstellung,
+  Wechselplan, Systembuch (3 Schaufenster-Duelle frei, Rest Pro).
+- Offen: nur noch P4 (echter Paddle-Checkout + Lizenz-Validierung).
 
 **Dokumentation:** TODO, Rating-Audit, Migration (archiviert),
 Live-Coaching-Ausbau-Prompt, dieses IST/SOLL — alle auf Live-Stand.
@@ -51,7 +53,7 @@ Live-Coaching-Ausbau-Prompt, dieses IST/SOLL — alle auf Live-Stand.
 | Systembuch-Qualität | auditiert, rebalanciert, konsistent | — | **0** (fertig) |
 | Systembuch-Inhalt | liveCoaching 5–6 (alle 81) | — | **0** (fertig, Audit-Gate 5–6 aktiv) |
 | Marke/Domain | nicht entschieden | Name fix, Domain, Stores geprüft | **S1/E1** offen (No-Code, deine Aufgabe) |
-| Monetarisierung | Feature-Flag-Architektur steht (P2) | Feature-Gates + Paywall + Paddle live | **P3–P4** offen (Paywall-UI + Paddle) |
+| Monetarisierung | Feature-Gates + Paywall live (P2+P3) | + echter Checkout/Lizenz | **P4** offen (Paddle) |
 | Wachstums-Polish | — | Onboarding, Demo-Link, Branding-Footer | **S2/S4/S5** offen |
 | Validierung | KI-Hypothesen | Trainer-Befragung | **S6** offen (No-Code) |
 | Skalierung | 1 Team, DE | Multi-Team, i18n, EN | **Monat 3–4+** (bewusst später) |
@@ -59,17 +61,17 @@ Live-Coaching-Ausbau-Prompt, dieses IST/SOLL — alle auf Live-Stand.
 **Kurz:** Produktkern und Systembuch (Qualität + Inhalt) sind komplett
 am Ziel. Die Distanz zum Umsatz-Ziel ist rein: (1) eine externe
 Marken-Entscheidung (S1, kein Code), (2) der Monetarisierungs-Block
-(P2 erledigt → noch P3 Paywall-UI + P4 Paddle), (3) etwas
-Wachstums-Polish (S2/S4/S5). Inhaltlich ist am Systembuch nichts mehr
-offen.
+(P2 + P3 erledigt → nur noch P4 Paddle: echter Checkout + Lizenz),
+(3) etwas Wachstums-Polish (S2/S4/S5). Inhaltlich ist am Systembuch
+nichts mehr offen.
 
 ## Empfohlener Pfad zum Ziel (kürzeste sinnvolle Linie)
 
 1. **S1 Marken-Check** (du, ~1 h, kein Code) — entsperrt S2 + P1.
 2. **P1 Rebrand** → **S2 Branding-Footer** (Marke vorausgesetzt).
-3. ~~P2 Feature-Flags~~ (erledigt) → **P3 Paywall-UI → P4 Paddle** —
-   der eigentliche Monetarisierungs-Block, größter zusammenhängender
-   Code-Aufwand. P2-Primitive stehen & sind getestet.
+3. ~~P2 Feature-Flags~~ ~~P3 Paywall-UI~~ (erledigt) → **P4 Paddle** —
+   echter Checkout + Lizenz-Validierung; letzter Baustein des
+   Monetarisierungs-Blocks.
 4. **S4 Onboarding + S5 Demo-Link** parallel (Reichweite).
 5. **S6 Trainer-Befragung** (du) validiert Preis/Naming vor P4-Launch.
 6. Danach Skalierung (Multi-Team, i18n, EN) laut Backlog Monat 3–4+.

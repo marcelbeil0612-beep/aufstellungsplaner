@@ -15,6 +15,7 @@ import { Bench } from './components/Bench'
 import { Header } from './components/Header'
 import { IOSInstallHint } from './components/IOSInstallHint'
 import { ImportShareDialog } from './components/ImportShareDialog'
+import { PaywallDialog } from './components/PaywallDialog'
 import { PhaseToggle } from './components/PhaseToggle'
 import { Pitch } from './components/Pitch'
 import { PlayerChipVisual } from './components/PlayerChipVisual'
@@ -247,6 +248,7 @@ export default function App() {
       </div>
 
       <ImportShareDialog payload={sharePayload} onClose={() => setSharePayload(null)} />
+      <PaywallDialog />
 
       {/* Schwebender Chip beim Drag – kein Overflow-Clipping, kein Transform-Kampf. */}
       <DragOverlay
