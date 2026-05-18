@@ -6,8 +6,8 @@ import type {
   SystemId,
   TacticBookEntry,
 } from '../../data/tacticBook'
-import { phaseMeta, phaseOrder, systemLabels } from '../../data/tacticBook'
-import { PhaseHighlighter } from './PhaseHighlighter'
+import { phaseMeta, systemLabels } from '../../data/tacticBook'
+import { DuelTabs, type DuelTab } from './DuelTabs'
 
 type Props = {
   ourSystem: SystemId
@@ -80,7 +80,7 @@ function PhaseCard({ phaseKey, analysis }: { phaseKey: PhaseKey; analysis: Phase
 }
 
 export function DuelDetail({ ourSystem, opponentSystem, entry }: Props) {
-  const [phaseFilter, setPhaseFilter] = useState<PhaseKey | null>(null)
+  const [tab, setTab] = useState<DuelTab>('ownPossession')
 
   if (!opponentSystem) {
     return (
@@ -103,25 +103,6 @@ export function DuelDetail({ ourSystem, opponentSystem, entry }: Props) {
 
   const style = ratingStyle[entry.rating]
 
-  // Coaching-Tools (Live-Coaching + Anpassungen) erscheinen prominent oben —
-  // das ist das, was der Trainer am Spieltag zuerst sieht.
-  const coachingTools = (
-    <div className="grid gap-3 sm:grid-cols-2">
-      <section className="rounded-xl border border-sky-700/50 bg-slate-950/50 p-4">
-        <h4 className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-sky-300">
-          <span aria-hidden>📣</span> Live-Coaching
-        </h4>
-        <BulletList items={entry.liveCoaching} />
-      </section>
-      <section className="rounded-xl border border-indigo-700/50 bg-slate-950/50 p-4">
-        <h4 className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-indigo-300">
-          <span aria-hidden>🔁</span> Mögliche Ingame-Anpassung
-        </h4>
-        <BulletList items={entry.adjustments} />
-      </section>
-    </div>
-  )
-
   return (
     <article className="flex h-full flex-col gap-4 overflow-hidden">
       {/* Kopf */}
@@ -140,17 +121,29 @@ export function DuelDetail({ ourSystem, opponentSystem, entry }: Props) {
       </header>
 
       <div className="shrink-0">
-        <PhaseHighlighter value={phaseFilter} onChange={setPhaseFilter} />
+        <DuelTabs value={tab} onChange={setTab} />
       </div>
 
-      {/* Hauptinhalt */}
+      {/* Hauptinhalt: genau ein Reiter */}
       <div className="flex-1 space-y-3 overflow-y-auto pr-1">
-        {/* Coaching-Tools immer ganz oben */}
-        {coachingTools}
-
-        {phaseOrder
-          .filter((k) => phaseFilter === null || phaseFilter === k)
-          .map((key) => <PhaseCard key={key} phaseKey={key} analysis={entry.phases[key]} />)}
+        {tab === 'coaching' ? (
+          <div className="grid gap-3 sm:grid-cols-2">
+            <section className="rounded-xl border border-sky-700/50 bg-slate-950/50 p-4">
+              <h4 className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-sky-300">
+                <span aria-hidden>📣</span> Live-Coaching
+              </h4>
+              <BulletList items={entry.liveCoaching} />
+            </section>
+            <section className="rounded-xl border border-indigo-700/50 bg-slate-950/50 p-4">
+              <h4 className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-indigo-300">
+                <span aria-hidden>🔁</span> Mögliche Ingame-Anpassung
+              </h4>
+              <BulletList items={entry.adjustments} />
+            </section>
+          </div>
+        ) : (
+          <PhaseCard phaseKey={tab} analysis={entry.phases[tab]} />
+        )}
       </div>
     </article>
   )
