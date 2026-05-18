@@ -180,13 +180,11 @@ Pipeline `scripts/generate-pwa-icons.mjs` (`npm run icons`) erzeugt
 apple-touch / pwa-192 / pwa-512 / maskable-512 / favicon(48/32) nach
 `public/`. index.html + vite.config auf PNG-Favicon umgestellt, alte
 Brand-SVGs entfernt. Browser-verifiziert: App-/PWA-/Maskable-Icons sehr
-gut, Favicon 32 px ok, **16 px zu fein** (verschwimmt). Optionaler
-Nachzug: bolder Favicon-Sondervariante (siehe unten).
+gut. Favicon nutzt eine separate, fette Sondervariante
+(`assets/favicon-source.png`) → bei **16 px klar als „XI" lesbar**
+(32/48 px gestochen). Zwei Markenquellen, ein Pipeline-Skript.
 
 **Offen (kein Code, deine Aufgabe):**
-- Optional: extra-fette Favicon-Variante (nur dickes X/I, keine
-  Pfeil-/Tor-Details) für klare 16-px-Darstellung im Browser-Tab —
-  als `assets/favicon-source.png` liefern, dann Pipeline darauf zeigen.
 - Formale DPMA-Markenanmeldung nach professioneller Markenrecherche
   (`formaxi.it` als bestehende Fußball-Trainingsseite gegenprüfen).
 

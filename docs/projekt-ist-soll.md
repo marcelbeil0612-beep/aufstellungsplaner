@@ -47,10 +47,10 @@ reibungsarm.
   (Titel/Manifest/UI = FormaXI; Storage-IDs bewusst unverändert →
   kein Datenverlust). Logo/App-Icons live: FormaXI-Motiv als
   `assets/icon-source.png`, reproduzierbare Pipeline `npm run icons`
-  → apple-touch/pwa/maskable/favicon. Browser-verifiziert (Favicon
-  16 px fein → optionale bolder Sondervariante als Nachzug).
-- Offen extern: optionale Favicon-Sondervariante + DPMA-Anmeldung
-  nach Profi-Markenrecherche (`formaxi.it` gegenprüfen).
+  → apple-touch/pwa/maskable; Favicon aus separater fetter
+  Sondervariante (bei 16 px klar lesbar). Browser-verifiziert.
+- Offen extern: nur noch DPMA-Anmeldung nach Profi-Markenrecherche
+  (`formaxi.it` gegenprüfen).
 
 **Wachstums-Polish:**
 - S4 Onboarding live: First-Run-Overlay mit drei Schritten, einmalig
