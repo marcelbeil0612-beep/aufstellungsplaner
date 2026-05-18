@@ -5,6 +5,10 @@ ins **Vier-Phasen-Modell**.
 
 **Status: 81 / 81 migriert (100 %) — abgeschlossen ✅**
 
+> Folgearbeiten (2026-05-18): Ratings auditiert (0 Spiegel-Widersprüche)
+> und Bias-rebalanciert, Terminologie vereinheitlicht. Details:
+> `docs/systembuch-rating-audit.md`, Gesamtstand: `docs/projekt-ist-soll.md`.
+
 Alle neun „Unser-System"-Reihen sind vollständig ins 4-Phasen-Schema
 (ownPossession / afterLoss / oppPossession / afterGain mit den vier
 Säulen spaces / advantages / dangers / keyActions) überführt. Die

@@ -1,5 +1,10 @@
 # Systembuch-Migration: 4-Phasen-Modell
 
+> **Status: ABGESCHLOSSEN / ARCHIVIERT (Stand 2026-05-18).** Alle 81
+> Duelle sind migriert, auditiert und rebalanciert. Dieses Dokument
+> bleibt als Provenienz/Vorlage erhalten (Generierungs-Workflow).
+> Aktueller Gesamtstand: `docs/projekt-ist-soll.md`.
+
 Stand: 2026-05-15. Migration der 81 bestehenden Duelle vom alten Sammel-Schema
 ins neue **Vier-Phasen-Modell** (klassische Trainerausbildungs-Logik).
 

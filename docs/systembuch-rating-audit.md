@@ -118,15 +118,50 @@ Entscheidungs-Übersicht (Referenzseite → Spiegel angepasst):
 taktische Substanz erhalten). Danach: **0 harte Widersprüche, 0 weiche
 Asymmetrien** — die komplette 81-Duell-Matrix ist spiegel-konsistent.
 
+## Nachtrag 2026-05-18 · S3 + Q3a + Q1
+
+**S3 — verify-duels CI-fähig:** `npm run verify-duels` führt den Audit
+aus. Harte Fails (Exit ≠ 0): Schema/Säulen-Mengen + Spiegel-
+Widersprüche. Beratende Konsolen-Ausgabe: Coverage `81/81`, Rating-
+Verteilung je Reihe, Bias-Cluster. `missing-duels.md` entfernt
+(Coverage scriptgestützt).
+
+**Q3a — Bias-Rebalance:** Der Bias-Check fand zwei Reihen ohne jede
+Niederlage: 3-5-2 (V7/A2/U0) und 5-3-2 (V2/A7/U0). Ursache war u. a.
+Regel R3 dieses Audits (Spiegel-Konsistenz optimiert, nie Reihen-
+Balance). Fünf Spiegelpaare inhaltlich nachjustiert:
+
+| Paar | neu | Begründung |
+|---|---|---|
+| 3-5-2 / 4-2-3-1 | 3-5-2 `unangenehm`, 4-2-3-1 `vorteilhaft` | wide-forward 4-2-3-1 pinnt die Schienenspieler, 3-5-2 verliert die Mittelfeld-Überzahl |
+| 3-5-2 / 5-4-1 | beide `ausgeglichen` | tiefer 5-4-1-Block schwer zu knacken |
+| 3-5-2 / 4-1-4-1 | beide `ausgeglichen` | 4-1-4-1 breite Achter matchen Schienenspieler |
+| 5-3-2 / 4-3-3 | 5-3-2 `unangenehm`, 4-3-3 `vorteilhaft` | balldominantes 4-3-3 setzt 5-3-2 tief fest |
+| 5-3-2 / 3-4-3 | 5-3-2 `unangenehm`, 3-4-3 `vorteilhaft` | Front drei + Schienenspieler ziehen die Fünferkette breit |
+
+Ergebnis: **keine Bias-Cluster mehr**, jede Reihe V≥1/U≥1, Spiegel-
+Konsistenz erhalten, Audit grün. 4-4-2 bleibt bewusst V1/A2/U6 — die
+flache 4-4-2 ist strukturell die am stärksten exponierte Form; der
+negative Skew ist taktisch realistisch, kein Generierungs-Bias.
+
+**Q1 — Terminologie:** skriptweit vereinheitlicht (Glossar):
+Wingback/Flügelverteidiger → **Schienenspieler**, Rücklage(n) →
+**flacher Rückpass / flache Rückpässe**, „erster Kontakt" → **erster
+Ballkontakt**, Tradeoff-Duell → **Geben-und-Nehmen-Duell**. Die
+R1–R4-Beispiele oben sind sinngemäß zu lesen (alte Begriffe = jetzt
+Glossar-Begriffe).
+
 ## Regressions-Guard
 
-`tacticBook.audit.test.ts` läuft ab jetzt in jeder `npm run test`. Neue
-oder geänderte Duelle, die Struktur oder Spiegel-Logik (harte Ebene)
-verletzen, lassen die Suite fehlschlagen. Weiche Asymmetrien erscheinen
-als `stderr`-Warnung mit vollständiger Liste.
+`tacticBook.audit.test.ts` läuft in jeder `npm run test` /
+`npm run verify-duels`. Harte Verstöße (Schema, Spiegel-Widersprüche)
+lassen die Suite fehlschlagen. Bias-Cluster, weiche Asymmetrien und
+Coverage erscheinen als `stderr`-Ausgabe.
 
 ## Reproduktion
 
 ```
+npm run verify-duels
+# oder ausführlich:
 npx vitest run src/data/tacticBook/tacticBook.audit.test.ts --reporter=verbose
 ```

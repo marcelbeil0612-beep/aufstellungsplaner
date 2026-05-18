@@ -34,9 +34,15 @@ nicht aufdringlich.
 Jeder geteilte PNG ist ab dann Werbung. **Vorbedingung:** Markenname
 aus S1.
 
-### S3 · Verifizierungs-Skript `npm run verify-duels` (2–3 h, Code)
+### S3 · Verifizierungs-Skript `npm run verify-duels` — ERLEDIGT (Commit a4c8d40)
 
-Pure Datenfunktion über `tacticBook`-Array, flaggt:
+`npm run verify-duels` läuft den Audit (`tacticBook.audit.test.ts`):
+Schema + Spiegel-Konsistenz = harte Fails (Exit ≠ 0, CI-fähig),
+Bias-Cluster + Coverage = beratende Konsolen-Ausgabe. `missing-duels.md`
+gelöscht (Coverage jetzt scriptgestützt). E4-Verweis siehe unten.
+
+Ursprüngliche Spezifikation (umgesetzt) — Pure Datenfunktion über
+`tacticBook`-Array, flaggt:
 
 - **Spiegel-Konflikt:** „A vs B = vorteilhaft" UND „B vs A = vorteilhaft" — eines davon ist wahrscheinlich falsch (Trainer-Logik: derselbe Vorteil sieht aus zwei Perspektiven typischerweise umgekehrt aus)
 - **Selbst-Duell-Anomalie:** Spiegel-Duell (z. B. 4-3-3 vs. 4-3-3), das nicht `ausgeglichen` ist
@@ -129,22 +135,21 @@ Risiko der 3-5-2-Außenräume). Der Spiegel-Audit hat das mitverstärkt
 (Regel R3 zog mehrere 3-5-2-Duelle auf `vorteilhaft`); er prüfte
 Spiegel-Konsistenz, nie die Reihen-Balance.
 
-Zwei zu klärende Teilaufgaben:
-
-- **Q3a · Bias-Rebalance:** Nicht nur 3-5-2 — alle neun Reihen
-  systematisch auf Verteilungs-Schieflage prüfen (gehört in S3 als
-  Bias-Cluster-Check: Reihe ohne `unangenehm` bzw. ohne `vorteilhaft`
-  flaggen). Danach inhaltlich entscheiden, welche 3-5-2-Duelle
-  realistisch wieder auf `ausgeglichen`/`unangenehm` müssen (z. B.
-  3-5-2 gegen Systeme, die seine Außenräume gezielt bespielen). Audit-
-  Test muss grün bleiben (Spiegel-Konsistenz erhalten).
-- **Q3b · Vorwort / Erklärseite:** Eigene Intro-Seite im Systembuch,
-  die die Lesart erklärt: Ratings sind **Konstellations-Tendenzen bei
-  sauberer Umsetzung**, kein absolutes System-Ranking; wo das
-  Systembuch greift und wo nicht; wie man es als Trainer einsetzt (und
-  wie nicht). Managt Erwartung und entschärft genau die Frage „warum
-  spielt dann kaum jemand 3-5-2". Platzierung/Trigger (einmaliges
-  Overlay vs. dauerhafter „?"-Reiter) noch offen.
+- **Q3a · Bias-Rebalance — ERLEDIGT (Commit cd7041f):** S3-Bias-Check
+  fand zwei Cluster (3-5-2: V7/A2/U0; 5-3-2: V2/A7/U0 — beide verlieren
+  nie). 5 Spiegelpaare matrix-weit inhaltlich nachjustiert (u. a.
+  3-5-2 jetzt `unangenehm` vs 4-2-3-1, `ausgeglichen` vs 5-4-1/4-1-4-1;
+  5-3-2 `unangenehm` vs 4-3-3/3-4-3). Ergebnis: keine Bias-Cluster
+  mehr, jede Reihe V≥1/U≥1, Spiegel-Konsistenz erhalten, Audit grün.
+  4-4-2 bleibt bewusst negativ-lastig (V1/A2/U6 — strukturell die am
+  stärksten exponierte flache Form, taktisch realistisch). Doku:
+  `docs/systembuch-rating-audit.md`.
+- **Q3b · Vorwort / Erklärseite — ERLEDIGT (Commit 6fb3a99):** Der
+  Leerzustand des Systembuchs ist jetzt die Erklärseite („So liest du
+  das Systembuch") — erklärt Ampel-Lesart (Konstellations-Tendenz bei
+  sauberer Umsetzung, kein absolutes Ranking), Einsatz und Grenzen.
+  Platzierung gelöst: dauerhaft als Standard-Inhalt, bis ein Duell
+  gewählt ist (kein Overlay, null Risiko).
 
 ---
 
@@ -330,7 +335,9 @@ reviewt bestehende Einträge.
 Frage: stimmt Rating, Vorteile/Gefahren konsistent, fehlt etwas?
 Output: Markdown-Bewertung pro Eintrag.
 
-Landet als Prompt-C in `docs/missing-duels.md`.
+Landet als eigener Prompt-Doc in `docs/` (Muster:
+`docs/livecoaching-ausbau-prompt.md`). Hinweis: `missing-duels.md`
+wurde entfernt (Coverage jetzt via `npm run verify-duels`).
 
 ---
 
@@ -353,7 +360,12 @@ In neuer Session:
   Schnellstart-Block (S1–S6) als nächste 14 Tage definiert.
 - **2026-05-18:** Systembuch-Migration (81/81) + Legacy-Cleanup +
   Rating-Audit (0 Widersprüche, voll spiegel-konsistent) + Browser-
-  Smoke-Test abgeschlossen. Qualität/UX-Block ergänzt: Q1
-  (Terminologie-Vereinheitlichung), Q2 (Reiter „Coaching" + Live-
-  Coaching-Ausbau 5–6, Tab-Design entschieden: „Alles" entfällt),
-  Q3 (Bias-Cluster 3-5-2 / Rating-Realismus + Systembuch-Vorwort).
+  Smoke-Test abgeschlossen. Qualität/UX-Block ergänzt (Q1/Q2/Q3).
+- **2026-05-18 (Folge):** S3 erledigt (verify-duels CI-fähig +
+  Bias-Check + Coverage, missing-duels.md entfernt). Q3a erledigt
+  (Bias-Cluster 3-5-2 + 5-3-2 matrix-weit rebalanciert). Q1 erledigt
+  (Terminologie skriptweit vereinheitlicht, Glossar). Q2-UI erledigt
+  (DuelTabs, „Alles" raus, „Im Spiel"-Reiter). Q2-Content bewusst
+  deferred mit Mechanismus (`docs/livecoaching-ausbau-prompt.md`,
+  Audit-Gate 1–3→5–6). Q3b erledigt (Vorwort/Erklärseite im
+  Leerzustand). Projekt-IST/SOLL: `docs/projekt-ist-soll.md`.
