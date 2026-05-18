@@ -22,6 +22,7 @@ import { PaywallDialog } from './components/PaywallDialog'
 import { PhaseToggle } from './components/PhaseToggle'
 import { Pitch } from './components/Pitch'
 import { PlayerChipVisual } from './components/PlayerChipVisual'
+import { activateFromStoredLicense } from './lib/proActivation'
 import { isDemoHash } from './data/demoLineup'
 import { formationById } from './data/formations'
 import { positionLabel, positionShort } from './data/positionWeights'
@@ -72,6 +73,11 @@ export default function App() {
     else if (payload) setSharePayload(payload)
     const cleanUrl = window.location.pathname + window.location.search
     window.history.replaceState(null, '', cleanUrl)
+  }, [])
+
+  // Gespeicherte Pro-Lizenz beim Start prüfen und ggf. freischalten.
+  useEffect(() => {
+    void activateFromStoredLicense()
   }, [])
 
   const handleShare = async () => {

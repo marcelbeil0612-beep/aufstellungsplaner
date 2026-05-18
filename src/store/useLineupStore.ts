@@ -55,6 +55,12 @@ type State = {
    * – sonst ließe sich Pro durch Teilen einer JSON-Datei umgehen.
    */
   isPro: boolean
+  /**
+   * Signierter Pro-Lizenz-Token (oder null). Lokal/Backup-portierbar
+   * (das ist der legitime „Kauf wiederherstellen“-Weg, kryptografisch
+   * gebunden). `isPro` wird daraus abgeleitet, nicht roh übertragen.
+   */
+  license: string | null
 }
 
 type Actions = {
@@ -146,6 +152,9 @@ type Actions = {
    * (P4) gesetzt; vorerst der einzige Schreibpfad auf `isPro`.
    */
   setProStatus: (isPro: boolean) => void
+
+  /** Setzt den Lizenz-Token (oder null) – persistiert. */
+  setLicense: (token: string | null) => void
 }
 
 const emptyAssignments = (slotIds: string[]): Assignments =>
@@ -162,7 +171,7 @@ const newId = (): string => {
  * Backups die Version mitschreiben und beim Import durch dieselbe Migrations-
  * Kette wie der reguläre Persist-Pfad laufen können.
  */
-export const STORE_VERSION = 10
+export const STORE_VERSION = 11
 
 /**
  * Reine Migrationsfunktion. Wird sowohl im `persist({ migrate })`-Hook als auch
@@ -224,6 +233,10 @@ export function migratePersistedState(
       withoutBall: sanitizePhaseShape(raw.withoutBall, defaultPhaseShape.withoutBall),
     }
   }
+  // v10 → v11: Pro-Lizenz-Token (signiert). Bestehende ohne Lizenz.
+  if (fromVersion < 11) {
+    if (typeof s.license !== 'string') s.license = null
+  }
   return s
 }
 
@@ -245,6 +258,7 @@ export const useLineupStore = create<State & Actions>()(
       substitutions: [],
       matches: [],
       isPro: false,
+      license: null,
 
       setFormation: (id) => {
         const oldFormation = formationById(get().formationId)
@@ -650,6 +664,7 @@ export const useLineupStore = create<State & Actions>()(
           withBall: sanitizePhaseShape(rawShape.withBall, defaultPhaseShape.withBall),
           withoutBall: sanitizePhaseShape(rawShape.withoutBall, defaultPhaseShape.withoutBall),
         }
+        const safeLicense = typeof snapshot.license === 'string' ? snapshot.license : null
         const safeSubstitutions: Substitution[] = Array.isArray(snapshot.substitutions)
           ? (snapshot.substitutions as Substitution[])
           : []
@@ -692,6 +707,7 @@ export const useLineupStore = create<State & Actions>()(
           activeLineupId: safeActiveId,
           phase: safePhase,
           phaseShape: safePhaseShape,
+          license: safeLicense,
           players: mergedPlayers,
           playerListIsUserManaged: userManaged,
           substitutions: safeSubstitutions,
@@ -702,6 +718,8 @@ export const useLineupStore = create<State & Actions>()(
       setLastViewedDuel: (duel) => set({ lastViewedDuel: duel }),
 
       setProStatus: (isPro) => set({ isPro }),
+
+      setLicense: (token) => set({ license: token }),
     }),
     {
       name: 'aufstellungsplaner:v1',
@@ -723,6 +741,7 @@ export const useLineupStore = create<State & Actions>()(
         substitutions: state.substitutions,
         matches: state.matches,
         isPro: state.isPro,
+        license: state.license,
       }),
       migrate: (persistedStateUnknown, version) =>
         migratePersistedState(persistedStateUnknown, version),

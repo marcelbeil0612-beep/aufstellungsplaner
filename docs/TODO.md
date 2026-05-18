@@ -266,17 +266,36 @@ Schaufenster-Duelle öffnen normal; mit `isPro=true` (per IndexedDB
 gesetzt) alle Schlösser weg, alle Features frei; 390px ohne Overflow,
 0 Console-Errors. test 39/39, tsc 0, build ✓.
 
-### P4 · Paddle-Integration (1–2 Tage)
+### P4 · Paddle-Integration — CODE ERLEDIGT (2026-05-18), env-gesteuert
 
-- Paddle-Account anlegen
-- Produkt + 3 Preisstufen (Jahr / Monat / Lifetime) konfigurieren
-- Paddle Checkout-Overlay einbinden
-- License-Key-Empfang per Mail (Paddle macht das)
-- License-Key-Eingabefeld in der App
-- Vercel-Endpoint `/api/validate-license`: HMAC-Validierung gegen Server-Secret
-- License-Status persistent in IndexedDB, 90 Tage offline-gültig
+Umgesetzt (sandbox-ready, Sandbox→Prod nur Env, kein Code-Umbau):
+- Paddle.js per CDN (`src/lib/paddle.ts`), Checkout-Overlay an die 3
+  Paywall-Pläne verdrahtet (`purchaseAndActivate`).
+- **Asymmetrische Lizenz (ECDSA P-256):** Server signiert
+  (`server/licenseSign.mjs`), Client verifiziert offline mit Public Key
+  (`src/lib/license.ts`) → kein Secret im Frontend.
+- Vercel-Functions: `api/issue-license.mjs` (Paddle-Transaktion prüfen →
+  Token), `api/refresh-license.mjs` (Abo verlängern / 410 bei Kündigung),
+  `api/paddle-webhook.mjs` (Signaturprüfung; Lifecycle-Ausbau später).
+- Store: `license`-Token persistiert (Migration v10→v11, in Backup),
+  `proActivation.ts` (Start-Aktivierung, Einlösen, Kauf→Pro);
+  90-Tage-Offline-Karenz (`LICENSE_GRACE_DAYS`).
+- PaywallDialog: echter Checkout **oder** Graceful-Stub (ohne Env),
+  „Lizenzschlüssel einlösen“-Feld. Browser-verifiziert: Stub + Einlösen
+  eines signierten Test-Tokens → Pro, über Reload persistent.
+- Konfig via `.env`/Vercel-Env (`.env.example`), `.env` gitignored,
+  Keypair via `scripts/gen-license-keys.mjs`.
+- test 54/54, tsc 0, build ✓.
 
-Alternative falls Paddle nicht passt: LemonSqueezy (ähnliches Modell).
+**Offen (deine Aufgabe, kein Code):** in Paddle-Sandbox Produkt + 3
+Preise anlegen → Price-IDs; Client-Token; API-Key + Webhook-Secret;
+Keypair erzeugen; alle Werte in Vercel-Env eintragen; Sandbox-
+Testkauf; danach Prod-Env + Go-live-Checklist + Payout-Daten.
+Webhook-URL: `https://formaxi.de/api/paddle-webhook`.
+
+Hinweis: Abo-Sofort-Kündigung wird (noch) nicht serverseitig
+gepusht — `refresh-license` + 90-Tage-Karenz deckt den Fall ab;
+voller Webhook-Lifecycle = optionaler späterer Ausbau.
 
 ---
 
@@ -516,3 +535,15 @@ In neuer Session:
   ergänzt; SW-`navigateFallbackDenylist` für die Pfade. build/test
   grün; Live-Verifizierung der sauberen URLs nach Deploy. Offen vom
   Nutzer: echte Impressumsdaten; P4-Sandbox-Bau kann starten.
+- **2026-05-18 (Folge 11):** Paddle KYB **verifiziert**. Echte
+  Impressumsdaten eingesetzt (Marcel Beil, Memmingen,
+  marcelbeil0612@gmail.com); Nutzer ist **§19-Kleinunternehmer ohne
+  USt-IdNr** → §27a-Zeile entfernt, MoR-USt-Wording, live geprüft.
+  **P4 Code komplett** (env-gesteuert, sandbox-ready): Paddle.js-
+  Checkout, ECDSA-Lizenz (Server signiert / Client verifiziert offline),
+  `api/issue-license|refresh-license|paddle-webhook`, Store-
+  Lizenz-Persistenz (v10→v11) + 90-Tage-Karenz, PaywallDialog mit
+  Einlösen + Graceful-Stub. Browser-verifiziert (Stub + Token-Einlösen
+  → Pro, persistent). test 54/54, tsc 0, build ✓. Offen: nur noch
+  Nutzer-Aufgaben (Paddle-Produkt/Preise/Token/Secrets in Vercel-Env,
+  Sandbox-Testkauf, dann Prod/Go-live).

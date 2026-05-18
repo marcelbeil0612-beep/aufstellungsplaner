@@ -48,10 +48,16 @@ korrekter Build verifiziert) — installierbare PWA, weltweit erreichbar.
   Checkout-Stub → P4) + `useProGuard`. Trigger verdrahtet &
   browser-verifiziert: Gegen-Ball-Phase, Beste Aufstellung,
   Wechselplan, Systembuch (3 Schaufenster-Duelle frei, Rest Pro).
-- Rechts-/Infoseiten live-fähig: `/preise /agb /datenschutz /widerruf
-  /impressum` (statisch, `cleanUrls`, Footer-verlinkt; Impressumsdaten
-  als Platzhalter). Paddle gewählt, KYB läuft.
-- Offen: P4 (Paddle-Sandbox-Integration baubar) + echte Impressumsdaten.
+- Rechts-/Infoseiten live: `/preise /agb /datenschutz /widerruf
+  /impressum` (statisch, `cleanUrls`, Footer-verlinkt, echte Daten,
+  §19-Kleinunternehmer). Paddle KYB **verifiziert**.
+- **P4 Code komplett** (env-gesteuert, sandbox-ready): Paddle.js-
+  Checkout, ECDSA-Lizenz (Server signiert / Client verifiziert offline),
+  `api/issue-license|refresh-license|paddle-webhook`, Store-Lizenz
+  (v10→v11) + 90-Tage-Karenz, PaywallDialog mit Einlösen + Graceful-
+  Stub. Browser-verifiziert.
+- Offen: **nur noch Nutzer-Config** (Paddle-Produkt/Preise/Token/
+  Secrets in Vercel-Env, Sandbox-Testkauf, dann Prod/Go-live).
 
 **Marke (S1/P1):**
 - Name = **FormaXI**, `formaxi.de` gesichert. Rebrand live
@@ -84,7 +90,7 @@ Live-Coaching-Ausbau-Prompt, dieses IST/SOLL — alle auf Live-Stand.
 | Systembuch-Qualität | auditiert, rebalanciert, konsistent | — | **0** (fertig) |
 | Systembuch-Inhalt | liveCoaching 5–6 (alle 81) | — | **0** (fertig, Audit-Gate 5–6 aktiv) |
 | Marke/Domain | FormaXI fix, formaxi.de gesichert, Rebrand live | + Logo + DPMA-Anmeldung | **extern** (Grafik + Anwalt) |
-| Monetarisierung | Feature-Gates + Paywall live (P2+P3) | + echter Checkout/Lizenz | **P4** offen (Paddle) |
+| Monetarisierung | P2+P3 + P4-Code (Checkout/Lizenz) komplett | Paddle-Produkt/Env + Go-live | **nur Nutzer-Config** |
 | Wachstums-Polish | Onboarding + Demo-Link + Branding-Footer live | — | **0** (fertig) |
 | Validierung | KI-Hypothesen | Trainer-Befragung | **S6** offen (No-Code) |
 | Skalierung | 1 Team, DE | Multi-Team, i18n, EN | **Monat 3–4+** (bewusst später) |

@@ -17,6 +17,7 @@ type BackupPayload = {
     players: unknown[]
     phase: Phase
     phaseShape?: unknown
+    license?: unknown
     lastViewedDuel?: unknown
     playerListIsUserManaged?: boolean
     substitutions?: unknown[]
@@ -40,6 +41,7 @@ export function exportBackupBlob(): Blob {
       players: s.players,
       phase: s.phase,
       phaseShape: s.phaseShape,
+      license: s.license,
       lastViewedDuel: s.lastViewedDuel,
       playerListIsUserManaged: s.playerListIsUserManaged,
       substitutions: s.substitutions,
