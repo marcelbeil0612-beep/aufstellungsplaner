@@ -98,21 +98,56 @@ je Konzept), dann skriptweit konsistent ersetzen. Audit-Test
 Platzhalter). Synergie mit S3: der verify-duels-Lint kann verbotene
 Begriffe künftig automatisch flaggen (Forbidden-Term-Check ergänzen).
 
-### Q2 · Eigener Reiter „Im Spiel" + Live-Coaching-Ausbau
+### Q2 · Reiter „Coaching" + Live-Coaching-Ausbau
 
-UI-Umbau in `DuelDetail.tsx`: Live-Coaching und „Mögliche
-Ingame-Anpassung" aus der Phasen-Detailansicht herauslösen und in einen
-**eigenen Tab** bündeln. Tab-Name: „Im Spiel" oder „Live".
+**Tab-Design entschieden:** Der `PhaseHighlighter` wird von „Filter mit
+‚Alles'-Option" zu einem echten 5-Tab-Selektor umgebaut:
+
+- **„Alles" entfällt** (redundant — zeigte nur alle vier Phasen
+  gestapelt).
+- Tabs: `Eigener Ballbesitz` · `Nach Ballverlust` · `Gegen den Ball` ·
+  `Nach Ballgewinn` · **`Coaching`** (neuer 5. Tab am Ende).
+- Jeder Tab zeigt genau einen Inhalt: die vier Phasen je ihre
+  PhaseCard, der `Coaching`-Tab die zwei Boxen **Live-Coaching** +
+  **Mögliche Ingame-Anpassung**.
+- Diese zwei Boxen werden aus der dauerhaft oben gerenderten
+  `coachingTools`-Position in `DuelDetail.tsx` **entfernt** und
+  erscheinen nur noch im `Coaching`-Tab. Default-Tab: erste Phase
+  (Eigener Ballbesitz) bzw. zuletzt gewählter.
 
 - **Content:** `liveCoaching` pro Duell von aktuell 1–3 auf **5–6
   Anweisungen** ausbauen (alle 81, KI-gestützt wie die Migration; Pilot-
   Anker `4-3-3 vs 4-4-2`, gleicher Workflow wie Systembuch-Migration).
 - **Abhängigkeit:** Audit-Test prüft `liveCoaching` aktuell auf 1–3 →
   Spanne auf 5–6 anpassen, sonst schlägt die Suite fehl.
-- **Offen / zu klären:** Kommt der „Im Spiel"-Tab als Umschalter *neben*
-  einem „Phasen"-Tab (= faktisch wieder ein View-Switch in
-  `DuelDetail`, der früher bewusst entfernt wurde)? Bewusste
-  Designentscheidung vor Implementierung.
+
+### Q3 · Rating-Realismus (Bias-Cluster) + Systembuch-Vorwort/Erklärseite
+
+**Befund (2026-05-18):** Die 3-5-2-Reihe ist 7× `vorteilhaft`, 2×
+`ausgeglichen`, **0× `unangenehm`** — das 3-5-2 verliert kein einziges
+Duell. Spiegel bestätigt: 7 Systeme bewerten sich `unangenehm` gegen
+das 3-5-2. Das ist ein Bias-Cluster: das Modell bildet Lehrbuch-
+Strukturvorteile ab, nicht Spielrealität (Ausführung, Spielerqualität,
+Risiko der 3-5-2-Außenräume). Der Spiegel-Audit hat das mitverstärkt
+(Regel R3 zog mehrere 3-5-2-Duelle auf `vorteilhaft`); er prüfte
+Spiegel-Konsistenz, nie die Reihen-Balance.
+
+Zwei zu klärende Teilaufgaben:
+
+- **Q3a · Bias-Rebalance:** Nicht nur 3-5-2 — alle neun Reihen
+  systematisch auf Verteilungs-Schieflage prüfen (gehört in S3 als
+  Bias-Cluster-Check: Reihe ohne `unangenehm` bzw. ohne `vorteilhaft`
+  flaggen). Danach inhaltlich entscheiden, welche 3-5-2-Duelle
+  realistisch wieder auf `ausgeglichen`/`unangenehm` müssen (z. B.
+  3-5-2 gegen Systeme, die seine Außenräume gezielt bespielen). Audit-
+  Test muss grün bleiben (Spiegel-Konsistenz erhalten).
+- **Q3b · Vorwort / Erklärseite:** Eigene Intro-Seite im Systembuch,
+  die die Lesart erklärt: Ratings sind **Konstellations-Tendenzen bei
+  sauberer Umsetzung**, kein absolutes System-Ranking; wo das
+  Systembuch greift und wo nicht; wie man es als Trainer einsetzt (und
+  wie nicht). Managt Erwartung und entschärft genau die Frage „warum
+  spielt dann kaum jemand 3-5-2". Platzierung/Trigger (einmaliges
+  Overlay vs. dauerhafter „?"-Reiter) noch offen.
 
 ---
 
@@ -321,6 +356,7 @@ In neuer Session:
   Schnellstart-Block (S1–S6) als nächste 14 Tage definiert.
 - **2026-05-18:** Systembuch-Migration (81/81) + Legacy-Cleanup +
   Rating-Audit (0 Widersprüche, voll spiegel-konsistent) + Browser-
-  Smoke-Test abgeschlossen. Q1 (Formulierungs-/Terminologie-
-  Vereinheitlichung) und Q2 (Reiter „Im Spiel" + Live-Coaching-Ausbau
-  5–6) als Qualität/UX-Block ergänzt.
+  Smoke-Test abgeschlossen. Qualität/UX-Block ergänzt: Q1
+  (Terminologie-Vereinheitlichung), Q2 (Reiter „Coaching" + Live-
+  Coaching-Ausbau 5–6, Tab-Design entschieden: „Alles" entfällt),
+  Q3 (Bias-Cluster 3-5-2 / Rating-Realismus + Systembuch-Vorwort).
