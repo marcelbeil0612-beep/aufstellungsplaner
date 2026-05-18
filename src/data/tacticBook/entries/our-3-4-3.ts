@@ -771,9 +771,9 @@ export const entriesOur343: TacticBookEntry[] = [
     id: '3-4-3_vs_5-3-2',
     ourSystem: '3-4-3',
     opponentSystem: '5-3-2',
-    rating: 'ausgeglichen',
+    rating: 'vorteilhaft',
     character:
-      'Ausgeglichenes Kontrolle-gegen-Konter-Duell: ihr 5-3-2 verteidigt Zentrum und Strafraum sehr kompakt, wir gewinnen aber über Front drei und Wingbacks Territorium und Breite. Schlüsselraum sind die Halbräume neben ihren äußeren Innenverteidigern, Schlüsselrisiko sind schnelle Konter auf ihre zwei Spitzen nach Ballverlusten in hoher Wingback-Position.',
+      'Vorteilhaftes Duell, weil wir ihr 5-3-2 mit Front drei und hohen Wingbacks breit auseinanderziehen und Territorium gewinnen, auch wenn sie Zentrum und Strafraum kompakt verteidigen. Schlüsselraum sind die Halbräume neben ihren äußeren Innenverteidigern, Schlüsselrisiko sind schnelle Konter auf ihre zwei Spitzen nach Ballverlusten in hoher Wingback-Position.',
     phases: {
       ownPossession: {
         spaces: [

@@ -127,9 +127,9 @@ export const entriesOur532: TacticBookEntry[] = [
     id: '5-3-2_vs_4-3-3',
     ourSystem: '5-3-2',
     opponentSystem: '4-3-3',
-    rating: 'ausgeglichen',
+    rating: 'unangenehm',
     character:
-      'Wir stehen stabil gegen die erste Linie und können mit zwei Spitzen direkt kontern. Kritisch wird es, wenn ihre Flügel unsere Wingbacks dauerhaft binden.',
+      'Unangenehmes Duell, weil ihr balldominantes 4-3-3 uns mit Flügelbreite tief festsetzt und wir kaum Entlastung finden. Schlüsselvorteil ist unsere Stabilität gegen ihre erste Linie mit zwei Konterspitzen, Schlüsselrisiko sind ihre Flügel, wenn sie unsere Wingbacks dauerhaft binden.',
     phases: {
       ownPossession: {
         spaces: [
@@ -627,9 +627,9 @@ export const entriesOur532: TacticBookEntry[] = [
     id: '5-3-2_vs_3-4-3',
     ourSystem: '5-3-2',
     opponentSystem: '3-4-3',
-    rating: 'ausgeglichen',
+    rating: 'unangenehm',
     character:
-      'Ausgeglichenes Duell, weil ihre Front drei unsere letzte Linie breit bindet, unsere kompakte Fünferkette mit zwei Konterspitzen aber stabil dagegenhält. Schlüsselraum sind die Halbräume neben unseren Innenverteidigern, Schlüsselrisiko ist das breite Auseinanderziehen unserer Kette durch ihre Wingbacks.',
+      'Unangenehmes Duell, weil ihre Front drei und hohen Wingbacks unsere Fünferkette breit auseinanderziehen und uns tief festsetzen. Schlüsselvorteil sind unsere zwei Konterspitzen, Schlüsselrisiko ist das breite Auseinanderziehen unserer Kette durch ihre Wingbacks und Außenstürmer.',
     phases: {
       ownPossession: {
         spaces: [

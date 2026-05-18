@@ -259,9 +259,9 @@ export const entriesOur4231: TacticBookEntry[] = [
     id: '4-2-3-1_vs_3-5-2',
     ourSystem: '4-2-3-1',
     opponentSystem: '3-5-2',
-    rating: 'unangenehm',
+    rating: 'vorteilhaft',
     character:
-      'Unangenehmes Duell, weil ihre Wingbacks unsere Außenverteidiger binden und ihre zwei Spitzen unsere Innenverteidiger dauerhaft beschäftigen. Schlüsselraum ist der Bereich hinter ihren Wingbacks, Schlüsselrisiko ist unser Zentrum, wenn Zehner und Doppelsechs gegen ihre drei Mittelfeldspieler nicht kompakt bleiben.',
+      'Vorteilhaftes Duell, weil unsere breiten Flügel und der Zehner ihre Wingbacks tief drücken und ihnen die zentrale Überzahl nehmen. Schlüsselraum ist der Bereich hinter ihren Wingbacks, Schlüsselrisiko ist unser Zentrum, wenn Zehner und Doppelsechs gegen ihre drei Mittelfeldspieler nicht kompakt bleiben.',
     phases: {
       ownPossession: {
         spaces: [

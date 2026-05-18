@@ -261,9 +261,9 @@ export const entriesOur352: TacticBookEntry[] = [
     id: '3-5-2_vs_4-2-3-1',
     ourSystem: '3-5-2',
     opponentSystem: '4-2-3-1',
-    rating: 'vorteilhaft',
+    rating: 'unangenehm',
     character:
-      'Vorteilhaftes Duell, weil unsere Wingbacks ihre Außenverteidiger binden und unsere zwei Spitzen ihre Innenverteidiger dauerhaft beschäftigen, während unser zentrales Dreieck Stabilität gibt. Schlüsselraum ist der Bereich neben ihrer Doppelsechs, Schlüsselrisiko sind Kombinationen aus Außenverteidiger und Flügel gegen unsere Wingbacks.',
+      'Unangenehmes Duell, weil ihre breiten Flügel und der Zehner unsere Wingbacks tief binden und uns die zentrale Mittelfeld-Überzahl nehmen. Schlüsselraum ist der Bereich neben ihrer Doppelsechs, Schlüsselrisiko sind Kombinationen aus Außenverteidiger und Flügel gegen unsere tief gedrückten Wingbacks.',
     phases: {
       ownPossession: {
         spaces: [
@@ -902,9 +902,9 @@ export const entriesOur352: TacticBookEntry[] = [
     id: '3-5-2_vs_5-4-1',
     ourSystem: '3-5-2',
     opponentSystem: '5-4-1',
-    rating: 'vorteilhaft',
+    rating: 'ausgeglichen',
     character:
-      'Vorteilhaftes Geduldsspiel, weil wir mit drei Zentrumsspielern, zwei Spitzen und dauerhafter Wingback-Breite viel Präsenz gegen ihren tiefen Block haben. Schlüsselraum ist der Rückraum vor ihrer Fünferkette, Schlüsselrisiko sind zu frühe Flanken und Konter über ihren einzelnen Zielspieler.',
+      'Ausgeglichenes Geduldsspiel: wir haben mit drei Zentrumsspielern, zwei Spitzen und Wingback-Breite viel Präsenz, ihr tiefer Block ist aber sehr schwer zu knacken. Schlüsselraum ist der Rückraum vor ihrer Fünferkette, Schlüsselrisiko sind zu frühe Flanken und Konter über ihren einzelnen Zielspieler.',
     phases: {
       ownPossession: {
         spaces: [
@@ -1031,9 +1031,9 @@ export const entriesOur352: TacticBookEntry[] = [
     id: '3-5-2_vs_4-1-4-1',
     ourSystem: '3-5-2',
     opponentSystem: '4-1-4-1',
-    rating: 'vorteilhaft',
+    rating: 'ausgeglichen',
     character:
-      'Vorteilhaftes Duell, weil unsere Wingbacks ihre Außenverteidiger binden und unsere zwei Spitzen ihre Viererkette mit einzelnem Sechser unter Druck setzen, trotz ihrer kompakten Mittelfeldlinie. Schlüsselraum ist der Bereich neben ihrem Sechser, Schlüsselrisiko ist ihr Sechser bei zweiten Bällen vor der Abwehr.',
+      'Ausgeglichenes Duell: unsere Wingbacks und zwei Spitzen setzen ihre Viererkette mit einzelnem Sechser unter Druck, ihre breiten Achter und die kompakte Mittelfeldlinie halten aber dagegen. Schlüsselraum ist der Bereich neben ihrem Sechser, Schlüsselrisiko ist ihr Sechser bei zweiten Bällen vor der Abwehr.',
     phases: {
       ownPossession: {
         spaces: [

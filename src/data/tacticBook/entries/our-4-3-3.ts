@@ -857,9 +857,9 @@ export const entriesOur433: TacticBookEntry[] = [
     id: '4-3-3_vs_5-3-2',
     ourSystem: '4-3-3',
     opponentSystem: '5-3-2',
-    rating: 'ausgeglichen',
+    rating: 'vorteilhaft',
     character:
-      'Wir haben Breite und können ihre Wingbacks binden, müssen aber geduldig bleiben und den Rückraum sauber besetzen. Schlüsselraum ist die Außenbahn gegen ihre Wingbacks, Schlüsselrisiko sind Konter über ihre zwei Spitzen in den Raum hinter unseren Außenverteidigern.',
+      'Vorteilhaftes Duell, weil wir mit Breite und Ballbesitz ihr 5-3-2 tief festsetzen und ihre Wingbacks binden, wenn wir geduldig bleiben und den Rückraum sauber besetzen. Schlüsselraum ist die Außenbahn gegen ihre Wingbacks, Schlüsselrisiko sind Konter über ihre zwei Spitzen in den Raum hinter unseren Außenverteidigern.',
     phases: {
       ownPossession: {
         spaces: [

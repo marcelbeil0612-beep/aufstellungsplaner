@@ -499,9 +499,9 @@ export const entriesOur541: TacticBookEntry[] = [
     id: '5-4-1_vs_3-5-2',
     ourSystem: '5-4-1',
     opponentSystem: '3-5-2',
-    rating: 'unangenehm',
+    rating: 'ausgeglichen',
     character:
-      'Ihre drei Zentrumsspieler können unsere Mitte überladen. Wir brauchen enge Abstände und klare Konterwege hinter ihre Wingbacks.',
+      'Ausgeglichenes Duell, weil ihre drei Zentrumsspieler unsere Mitte überladen können, unser tiefer Block das aber kompakt abfängt. Schlüsselraum sind die Konterwege hinter ihre Wingbacks, Schlüsselrisiko ist zu weiter Abstand in unserer Mitte gegen ihre zentrale Überzahl.',
     phases: {
       ownPossession: {
         spaces: [

@@ -513,9 +513,9 @@ export const entriesOur4141: TacticBookEntry[] = [
     id: '4-1-4-1_vs_3-5-2',
     ourSystem: '4-1-4-1',
     opponentSystem: '3-5-2',
-    rating: 'unangenehm',
+    rating: 'ausgeglichen',
     character:
-      'Unangenehmes Duell, weil ihr 3-5-2 mit Dreierkette ruhig aufbauen und über Wingbacks Breite erzeugen kann. Schlüsselraum sind die Außenbahnen gegen ihre Wingbacks, Schlüsselrisiko sind direkte Bälle auf ihre zwei Spitzen, wenn unsere Außenverteidiger allein herausgezogen werden.',
+      'Ausgeglichenes Duell, weil ihr 3-5-2 über die Dreierkette ruhig aufbaut und über Wingbacks Breite erzeugt, unsere breiten Achter und der Sechser das aber kontrollieren. Schlüsselraum sind die Außenbahnen gegen ihre Wingbacks, Schlüsselrisiko sind direkte Bälle auf ihre zwei Spitzen, wenn unsere Außenverteidiger allein herausgezogen werden.',
     phases: {
       ownPossession: {
         spaces: [
