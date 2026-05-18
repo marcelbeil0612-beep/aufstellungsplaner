@@ -25,14 +25,12 @@ Kandidaten zum Prüfen: **TactoXI**, **PitchLogic**, **Matchplan** + 2 eigene.
 
 Output: Tabelle „verfügbar / kollidiert / fragwürdig" → Entscheidung.
 
-### S2 · PNG-Branding-Footer (30 Min, Code)
+### S2 · PNG-Branding-Footer — ERLEDIGT (2026-05-18)
 
-In `src/lib/exportLineup.ts` einen dezenten Footer-Streifen unten im
-PNG einfügen: „Erstellt mit [Markenname] · [URL]". Hellgrauer Text,
-nicht aufdringlich.
-
-Jeder geteilte PNG ist ab dann Werbung. **Vorbedingung:** Markenname
-aus S1.
+In `src/lib/exportLineup.ts` ergänzt: dezente, halbtransparente Pille
+„Erstellt mit FormaXI · formaxi.de" in der unteren rechten Ecke
+(bewusst Ecke statt Mitte, kollidiert sonst mit dem tief stehenden
+Torwart-Label). Wirkt auf jedem geteilten/exportierten PNG als Werbung.
 
 ### S3 · Verifizierungs-Skript `npm run verify-duels` — ERLEDIGT (Commit a4c8d40)
 
@@ -162,16 +160,24 @@ Spiegel-Konsistenz, nie die Reihen-Balance.
 
 ## 🟡 Nach Schnellstart: Pro-System (Monat 2)
 
-### P1 · Marken-Rebrand (1 h Code + Design)
+### P1 · Marken-Rebrand — ERLEDIGT (Code-Teil, 2026-05-18)
 
-Logo, Favicon, App-Name in:
-- `package.json` (name)
-- `vite.config.ts` (PWA-Manifest-name)
-- `index.html` (Titel + Meta)
-- `public/manifest.webmanifest`
-- Alle UI-Stellen mit dem alten Namen
+Marke = **FormaXI** (Domain `formaxi.de` gesichert). Umbenannt:
+`package.json`+`package-lock.json` (name → formaxi), `vite.config.ts`
+(PWA-Manifest name/short_name/description), `index.html`
+(Titel + Meta-Description + apple-mobile-web-app-title), Header-H1.
+**Bewusst NICHT umbenannt** (Storage-/Format-IDs — Umbenennen =
+Datenverlust bei Bestandsnutzern): Persist-Key `aufstellungsplaner:v1`,
+IndexedDB `aufstellungsplaner-db`/`-photos`, Backup-MAGIC
+`aufstellungsplaner-backup`, localStorage-Keys (iOS-Hint/Onboarding).
+Browser-verifiziert: Titel/H1 = FormaXI, Bestandsdaten (16 Spieler,
+isPro) überleben den Rebrand, 0 Console-Errors. test 47/47, tsc 0,
+build ✓.
 
-**Vorbedingung:** Marken-Check (S1) abgeschlossen, Kandidat fix.
+**Offen (kein Code, separat):** Logo-/Favicon-/PWA-Icon-*Grafik*
+(aktuell Default-Assets) + formale DPMA-Markenanmeldung nach
+professioneller Markenrecherche (Hinweis: `formaxi.it` als bestehende
+Fußball-Trainingsseite gegenprüfen lassen).
 
 ### P2 · Feature-Flag-Architektur — ERLEDIGT (2026-05-18)
 
@@ -438,3 +444,12 @@ In neuer Session:
   bestanden. test 47/47, tsc 0, build ✓. S2+S5 (Wachstums-Polish):
   S5 erledigt, S2 wartet weiter auf Markenname. Offener Code-Pfad:
   P4 Paddle (extern blockiert: Paddle-Account + S1 Marke).
+- **2026-05-18 (Folge 7):** S1 entschieden — Marke = **FormaXI**,
+  `formaxi.de` gesichert. P1 Rebrand (Code-Teil) + S2 Branding-Footer
+  erledigt: Anzeige-/Metadaten-Strings → FormaXI, Storage-/Format-IDs
+  bewusst unverändert (kein Datenverlust, browser-verifiziert: 16
+  Spieler + isPro überleben), dezenter PNG-Footer „Erstellt mit
+  FormaXI · formaxi.de" unten rechts. test 47/47, tsc 0, build ✓.
+  Rest extern: Logo-Grafik + DPMA-Anmeldung nach Profi-Recherche
+  (`formaxi.it` gegenprüfen). Einziger offener Code-Block: P4 Paddle
+  (braucht Paddle-Account; P4a-Lizenz-Mechanik wäre vorab baubar).

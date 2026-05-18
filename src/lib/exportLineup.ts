@@ -333,6 +333,30 @@ export async function renderLineupPng(input: ExportInput): Promise<Blob> {
     ctx.restore()
   }
 
+  // Dezenter Marken-Footer: jeder geteilte Export ist zugleich Werbung.
+  // Untere rechte Ecke (freie Rasenfläche, kollidiert nicht mit dem
+  // mittig tief stehenden Torwart-Label), klein & halbtransparent.
+  {
+    ctx.save()
+    const footer = 'Erstellt mit FormaXI · formaxi.de'
+    ctx.font = '20px Inter, system-ui, sans-serif'
+    ctx.textBaseline = 'middle'
+    const tw = ctx.measureText(footer).width
+    const padX = 16
+    const padY = 8
+    const pillW = tw + padX * 2
+    const pillH = 20 + padY * 2
+    const pillX = W - pillW - 16
+    const pillY = H - pillH - 14
+    ctx.fillStyle = 'rgba(0,0,0,0.40)'
+    roundedRect(ctx, pillX, pillY, pillW, pillH, 8)
+    ctx.fill()
+    ctx.fillStyle = 'rgba(255,255,255,0.72)'
+    ctx.textAlign = 'center'
+    ctx.fillText(footer, pillX + pillW / 2, pillY + pillH / 2 + 1)
+    ctx.restore()
+  }
+
   return await new Promise<Blob>((resolve, reject) => {
     canvas.toBlob(
       (blob) => (blob ? resolve(blob) : reject(new Error('Konnte kein PNG erzeugen.'))),

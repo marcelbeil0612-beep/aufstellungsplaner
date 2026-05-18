@@ -10,9 +10,9 @@ export default defineConfig({
       includeAssets: ['favicon.svg', 'apple-touch-icon.png'],
       manifest: {
         id: '/',
-        name: 'Aufstellungsplaner',
-        short_name: 'Aufstellung',
-        description: 'Aufstellungssimulator für die eigene Mannschaft – Drag-and-Drop, Formationen, lokal gespeichert.',
+        name: 'FormaXI – Aufstellung, Wechselplan & Systembuch',
+        short_name: 'FormaXI',
+        description: 'FormaXI: Aufstellung per Drag-and-Drop, Wechselplan und taktisches Systembuch für Trainer – lokal, ohne Cloud.',
         lang: 'de',
         dir: 'ltr',
         theme_color: '#1f6b3a',

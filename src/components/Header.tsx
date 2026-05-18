@@ -31,7 +31,7 @@ export function Header() {
       >
         <div>
           <h1 className="text-xl font-bold text-white sm:text-2xl">
-            Aufstellungsplaner
+            FormaXI
           </h1>
           <p className="text-xs text-slate-400">
             Spieler per Drag-and-Drop aufs Feld ziehen · Formation wählen · Aufstellung wird lokal gespeichert
