@@ -14,13 +14,13 @@ export const entriesOur541: TacticBookEntry[] = [
           'Der Raum hinter ihren Außenverteidigern ist unser wichtigster Entlastungsraum.',
           'Ballferne Seite wird frei, wenn ihr 4-3-3 nach eigenem Druck zur Ballseite schiebt.',
           'Unser einzelner Stürmer braucht Anschluss unter sich, sonst wird jeder Befreiungsball isoliert.',
-          'Halbräume neben ihrer Sechs öffnen sich erst nach klar gesichertem ersten Kontakt.',
-          'Breite Wingbacks können kurze Entlastungsphasen schaffen, müssen aber gegen Gegenpressing abgesichert bleiben.',
+          'Halbräume neben ihrer Sechs öffnen sich erst nach klar gesichertem ersten Ballkontakt.',
+          'Breite Schienenspieler können kurze Entlastungsphasen schaffen, müssen aber gegen Gegenpressing abgesichert bleiben.',
         ],
         advantages: [
           'Konterräume hinter ihren Außenverteidigern sind vorhanden.',
           'Aus der kompakten Grundordnung können wir mit wenigen Pässen viel Raum überspielen.',
-          'Ballferne Wingbacks können nach Verlagerung in Tempo kommen.',
+          'Ballferne Schienenspieler können nach Verlagerung in Tempo kommen.',
         ],
         dangers: [
           'Kaum Entlastung entsteht, wenn der erste Ball unsauber oder ohne Anschluss gespielt wird.',
@@ -33,7 +33,7 @@ export const entriesOur541: TacticBookEntry[] = [
           'Mutige Entlastungsphasen suchen, sobald der erste Kontakt kontrolliert ist.',
           'Ballferne Seite für Konter nutzen.',
           'Nächster Mittelfeldspieler rückt unter den Stürmer für die Ablage nach.',
-          'Wingback startet erst, wenn der erste Pass aus dem Druck gesichert ist.',
+          'Schienenspieler startet erst, wenn der erste Pass aus dem Druck gesichert ist.',
         ],
       },
       afterLoss: {
@@ -45,7 +45,7 @@ export const entriesOur541: TacticBookEntry[] = [
         ],
         advantages: [
           'Unsere letzten zwei Linien können schnell wieder sehr kompakt werden.',
-          'Flügel sind gut schließbar, wenn Wingback und äußerer Mittelfeldspieler sofort zurückfallen.',
+          'Flügel sind gut schließbar, wenn Schienenspieler und äußerer Mittelfeldspieler sofort zurückfallen.',
           'Der tiefe Block gibt klare Orientierung für Rückzugsbewegungen.',
         ],
         dangers: [
@@ -57,21 +57,21 @@ export const entriesOur541: TacticBookEntry[] = [
           'Nach Ballverlust sofort die Mittelfeldkette schließen.',
           'Rückraum vor dem Strafraum zuerst besetzen, dann Druck auf den Ball herstellen.',
           'Ballnaher Mittelfeldspieler blockt den Pass auf ihre Sechs.',
-          'Wingback und äußerer Mittelfeldspieler doppeln den Flügel.',
+          'Schienenspieler und äußerer Mittelfeldspieler doppeln den Flügel.',
           'Stürmer bleibt als Entlastungspunkt und lenkt den Rückpass nach außen.',
         ],
       },
       oppPossession: {
         spaces: [
           'Der Rückraum vor dem Strafraum ist die Schlüsselzone gegen ihre Achter und zweite Bälle.',
-          'Flügelräume werden geschlossen, indem Wingback und äußerer Mittelfeldspieler horizontal kompakt bleiben.',
+          'Flügelräume werden geschlossen, indem Schienenspieler und äußerer Mittelfeldspieler horizontal kompakt bleiben.',
           'Halbräume vor unseren Halbverteidigern dürfen nicht von ihren Flügelstürmern besetzt werden.',
-          'Der Raum hinter unseren Wingbacks bleibt durch die Fünferkette abgesichert.',
+          'Der Raum hinter unseren Schienenspieler bleibt durch die Fünferkette abgesichert.',
           'Passwege auf ihre Sechs müssen vom Stürmer so gelenkt werden, dass sie nicht frei verlagern kann.',
         ],
         advantages: [
           'Sehr kompakte letzte zwei Linien erschweren zentrale Durchbrüche.',
-          'Flügel sind gut schließbar, weil wir Wingback und äußeren Mittelfeldspieler auf der Seite haben.',
+          'Flügel sind gut schließbar, weil wir Schienenspieler und äußeren Mittelfeldspieler auf der Seite haben.',
           'Die Fünferkette verteidigt Tiefe und Strafraum gegen ihre Front drei stabil.',
         ],
         dangers: [
@@ -83,7 +83,7 @@ export const entriesOur541: TacticBookEntry[] = [
         keyActions: [
           'Mittelfeldkette diszipliniert verschieben.',
           'Stürmer lenkt Passwege und verhindert freie Vertikalpässe auf die Sechs.',
-          'Wingback und äußerer Mittelfeldspieler schließen den Flügel gemeinsam.',
+          'Schienenspieler und äußerer Mittelfeldspieler schließen den Flügel gemeinsam.',
           'Zentrale Mittelfeldspieler sichern den Rückraum vor dem Strafraum.',
           'Innenverteidiger verteidigen die Box und attackieren Flanken erst mit klarer Zuordnung.',
         ],
@@ -98,7 +98,7 @@ export const entriesOur541: TacticBookEntry[] = [
         advantages: [
           'Konterräume sind vorhanden, weil ihre Außenverteidiger im 4-3-3 hoch stehen.',
           'Aus der kompakten Ordnung können wir mit einem klaren ersten Pass die Druckseite verlassen.',
-          'Ballferne Wingbacks und äußere Mittelfeldspieler können mit Tempo nachrücken.',
+          'Ballferne Schienenspieler und äußere Mittelfeldspieler können mit Tempo nachrücken.',
         ],
         dangers: [
           'Der erste Kontakt nach Ballgewinn entscheidet, sonst kommt der Ball sofort zurück.',
@@ -136,7 +136,7 @@ export const entriesOur541: TacticBookEntry[] = [
           'Die Außenbahn hinter ihren Außenverteidigern ist unser erster Raum für Entlastung.',
           'Der ballferne Außenspieler wird frei, wenn ihr 4-2-3-1 nach eigenem Angriff zur Ballseite schiebt.',
           'Unser Stürmer braucht Anschluss für Ablagen, sonst bleibt er gegen zwei Innenverteidiger isoliert.',
-          'Wingback-Räume können genutzt werden, aber nur mit klarer Absicherung hinter dem Ball.',
+          'Schienenspieler-Räume können genutzt werden, aber nur mit klarer Absicherung hinter dem Ball.',
           'Halbräume neben ihrer Doppelsechs öffnen sich nach einem gesicherten Wandspiel des Stürmers.',
         ],
         advantages: [
@@ -146,14 +146,14 @@ export const entriesOur541: TacticBookEntry[] = [
         ],
         dangers: [
           'Unser Stürmer kann gegen zwei Innenverteidiger isoliert werden.',
-          'Zu tiefe Wingbacks nehmen uns Entlastung über außen.',
-          'Ein ungesicherter hoher Wingback öffnet sofort den Rückkonter über ihre Flügel.',
+          'Zu tiefe Schienenspieler nehmen uns Entlastung über außen.',
+          'Ein ungesicherter hoher Schienenspieler öffnet sofort den Rückkonter über ihre Flügel.',
           'Zu langsame erste Pässe bringen ihr Gegenpressing direkt auf unsere Mittelfeldlinie.',
         ],
         keyActions: [
           'Nach Ballgewinn sofort den ballfernen Außenspieler suchen.',
           'Stürmer als Wandspieler einbinden und nachrücken.',
-          'Wingback nur mit klarer Absicherung hochschieben.',
+          'Schienenspieler nur mit klarer Absicherung hochschieben.',
           'Außenspieler höher starten lassen, wenn Konter fehlen.',
           'Zentraler Mittelfeldspieler bleibt unter dem Ball und sichert die Ablage.',
         ],
@@ -168,7 +168,7 @@ export const entriesOur541: TacticBookEntry[] = [
         advantages: [
           'Vierer-Mittelfeld kann die Halbräume eng halten.',
           'Fünferkette gibt Absicherung gegen Flügel und Spitze.',
-          'Ballferner Wingback kann als Sicherung tief bleiben.',
+          'Ballferner Schienenspieler kann als Sicherung tief bleiben.',
         ],
         dangers: [
           'Ihr Zehner findet Raum hinter unseren Mittelfeldspielern, wenn die Rückwärtsbewegung zu spät kommt.',
@@ -179,7 +179,7 @@ export const entriesOur541: TacticBookEntry[] = [
           'Nach Ballverlust sofort den Zehnerraum schließen.',
           'Zentrale Mittelfeldspieler sichern den Zehnerraum eng.',
           'Einen Sechser enger an ihren Zehner binden.',
-          'Ballferner Wingback bleibt als Sicherung tief.',
+          'Ballferner Schienenspieler bleibt als Sicherung tief.',
           'Stürmer lenkt den ersten Rückpass und verhindert den ruhigen Neuaufbau.',
         ],
       },
@@ -187,9 +187,9 @@ export const entriesOur541: TacticBookEntry[] = [
         spaces: [
           'Der Raum vor unserem zentralen Innenverteidiger gehört dem Zehnerduell.',
           'Halbräume neben unseren zentralen Mittelfeldspielern müssen gegen Zehner und einrückende Flügel eng bleiben.',
-          'Außenbahnen werden durch Außenspieler und Wingback gemeinsam geschlossen.',
+          'Außenbahnen werden durch Außenspieler und Schienenspieler gemeinsam geschlossen.',
           'Die Passwege von ihrer Doppelsechs in den Zehnerraum sind zentrale Pressingauslöser.',
-          'Tiefe hinter dem Wingback bleibt durch die Fünferkette abgesichert, solange der Halbverteidiger nicht zu früh springt.',
+          'Tiefe hinter dem Schienenspieler bleibt durch die Fünferkette abgesichert, solange der Halbverteidiger nicht zu früh springt.',
         ],
         advantages: [
           'Fünferkette gibt Absicherung gegen Flügel und Spitze.',
@@ -198,7 +198,7 @@ export const entriesOur541: TacticBookEntry[] = [
         ],
         dangers: [
           'Ihr Zehner findet Raum hinter unseren Mittelfeldspielern, wenn die Abstände zu groß werden.',
-          'Zu tiefe Wingbacks öffnen Druck auf unsere Außen, weil der Außenspieler allein herausrücken muss.',
+          'Zu tiefe Schienenspieler öffnen Druck auf unsere Außen, weil der Außenspieler allein herausrücken muss.',
           'Ihre Doppelsechs kann verlagern, wenn unser Stürmer den Aufbau nicht auf eine Seite lenkt.',
           'Rückraumbesetzung wird gefährlich nach Flanken und geblockten Hereingaben.',
         ],
@@ -206,7 +206,7 @@ export const entriesOur541: TacticBookEntry[] = [
           'Stürmer lenkt den Aufbau auf eine Seite.',
           'Ballnaher Außenspieler presst den Außenverteidiger konsequent.',
           'Zentrale Mittelfeldspieler sichern den Zehnerraum eng.',
-          'Ballnaher Wingback rückt früher heraus, wenn der Außenspieler Druck auf den Ball hat.',
+          'Ballnaher Schienenspieler rückt früher heraus, wenn der Außenspieler Druck auf den Ball hat.',
           'Zentraler Innenverteidiger bleibt wach gegen Läufe der Spitze und Ablagen des Zehners.',
         ],
       },
@@ -220,18 +220,18 @@ export const entriesOur541: TacticBookEntry[] = [
         advantages: [
           'Nach Ballgewinn können wir direkt hinter ihren Außenverteidiger spielen.',
           'Konterräume hinter ihren Außenverteidigern entstehen regelmäßig.',
-          'Ballferne Außenspieler können mit dem ersten Kontakt Tempo aufnehmen.',
+          'Ballferne Außenspieler können mit dem ersten Ballkontakt Tempo aufnehmen.',
         ],
         dangers: [
           'Ein schlechter erster Ball isoliert den Stürmer und bringt sofort neuen Druck.',
           'Wenn der Zehnerraum nach eigenem Ballgewinn offen bleibt, kontern sie den Konter direkt zurück.',
-          'Zu frühes Nachrücken des ballfernen Wingbacks nimmt die letzte Sicherung.',
+          'Zu frühes Nachrücken des ballfernen Schienenspieler nimmt die letzte Sicherung.',
         ],
         keyActions: [
           'Nach Ballgewinn direkt hinter ihren Außenverteidiger spielen.',
           'Nach Ballgewinn sofort den ballfernen Außenspieler suchen.',
           'Stürmer legt auf den nachrückenden zentralen Mittelfeldspieler ab.',
-          'Ballferner Wingback bleibt als Sicherung tief.',
+          'Ballferner Schienenspieler bleibt als Sicherung tief.',
           'Erster Pass muss den Zehnerraum verlassen oder den Stürmer sauber finden.',
         ],
       },
@@ -243,7 +243,7 @@ export const entriesOur541: TacticBookEntry[] = [
     ],
     adjustments: [
       'Einen Sechser enger an ihren Zehner binden.',
-      'Ballnahen Wingback früher herausrücken lassen.',
+      'Ballnahen Schienenspieler früher herausrücken lassen.',
       'Außenspieler höher starten lassen, wenn Konter fehlen.',
     ],
   },
@@ -260,7 +260,7 @@ export const entriesOur541: TacticBookEntry[] = [
           'Der Raum neben ihrem ballnahen Innenverteidiger ist der Zielraum für diagonale Läufe.',
           'Konterräume entstehen hinter ihren Außenspielern und neben ihren Innenverteidigern.',
           'Unser Stürmer braucht sofortigen Anschluss aus dem Mittelfeld, damit der erste Ball nicht verpufft.',
-          'Wingbacks können erst nach gesichertem Ballbesitz höher schieben.',
+          'Schienenspieler können erst nach gesichertem Ballbesitz höher schieben.',
           'Das Zentrum unter dem Ball muss besetzt bleiben, damit zweite Bälle nicht direkt verloren gehen.',
         ],
         advantages: [
@@ -270,23 +270,23 @@ export const entriesOur541: TacticBookEntry[] = [
         ],
         dangers: [
           'Unser Stürmer kann ohne Nachrücken festlaufen.',
-          'Wenn Wingbacks zu früh hochziehen, fehlt die Flanken- und Kontersicherung.',
+          'Wenn Schienenspieler zu früh hochziehen, fehlt die Flanken- und Kontersicherung.',
           'Zu ungenaue erste Bälle erzeugen sofort wieder Druck auf unsere Fünferkette.',
           'Bei zu tiefem Mittelfeld fehlt die Anschlussoption für den zweiten Kontakt.',
         ],
         keyActions: [
           'Stürmer kurz anspielen und sofort nachschieben.',
           'Außenspieler diagonal in die Tiefe schicken.',
-          'Wingbacks erst nach gesichertem Ballbesitz hochziehen.',
+          'Schienenspieler erst nach gesichertem Ballbesitz hochziehen.',
           'Einen zentralen Mittelfeldspieler höher neben den Stürmer schieben, wenn Entlastung fehlt.',
-          'Ballferner Wingback bleibt zunächst tiefer zur Flankensicherung.',
+          'Ballferner Schienenspieler bleibt zunächst tiefer zur Flankensicherung.',
         ],
       },
       afterLoss: {
         spaces: [
           'Das Zentrum muss nach Ballverlust eng geschlossen werden.',
           'Rückraum vor unserer Fünferkette bleibt gefährlich für zweite Bälle.',
-          'Die Außenbahn vor unserem Wingback darf nicht frei für schnelle Flanken werden.',
+          'Die Außenbahn vor unserem Schienenspieler darf nicht frei für schnelle Flanken werden.',
           'Lange Bälle auf ihre zwei Spitzen müssen früh von den Innenverteidigern kontrolliert werden.',
         ],
         advantages: [
@@ -304,14 +304,14 @@ export const entriesOur541: TacticBookEntry[] = [
           'Innenverteidiger sichern früh gegen lange Bälle.',
           'Zentrum bleibt kompakt gegen zweite Bälle.',
           'Außenspieler sprintet zurück und attackiert ihren Außenverteidiger erneut.',
-          'Ballferner Wingback hält den zweiten Pfosten im Blick.',
+          'Ballferner Schienenspieler hält den zweiten Pfosten im Blick.',
         ],
       },
       oppPossession: {
         spaces: [
           'Rückraum vor unserer Fünferkette ist die wichtigste Zone gegen zweite Bälle.',
-          'Außenbahn vor unserem Wingback muss aktiv verteidigt werden, bevor Flankendruck entsteht.',
-          'Der Raum zwischen äußerem Mittelfeldspieler und Wingback darf nicht für Doppeln geöffnet werden.',
+          'Außenbahn vor unserem Schienenspieler muss aktiv verteidigt werden, bevor Flankendruck entsteht.',
+          'Der Raum zwischen äußerem Mittelfeldspieler und Schienenspieler darf nicht für Doppeln geöffnet werden.',
           'Ihre zwei Spitzen müssen von drei Innenverteidigern übergeben und kontrolliert werden.',
           'Der ballferne Pfosten ist bei Flanken konsequent zu sichern.',
         ],
@@ -331,7 +331,7 @@ export const entriesOur541: TacticBookEntry[] = [
           'Außenspieler attackiert ihren Außenverteidiger früh.',
           'Zentrum bleibt kompakt gegen zweite Bälle.',
           'Ballnaher Außenspieler presst aggressiver, sobald der Außenverteidiger offen annimmt.',
-          'Wingback ballfern tiefer zur Flankensicherung halten.',
+          'Schienenspieler ballfern tiefer zur Flankensicherung halten.',
         ],
       },
       afterGain: {
@@ -348,7 +348,7 @@ export const entriesOur541: TacticBookEntry[] = [
         ],
         dangers: [
           'Ein isolierter Stürmer verliert den ersten Ball gegen zwei Innenverteidiger.',
-          'Wenn die Mittelfeldlinie nicht nachschiebt, endet der Konter nach dem ersten Kontakt.',
+          'Wenn die Mittelfeldlinie nicht nachschiebt, endet der Konter nach dem ersten Ballkontakt.',
           'Ein erneuter Ballverlust auf außen lädt sofort Flankendruck neu ein.',
         ],
         keyActions: [
@@ -356,7 +356,7 @@ export const entriesOur541: TacticBookEntry[] = [
           'Stürmer legt kurz ab oder leitet in den diagonalen Lauf weiter.',
           'Zentraler Mittelfeldspieler schiebt unter den Stürmer nach.',
           'Außenspieler startet diagonal in den Raum neben ihrem Innenverteidiger.',
-          'Wingback zieht erst nach, wenn der Ball gesichert ist.',
+          'Schienenspieler zieht erst nach, wenn der Ball gesichert ist.',
         ],
       },
     },
@@ -368,7 +368,7 @@ export const entriesOur541: TacticBookEntry[] = [
     adjustments: [
       'Einen zentralen Mittelfeldspieler höher neben den Stürmer schieben.',
       'Ballnahen Außenspieler aggressiver pressen lassen.',
-      'Wingback ballfern tiefer zur Flankensicherung halten.',
+      'Schienenspieler ballfern tiefer zur Flankensicherung halten.',
     ],
   },
   {
@@ -377,12 +377,12 @@ export const entriesOur541: TacticBookEntry[] = [
     opponentSystem: '4-4-2-raute',
     rating: 'vorteilhaft',
     character:
-      'Vorteilhaftes Duell, weil ihre enge Raute keine natürliche Breite hat und an unserem kompakten Block hängen bleibt, während wir über die Außenräume kontern. Schlüsselraum sind die Außenbahnen neben ihrer Raute, Schlüsselrisiko ist ihre zentrale Bindung, wenn Wingbacks und Außenspieler nicht sauber gestaffelt bleiben.',
+      'Vorteilhaftes Duell, weil ihre enge Raute keine natürliche Breite hat und an unserem kompakten Block hängen bleibt, während wir über die Außenräume kontern. Schlüsselraum sind die Außenbahnen neben ihrer Raute, Schlüsselrisiko ist ihre zentrale Bindung, wenn Schienenspieler und Außenspieler nicht sauber gestaffelt bleiben.',
     phases: {
       ownPossession: {
         spaces: [
           'Die Außenbahn neben ihrer Raute ist unser wichtigster Entlastungsraum.',
-          'Außenspieler und Wingback müssen versetzt stehen, damit die Seitenlinie nicht zur Falle wird.',
+          'Außenspieler und Schienenspieler müssen versetzt stehen, damit die Seitenlinie nicht zur Falle wird.',
           'Der Halbraum hinter ihrem Halbspieler öffnet sich, wenn unser Außenspieler ihn nach außen zieht.',
           'Das Zentrum ist gegen ihre Raute nur mit gesichertem Stürmerkontakt bespielbar.',
           'Ballferne Außenräume werden frei, wenn ihre Raute nach Ballseite zusammenschiebt.',
@@ -396,14 +396,14 @@ export const entriesOur541: TacticBookEntry[] = [
           'Zu langsame Verlagerungen lassen uns im Zentrum festlaufen.',
           'Unser Stürmer kann isoliert werden, wenn das Zentrum nicht nachrückt.',
           'Ein Ballverlust im Zentrum öffnet sofort den Pass auf ihren Zehner.',
-          'Wenn Außenspieler und Wingback auf einer Linie stehen, ist der Außenpass leicht zuzustellen.',
+          'Wenn Außenspieler und Schienenspieler auf einer Linie stehen, ist der Außenpass leicht zuzustellen.',
         ],
         keyActions: [
           'Schnell auf die freie Außenbahn verlagern.',
-          'Außenspieler und Wingback versetzt positionieren.',
+          'Außenspieler und Schienenspieler versetzt positionieren.',
           'Stürmer hält Bälle fest, bis Zentrum nachrückt.',
           'Außenspieler höher halten, um Entlastung zu schaffen.',
-          'Wingback auf Ballseite mutiger nachschieben lassen, wenn der Halbraum gesichert ist.',
+          'Schienenspieler auf Ballseite mutiger nachschieben lassen, wenn der Halbraum gesichert ist.',
         ],
       },
       afterLoss: {
@@ -411,12 +411,12 @@ export const entriesOur541: TacticBookEntry[] = [
           'Der Pass auf ihren Zehner muss nach Ballverlust sofort verhindert werden.',
           'Der Zehnerraum vor unserer Abwehr darf nicht frei bleiben.',
           'Halbraum hinter unserem Außenspieler ist gefährlich, wenn er hoch entlastet hat.',
-          'Diagonale Tiefenläufe ihrer Spitzen hinter den ballfernen Wingback müssen abgesichert werden.',
+          'Diagonale Tiefenläufe ihrer Spitzen hinter den ballfernen Schienenspieler müssen abgesichert werden.',
         ],
         advantages: [
           'Fünferkette sichert stabil gegen zwei Spitzen.',
           'Zentrale Mittelfeldspieler können eng gegen ihre Raute zurückschieben.',
-          'Ballferner Wingback kann tiefer bleiben und diagonale Läufe aufnehmen.',
+          'Ballferner Schienenspieler kann tiefer bleiben und diagonale Läufe aufnehmen.',
         ],
         dangers: [
           'Ihr Zehner kann zwischen unseren Linien auftauchen.',
@@ -426,7 +426,7 @@ export const entriesOur541: TacticBookEntry[] = [
         keyActions: [
           'Nach Ballverlust Pass auf ihren Zehner verhindern.',
           'Zentrale Mittelfeldspieler bleiben eng gegen ihre Raute.',
-          'Ballferner Wingback sichert gegen diagonale Tiefenläufe.',
+          'Ballferner Schienenspieler sichert gegen diagonale Tiefenläufe.',
           'Einen Mittelfeldspieler klar auf ihren Zehner setzen, wenn er frei wird.',
           'Außenspieler sprintet in den Halbraum zurück, bevor er den Außenverteidiger attackiert.',
         ],
@@ -437,7 +437,7 @@ export const entriesOur541: TacticBookEntry[] = [
           'Halbräume hinter unseren Außenspielern müssen gegen ihre Halbspieler geschlossen bleiben.',
           'Außenverteidiger ihrer Raute sind Pressingziele, weil sie dort weniger Unterstützung haben.',
           'Der Raum vor dem zentralen Innenverteidiger muss gegen Ablagen der zwei Spitzen geschützt werden.',
-          'Ballferne Seite bleibt offen für diagonale Tiefenläufe, wenn unser Wingback zu hoch steht.',
+          'Ballferne Seite bleibt offen für diagonale Tiefenläufe, wenn unser Schienenspieler zu hoch steht.',
         ],
         advantages: [
           'Fünferkette sichert stabil gegen zwei Spitzen.',
@@ -455,7 +455,7 @@ export const entriesOur541: TacticBookEntry[] = [
           'Zentrale Mittelfeldspieler bleiben eng gegen ihre Raute.',
           'Außenspieler leitet Pressing auf ihre Außenverteidiger.',
           'Zehner nicht drehen lassen und bei Bedarf fest mannorientiert aufnehmen.',
-          'Wingbacks bleiben in der Kette, bis Druck auf dem Ball ist.',
+          'Schienenspieler bleiben in der Kette, bis Druck auf dem Ball ist.',
         ],
       },
       afterGain: {
@@ -477,10 +477,10 @@ export const entriesOur541: TacticBookEntry[] = [
         ],
         keyActions: [
           'Nach Ballgewinn sofort raus aus dem Zentrum.',
-          'Erster Pass sucht Außenspieler, Wingback oder den festmachenden Stürmer.',
-          'Außenspieler und Wingback bleiben versetzt, damit der zweite Pass möglich ist.',
+          'Erster Pass sucht Außenspieler, Schienenspieler oder den festmachenden Stürmer.',
+          'Außenspieler und Schienenspieler bleiben versetzt, damit der zweite Pass möglich ist.',
           'Zentraler Mittelfeldspieler rückt unter den Ball und schützt den Zehnerraum.',
-          'Ballferner Wingback bleibt zunächst tief gegen diagonale Tiefenläufe.',
+          'Ballferner Schienenspieler bleibt zunächst tief gegen diagonale Tiefenläufe.',
         ],
       },
     },
@@ -492,7 +492,7 @@ export const entriesOur541: TacticBookEntry[] = [
     adjustments: [
       'Einen Mittelfeldspieler klar auf ihren Zehner setzen.',
       'Außenspieler höher halten, um Entlastung zu schaffen.',
-      'Wingback auf Ballseite mutiger nachschieben lassen.',
+      'Schienenspieler auf Ballseite mutiger nachschieben lassen.',
     ],
   },
   {
@@ -501,57 +501,57 @@ export const entriesOur541: TacticBookEntry[] = [
     opponentSystem: '3-5-2',
     rating: 'ausgeglichen',
     character:
-      'Ausgeglichenes Duell, weil ihre drei Zentrumsspieler unsere Mitte überladen können, unser tiefer Block das aber kompakt abfängt. Schlüsselraum sind die Konterwege hinter ihre Wingbacks, Schlüsselrisiko ist zu weiter Abstand in unserer Mitte gegen ihre zentrale Überzahl.',
+      'Ausgeglichenes Duell, weil ihre drei Zentrumsspieler unsere Mitte überladen können, unser tiefer Block das aber kompakt abfängt. Schlüsselraum sind die Konterwege hinter ihre Schienenspieler, Schlüsselrisiko ist zu weiter Abstand in unserer Mitte gegen ihre zentrale Überzahl.',
     phases: {
       ownPossession: {
         spaces: [
-          'Der Raum hinter ihren Wingbacks ist unser wichtigster Ausweg aus dem Druck.',
-          'Die freie Außenbahn öffnet sich nach Ballgewinn, wenn ihre Wingbacks hoch stehen.',
+          'Der Raum hinter ihren Schienenspieler ist unser wichtigster Ausweg aus dem Druck.',
+          'Die freie Außenbahn öffnet sich nach Ballgewinn, wenn ihre Schienenspieler hoch stehen.',
           'Unser Stürmer braucht kurze Unterstützung, sonst bleibt er gegen drei Innenverteidiger isoliert.',
           'Ballferne Seite muss früh offen sein, weil ihr 3-5-2 stark zur Ballseite verschiebt.',
           'Halbräume neben ihren äußeren Innenverteidigern werden interessant, wenn der Außenspieler diagonal startet.',
         ],
         advantages: [
-          'Außenspieler können Räume hinter ihren Wingbacks nutzen.',
+          'Außenspieler können Räume hinter ihren Schienenspieler nutzen.',
           'Ballferne Absicherung bleibt stabil gegen Verlagerungen.',
           'Unsere Fünferkette gibt Sicherheit, wenn wir aus tiefer Ordnung kontern.',
         ],
         dangers: [
           'Unser Stürmer kann gegen drei Innenverteidiger isoliert werden.',
-          'Ihre Wingbacks können unsere Außenspieler tief drücken und Entlastung verhindern.',
+          'Ihre Schienenspieler können unsere Außenspieler tief drücken und Entlastung verhindern.',
           'Zu viele zentrale erste Pässe laufen in ihre drei Zentrumsspieler.',
           'Wenn der Außenspieler nicht nachschiebt, endet der Angriff beim ersten Stürmerkontakt.',
         ],
         keyActions: [
-          'Nach Ballgewinn sofort hinter ihren Wingback spielen.',
+          'Nach Ballgewinn sofort hinter ihren Schienenspieler spielen.',
           'Stürmer kurz anspielen und Außenspieler nachschieben.',
           'Ballferne Seite früh für Verlagerungen öffnen.',
           'Einen Außenspieler enger ins Zentrum ziehen, wenn der Stürmer keine Ablage findet.',
-          'Wingback erst nach gesichertem ersten Pass aus der Kette lösen.',
+          'Schienenspieler erst nach gesichertem ersten Pass aus der Kette lösen.',
         ],
       },
       afterLoss: {
         spaces: [
           'Das Zentrum vor unserer Abwehr muss sofort verdichtet werden.',
           'Halbräume neben unseren Sechsern sind gegen ihre drei Zentrumsspieler kritisch.',
-          'Die Außenbahn hinter unserem Außenspieler bleibt offen, wenn ihr Wingback sofort kontert.',
+          'Die Außenbahn hinter unserem Außenspieler bleibt offen, wenn ihr Schienenspieler sofort kontert.',
           'Zweite Bälle vor unserer Fünferkette dürfen nicht von ihrem freien Zentrumsspieler aufgenommen werden.',
         ],
         advantages: [
           'Unsere Fünferkette sichert gut gegen zwei Spitzen.',
           'Ballferne Absicherung bleibt stabil gegen Verlagerungen.',
-          'Ballferner Wingback kann gegen zweite Bälle tief bleiben.',
+          'Ballferner Schienenspieler kann gegen zweite Bälle tief bleiben.',
         ],
         dangers: [
           'Zentrale Unterzahl gegen ihr Mittelfeld wird nach Ballverlust sofort sichtbar.',
-          'Ihre Wingbacks können unsere Außenspieler tief drücken und Gegenpressing auslösen.',
+          'Ihre Schienenspieler können unsere Außenspieler tief drücken und Gegenpressing auslösen.',
           'Wenn wir auf außen hängen bleiben, kann ihr zentraler Mittelfeldspieler den zweiten Ball frei aufnehmen.',
         ],
         keyActions: [
           'Nach Ballverlust Zentrum sofort verdichten.',
           'Zentrale Mittelfeldspieler bleiben eng gegen ihre drei Zentrumsspieler.',
-          'Ballferner Wingback bleibt gegen zweite Bälle tief.',
-          'Außenspieler sprintet zurück und verhindert den Pass auf den Wingback.',
+          'Ballferner Schienenspieler bleibt gegen zweite Bälle tief.',
+          'Außenspieler sprintet zurück und verhindert den Pass auf den Schienenspieler.',
           'Stürmer stellt den Rückpass so, dass der Ball nicht einfach ins Zentrum kommt.',
         ],
       },
@@ -559,49 +559,49 @@ export const entriesOur541: TacticBookEntry[] = [
         spaces: [
           'Das Zentrum vor unserer Abwehr ist wegen ihrer drei Mittelfeldspieler die Schlüsselzone.',
           'Halbräume neben unseren Sechsern müssen durch Außenspieler und Zentrumsspieler gemeinsam geschlossen werden.',
-          'Wingback-Zonen werden erst attackiert, wenn Druck auf dem Passgeber ist.',
+          'Schienenspieler-Zonen werden erst attackiert, wenn Druck auf dem Passgeber ist.',
           'Der äußere Innenverteidiger ist unser realistisches Pressingziel.',
-          'Die ballferne Seite muss gegen Verlagerungen auf den Wingback vorbereitet bleiben.',
+          'Die ballferne Seite muss gegen Verlagerungen auf den Schienenspieler vorbereitet bleiben.',
         ],
         advantages: [
           'Fünferkette sichert gut gegen zwei Spitzen.',
           'Ballferne Absicherung bleibt stabil gegen Verlagerungen.',
-          'Unser tiefer Block kann ihre Wingbacks nach außen lenken und Flanken verteidigen.',
+          'Unser tiefer Block kann ihre Schienenspieler nach außen lenken und Flanken verteidigen.',
         ],
         dangers: [
           'Zentrale Unterzahl gegen ihr Mittelfeld kann den Block nach hinten drücken.',
-          'Ihre Wingbacks können unsere Außenspieler tief binden.',
+          'Ihre Schienenspieler können unsere Außenspieler tief binden.',
           'Unser Stürmer kann gegen drei Innenverteidiger im Pressing isoliert werden.',
           'Wenn der ballnahe Außenspieler zu früh springt, öffnet sich der Halbraum neben dem Sechser.',
         ],
         keyActions: [
           'Stürmer lenkt auf einen äußeren Innenverteidiger.',
-          'Ballnaher Außenspieler presst den Wingback erst bei Druck.',
+          'Ballnaher Außenspieler presst den Schienenspieler erst bei Druck.',
           'Zentrale Mittelfeldspieler bleiben eng gegen ihre drei Zentrumsspieler.',
           'Stürmer seitlich auf den äußeren Innenverteidiger lenken lassen.',
-          'Wingback bei Druck früher herausrücken lassen, wenn der Halbverteidiger absichert.',
+          'Schienenspieler bei Druck früher herausrücken lassen, wenn der Halbverteidiger absichert.',
         ],
       },
       afterGain: {
         spaces: [
-          'Die freie Außenbahn hinter ihrem Wingback ist nach Ballgewinn sofort offen.',
+          'Die freie Außenbahn hinter ihrem Schienenspieler ist nach Ballgewinn sofort offen.',
           'Der ballferne Flügel bietet Entlastung gegen ihre zentrale Überzahl.',
           'Der Stürmerraum braucht direkte Unterstützung aus dem Außenspieler- oder Zentrumsspielerbereich.',
-          'Der Raum neben ihrem äußeren Innenverteidiger ist offen, wenn der Wingback hoch stand.',
+          'Der Raum neben ihrem äußeren Innenverteidiger ist offen, wenn der Schienenspieler hoch stand.',
         ],
         advantages: [
           'Nach Ballgewinn können wir direkt in die freie Außenbahn spielen.',
-          'Außenspieler können Räume hinter ihren Wingbacks nutzen.',
-          'Fünferkette und ballferner Wingback geben Absicherung, falls der Konter abbricht.',
+          'Außenspieler können Räume hinter ihren Schienenspieler nutzen.',
+          'Fünferkette und ballferner Schienenspieler geben Absicherung, falls der Konter abbricht.',
         ],
         dangers: [
           'Ein erster Pass ins Zentrum läuft in ihre Überzahl zurück.',
           'Ein isolierter Stürmerkontakt bringt den Ball sofort wieder zu ihrer Dreierkette.',
-          'Wenn der Außenspieler zu früh startet und den Ball nicht bekommt, fehlt er im Rückweg gegen den Wingback.',
+          'Wenn der Außenspieler zu früh startet und den Ball nicht bekommt, fehlt er im Rückweg gegen den Schienenspieler.',
         ],
         keyActions: [
           'Nach Ballgewinn direkt in die freie Außenbahn.',
-          'Nach Ballgewinn sofort hinter ihren Wingback spielen.',
+          'Nach Ballgewinn sofort hinter ihren Schienenspieler spielen.',
           'Stürmer kurz anspielen und Außenspieler nachschieben.',
           'Ballferne Seite früh für Verlagerungen öffnen.',
           'Zentraler Mittelfeldspieler bleibt unter dem Ball und schützt die Halbräume.',
@@ -610,13 +610,13 @@ export const entriesOur541: TacticBookEntry[] = [
     },
     liveCoaching: [
       '„Zentrum eng halten!"',
-      '„Hinter den Wingback!"',
+      '„Hinter den Schienenspieler!"',
       '„Stürmer stützen!"',
     ],
     adjustments: [
       'Einen Außenspieler enger ins Zentrum ziehen.',
       'Stürmer seitlich auf den äußeren Innenverteidiger lenken lassen.',
-      'Wingback bei Druck früher herausrücken lassen.',
+      'Schienenspieler bei Druck früher herausrücken lassen.',
     ],
   },
   {
@@ -625,24 +625,24 @@ export const entriesOur541: TacticBookEntry[] = [
     opponentSystem: '3-4-3',
     rating: 'unangenehm',
     character:
-      'Ihre Front drei bindet unsere letzte Linie breit. Entscheidend ist, dass wir die Halbräume schließen und nach Ballgewinn sofort hinter ihre Wingbacks kommen.',
+      'Ihre Front drei bindet unsere letzte Linie breit. Entscheidend ist, dass wir die Halbräume schließen und nach Ballgewinn sofort hinter ihre Schienenspieler kommen.',
     phases: {
       ownPossession: {
         spaces: [
-          'Die Außenbahn hinter ihrem Wingback ist der wichtigste Konterraum.',
+          'Die Außenbahn hinter ihrem Schienenspieler ist der wichtigste Konterraum.',
           'Der ballferne Außenspieler wird frei, wenn ihr 3-4-3 mit Front drei zur Ballseite drückt.',
           'Tiefe Läufe hinter ihre äußeren Innenverteidiger können die Dreierkette strecken.',
           'Unser Stürmer braucht sofortige Unterstützung, weil er oft allein gegen ihre Dreierkette steht.',
           'Der Rückraum unter dem Angriff muss besetzt bleiben, damit ihr Gegenpressing nicht direkt gewinnt.',
         ],
         advantages: [
-          'Konterräume entstehen hinter ihren hohen Wingbacks.',
+          'Konterräume entstehen hinter ihren hohen Schienenspieler.',
           'Aus der kompakten Vierer-Mittelfeldlinie können wir ballfern schnelle Entlastung finden.',
           'Tiefe Läufe hinter ihre äußeren Innenverteidiger geben dem Stürmer Anschlussoptionen.',
         ],
         dangers: [
           'Unser Stürmer steht oft allein gegen ihre Dreierkette.',
-          'Außenstürmer können unsere Wingbacks tief festnageln und Entlastung über außen erschweren.',
+          'Außenstürmer können unsere Schienenspieler tief festnageln und Entlastung über außen erschweren.',
           'Ein schlechter erster Pass wird von ihrer Front drei sofort im Gegenpressing gefressen.',
           'Wenn der ballferne Außenspieler zu tief bleibt, fehlt der direkte Ausweg.',
         ],
@@ -650,7 +650,7 @@ export const entriesOur541: TacticBookEntry[] = [
           'Schnell auf den ballfernen Außenspieler verlagern.',
           'Stürmer als Wandspieler nutzen und sofort nachrücken.',
           'Tiefe Läufe hinter ihre äußeren Innenverteidiger starten.',
-          'Nach Ballbesitzsicherung sofort die Außenbahn hinter ihrem Wingback attackieren.',
+          'Nach Ballbesitzsicherung sofort die Außenbahn hinter ihrem Schienenspieler attackieren.',
           'Stürmer stärker auf die ballferne Tiefe ausrichten.',
         ],
       },
@@ -667,8 +667,8 @@ export const entriesOur541: TacticBookEntry[] = [
           'Ballnaher Sechser kann den Halbraum konsequent sichern.',
         ],
         dangers: [
-          'Halbräume zwischen Innenverteidiger und Wingback werden anfällig.',
-          'Außenstürmer können unsere Wingbacks tief festnageln und sofort wieder Druck erzeugen.',
+          'Halbräume zwischen Innenverteidiger und Schienenspieler werden anfällig.',
+          'Außenstürmer können unsere Schienenspieler tief festnageln und sofort wieder Druck erzeugen.',
           'Wenn der Außenspieler nach Ballverlust außen hängen bleibt, öffnet sich der Pass in den Halbraum.',
         ],
         keyActions: [
@@ -676,16 +676,16 @@ export const entriesOur541: TacticBookEntry[] = [
           'Zentrum nicht durch wildes Herausrücken öffnen.',
           'Ballnaher Sechser sichert den Halbraum konsequent.',
           'Außenspieler fällt neben den Sechser zurück, bevor er nach außen presst.',
-          'Wingback bleibt in Kontakt zum Außenstürmer und übergibt nur mit Absicherung.',
+          'Schienenspieler bleibt in Kontakt zum Außenstürmer und übergibt nur mit Absicherung.',
         ],
       },
       oppPossession: {
         spaces: [
           'Halbraum neben dem ballnahen Innenverteidiger ist die Schlüsselzone.',
-          'Außenbahn und Wingback-Zone werden durch Außenspieler und Wingback gemeinsam geschlossen.',
+          'Außenbahn und Schienenspieler-Zone werden durch Außenspieler und Schienenspieler gemeinsam geschlossen.',
           'Rückraum vor unserer Fünferkette muss gegen Ablagen ihrer Front drei eng bleiben.',
-          'Pass auf ihren Wingback ist der Auslöser für seitliches Verdichten.',
-          'Ballferne Tiefe hinter unserem Wingback muss gegen schnelle Verlagerungen mitgedacht werden.',
+          'Pass auf ihren Schienenspieler ist der Auslöser für seitliches Verdichten.',
+          'Ballferne Tiefe hinter unserem Schienenspieler muss gegen schnelle Verlagerungen mitgedacht werden.',
         ],
         advantages: [
           'Fünferkette kann ihre drei Angreifer aufnehmen.',
@@ -694,13 +694,13 @@ export const entriesOur541: TacticBookEntry[] = [
         ],
         dangers: [
           'Ihre Front drei bindet unsere letzte Linie breit.',
-          'Außenstürmer können unsere Wingbacks tief festnageln.',
-          'Halbräume zwischen Innenverteidiger und Wingback werden anfällig.',
+          'Außenstürmer können unsere Schienenspieler tief festnageln.',
+          'Halbräume zwischen Innenverteidiger und Schienenspieler werden anfällig.',
           'Wenn der Stürmer den Aufbau nicht lenkt, kann ihre Dreierkette ruhig andribbeln.',
         ],
         keyActions: [
           'Stürmer lenkt den Aufbau auf eine Seite.',
-          'Außenspieler schließt den Pass auf ihren Wingback.',
+          'Außenspieler schließt den Pass auf ihren Schienenspieler.',
           'Ballnaher Sechser sichert den Halbraum konsequent.',
           'Außenspieler tiefer starten lassen, wenn wir überladen werden.',
           'Einen Sechser klar ballnah verschieben lassen.',
@@ -708,19 +708,19 @@ export const entriesOur541: TacticBookEntry[] = [
       },
       afterGain: {
         spaces: [
-          'Die Außenbahn hinter ihrem Wingback ist nach Ballgewinn sofort offen.',
+          'Die Außenbahn hinter ihrem Schienenspieler ist nach Ballgewinn sofort offen.',
           'Der ballferne Außenspieler kann aus der Druckseite lösen.',
           'Der Raum hinter dem äußeren Innenverteidiger ist Ziel für diagonale Tiefenläufe.',
           'Der Stürmerraum braucht eine schnelle Ablageoption, bevor die Dreierkette Zugriff bekommt.',
         ],
         advantages: [
           'Nach Ballgewinn können wir sofort die Außenbahn attackieren.',
-          'Konterräume hinter ihren hohen Wingbacks entstehen regelmäßig.',
+          'Konterräume hinter ihren hohen Schienenspieler entstehen regelmäßig.',
           'Ballferne Entlastung kann ihre breite Front drei überspielen.',
         ],
         dangers: [
           'Ein isolierter erster Ball auf den Stürmer kommt gegen drei Verteidiger schnell zurück.',
-          'Zu langsames Umschalten erlaubt ihren Wingbacks, sofort wieder in Position zu kommen.',
+          'Zu langsames Umschalten erlaubt ihren Schienenspieler, sofort wieder in Position zu kommen.',
           'Wenn wir zentral hängen bleiben, kann ihre Front drei direkt erneut Druck machen.',
         ],
         keyActions: [
@@ -734,7 +734,7 @@ export const entriesOur541: TacticBookEntry[] = [
     },
     liveCoaching: [
       '„Halbraum zu!"',
-      '„Schnell hinter Wingback!"',
+      '„Schnell hinter Schienenspieler!"',
       '„Ballfern raus!"',
     ],
     adjustments: [
@@ -753,14 +753,14 @@ export const entriesOur541: TacticBookEntry[] = [
     phases: {
       ownPossession: {
         spaces: [
-          'Außenbahn neben ihrem Wingback ist unser wichtigster Entlastungsraum.',
+          'Außenbahn neben ihrem Schienenspieler ist unser wichtigster Entlastungsraum.',
           'Der Raum vor ihrem zentralen Innenverteidiger kann genutzt werden, wenn unser Stürmer kurz kommt.',
-          'Freie Außenräume entstehen, weil unsere Außenspieler zusätzliche Breite gegen ihre Wingbacks geben.',
+          'Freie Außenräume entstehen, weil unsere Außenspieler zusätzliche Breite gegen ihre Schienenspieler geben.',
           'Zentrum zwischen unseren beiden Mittelfeldspielern darf nicht ohne Absicherung bespielt werden.',
           'Ballferne Seite wird frei, wenn ihr 5-3-2 zur Ballseite schiebt.',
         ],
         advantages: [
-          'Außenspieler geben zusätzliche Breite gegen ihre Wingbacks.',
+          'Außenspieler geben zusätzliche Breite gegen ihre Schienenspieler.',
           'Konter können über die freien Außenräume laufen.',
           'Spiel über äußere Innenverteidiger kann ruhig verlagert werden, wenn der Stürmer angebunden ist.',
         ],
@@ -768,14 +768,14 @@ export const entriesOur541: TacticBookEntry[] = [
           'Unser Stürmer kann gegen drei Innenverteidiger isoliert werden.',
           'Zentrale Unterzahl gegen ihre drei Mittelfeldspieler erschwert kontrollierten Aufbau durch die Mitte.',
           'Zweite Bälle vor ihrer Kette gehen verloren, wenn die Außenspieler zu breit bleiben.',
-          'Zu langsame Verlagerungen erlauben ihren Wingbacks, unsere Außenspieler festzusetzen.',
+          'Zu langsame Verlagerungen erlauben ihren Schienenspieler, unsere Außenspieler festzusetzen.',
         ],
         keyActions: [
           'Außenspieler früh als Entlastung einbinden.',
           'Stürmer kurz kommen lassen und sofort Tiefe nachbesetzen.',
           'Spiel über äußere Innenverteidiger ruhig verlagern.',
           'Einen zentralen Mittelfeldspieler höher neben den Stürmer schieben, wenn er isoliert ist.',
-          'Wingback ballnah früher in den freien Raum nachschieben.',
+          'Schienenspieler ballnah früher in den freien Raum nachschieben.',
         ],
       },
       afterLoss: {
@@ -783,12 +783,12 @@ export const entriesOur541: TacticBookEntry[] = [
           'Passwege auf ihre Spitzen müssen sofort geschlossen werden.',
           'Zweite Bälle vor unserer Kette können kippen, wenn das Zentrum zu breit wird.',
           'Das Zentrum zwischen unseren beiden Mittelfeldspielern ist gegen ihre Dreiermitte gefährlich.',
-          'Außenbahn neben ihrem Wingback bleibt nach unserem Entlastungsversuch offen.',
+          'Außenbahn neben ihrem Schienenspieler bleibt nach unserem Entlastungsversuch offen.',
         ],
         advantages: [
           'Unsere Fünferkette kontrolliert ihre zwei Spitzen gut.',
           'Ballferner Außenspieler kann zur zweiten-Ball-Sicherung einrücken.',
-          'Außenspieler können den Pass auf den Wingback blockieren und den Angriff nach innen lenken.',
+          'Außenspieler können den Pass auf den Schienenspieler blockieren und den Angriff nach innen lenken.',
         ],
         dangers: [
           'Zentrale Unterzahl gegen ihre drei Mittelfeldspieler wird nach Ballverlust sofort gefährlich.',
@@ -799,22 +799,22 @@ export const entriesOur541: TacticBookEntry[] = [
           'Nach Ballverlust Pass auf ihre Spitzen verhindern.',
           'Ballferner Außenspieler rückt zur zweiten-Ball-Sicherung ein.',
           'Zentrumsspieler bleiben eng und sichern zweite Bälle.',
-          'Außenspieler blockiert den Pass auf den Wingback.',
+          'Außenspieler blockiert den Pass auf den Schienenspieler.',
           'Stürmer stellt den Rückpass bogenförmig und lenkt weg vom Zentrum.',
         ],
       },
       oppPossession: {
         spaces: [
           'Das Zentrum zwischen unseren beiden Mittelfeldspielern muss gegen drei gegnerische Zentrumsspieler eng bleiben.',
-          'Die Außenbahn neben ihrem Wingback ist Pressing- und Blockierzone unserer Außenspieler.',
+          'Die Außenbahn neben ihrem Schienenspieler ist Pressing- und Blockierzone unserer Außenspieler.',
           'Der Raum vor unserer Fünferkette muss gegen Ablagen ihrer zwei Spitzen geschützt werden.',
           'Der zentrale Innenverteidiger darf nicht frei andribbeln.',
           'Ballferne zweite Bälle brauchen einen einrückenden Außenspieler.',
         ],
         advantages: [
           'Fünferkette kontrolliert ihre zwei Spitzen gut.',
-          'Außenspieler geben zusätzliche Breite gegen ihre Wingbacks.',
-          'Unsere Vierer-Mittelfeldlinie kann Wingback-Pässe blockieren und Breite aufnehmen.',
+          'Außenspieler geben zusätzliche Breite gegen ihre Schienenspieler.',
+          'Unsere Vierer-Mittelfeldlinie kann Schienenspieler-Pässe blockieren und Breite aufnehmen.',
         ],
         dangers: [
           'Zentrale Unterzahl gegen ihre drei Mittelfeldspieler kann unser Zentrum überladen.',
@@ -824,7 +824,7 @@ export const entriesOur541: TacticBookEntry[] = [
         ],
         keyActions: [
           'Stürmer läuft den zentralen Innenverteidiger bogenförmig an.',
-          'Außenspieler blockiert den Pass auf den Wingback.',
+          'Außenspieler blockiert den Pass auf den Schienenspieler.',
           'Zentrumsspieler bleiben eng und sichern zweite Bälle.',
           'Außenspieler enger ziehen, wenn das Zentrum kippt.',
           'Ballferner Außenspieler rückt früh ein, sobald der lange Ball vorbereitet wird.',
@@ -833,9 +833,9 @@ export const entriesOur541: TacticBookEntry[] = [
       afterGain: {
         spaces: [
           'Nach Ballgewinn ist die Außenbahn der sicherste Ausweg aus ihrer zentralen Überzahl.',
-          'Freie Außenräume öffnen sich neben ihren Wingbacks.',
+          'Freie Außenräume öffnen sich neben ihren Schienenspieler.',
           'Der Stürmer kann vor ihrem zentralen Innenverteidiger als Wandspieler dienen.',
-          'Die Tiefe hinter dem Wingback wird interessant, wenn unser Außenspieler den ersten Pass sauber mitnimmt.',
+          'Die Tiefe hinter dem Schienenspieler wird interessant, wenn unser Außenspieler den ersten Pass sauber mitnimmt.',
         ],
         advantages: [
           'Nach Ballgewinn können wir sofort über außen lösen.',
@@ -864,7 +864,7 @@ export const entriesOur541: TacticBookEntry[] = [
     adjustments: [
       'Einen zentralen Mittelfeldspieler höher neben den Stürmer schieben.',
       'Außenspieler enger ziehen, wenn das Zentrum kippt.',
-      'Wingback ballnah früher in den freien Raum nachschieben.',
+      'Schienenspieler ballnah früher in den freien Raum nachschieben.',
     ],
   },
   {
@@ -880,11 +880,11 @@ export const entriesOur541: TacticBookEntry[] = [
           'Der Rückraum vor ihrer Fünferkette ist wichtiger als frühe Strafraumflanken.',
           'Die ballferne Außenbahn wird nach Verlagerungen frei, wenn ihr 5-4-1 tief zur Ballseite schiebt.',
           'Der Raum neben ihrem zentralen Innenverteidiger öffnet sich, wenn unser Stürmer kurz kommt und ein Läufer nachstößt.',
-          'Außenspieler können Breite gegen ihre Wingbacks halten, brauchen aber Anschluss darunter.',
+          'Außenspieler können Breite gegen ihre Schienenspieler halten, brauchen aber Anschluss darunter.',
           'Andribbelräume für äußere Innenverteidiger entstehen, wenn ihr Stürmer nur den Rückpass bewacht.',
         ],
         advantages: [
-          'Außenspieler können Breite gegen ihre Wingbacks halten.',
+          'Außenspieler können Breite gegen ihre Schienenspieler halten.',
           'Fünferkette sichert gut gegen direkte Konter.',
           'Defensive Zuordnung ist in allen Linien klar, sodass wir kontrolliert nachschieben können.',
         ],
@@ -912,7 +912,7 @@ export const entriesOur541: TacticBookEntry[] = [
         advantages: [
           'Unsere Fünferkette sichert gut gegen direkte Konter.',
           'Defensive Zuordnung ist in allen Linien klar und schnell wiederherstellbar.',
-          'Ballferner Wingback kann zur Absicherung tief bleiben.',
+          'Ballferner Schienenspieler kann zur Absicherung tief bleiben.',
         ],
         dangers: [
           'Ein verlorener Rückraumball kann direkt auf ihren Stürmer prallen.',
@@ -921,15 +921,15 @@ export const entriesOur541: TacticBookEntry[] = [
         ],
         keyActions: [
           'Nach Ballverlust direkte Pässe auf den Stürmer blocken.',
-          'Ballferner Wingback bleibt zur Absicherung tief.',
+          'Ballferner Schienenspieler bleibt zur Absicherung tief.',
           'Zentrale Mittelfeldspieler sichern zweite Bälle eng.',
-          'Außenspieler sprintet zurück auf den Wingback, bevor dieser aufdreht.',
+          'Außenspieler sprintet zurück auf den Schienenspieler, bevor dieser aufdreht.',
           'Stürmer lenkt den Rückpass nach außen und bleibt Entlastungsoption.',
         ],
       },
       oppPossession: {
         spaces: [
-          'Der Wingback-Pass ist erst bei schlechtem Kontakt ein Pressingauslöser.',
+          'Der Schienenspieler-Pass ist erst bei schlechtem Kontakt ein Pressingauslöser.',
           'Der Rückraum vor unserer Fünferkette muss gegen zweite Bälle eng bleiben.',
           'Ballferne Außenbahn nach Verlagerung darf nicht verschlafen werden.',
           'Der Raum neben unserem zentralen Innenverteidiger ist gegen Ablagen ihres Stürmers kritisch.',
@@ -938,18 +938,18 @@ export const entriesOur541: TacticBookEntry[] = [
         advantages: [
           'Defensive Zuordnung ist in allen Linien klar.',
           'Fünferkette sichert gut gegen direkte Konter und Tiefenläufe.',
-          'Unsere Außenspieler können Breite gegen ihre Wingbacks aufnehmen.',
+          'Unsere Außenspieler können Breite gegen ihre Schienenspieler aufnehmen.',
         ],
         dangers: [
           'Das Spiel kann auch gegen uns kippen, wenn wir zu passiv ohne Entlastung verteidigen.',
           'Ihr Stürmer kann zweite Bälle festmachen, wenn unsere Mittelfeldlinie zu tief fällt.',
-          'Zu frühes Pressen des Wingbacks öffnet Räume hinter unserem Außenspieler.',
+          'Zu frühes Pressen des Schienenspielers öffnet Räume hinter unserem Außenspieler.',
         ],
         keyActions: [
           'Stürmer lenkt den Aufbau auf eine Seite.',
-          'Außenspieler presst den Wingback erst bei schlechtem Kontakt.',
+          'Außenspieler presst den Schienenspieler erst bei schlechtem Kontakt.',
           'Zentrale Mittelfeldspieler sichern zweite Bälle eng.',
-          'Wingback bleibt in der Kette, bis der Außenspieler Druck auf den Ball hat.',
+          'Schienenspieler bleibt in der Kette, bis der Außenspieler Druck auf den Ball hat.',
           'Ballferner Außenspieler bleibt eingerückt gegen Verlagerungen.',
         ],
       },
@@ -962,8 +962,8 @@ export const entriesOur541: TacticBookEntry[] = [
         ],
         advantages: [
           'Nach Ballgewinn können wir sofort auf die ballferne Seite lösen.',
-          'Außenspieler können Breite gegen ihre Wingbacks halten und Tempo aufnehmen.',
-          'Fünferkette und tiefer Wingback sichern den Rückkonter ab.',
+          'Außenspieler können Breite gegen ihre Schienenspieler halten und Tempo aufnehmen.',
+          'Fünferkette und tiefer Schienenspieler sichern den Rückkonter ab.',
         ],
         dangers: [
           'Ein langsamer erster Pass lässt beide Teams wieder im 5-4-1 stehen.',
@@ -1004,7 +1004,7 @@ export const entriesOur541: TacticBookEntry[] = [
           'Räume neben ihrem Sechser öffnen sich, wenn unser Stürmer als Wandspieler bindet.',
           'Ballferne Seite muss früh offen sein, weil ihr 4-1-4-1 seitlich stark verschiebt.',
           'Unser Stürmer braucht sofortiges Nachschieben, sonst bleibt er gegen zwei Innenverteidiger isoliert.',
-          'Wingback kann ballnah als Konterstation frei werden, wenn ihr Außenspieler innen gebunden ist.',
+          'Schienenspieler kann ballnah als Konterstation frei werden, wenn ihr Außenspieler innen gebunden ist.',
         ],
         advantages: [
           'Außenspieler können Räume hinter ihren Außenverteidigern anlaufen.',
@@ -1022,19 +1022,19 @@ export const entriesOur541: TacticBookEntry[] = [
           'Stürmer als Wandspieler nutzen und sofort nachschieben.',
           'Ballferne Seite früh für Verlagerungen öffnen.',
           'Einen zentralen Mittelfeldspieler höher zum Stürmer schieben.',
-          'Wingback ballnah früher als Konterstation freigeben, wenn die Absicherung steht.',
+          'Schienenspieler ballnah früher als Konterstation freigeben, wenn die Absicherung steht.',
         ],
       },
       afterLoss: {
         spaces: [
           'Der Pass auf ihren Sechser muss nach Ballverlust sofort geschlossen werden.',
           'Die zweite-Ball-Zone vor unserer Abwehr entscheidet gegen ihr Fünfermittelfeld.',
-          'Tiefenläufe ihrer Außenspieler hinter unseren Wingback müssen früh erkannt werden.',
+          'Tiefenläufe ihrer Außenspieler hinter unseren Schienenspieler müssen früh erkannt werden.',
           'Räume neben unseren zentralen Mittelfeldspielern dürfen nicht für ihre Achter aufgehen.',
         ],
         advantages: [
           'Fünferkette kontrolliert ihren einzelnen Stürmer gut.',
-          'Wingback kann wach gegen Tiefenläufe des Außenspielers bleiben.',
+          'Schienenspieler kann wach gegen Tiefenläufe des Außenspielers bleiben.',
           'Unsere kompakten letzten zwei Linien geben klare Rückzugswege.',
         ],
         dangers: [
@@ -1044,7 +1044,7 @@ export const entriesOur541: TacticBookEntry[] = [
         ],
         keyActions: [
           'Nach Ballverlust Pass auf ihren Sechser schließen.',
-          'Wingback bleibt wach gegen Tiefenläufe des Außenspielers.',
+          'Schienenspieler bleibt wach gegen Tiefenläufe des Außenspielers.',
           'Zentrale Mittelfeldspieler bleiben eng gegen ihre Achter.',
           'Außenspieler situativ enger gegen ihre Achter positionieren, wenn das Zentrum kippt.',
           'Stürmer bleibt im Deckungsschatten ihres Sechsers und lenkt den Rückpass nach außen.',
@@ -1054,7 +1054,7 @@ export const entriesOur541: TacticBookEntry[] = [
         spaces: [
           'Ihr Sechser ist der zentrale Verlagerungsspieler und muss zugestellt bleiben.',
           'Zweite-Ball-Zone vor unserer Abwehr darf nicht von ihren Achtern dominiert werden.',
-          'Außenbahn hinter unseren Wingbacks ist gefährlich, wenn ihre Außenspieler Tiefenläufe starten.',
+          'Außenbahn hinter unseren Schienenspieler ist gefährlich, wenn ihre Außenspieler Tiefenläufe starten.',
           'Räume neben unseren zentralen Mittelfeldspielern müssen eng gegen ihre Achter bleiben.',
           'Der Pass auf ihren Außenverteidiger ist Pressingauslöser für unseren Außenspieler.',
         ],
@@ -1074,7 +1074,7 @@ export const entriesOur541: TacticBookEntry[] = [
           'Außenspieler stellt den Pass auf ihren Außenverteidiger zu.',
           'Zentrale Mittelfeldspieler bleiben eng gegen ihre Achter.',
           'Außenspieler situativ enger gegen ihre Achter positionieren, wenn ihr Zentrum Überhand nimmt.',
-          'Wingback bleibt wach gegen Tiefenläufe des Außenspielers.',
+          'Schienenspieler bleibt wach gegen Tiefenläufe des Außenspielers.',
         ],
       },
       afterGain: {
@@ -1111,7 +1111,7 @@ export const entriesOur541: TacticBookEntry[] = [
     adjustments: [
       'Einen zentralen Mittelfeldspieler höher zum Stürmer schieben.',
       'Außenspieler situativ enger gegen ihre Achter positionieren.',
-      'Wingback ballnah früher als Konterstation freigeben.',
+      'Schienenspieler ballnah früher als Konterstation freigeben.',
     ],
   },
 ]

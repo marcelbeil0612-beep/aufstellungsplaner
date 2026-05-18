@@ -136,7 +136,7 @@ export const entriesOur442Raute: TacticBookEntry[] = [
     opponentSystem: '4-2-3-1',
     rating: 'ausgeglichen',
     character:
-      'Ausgeglichenes Tradeoff-Duell: unsere Raute schafft im Zentrum Überzahl und bindet ihre Doppelsechs, ihr 4-2-3-1 zwingt uns dafür über die Außenbahnen weite Wege auf. Schlüsselraum ist der Raum um ihre Doppelsechs, Schlüsselrisiko ist ihr Zehner, wenn er sich hinter unserer ersten Pressinglinie frei drehen kann.',
+      'Ausgeglichenes Geben-und-Nehmen-Duell: unsere Raute schafft im Zentrum Überzahl und bindet ihre Doppelsechs, ihr 4-2-3-1 zwingt uns dafür über die Außenbahnen weite Wege auf. Schlüsselraum ist der Raum um ihre Doppelsechs, Schlüsselrisiko ist ihr Zehner, wenn er sich hinter unserer ersten Pressinglinie frei drehen kann.',
     phases: {
       ownPossession: {
         spaces: [
@@ -523,41 +523,41 @@ export const entriesOur442Raute: TacticBookEntry[] = [
     opponentSystem: '3-5-2',
     rating: 'unangenehm',
     character:
-      'Unangenehmes Duell, weil ihre Dreierkette gegen unsere zwei Spitzen einen freien Mann im Aufbau hat und ihre Flügelverteidiger die Räume neben unserer Raute besetzen. Schlüsselraum sind die Halbräume vor ihren äußeren Innenverteidigern, Schlüsselrisiko ist ihr freier zentraler Innenverteidiger mit anschließendem Spiel auf Wingback oder Spitze.',
+      'Unangenehmes Duell, weil ihre Dreierkette gegen unsere zwei Spitzen einen freien Mann im Aufbau hat und ihre Schienenspieler die Räume neben unserer Raute besetzen. Schlüsselraum sind die Halbräume vor ihren äußeren Innenverteidigern, Schlüsselrisiko ist ihr freier zentraler Innenverteidiger mit anschließendem Spiel auf Schienenspieler oder Spitze.',
     phases: {
       ownPossession: {
         spaces: [
           'Zwischenraum zwischen ihrer Sechs und Dreierkette ist die wichtigste Zone, weil unser Zehner dort aus dem Rücken ihrer Mittelfeldreihe gefährlich werden kann.',
           'Halbräume vor ihren äußeren Innenverteidigern öffnen sich, wenn unsere Spitzen breit auf die Halbverteidiger stellen.',
-          'Außenbahn hinter ihren Flügelverteidigern ist bespielbar, sobald wir zentral locken und dann schnell nach außen lösen.',
-          'Ballferne Seite wird frei, wenn ihr 3-5-2 mit Dreier-Mittelfeldreihe und Wingback stark zur Ballseite verschiebt.',
+          'Außenbahn hinter ihren Schienenspielern ist bespielbar, sobald wir zentral locken und dann schnell nach außen lösen.',
+          'Ballferne Seite wird frei, wenn ihr 3-5-2 mit Dreier-Mittelfeldreihe und Schienenspieler stark zur Ballseite verschiebt.',
           'Rückraum hinter unseren Außenverteidigern bleibt kritisch, wenn diese gleichzeitig hochschieben.',
         ],
         advantages: [
           'Unsere Raute kann ihre zentrale Mittelfeldreihe eng bekämpfen und kurze Kombinationen durch die Mitte herstellen.',
           'Unser Zehner kann im Rücken ihrer Sechs auftauchen und die Verbindung zur Dreierkette stören.',
           'Zwei Spitzen können die äußeren Innenverteidiger in Laufduelle zwingen und Schnittstellen öffnen.',
-          'Nach zentralem Locken können unsere Außenverteidiger gezielt hinter ihre Flügelverteidiger starten.',
+          'Nach zentralem Locken können unsere Außenverteidiger gezielt hinter ihre Schienenspieler starten.',
         ],
         dangers: [
-          'Ihre Flügelverteidiger können unsere Außenverteidiger breit binden und unsere Raute auf lange Wege zwingen.',
+          'Ihre Schienenspieler können unsere Außenverteidiger breit binden und unsere Raute auf lange Wege zwingen.',
           'Der zentrale Innenverteidiger bleibt oft frei und kann bei Ballverlust direkt andribbeln.',
           'Bei zu engem Aufbau laufen wir in ihre drei zentralen Mittelfeldspieler und verlieren zweite Bälle.',
-          'Wenn unsere Außenverteidiger zu früh hoch stehen, öffnen wir Konterräume für ihre Wingbacks und zwei Spitzen.',
+          'Wenn unsere Außenverteidiger zu früh hoch stehen, öffnen wir Konterräume für ihre Schienenspieler und zwei Spitzen.',
         ],
         keyActions: [
           'Zehner sucht aktiv den Raum zwischen ihrer Sechs und Dreierkette und löst sich seitlich aus dem Deckungsschatten.',
           'Spitzen stellen sich breit auf die äußeren Innenverteidiger und öffnen die Schnittstelle zwischen Halbverteidiger und zentralem Innenverteidiger.',
           'Achter bieten sich in den Halbräumen vor ihren Halbverteidigern an und spielen schnell auf den dritten Mann weiter.',
-          'Außenverteidiger starten gezielt hinter ihre Flügelverteidiger, aber nur wenn Sechser oder ballnaher Achter absichern.',
+          'Außenverteidiger starten gezielt hinter ihre Schienenspieler, aber nur wenn Sechser oder ballnaher Achter absichern.',
           'Nach zentralem Locken schnell auf die ballferne Seite verlagern, bevor ihre Dreier-Mittelfeldreihe verschoben ist.',
         ],
       },
       afterLoss: {
         spaces: [
-          'Räume neben unserer Raute auf den Außenbahnen sind sofort kritisch, weil ihre Flügelverteidiger dort frei lösen können.',
+          'Räume neben unserer Raute auf den Außenbahnen sind sofort kritisch, weil ihre Schienenspieler dort frei lösen können.',
           'Zentrum vor unserer Sechs muss geschlossen bleiben, damit ihr erster Pass nicht direkt auf eine Spitze oder ihre Sechs geht.',
-          'Rückraum hinter unseren Außenverteidigern wird gefährlich, wenn sie hinter ihre Wingbacks gestartet waren.',
+          'Rückraum hinter unseren Außenverteidigern wird gefährlich, wenn sie hinter ihre Schienenspieler gestartet waren.',
           'Halbraum hinter unserem ballnahen Achter öffnet sich, wenn er zu weit nach außen ins Gegenpressing springt.',
           'Zone vor unseren Innenverteidigern entscheidet über zweite Bälle auf ihre zwei Spitzen.',
         ],
@@ -567,16 +567,16 @@ export const entriesOur442Raute: TacticBookEntry[] = [
           'Zwei Spitzen können Rückpässe auf ihre Dreierkette anlaufen und den Aufbau nach dem Ballgewinn verzögern.',
         ],
         dangers: [
-          'Der erste Pass auf ihre Flügelverteidiger kann unser zentrales Gegenpressing überspielen.',
+          'Der erste Pass auf ihre Schienenspieler kann unser zentrales Gegenpressing überspielen.',
           'Ihre zwei Spitzen halten unsere Innenverteidiger dauerhaft beschäftigt und können lange Bälle festmachen.',
           'Bei Verlagerungen entstehen lange Wege für unsere Achter, wenn die Raute zu eng nachjagt.',
           'Ihr zentraler Innenverteidiger kann nach Ballgewinn ungestört andribbeln, wenn unsere Spitzen schlecht gestaffelt sind.',
         ],
         keyActions: [
-          'Nach Ballverlust den ersten Pass auf ihre Flügelverteidiger blocken.',
+          'Nach Ballverlust den ersten Pass auf ihre Schienenspieler blocken.',
           'Ballnaher Achter stellt den Ballführer, während die Sechs zentral gegen direkte Bälle auf die Spitzen sichert.',
           'Ballferner Achter rückt eng ein und schließt den Verlagerungsweg durch das Zentrum.',
-          'Außenverteidiger sprintet zuerst in den Rückenraum zurück, bevor er wieder auf den Wingback herausschiebt.',
+          'Außenverteidiger sprintet zuerst in den Rückenraum zurück, bevor er wieder auf den Schienenspieler herausschiebt.',
           'Spitzen staffeln sich sofort neu: eine nimmt den zentralen Innenverteidiger, die andere den ballnahen Halbverteidiger.',
         ],
       },
@@ -584,18 +584,18 @@ export const entriesOur442Raute: TacticBookEntry[] = [
         spaces: [
           'Zentraler Innenverteidiger ist die problematische Aufbauzone, weil er gegen unsere zwei Spitzen oft frei andribbeln kann.',
           'Halbräume vor ihren äußeren Innenverteidigern sind Pressingzonen, wenn wir den Aufbau seitlich lenken.',
-          'Außenbahnen bei ihren Flügelverteidigern dürfen nicht frei bleiben, weil sie unsere Außenverteidiger breit binden.',
+          'Außenbahnen bei ihren Schienenspielern dürfen nicht frei bleiben, weil sie unsere Außenverteidiger breit binden.',
           'Zentrum um ihre Sechs muss zugestellt werden, damit ihre drei Mittelfeldspieler nicht frei aufdrehen.',
           'Rückraum vor unserer Abwehr bleibt kritisch, weil ihre zwei Spitzen Ablagen auf nachrückende Mittelfeldspieler suchen.',
         ],
         advantages: [
           'Unsere Raute kann ihre zentrale Mittelfeldreihe eng bekämpfen und Pässe auf ihre Sechs unter Druck setzen.',
           'Unser Zehner kann ihre Sechs zustellen und den Aufbau auf einen Halbverteidiger lenken.',
-          'Ballnaher Achter kann auf Halbverteidiger oder Flügelverteidiger durchschieben und dort Druck erzeugen.',
+          'Ballnaher Achter kann auf Halbverteidiger oder Schienenspieler durchschieben und dort Druck erzeugen.',
         ],
         dangers: [
           'Ihre Dreierkette hat gegen unsere zwei Spitzen einen freien Mann im Aufbau.',
-          'Ihre Flügelverteidiger können unsere Außenverteidiger breit binden und die Räume neben unserer Raute öffnen.',
+          'Ihre Schienenspieler können unsere Außenverteidiger breit binden und die Räume neben unserer Raute öffnen.',
           'Bei schnellen Verlagerungen müssen unsere Achter sehr lange Wege nach außen verteidigen.',
           'Ihre zwei Spitzen können unsere Innenverteidiger binden und den Rückraum für zweite Bälle öffnen.',
         ],
@@ -603,32 +603,32 @@ export const entriesOur442Raute: TacticBookEntry[] = [
           'Eine Spitze läuft den zentralen Innenverteidiger an und zwingt ihn auf eine Seite.',
           'Die zweite Spitze lenkt auf den ballnahen Halbverteidiger und blockt den Rückpass ins Zentrum.',
           'Zehner stellt ihre Sechs konsequent zu und verhindert freie Drehungen.',
-          'Ballnaher Achter schiebt auf den Halbverteidiger oder Flügelverteidiger durch, sobald der Pass offen gespielt wird.',
+          'Ballnaher Achter schiebt auf den Halbverteidiger oder Schienenspieler durch, sobald der Pass offen gespielt wird.',
           'Sechser bleibt zentral vor der Abwehr und sichert Ablagen ihrer zwei Spitzen.',
         ],
       },
       afterGain: {
         spaces: [
-          'Außenbahn hinter dem aufgerückten Flügelverteidiger ist nach Ballgewinn sofort die beste Tiefe.',
+          'Außenbahn hinter dem aufgerückten Schienenspieler ist nach Ballgewinn sofort die beste Tiefe.',
           'Halbraum hinter ihrer Dreier-Mittelfeldreihe öffnet sich kurz, wenn ihre zentralen Spieler ins Gegenpressing schieben.',
           'Schnittstelle zwischen Halbverteidiger und zentralem Innenverteidiger ist bespielbar, wenn eine Spitze diagonal startet.',
           'Ballferne Seite ist offen, wenn ihr 3-5-2 nach eigenem Angriff stark zur Ballseite verschoben ist.',
           'Zwischenraum vor ihrer Dreierkette kann über den Zehner bespielt werden, bevor ihre Sechs zurückfällt.',
         ],
         advantages: [
-          'Nach Ballgewinn können wir sofort hinter den aufgerückten Flügelverteidiger spielen.',
+          'Nach Ballgewinn können wir sofort hinter den aufgerückten Schienenspieler spielen.',
           'Zehner und zwei Spitzen geben kurze Wege für direkte Konter durch das Zentrum.',
           'Unsere Spitzen können die äußeren Innenverteidiger in breite Laufduelle zwingen.',
           'Achter können nach zentralem Ballgewinn sofort als zweite Welle in die Halbräume nachrücken.',
         ],
         dangers: [
           'Wenn der erste Pass zentral und langsam kommt, läuft er in ihre Dreier-Mittelfeldreihe.',
-          'Ein ungesicherter Außenpass kann nach erneutem Ballverlust sofort den Wingback-Konter gegen unseren Außenverteidiger öffnen.',
+          'Ein ungesicherter Außenpass kann nach erneutem Ballverlust sofort den Schienenspieler-Konter gegen unseren Außenverteidiger öffnen.',
           'Bei zu vielen Tiefenläufen vor den Ball fehlt die Klatschoption über Zehner oder Sechs.',
           'Wenn die Sechs zu hoch nachschiebt, fehlt die Sicherung gegen direkte Bälle auf ihre zwei Spitzen.',
         ],
         keyActions: [
-          'Erster Pass nach Ballgewinn sucht sofort den Raum hinter ihrem Flügelverteidiger oder den Zehner im Zwischenraum.',
+          'Erster Pass nach Ballgewinn sucht sofort den Raum hinter ihrem Schienenspieler oder den Zehner im Zwischenraum.',
           'Ballnahe Spitze kommt kurz entgegen, die zweite startet diagonal zwischen Halbverteidiger und zentralem Innenverteidiger.',
           'Zehner dreht auf, wenn ihre Sechs überspielt ist; sonst klatscht er direkt auf Achter oder Außenverteidiger.',
           'Außenverteidiger hinterläuft schnell, sobald der erste Pass gesichert ist und der ballnahe Achter absichert.',
@@ -639,9 +639,9 @@ export const entriesOur442Raute: TacticBookEntry[] = [
     liveCoaching: ['„Halbverteidiger pressen!"', '„Flügel sichern!"', '„Zehner finden!"'],
     adjustments: [
       'Bei freiem Aufbau einen Achter höher auf den zentralen Innenverteidiger schieben.',
-      'Bei Flügelproblemen ballnah eine 4-4-2-Staffelung herstellen, damit Außenverteidiger und Achter den Wingback gemeinsam aufnehmen.',
-      'Bei eigenem Ballbesitz Außenverteidiger mutiger hinter ihre Wingbacks bringen, wenn der zentrale Ball gesichert ist.',
-      'Bei Führung tiefer verteidigen und Konter hinter ihre Flügelverteidiger suchen.',
+      'Bei Flügelproblemen ballnah eine 4-4-2-Staffelung herstellen, damit Außenverteidiger und Achter den Schienenspieler gemeinsam aufnehmen.',
+      'Bei eigenem Ballbesitz Außenverteidiger mutiger hinter ihre Schienenspieler bringen, wenn der zentrale Ball gesichert ist.',
+      'Bei Führung tiefer verteidigen und Konter hinter ihre Schienenspieler suchen.',
       'Eine Spitze klarer auf den zentralen Innenverteidiger setzen, wenn dieser zu oft ungestört andribbelt.',
     ],
   },
@@ -651,24 +651,24 @@ export const entriesOur442Raute: TacticBookEntry[] = [
     opponentSystem: '3-4-3',
     rating: 'unangenehm',
     character:
-      'Unangenehmes Duell, weil ihr 3-4-3 unsere Raute breit auseinanderziehen und auf den Außenbahnen mit Wingback und Flügelspieler überladen kann. Schlüsselraum sind die Außenkorridore gegen Wingback und Flügelspieler, Schlüsselrisiko sind Diagonalbälle hinter unsere Außenverteidiger nach Ballverlust.',
+      'Unangenehmes Duell, weil ihr 3-4-3 unsere Raute breit auseinanderziehen und auf den Außenbahnen mit Schienenspieler und Flügelspieler überladen kann. Schlüsselraum sind die Außenkorridore gegen Schienenspieler und Flügelspieler, Schlüsselrisiko sind Diagonalbälle hinter unsere Außenverteidiger nach Ballverlust.',
     phases: {
       ownPossession: {
         spaces: [
           'Raum vor ihrer Doppelsechs ist die zentrale Verbindungszone, weil Zehner und Achter dort mit schnellen Pässen ihre beiden Sechser überspielen können.',
           'Halbraum neben ihrem Halbverteidiger öffnet sich, wenn eine Spitze kurz entgegenkommt und den Halbverteidiger aus der Kette zieht.',
-          'Außenbahn hinter ihrem Wingback ist bespielbar, sobald dieser auf unseren Außenverteidiger oder Achter vorschiebt.',
-          'Ballferner Außenraum wird frei, wenn ihr 3-4-3 stark zur Ballseite kippt und der Wingback ballfern zu spät zurückkommt.',
+          'Außenbahn hinter ihrem Schienenspieler ist bespielbar, sobald dieser auf unseren Außenverteidiger oder Achter vorschiebt.',
+          'Ballferner Außenraum wird frei, wenn ihr 3-4-3 stark zur Ballseite kippt und der Schienenspieler ballfern zu spät zurückkommt.',
           'Räume hinter unseren Außenverteidigern bleiben kritisch, wenn wir beide Seiten gleichzeitig hoch öffnen.',
         ],
         advantages: [
           'Im Zentrum können wir ihre Doppelsechs mit Zehner und Achtern attackieren und kurze Überzahlsituationen herstellen.',
           'Zwei Spitzen können die Halbverteidiger früh binden und deren Herausrücken provozieren.',
           'Unsere Sechs bleibt als zentrale Absicherung unter dem Ball und kann zweite Bälle vor der Abwehr sichern.',
-          'Diagonalpässe hinter den ballnah aufgerückten Wingback können ihre breite Struktur direkt bestrafen.',
+          'Diagonalpässe hinter den ballnah aufgerückten Schienenspieler können ihre breite Struktur direkt bestrafen.',
         ],
         dangers: [
-          'Ihre Wingbacks können unsere Außenverteidiger tief festnageln und uns die Breite im Aufbau nehmen.',
+          'Ihre Schienenspieler können unsere Außenverteidiger tief festnageln und uns die Breite im Aufbau nehmen.',
           'Bei zu engem Aufbau stellt ihre Doppelsechs den Zehner zu und ihre Halbverteidiger können aggressiv vorschieben.',
           'Ihre Dreierkette hat bei schlechten Abständen unserer Spitzen oft einen freien Spieler im Aufbau nach Ballverlust.',
           'Wenn der Außenverteidiger ohne gesicherten Ballbesitz hochschiebt, droht sofort der Diagonalball in seinen Rücken.',
@@ -678,12 +678,12 @@ export const entriesOur442Raute: TacticBookEntry[] = [
           'Eine Spitze lässt sich in den Halbraum fallen und zieht den Halbverteidiger heraus, die andere hält Tiefe gegen den zentralen Innenverteidiger.',
           'Außenverteidiger schiebt erst nach gesichertem Ballbesitz hoch und nur, wenn der ballnahe Achter den Halbraum absichert.',
           'Sechser bleibt zentral unter dem Ball und sichert zweite Bälle sowie den direkten Gegenkonter.',
-          'Nach zentralem Locken diagonal hinter den aufgerückten Wingback spielen, statt außen statisch in den Fuß zu passen.',
+          'Nach zentralem Locken diagonal hinter den aufgerückten Schienenspieler spielen, statt außen statisch in den Fuß zu passen.',
         ],
       },
       afterLoss: {
         spaces: [
-          'Außenkorridor hinter unserem Außenverteidiger ist sofort kritisch, weil ihr Wingback oder Flügelspieler dort in die Tiefe starten kann.',
+          'Außenkorridor hinter unserem Außenverteidiger ist sofort kritisch, weil ihr Schienenspieler oder Flügelspieler dort in die Tiefe starten kann.',
           'Tiefe neben unseren Innenverteidigern wird gefährlich, wenn ihre Flügelspieler zwischen Außenverteidiger und Innenverteidiger auftauchen.',
           'Halbraum hinter unserem ballnahen Achter öffnet sich, wenn er nach Ballverlust zu breit ins Gegenpressing springt.',
           'Zentrum um unsere Sechs muss geschlossen bleiben, damit ihre Doppelsechs keinen freien Diagonalball vorbereiten kann.',
@@ -697,7 +697,7 @@ export const entriesOur442Raute: TacticBookEntry[] = [
         dangers: [
           'Bei Ballverlust drohen schnelle Diagonalbälle hinter unsere Außenverteidiger.',
           'Ihre Flügelspieler können zwischen Außenverteidiger und Innenverteidiger frei aufdrehen, wenn unsere Kette zu breit gezogen ist.',
-          'Wenn wir ballnah nur auf den Ball jagen, bleibt der Wingback als einfache Ausweichoption frei.',
+          'Wenn wir ballnah nur auf den Ball jagen, bleibt der Schienenspieler als einfache Ausweichoption frei.',
           'Ihre Dreierkette kann nach Rückpass mit einem freien Spieler verlagern, wenn unsere Spitzen nicht neu staffeln.',
         ],
         keyActions: [
@@ -711,7 +711,7 @@ export const entriesOur442Raute: TacticBookEntry[] = [
       oppPossession: {
         spaces: [
           'Ihre Halbverteidiger sind die Pressingzone, sobald unsere Spitzen den Aufbau auf eine Seite lenken.',
-          'Außenkorridore gegen Wingback und Flügelspieler müssen kontrolliert werden, weil dort ihre Überzahl entsteht.',
+          'Außenkorridore gegen Schienenspieler und Flügelspieler müssen kontrolliert werden, weil dort ihre Überzahl entsteht.',
           'Halbräume hinter unseren Achtern sind kritisch, wenn ihre Flügelspieler einrücken und unser Außenverteidiger gebunden ist.',
           'Raum vor ihrer Doppelsechs muss zugestellt werden, damit ihre Sechser nicht frei aufdrehen und verlagern.',
           'Tiefe neben unseren Innenverteidigern darf nicht offen werden, weil ihre Flügelspieler dort diagonal einlaufen.',
@@ -724,7 +724,7 @@ export const entriesOur442Raute: TacticBookEntry[] = [
         ],
         dangers: [
           'Ihre Dreierkette hat im Aufbau oft einen freien Spieler, wenn unsere Spitzen nicht sauber lenken.',
-          'Die Wingbacks können unsere Außenverteidiger tief festnageln und ihre Flügelspieler im Halbraum freispielen.',
+          'Die Schienenspieler können unsere Außenverteidiger tief festnageln und ihre Flügelspieler im Halbraum freispielen.',
           'Ihre Flügelspieler können zwischen Außenverteidiger und Innenverteidiger auftauchen und die Zuordnung lösen.',
           'Bei Verlagerungen entstehen lange Wege für unsere Achter und offene ballferne Außenräume.',
         ],
@@ -732,40 +732,40 @@ export const entriesOur442Raute: TacticBookEntry[] = [
           'Spitzen lenken den Aufbau bogenförmig auf einen Halbverteidiger und nehmen den Rückpass auf den zentralen Innenverteidiger weg.',
           'Zehner stellt den ballnahen Sechser zu und lässt keine freie Drehung vor unserer Raute zu.',
           'Ballnaher Achter springt auf den zweiten Sechser oder unterstützt außen, sobald der Pass offen ist.',
-          'Außenverteidiger rückt nur mit Absicherung auf den Wingback heraus; Innenverteidiger und Achter schließen die Schnittstelle dahinter.',
+          'Außenverteidiger rückt nur mit Absicherung auf den Schienenspieler heraus; Innenverteidiger und Achter schließen die Schnittstelle dahinter.',
           'Ballferner Achter bleibt eng neben der Sechs und schützt den Halbraum gegen Verlagerung und Schnittstellenpass.',
         ],
       },
       afterGain: {
         spaces: [
-          'Raum hinter ihrem aufgerückten Wingback ist nach Ballgewinn sofort die beste Zielzone.',
+          'Raum hinter ihrem aufgerückten Schienenspieler ist nach Ballgewinn sofort die beste Zielzone.',
           'Halbraum hinter ihrer Doppelsechs öffnet sich kurz, wenn ihre Sechser im Gegenpressing nach vorne springen.',
           'Schnittstelle zwischen Halbverteidiger und zentralem Innenverteidiger ist bespielbar, wenn eine Spitze diagonal startet.',
           'Ballferne Außenbahn ist frei, wenn ihr 3-4-3 nach eigenem Angriff stark zur Ballseite verschoben ist.',
           'Rückraum vor ihrer Dreierkette bleibt offen für den nachrückenden Achter, wenn ihre Halbverteidiger breit verteidigen müssen.',
         ],
         advantages: [
-          'Nach Ballgewinn können wir sofort in den Raum hinter ihren Wingback spielen.',
+          'Nach Ballgewinn können wir sofort in den Raum hinter ihren Schienenspieler spielen.',
           'Zehner und Achter geben kurze Passwege, um aus dem ersten Druck der Doppelsechs herauszukommen.',
           'Zwei Spitzen können Halbverteidiger und zentralen Innenverteidiger binden und die Schnittstellen attackieren.',
           'Die Sechs sichert zentral, falls der schnelle Angriff hängen bleibt.',
         ],
         dangers: [
           'Wenn der erste Pass zentral und langsam kommt, greift ihre Doppelsechs sofort im Gegenpressing zu.',
-          'Ein unsauberer Diagonalball nach außen öffnet den direkten Gegenkonter über Wingback und Flügelspieler.',
+          'Ein unsauberer Diagonalball nach außen öffnet den direkten Gegenkonter über Schienenspieler und Flügelspieler.',
           'Bei zu vielen Läufen vor den Ball fehlt die kurze Klatschoption über Zehner oder Achter.',
           'Wenn der ballferne Außenverteidiger zu früh hochschiebt, ist die Verlagerung nach erneutem Ballverlust offen.',
         ],
         keyActions: [
-          'Erster Pass nach Ballgewinn sucht sofort den Raum hinter ihrem Wingback oder den Zehner im Halbraum.',
+          'Erster Pass nach Ballgewinn sucht sofort den Raum hinter ihrem Schienenspieler oder den Zehner im Halbraum.',
           'Ballnahe Spitze kommt kurz entgegen, die zweite startet diagonal in die Schnittstelle neben dem Halbverteidiger.',
           'Zehner klatscht bei Druck direkt auf den nachrückenden Achter oder öffnet auf den Außenverteidiger.',
-          'Ballnaher Außenverteidiger startet erst hinter den Wingback, wenn der erste Pass sauber gesichert ist.',
+          'Ballnaher Außenverteidiger startet erst hinter den Schienenspieler, wenn der erste Pass sauber gesichert ist.',
           'Sechser bleibt zentral unter dem Ball und verhindert den direkten Gegenkonter durch ihre Front drei.',
         ],
       },
     },
-    liveCoaching: ['„Wingback kontrollieren!"', '„Halbraum dicht!"', '„Diagonal sichern!"'],
+    liveCoaching: ['„Schienenspieler kontrollieren!"', '„Halbraum dicht!"', '„Diagonal sichern!"'],
     adjustments: [
       'Bei dauerhafter Unterzahl außen den ballnahen Achter breiter verteidigen lassen.',
       'Wenn ihre Dreierkette frei bleibt, den Zehner höher in die erste Linie schieben.',
@@ -780,13 +780,13 @@ export const entriesOur442Raute: TacticBookEntry[] = [
     opponentSystem: '5-3-2',
     rating: 'unangenehm',
     character:
-      'Unangenehmes Duell, weil ihr 5-3-2 Zentrum und letzte Linie verdichtet und unser Spiel durch die Mitte schnell eng macht. Schlüsselraum sind die Halbräume vor ihren äußeren Innenverteidigern, Schlüsselrisiko sind freie Wingbacks nach Ballgewinn und lange Bälle auf ihre zwei Spitzen.',
+      'Unangenehmes Duell, weil ihr 5-3-2 Zentrum und letzte Linie verdichtet und unser Spiel durch die Mitte schnell eng macht. Schlüsselraum sind die Halbräume vor ihren äußeren Innenverteidigern, Schlüsselrisiko sind freie Schienenspieler nach Ballgewinn und lange Bälle auf ihre zwei Spitzen.',
     phases: {
       ownPossession: {
         spaces: [
           'Halbräume vor ihren äußeren Innenverteidigern sind die wichtigste Zone, weil eine unserer Spitzen dort seitlich lösen und die Fünferkette auseinanderziehen kann.',
           'Zentrum zwischen ihrer Mittelfeld- und Abwehrlinie ist eng, wird aber bespielbar, wenn unser Zehner sich aus dem Rücken ihrer drei Mittelfeldspieler löst.',
-          'Außenbahnen hinter ihren Wingbacks öffnen sich nach Seitenwechseln, wenn ihr 5-3-2 stark zur Ballseite verschiebt.',
+          'Außenbahnen hinter ihren Schienenspieler öffnen sich nach Seitenwechseln, wenn ihr 5-3-2 stark zur Ballseite verschiebt.',
           'Rückraum vor ihrer Fünferkette wird frei, wenn ihre Innenverteidiger tief bleiben und eine Spitze klatschen lässt.',
           'Rückraum vor unserer Innenverteidigung bleibt als Restverteidigungszone kritisch gegen ihre zwei Spitzen.',
         ],
@@ -794,29 +794,29 @@ export const entriesOur442Raute: TacticBookEntry[] = [
           'Unsere Raute kann ihre drei zentralen Mittelfeldspieler eng attackieren und im Zentrum kurze Verbindungen herstellen.',
           'Unser Zehner kann hinter ihrer Mittelfeldlinie freie Anschlussräume finden, wenn er nicht statisch im Block wartet.',
           'Zwei Spitzen können die äußeren Innenverteidiger seitlich herausziehen und Schnittstellen neben dem zentralen Innenverteidiger öffnen.',
-          'Mit sauberen Seitenwechseln können wir ihre Fünferkette auseinanderziehen und Wingbacks auf lange Wege zwingen.',
+          'Mit sauberen Seitenwechseln können wir ihre Fünferkette auseinanderziehen und Schienenspieler auf lange Wege zwingen.',
         ],
         dangers: [
           'Ihre Fünferkette verteidigt Schnittstellen und Strafraum sehr kompakt, wenn wir ohne Tempo zentral eindringen wollen.',
           'Bei zu engem Angriffsspiel laufen wir direkt in ihre Unterzahlzonen gegen drei Mittelfeldspieler und fünf Verteidiger.',
-          'Ihre Wingbacks können nach Ballgewinn sofort in freie Außenräume starten, wenn unsere Außenverteidiger hoch stehen.',
+          'Ihre Schienenspieler können nach Ballgewinn sofort in freie Außenräume starten, wenn unsere Außenverteidiger hoch stehen.',
           'Lange Bälle auf ihre zwei Spitzen binden unsere Restverteidigung und erschweren hohes Nachschieben.',
         ],
         keyActions: [
           'Zehner im Zwischenraum anspielen und bei Druck direkt auf die ballnahe Spitze oder den nachrückenden Achter klatschen lassen.',
           'Eine Spitze löst sich in den Halbraum vor den äußeren Innenverteidiger, die andere attackiert die Tiefe zentral.',
-          'Außenverteidiger hoch und breit einbinden, um ihre Wingbacks zu binden, aber nicht beide gleichzeitig ohne Sechserabsicherung schieben lassen.',
+          'Außenverteidiger hoch und breit einbinden, um ihre Schienenspieler zu binden, aber nicht beide gleichzeitig ohne Sechserabsicherung schieben lassen.',
           'Achter positionieren sich versetzt: einer im Halbraum neben ihrer Mittelfeldreihe, einer näher an der Sechs für Rückraum und Gegenpressing.',
-          'Nach zentralem Locken schnell auf die ballferne Seite verlagern und die Außenbahn hinter dem Wingback attackieren.',
+          'Nach zentralem Locken schnell auf die ballferne Seite verlagern und die Außenbahn hinter dem Schienenspieler attackieren.',
         ],
       },
       afterLoss: {
         spaces: [
-          'Außenbahn hinter unserem aufgerückten Außenverteidiger ist sofort kritisch, weil ihr Wingback dort nach Ballgewinn starten kann.',
+          'Außenbahn hinter unserem aufgerückten Außenverteidiger ist sofort kritisch, weil ihr Schienenspieler dort nach Ballgewinn starten kann.',
           'Zentrum vor unserer Sechs muss geschlossen werden, damit ihre Mittelfeldspieler nicht frei auf die zwei Spitzen vorbereiten.',
           'Rückraum vor unserer Innenverteidigung ist gefährlich, wenn ihre Spitzen lange Bälle festmachen und Ablagen spielen.',
           'Halbraum hinter unserem ballnahen Achter öffnet sich, wenn er zu weit nach außen ins Gegenpressing springt.',
-          'Ballferne Außenbahn wird gefährlich, wenn ihr erster Pass aus dem Zentrum direkt auf den freien Wingback verlagert.',
+          'Ballferne Außenbahn wird gefährlich, wenn ihr erster Pass aus dem Zentrum direkt auf den freien Schienenspieler verlagert.',
         ],
         advantages: [
           'Unsere Raute hat im Zentrum kurze Wege und kann den ersten Pass auf ihre Mittelfeldspieler schnell einkreisen.',
@@ -824,15 +824,15 @@ export const entriesOur442Raute: TacticBookEntry[] = [
           'Zwei Spitzen können Rückpässe auf ihre Innenverteidiger anlaufen und den sauberen Befreiungspass verzögern.',
         ],
         dangers: [
-          'Ihre Wingbacks können nach Ballgewinn sofort in freie Außenräume starten.',
+          'Ihre Schienenspieler können nach Ballgewinn sofort in freie Außenräume starten.',
           'Lange Bälle auf ihre zwei Spitzen können unsere Innenverteidiger binden und zweite Bälle vor der Abwehr öffnen.',
-          'Wenn wir nach Ballverlust nur zentral jagen, kommt die erste Verlagerung auf den Wingback zu leicht durch.',
+          'Wenn wir nach Ballverlust nur zentral jagen, kommt die erste Verlagerung auf den Schienenspieler zu leicht durch.',
           'Bei hochstehenden Außenverteidigern kann unsere Restverteidigung gegen zwei Spitzen schnell in Gleichzahl geraten.',
         ],
         keyActions: [
           'Nach Ballverlust sofort Zentrum schließen und den direkten Pass auf ihre Spitzen verhindern.',
           'Ballnaher Achter stellt den Ballführer, während die Sechs zentral vor den Innenverteidigern bleibt.',
-          'Ballferner Außenverteidiger bleibt tiefer und schützt gegen lange Verlagerungen auf den Wingback.',
+          'Ballferner Außenverteidiger bleibt tiefer und schützt gegen lange Verlagerungen auf den Schienenspieler.',
           'Zehner blockt den Pass auf ihren zentralen Sechser und hält den Ballgewinn in der engen Zone.',
           'Innenverteidiger bleiben gestaffelt: einer attackiert den Zielspieler, einer sichert Tiefe und zweiten Ball.',
         ],
@@ -840,8 +840,8 @@ export const entriesOur442Raute: TacticBookEntry[] = [
       oppPossession: {
         spaces: [
           'Äußerer Innenverteidiger ist die Pressingzone, wenn unsere Spitzen den Aufbau seitlich lenken.',
-          'Ihr zentraler Sechser muss zugestellt werden, weil er bei freiem Aufdrehen Wingbacks und Spitzen verbinden kann.',
-          'Außenbahnen bei ihren Wingbacks dürfen nicht frei bleiben, weil sie unsere Außenverteidiger breit binden.',
+          'Ihr zentraler Sechser muss zugestellt werden, weil er bei freiem Aufdrehen Schienenspieler und Spitzen verbinden kann.',
+          'Außenbahnen bei ihren Schienenspieler dürfen nicht frei bleiben, weil sie unsere Außenverteidiger breit binden.',
           'Halbräume neben unserer Sechs werden gefährlich, wenn ihre Halbspieler im Mittelfeld dort zweite Bälle aufnehmen.',
           'Rückraum vor unserer Innenverteidigung muss eng bleiben, weil ihre zwei Spitzen Ablagen auf nachrückende Mittelfeldspieler suchen.',
         ],
@@ -849,44 +849,44 @@ export const entriesOur442Raute: TacticBookEntry[] = [
           'Unsere Raute kann ihre drei zentralen Mittelfeldspieler eng attackieren und freie Drehungen verhindern.',
           'Zehner kann ihren zentralen Sechser zustellen und den Aufbau auf einen äußeren Innenverteidiger lenken.',
           'Ballnaher Achter kann auf ihren Halbspieler schieben und die zweite zentrale Anschlussoption schließen.',
-          'Wenn Außenverteidiger und Achter abgestimmt arbeiten, können wir den Wingback aufnehmen ohne den Halbraum zu öffnen.',
+          'Wenn Außenverteidiger und Achter abgestimmt arbeiten, können wir den Schienenspieler aufnehmen ohne den Halbraum zu öffnen.',
         ],
         dangers: [
           'Ihre Fünferkette hat im Aufbau oft genug Breite, um unsere Raute seitlich zu strecken.',
-          'Ihre Wingbacks können nach Verlagerungen freie Außenräume bekommen, wenn unsere Achter zu lange Wege haben.',
+          'Ihre Schienenspieler können nach Verlagerungen freie Außenräume bekommen, wenn unsere Achter zu lange Wege haben.',
           'Lange Bälle auf ihre zwei Spitzen binden unsere Restverteidigung und erzeugen zweite Bälle vor der Abwehr.',
-          'Wenn der Außenverteidiger ohne Absicherung herausrückt, öffnet sich der Raum hinter ihm für den Wingback oder ausweichende Spitze.',
+          'Wenn der Außenverteidiger ohne Absicherung herausrückt, öffnet sich der Raum hinter ihm für den Schienenspieler oder ausweichende Spitze.',
         ],
         keyActions: [
           'Spitzen lenken den Aufbau auf einen äußeren Innenverteidiger und verhindern den einfachen Rückpass zum zentralen Innenverteidiger.',
           'Zehner stellt ihren zentralen Sechser zu und lässt keine freie Drehung im Zentrum zu.',
-          'Ballnaher Achter schiebt auf ihren Halbspieler im Mittelfeld und bleibt nah genug, um den Wingback-Pass mit zu kontrollieren.',
+          'Ballnaher Achter schiebt auf ihren Halbspieler im Mittelfeld und bleibt nah genug, um den Schienenspieler-Pass mit zu kontrollieren.',
           'Außenverteidiger rückt nur heraus, wenn der Achter den Halbraum sichert.',
           'Sechser bleibt zentral vor der Abwehr und sammelt Ablagen ihrer zwei Spitzen sowie zweite Bälle ein.',
         ],
       },
       afterGain: {
         spaces: [
-          'Außenbahn hinter dem ballnahen Wingback ist nach Ballgewinn sofort die beste Tiefe.',
+          'Außenbahn hinter dem ballnahen Schienenspieler ist nach Ballgewinn sofort die beste Tiefe.',
           'Zwischenraum hinter ihrer Mittelfeldlinie öffnet sich kurz, wenn ihre drei Mittelfeldspieler ins Gegenpressing schieben.',
           'Halbraum neben dem äußeren Innenverteidiger ist bespielbar, wenn eine Spitze diagonal ausweicht.',
           'Ballferne Seite wird frei, wenn ihr 5-3-2 nach eigenem Angriff stark zur Ballseite verschoben ist.',
           'Rückraum vor ihrer Fünferkette bleibt als zweite Welle offen, wenn ihre Innenverteidiger tief gegen unsere Spitzen fallen.',
         ],
         advantages: [
-          'Nach Ballgewinn können wir sofort hinter den ballnahen Wingback spielen.',
+          'Nach Ballgewinn können wir sofort hinter den ballnahen Schienenspieler spielen.',
           'Zehner und Spitzen geben kurze Wege, um den ersten Pass aus dem Zentrum schnell nach vorne zu bringen.',
           'Unsere Außenverteidiger können als Breitengeber nachrücken, sobald der erste Pass gesichert ist.',
           'Achter können zweite Bälle im Rückraum aufnehmen und den Angriff gegen die tiefe Fünferkette fortsetzen.',
         ],
         dangers: [
           'Wenn der erste Pass zentral und langsam kommt, läuft er in ihre drei Mittelfeldspieler.',
-          'Ein ungesicherter Pass nach außen kann nach erneutem Ballverlust sofort ihren Wingback in unseren Rücken bringen.',
+          'Ein ungesicherter Pass nach außen kann nach erneutem Ballverlust sofort ihren Schienenspieler in unseren Rücken bringen.',
           'Bei zu vielen Tiefenläufen vor den Ball fehlt die Klatschoption über Zehner oder Achter.',
           'Wenn unsere Sechs zu hoch nachschiebt, fehlt die zentrale Sicherung gegen direkte Bälle auf ihre zwei Spitzen.',
         ],
         keyActions: [
-          'Erster Pass nach Ballgewinn sucht sofort den Raum hinter dem ballnahen Wingback oder den Zehner im Zwischenraum.',
+          'Erster Pass nach Ballgewinn sucht sofort den Raum hinter dem ballnahen Schienenspieler oder den Zehner im Zwischenraum.',
           'Zehner dreht nur auf, wenn die Mittelfeldlinie überspielt ist; sonst klatscht er direkt auf Achter oder Spitze.',
           'Ballnahe Spitze kommt kurz entgegen, die zweite attackiert die Tiefe zwischen äußerem und zentralem Innenverteidiger.',
           'Außenverteidiger startet in die Breite erst nach gesichertem ersten Pass und mit Absicherung durch Achter oder Sechs.',
@@ -894,10 +894,10 @@ export const entriesOur442Raute: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Breite halten!"', '„Wingback sichern!"', '„Zwischenraum suchen!"'],
+    liveCoaching: ['„Breite halten!"', '„Schienenspieler sichern!"', '„Zwischenraum suchen!"'],
     adjustments: [
       'Bei zu engem Spiel einen Achter breiter im Halbraum positionieren.',
-      'Wenn ihre Wingbacks frei werden, ballnah auf eine 4-4-2-Staffelung kippen.',
+      'Wenn ihre Schienenspieler frei werden, ballnah auf eine 4-4-2-Staffelung kippen.',
       'Bei eigenem Druck einen Außenverteidiger sehr hoch und den anderen tiefer lassen.',
       'Bei Rückstand Zehner näher an die Spitzen schieben und zweite Bälle erzwingen.',
       'Die Sechs tiefer halten, wenn lange Bälle auf ihre zwei Spitzen unsere Restverteidigung zu stark binden.',
@@ -970,7 +970,7 @@ export const entriesOur442Raute: TacticBookEntry[] = [
         spaces: [
           'Ihre Innenverteidiger sind nach Rückpässen die Pressingzone, weil beide Spitzen dort Druck aufbauen können.',
           'Zentrum vor unserer Raute muss kompakt bleiben, damit ihr zentraler Mittelfeldspieler nicht den ersten Pass auf den Zielspieler vorbereiten kann.',
-          'Außenbahn bei ihren Wingbacks oder Außenspielern darf nach Befreiungen nicht frei bleiben.',
+          'Außenbahn bei ihren Schienenspieler oder Außenspielern darf nach Befreiungen nicht frei bleiben.',
           'Rückraum vor unserer Abwehr ist kritisch, wenn ihr Zielspieler Ablagen auf nachrückende Mittelfeldspieler spielt.',
           'Ballferner Halbraum muss abgesichert werden, wenn wir ihren tiefen Aufbau stark auf eine Seite lenken.',
         ],
@@ -999,7 +999,7 @@ export const entriesOur442Raute: TacticBookEntry[] = [
           'Rückraum vor ihrer Fünferkette ist nach Ballgewinn kurz offen, bevor ihr Block wieder tief steht.',
           'Ballferne Außenbahn ist frei, wenn ihr 5-4-1 nach eigenem Ballbesitz zur alten Seite verschoben ist.',
           'Halbraum hinter ihrer Mittelfeldlinie kann direkt bespielt werden, wenn der erste Pass den Zielspieler-Block überspielt.',
-          'Schnittstelle zwischen Wingback und äußerem Innenverteidiger öffnet sich, wenn ihr Wingback nach vorne geschoben hatte.',
+          'Schnittstelle zwischen Schienenspieler und äußerem Innenverteidiger öffnet sich, wenn ihr Schienenspieler nach vorne geschoben hatte.',
           'Strafraumkante bleibt als zweite Welle wichtig, weil ihre Fünferkette bei Kontern schnell tief fällt.',
         ],
         advantages: [
@@ -1018,7 +1018,7 @@ export const entriesOur442Raute: TacticBookEntry[] = [
           'Erster Pass nach Ballgewinn sucht den Zehner im Zwischenraum oder den freien Außenverteidiger mit Tempo.',
           'Zehner dreht nur auf, wenn die Mittelfeldlinie überspielt ist; sonst klatscht er direkt auf Achter oder Spitze.',
           'Eine Spitze kommt entgegen, die andere besetzt die Tiefe und bindet die Innenverteidiger.',
-          'Achter rücken an die Strafraumkante nach und bleiben für Rücklagen sowie zweite Bälle verfügbar.',
+          'Achter rücken an die Strafraumkante nach und bleiben für flache Rückpässe sowie zweite Bälle verfügbar.',
           'Sechs bleibt unter dem Ball und sichert den direkten Gegenkonter über den Zielspieler.',
         ],
       },
@@ -1038,7 +1038,7 @@ export const entriesOur442Raute: TacticBookEntry[] = [
     opponentSystem: '4-1-4-1',
     rating: 'ausgeglichen',
     character:
-      'Ausgeglichenes Tradeoff-Duell: wir überladen zentral ihre einzelne Sechs mit Zehner und Achtern, ihre breiten äußeren Mittelfeldspieler ziehen dafür unsere enge Raute auseinander. Schlüsselraum ist der Bereich links und rechts neben ihrer Sechs, Schlüsselrisiko sind ihre äußeren Mittelfeldspieler, wenn sie unsere Außenverteidiger früh anlaufen und unsere Raute seitlich auseinanderziehen.',
+      'Ausgeglichenes Geben-und-Nehmen-Duell: wir überladen zentral ihre einzelne Sechs mit Zehner und Achtern, ihre breiten äußeren Mittelfeldspieler ziehen dafür unsere enge Raute auseinander. Schlüsselraum ist der Bereich links und rechts neben ihrer Sechs, Schlüsselrisiko sind ihre äußeren Mittelfeldspieler, wenn sie unsere Außenverteidiger früh anlaufen und unsere Raute seitlich auseinanderziehen.',
     phases: {
       ownPossession: {
         spaces: [

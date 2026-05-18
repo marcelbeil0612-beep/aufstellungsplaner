@@ -130,11 +130,11 @@ export const entriesOur442: TacticBookEntry[] = [
     opponentSystem: '3-4-3',
     rating: 'unangenehm',
     character:
-      'Schwieriges Duell, weil ihre Wingbacks und Flügelspieler auf außen Überzahl erzeugen und unsere letzte Linie breit auseinanderziehen können. Schlüsselraum ist der Außenraum hinter ihren Wingbacks, Schlüsselrisiko ist, dass unsere Viererkette durch ihre Front drei und breite Wingbacks zu weit geöffnet wird.',
+      'Schwieriges Duell, weil ihre Schienenspieler und Flügelspieler auf außen Überzahl erzeugen und unsere letzte Linie breit auseinanderziehen können. Schlüsselraum ist der Außenraum hinter ihren Schienenspieler, Schlüsselrisiko ist, dass unsere Viererkette durch ihre Front drei und breite Schienenspieler zu weit geöffnet wird.',
     phases: {
       ownPossession: {
         spaces: [
-          'Außenraum hinter ihren Wingbacks ist die wichtigste Angriffszone, sobald sie hoch auf unsere Außenverteidiger oder Außenmittelfeldspieler schieben.',
+          'Außenraum hinter ihren Schienenspieler ist die wichtigste Angriffszone, sobald sie hoch auf unsere Außenverteidiger oder Außenmittelfeldspieler schieben.',
           'Halbraum neben ihrem äußeren Innenverteidiger wird offen, wenn eine unserer Spitzen diagonal ausweicht.',
           'Zentrum bei Ballgewinn und im Aufbau ist eng, weil ihre Doppelsechs dort zweite Bälle sichern will.',
           'Raum hinter ihrer ersten Linie öffnet sich, wenn unsere zwei Spitzen den Ball festmachen und der zentrale Mittelfeldspieler nachrückt.',
@@ -142,29 +142,29 @@ export const entriesOur442: TacticBookEntry[] = [
         ],
         advantages: [
           'Unsere zwei Spitzen können direkte Bälle festmachen und ihre Dreierkette früh in Rückwärtsbewegung zwingen.',
-          'Lange Bälle hinter die Wingbacks können ihre äußeren Innenverteidiger aus der Kette ziehen.',
+          'Lange Bälle hinter die Schienenspieler können ihre äußeren Innenverteidiger aus der Kette ziehen.',
           'Unsere Außenmittelfeldspieler haben klare Konterräume, wenn sie nach Ballgewinn sofort in die Tiefe starten.',
         ],
         dangers: [
-          'Ihre Wingbacks können unsere Außenmittelfeldspieler tief drücken und unsere Entlastung über außen blockieren.',
+          'Ihre Schienenspieler können unsere Außenmittelfeldspieler tief drücken und unsere Entlastung über außen blockieren.',
           'Ihre Front drei kann unsere Viererkette breit binden und dadurch Passwege ins Zentrum erschweren.',
           'Wenn wir zu langsam aufbauen, schiebt ihr 3-4-3 sauber nach und stellt unsere Außen fest.',
           'Zu viele lange Bälle ohne Nachrücken führen zu zweiten Bällen für ihre Doppelsechs.',
         ],
         keyActions: [
-          'Innenverteidiger suchen früh den diagonalen Ball hinter den ballnahen Wingback, sobald dieser hoch steht.',
+          'Innenverteidiger suchen früh den diagonalen Ball hinter den ballnahen Schienenspieler, sobald dieser hoch steht.',
           'Eine Spitze kommt entgegen und bindet den zentralen Innenverteidiger, die andere startet in den Raum neben dem äußeren Innenverteidiger.',
-          'Außenmittelfeldspieler startet nach Ballgewinn sofort hinter den Wingback und fordert den Ball in den Lauf.',
+          'Außenmittelfeldspieler startet nach Ballgewinn sofort hinter den Schienenspieler und fordert den Ball in den Lauf.',
           'Zentraler Mittelfeldspieler rückt nach langen Bällen auf den zweiten Ball nach, der andere bleibt als Absicherung.',
-          'Außenverteidiger unterstützt nur, wenn der Außenmittelfeldspieler den Wingback bindet und der zentrale Mittelfeldspieler hinter ihm sichert.',
+          'Außenverteidiger unterstützt nur, wenn der Außenmittelfeldspieler den Schienenspieler bindet und der zentrale Mittelfeldspieler hinter ihm sichert.',
         ],
       },
       afterLoss: {
         spaces: [
-          'Außenbahn hinter unserem Außenmittelfeldspieler ist sofort kritisch, weil Wingback und Flügel dort gemeinsam starten können.',
+          'Außenbahn hinter unserem Außenmittelfeldspieler ist sofort kritisch, weil Schienenspieler und Flügel dort gemeinsam starten können.',
           'Halbraum zwischen Außenverteidiger und Innenverteidiger wird gefährlich, wenn ihr Flügelspieler diagonal in die Tiefe geht.',
           'Zentrum bei Ballverlust muss geschlossen bleiben, damit ihre Doppelsechs nicht frei den ersten Pass hinter unsere Linie spielt.',
-          'Ballferne Seite wird gefährlich, wenn ihr 3-4-3 nach Ballgewinn direkt auf den anderen Wingback verlagert.',
+          'Ballferne Seite wird gefährlich, wenn ihr 3-4-3 nach Ballgewinn direkt auf den anderen Schienenspieler verlagert.',
         ],
         advantages: [
           'Unsere zwei Spitzen können den ersten Rückpass auf ihre Dreierkette anlaufen und den Konter nach außen lenken.',
@@ -172,13 +172,13 @@ export const entriesOur442: TacticBookEntry[] = [
           'Unsere zwei zentralen Mittelfeldspieler können zweite Bälle jagen, wenn sie nicht beide vor den Ball geraten.',
         ],
         dangers: [
-          'Wingback und Flügelspieler erzeugen nach Ballgewinn sofort Überzahl gegen unseren Außenverteidiger.',
+          'Schienenspieler und Flügelspieler erzeugen nach Ballgewinn sofort Überzahl gegen unseren Außenverteidiger.',
           'Wenn unsere Außenmittelfeldspieler zu hoch bleiben, wird unsere Viererkette auf außen isoliert.',
           'Ein schneller Pass hinter unseren Außenverteidiger zieht die ganze Kette auseinander.',
           'Ihre Doppelsechs kann zweite Bälle aufnehmen, wenn wir nach langen Pässen nicht geschlossen nachrücken.',
         ],
         keyActions: [
-          'Außenmittelfeldspieler sprintet nach Ballverlust sofort zurück und nimmt den Wingback auf.',
+          'Außenmittelfeldspieler sprintet nach Ballverlust sofort zurück und nimmt den Schienenspieler auf.',
           'Außenverteidiger bleibt zunächst kompakt zur Kette und rückt erst heraus, wenn der Außenmittelfeldspieler Druck macht.',
           'Ballnaher zentraler Mittelfeldspieler stellt den Ballführer, der andere schließt den zentralen Rückraum.',
           'Ballnahe Spitze blockt den Rückpass auf den äußeren Innenverteidiger, die zweite Spitze hält den zentralen Innenverteidiger im Deckungsschatten.',
@@ -187,11 +187,11 @@ export const entriesOur442: TacticBookEntry[] = [
       },
       oppPossession: {
         spaces: [
-          'Außenbahn bei ihren Wingbacks ist die zentrale Gefahrenzone, weil dort Wingback und Flügelspieler gemeinsam Druck machen.',
+          'Außenbahn bei ihren Schienenspieler ist die zentrale Gefahrenzone, weil dort Schienenspieler und Flügelspieler gemeinsam Druck machen.',
           'Halbraum vor unseren Innenverteidigern muss eng bleiben, damit ihre Flügelspieler nicht zwischen den Linien aufdrehen.',
           'Ihre äußeren Innenverteidiger sind Pressingzonen, wenn unsere Spitzen den Aufbau auf eine Seite lenken.',
-          'Raum hinter unseren Außenverteidigern darf nicht offen werden, sobald der Wingback hoch steht und der Flügel diagonal startet.',
-          'Zentrum vor unserer Mittelfeldlinie bleibt wichtig, weil ihre Doppelsechs von dort Verlagerungen auf die Wingbacks vorbereitet.',
+          'Raum hinter unseren Außenverteidigern darf nicht offen werden, sobald der Schienenspieler hoch steht und der Flügel diagonal startet.',
+          'Zentrum vor unserer Mittelfeldlinie bleibt wichtig, weil ihre Doppelsechs von dort Verlagerungen auf die Schienenspieler vorbereitet.',
         ],
         advantages: [
           'Unsere zwei Stürmer können ihre Dreierkette anlaufen und den Aufbau gezielt auf einen äußeren Innenverteidiger lenken.',
@@ -199,29 +199,29 @@ export const entriesOur442: TacticBookEntry[] = [
           'Wenn Außenmittelfeldspieler konsequent zurückarbeiten, können wir die Außenbahn mit zwei Spielern doppeln.',
         ],
         dangers: [
-          'Auf außen geraten wir oft in Unterzahl, wenn Wingback und Flügelspieler gegen Außenmittelfeldspieler und Außenverteidiger sauber kombinieren.',
+          'Auf außen geraten wir oft in Unterzahl, wenn Schienenspieler und Flügelspieler gegen Außenmittelfeldspieler und Außenverteidiger sauber kombinieren.',
           'Ihre Front drei kann unsere Kette auseinanderziehen und Lücken zwischen Außenverteidiger und Innenverteidiger öffnen.',
-          'Wenn unsere Außenmittelfeldspieler zu hoch stehen, kommen ihre Wingbacks frei ins letzte Drittel.',
+          'Wenn unsere Außenmittelfeldspieler zu hoch stehen, kommen ihre Schienenspieler frei ins letzte Drittel.',
           'Bei zu breitem Verschieben öffnet sich das Zentrum für ihre Doppelsechs und nachrückende Flügelspieler.',
         ],
         keyActions: [
           'Erste Spitze lenkt den zentralen Innenverteidiger auf eine Seite, zweite Spitze schließt den Rückpass und den zentralen Sechserraum.',
-          'Ballnaher Außenmittelfeldspieler nimmt den Wingback früh auf und verhindert freie Ballannahmen nach vorne.',
-          'Außenverteidiger bleibt eng genug am Innenverteidiger und rückt erst heraus, wenn der Ball wirklich auf den Wingback gespielt ist.',
+          'Ballnaher Außenmittelfeldspieler nimmt den Schienenspieler früh auf und verhindert freie Ballannahmen nach vorne.',
+          'Außenverteidiger bleibt eng genug am Innenverteidiger und rückt erst heraus, wenn der Ball wirklich auf den Schienenspieler gespielt ist.',
           'Ballnaher zentraler Mittelfeldspieler schiebt in den Halbraum und verhindert das Aufdrehen ihres Flügelspielers.',
-          'Ballferner Außenmittelfeldspieler rückt weit ein, bleibt aber bereit für die Verlagerung auf den ballfernen Wingback.',
+          'Ballferner Außenmittelfeldspieler rückt weit ein, bleibt aber bereit für die Verlagerung auf den ballfernen Schienenspieler.',
         ],
       },
       afterGain: {
         spaces: [
-          'Raum hinter ihrem aufgerückten Wingback ist nach Ballgewinn sofort offen und muss direkt attackiert werden.',
+          'Raum hinter ihrem aufgerückten Schienenspieler ist nach Ballgewinn sofort offen und muss direkt attackiert werden.',
           'Halbraum hinter ihrer Doppelsechs öffnet sich, wenn sie nach Ballverlust nach vorne presst.',
           'Ballferne Außenbahn ist frei, wenn ihr 3-4-3 nach eigenem Angriff stark zur Ballseite verschoben ist.',
           'Raum neben ihrem äußeren Innenverteidiger wird offen, wenn eine Spitze nach außen ausweicht und der Außenmittelfeldspieler tief startet.',
         ],
         advantages: [
           'Unsere zwei Spitzen geben sofort direkte Konteroptionen und können die erste Linie überspielen.',
-          'Außenmittelfeldspieler können in klare freie Außenräume hinter den Wingbacks starten.',
+          'Außenmittelfeldspieler können in klare freie Außenräume hinter den Schienenspieler starten.',
           'Wenn wir direkt hinter ihre erste Linie spielen, müssen ihre äußeren Innenverteidiger breite Laufduelle verteidigen.',
         ],
         dangers: [
@@ -230,7 +230,7 @@ export const entriesOur442: TacticBookEntry[] = [
           'Wenn beide Außenmittelfeldspieler gleichzeitig tief starten, fehlen kurze Optionen für den zweiten Ball.',
         ],
         keyActions: [
-          'Erster Pass nach Ballgewinn geht direkt hinter den Wingback oder auf die entgegenkommende Spitze.',
+          'Erster Pass nach Ballgewinn geht direkt hinter den Schienenspieler oder auf die entgegenkommende Spitze.',
           'Ballnaher Außenmittelfeldspieler startet sofort in den freien Außenraum und fordert den Ball in den Lauf.',
           'Eine Spitze weicht in den Kanal neben dem äußeren Innenverteidiger aus, die andere besetzt die Mitte.',
           'Zentraler Mittelfeldspieler rückt sofort auf den zweiten Ball nach und unterstützt den Konter hinter der ersten Linie.',
@@ -238,13 +238,13 @@ export const entriesOur442: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Außen doppeln!"', '„Kette eng!"', '„Hinter Wingback!"'],
+    liveCoaching: ['„Außen doppeln!"', '„Kette eng!"', '„Hinter Schienenspieler!"'],
     adjustments: [
-      'Auf 5-3-2 reagieren, wenn Wingback und Flügelspieler unsere Außenverteidiger dauerhaft überladen.',
+      'Auf 5-3-2 reagieren, wenn Schienenspieler und Flügelspieler unsere Außenverteidiger dauerhaft überladen.',
       'Auf 4-5-1 tiefer verteidigen, wenn wir im Zentrum gegen ihre Doppelsechs und nachrückende Flügel keinen Zugriff bekommen.',
-      'Außenmittelfeldspieler defensiver starten lassen, wenn ihre Wingbacks zu frei in unser letztes Drittel kommen.',
+      'Außenmittelfeldspieler defensiver starten lassen, wenn ihre Schienenspieler zu frei in unser letztes Drittel kommen.',
       'Eine Spitze klar auf ihren Sechserraum setzen, wenn ihre Doppelsechs ungestört verlagern kann.',
-      'Nach Ballgewinn den ersten Pass konsequent hinter den Wingback spielen, wenn wir zu oft im Zentrum ins Gegenpressing laufen.',
+      'Nach Ballgewinn den ersten Pass konsequent hinter den Schienenspieler spielen, wenn wir zu oft im Zentrum ins Gegenpressing laufen.',
     ],
   },
   {
@@ -478,7 +478,7 @@ export const entriesOur442: TacticBookEntry[] = [
         ],
         keyActions: [
           'Erster Pass nach Ballgewinn sucht direkt die ballnahe Spitze zum Klatschen oder den Flügel hinter ihrem Außenverteidiger.',
-          'Kurze Spitze sichert den Ball mit dem ersten Kontakt und legt auf den nachrückenden zentralen Mittelfeldspieler ab.',
+          'Kurze Spitze sichert den Ball mit dem ersten Ballkontakt und legt auf den nachrückenden zentralen Mittelfeldspieler ab.',
           'Tiefe Spitze startet zwischen Innenverteidiger und Außenverteidiger und bindet die Kette nach hinten.',
           'Ballnaher Flügel sprintet in den freien Außenraum und fordert den Ball in den Lauf.',
           'Ein zentraler Mittelfeldspieler rückt auf den zweiten Ball nach, der andere bleibt als Absicherung im Zentrum.',
@@ -512,7 +512,7 @@ export const entriesOur442: TacticBookEntry[] = [
         ],
         advantages: [
           'Unsere Flügel haben viel Raum gegen ihre enge Staffelung und können früh Tempo auf ihre Außenverteidiger aufnehmen.',
-          'Zwei Spitzen binden ihre Innenverteidiger direkt und schaffen Zielpunkte für Flanken und Rücklagen.',
+          'Zwei Spitzen binden ihre Innenverteidiger direkt und schaffen Zielpunkte für Flanken und flache Rückpässe.',
           'Unsere Außenverteidiger können auf den Flügeln Überzahl schaffen, wenn der ballnahe zentrale Mittelfeldspieler absichert.',
           'Schnelle Verlagerungen zwingen ihre Raute zu weiten Laufwegen und öffnen den ballfernen Flügel.',
         ],
@@ -628,11 +628,11 @@ export const entriesOur442: TacticBookEntry[] = [
     opponentSystem: '3-5-2',
     rating: 'unangenehm',
     character:
-      'Unangenehmes Duell, weil ihre drei Zentrumsspieler unsere Mitte überladen und ihre Wingbacks unsere Flügel tief drücken können. Schlüsselraum ist der Raum hinter ihren Wingbacks, Schlüsselrisiko sind zweite Bälle vor unserer Abwehr, wenn unser Zentrum zu breit steht.',
+      'Unangenehmes Duell, weil ihre drei Zentrumsspieler unsere Mitte überladen und ihre Schienenspieler unsere Flügel tief drücken können. Schlüsselraum ist der Raum hinter ihren Schienenspieler, Schlüsselrisiko sind zweite Bälle vor unserer Abwehr, wenn unser Zentrum zu breit steht.',
     phases: {
       ownPossession: {
         spaces: [
-          'Raum hinter ihren Wingbacks ist die wichtigste Angriffszone, sobald sie hoch auf unsere Flügel oder Außenverteidiger schieben.',
+          'Raum hinter ihren Schienenspieler ist die wichtigste Angriffszone, sobald sie hoch auf unsere Flügel oder Außenverteidiger schieben.',
           'Halbraum neben ihrem äußeren Innenverteidiger wird offen, wenn eine Spitze diagonal ausweicht und der Flügel breit bindet.',
           'Zentrum gegen ihre drei Mittelfeldspieler ist eng, dort dürfen wir den Ball nicht lange flach halten.',
           'Ballferne Außenbahn öffnet sich nach schneller Verlagerung, weil ihr 3-5-2 stark zur Ballseite verschiebt.',
@@ -640,29 +640,29 @@ export const entriesOur442: TacticBookEntry[] = [
         ],
         advantages: [
           'Unsere zwei Spitzen können ihre Dreierkette früh beschäftigen und den zentralen Innenverteidiger binden.',
-          'Flügel können die Räume hinter ihren Wingbacks anlaufen und die äußeren Innenverteidiger in breite Laufduelle zwingen.',
-          'Direkte Pässe auf die Spitzen oder hinter den Wingback überspielen ihre zentrale Überzahl.',
+          'Flügel können die Räume hinter ihren Schienenspieler anlaufen und die äußeren Innenverteidiger in breite Laufduelle zwingen.',
+          'Direkte Pässe auf die Spitzen oder hinter den Schienenspieler überspielen ihre zentrale Überzahl.',
           'Mit klarer Breite können wir ihr kompaktes Zentrum umgehen und den Angriff über außen beschleunigen.',
         ],
         dangers: [
           'Ihre drei Zentrumsspieler können unsere beiden zentralen Mittelfeldspieler zustellen und zweite Bälle kontrollieren.',
-          'Ihre Wingbacks können unsere Flügel tief drücken und unsere Entlastung nach vorne erschweren.',
-          'Wenn Außenverteidiger ungesichert hochschieben, öffnen wir Räume für Konter über Wingback und zwei Spitzen.',
+          'Ihre Schienenspieler können unsere Flügel tief drücken und unsere Entlastung nach vorne erschweren.',
+          'Wenn Außenverteidiger ungesichert hochschieben, öffnen wir Räume für Konter über Schienenspieler und zwei Spitzen.',
           'Zu viele lange Bälle ohne Nachrücken landen bei ihrer Dreierkette oder im Zugriff ihrer Mittelfeldreihe.',
         ],
         keyActions: [
           'Eine Spitze bietet sich kurz an, die andere hält Tiefe zwischen zentralem und äußerem Innenverteidiger.',
-          'Flügel starten breit und attackieren nach dem ersten Pass sofort den Raum hinter dem Wingback.',
+          'Flügel starten breit und attackieren nach dem ersten Pass sofort den Raum hinter dem Schienenspieler.',
           'Zentrale Mittelfeldspieler bleiben versetzt: einer rückt auf zweite Bälle, einer sichert vor der Abwehr.',
           'Außenverteidiger schiebt nur nach, wenn der ballnahe zentrale Mittelfeldspieler den Raum hinter ihm absichert.',
-          'Nach Ballbindung auf einer Seite schnell auf den ballfernen Flügel oder hinter den ballfernen Wingback verlagern.',
+          'Nach Ballbindung auf einer Seite schnell auf den ballfernen Flügel oder hinter den ballfernen Schienenspieler verlagern.',
         ],
       },
       afterLoss: {
         spaces: [
           'Zentrum vor unserer Abwehr muss sofort verdichtet werden, weil ihre drei Mittelfeldspieler dort den ersten Konterpass aufnehmen.',
           'Halbraum neben unserem ballnahen zentralen Mittelfeldspieler wird gefährlich, wenn er nach außen ins Gegenpressing gezogen wird.',
-          'Außenbahn hinter unserem aufgerückten Außenverteidiger ist offen für ihren Wingback.',
+          'Außenbahn hinter unserem aufgerückten Außenverteidiger ist offen für ihren Schienenspieler.',
           'Raum zwischen unseren Innenverteidigern bleibt kritisch, weil ihre zwei Spitzen Tiefe und Ablage gleichzeitig anbieten.',
           'Ballferne zweite-Ball-Zone wird wichtig, wenn sie den ersten langen Ball auf eine Spitze festmachen.',
         ],
@@ -673,7 +673,7 @@ export const entriesOur442: TacticBookEntry[] = [
         ],
         dangers: [
           'Ihre zentrale Überzahl kann zweite Bälle vor unserer Abwehr gewinnen, wenn unser ballferner Flügel nicht einrückt.',
-          'Ihre Wingbacks können nach Ballgewinn sofort die freien Außenbahnen attackieren.',
+          'Ihre Schienenspieler können nach Ballgewinn sofort die freien Außenbahnen attackieren.',
           'Ihre zwei Spitzen können lange Bälle festmachen und unsere Innenverteidiger in direkte Duelle zwingen.',
           'Wenn beide zentralen Mittelfeldspieler zum Ball springen, öffnet sich der Rückraum für ihren nachstoßenden Achter.',
         ],
@@ -681,7 +681,7 @@ export const entriesOur442: TacticBookEntry[] = [
           'Nach Ballverlust zuerst das Zentrum verdichten und den Pass auf ihren freien Mittelfeldspieler schließen.',
           'Ballnaher zentraler Mittelfeldspieler stellt den Ballführer, der andere bleibt vor der Abwehr und sichert Ablagen.',
           'Ballferner Flügel rückt sofort zur zweiten-Ball-Sicherung in die Mitte ein.',
-          'Außenverteidiger sichert zuerst den Raum hinter sich, bevor er auf den Wingback herausrückt.',
+          'Außenverteidiger sichert zuerst den Raum hinter sich, bevor er auf den Schienenspieler herausrückt.',
           'Innenverteidiger bleiben gegen ihre zwei Spitzen gestaffelt: einer attackiert den Zielspieler, einer sichert Tiefe.',
         ],
       },
@@ -689,7 +689,7 @@ export const entriesOur442: TacticBookEntry[] = [
         spaces: [
           'Zentrum zwischen unseren beiden Mittelfeldspielern ist die kritische Zone, weil sie dort mit drei Spielern Überzahl schaffen.',
           'Halbräume neben unseren zentralen Mittelfeldspielern werden gefährlich, wenn ihre Achter seitlich hinter unsere Flügel schieben.',
-          'Wingback-Raum auf den Außenbahnen muss kontrolliert werden, ohne unsere Viererkette auseinanderzuziehen.',
+          'Schienenspieler-Raum auf den Außenbahnen muss kontrolliert werden, ohne unsere Viererkette auseinanderzuziehen.',
           'Ihre äußeren Innenverteidiger sind Pressingzonen, wenn unsere Spitzen den Aufbau auf eine Seite lenken.',
           'Rückraum vor unserer Abwehr darf nicht offen werden, weil ihre zwei Spitzen Ablagen auf nachrückende Mittelfeldspieler spielen können.',
         ],
@@ -700,30 +700,30 @@ export const entriesOur442: TacticBookEntry[] = [
         ],
         dangers: [
           'Zentrale Unterzahl gegen ihr Mittelfeld kann uns dauerhaft hinterherlaufen lassen.',
-          'Ihre Wingbacks können unsere Flügel tief drücken und dadurch unsere Entlastung nach Ballgewinn reduzieren.',
+          'Ihre Schienenspieler können unsere Flügel tief drücken und dadurch unsere Entlastung nach Ballgewinn reduzieren.',
           'Zweite Bälle vor unserer Abwehr können kippen, wenn ihre drei Zentrumsspieler näher am Ball sind.',
-          'Wenn der ballnahe Flügel zu früh auf den Wingback springt, öffnet sich der Halbraum für ihren Achter.',
+          'Wenn der ballnahe Flügel zu früh auf den Schienenspieler springt, öffnet sich der Halbraum für ihren Achter.',
         ],
         keyActions: [
           'Spitzen lenken den Aufbau bogenförmig auf einen äußeren Innenverteidiger und schließen den zentralen Rückpass.',
-          'Ballnaher Flügel presst den Wingback erst bei offenem Pass und hält vorher den Halbraum eng.',
+          'Ballnaher Flügel presst den Schienenspieler erst bei offenem Pass und hält vorher den Halbraum eng.',
           'Zentrale Mittelfeldspieler bleiben eng gegen ihre drei Zentrumsspieler und lassen sich nicht auseinanderziehen.',
           'Ballferner Flügel rückt ein und hilft bei zweiten Bällen im Zentrum.',
-          'Außenverteidiger rückt nur auf den Wingback heraus, wenn Flügel und zentraler Mittelfeldspieler den Halbraum hinter ihm sichern.',
+          'Außenverteidiger rückt nur auf den Schienenspieler heraus, wenn Flügel und zentraler Mittelfeldspieler den Halbraum hinter ihm sichern.',
         ],
       },
       afterGain: {
         spaces: [
-          'Freie Außenbahn hinter ihrem Wingback ist nach Ballgewinn sofort die erste Zielzone.',
+          'Freie Außenbahn hinter ihrem Schienenspieler ist nach Ballgewinn sofort die erste Zielzone.',
           'Halbraum hinter ihrer Dreier-Mittelfeldreihe öffnet sich kurz, wenn ihre Zentrumsspieler ins Gegenpressing nach vorne schieben.',
           'Ballferner Außenraum ist offen, wenn ihr 3-5-2 nach eigenem Angriff stark zur Ballseite verschoben ist.',
-          'Schnittstelle zwischen Wingback und äußerem Innenverteidiger ist bespielbar für den Tiefenlauf unseres Flügels oder einer Spitze.',
+          'Schnittstelle zwischen Schienenspieler und äußerem Innenverteidiger ist bespielbar für den Tiefenlauf unseres Flügels oder einer Spitze.',
           'Zweite-Ball-Zone vor ihrer Dreierkette bleibt wichtig, falls der erste direkte Ball festgemacht wird.',
         ],
         advantages: [
-          'Nach Ballgewinn können wir direkt in die freie Außenbahn spielen und ihre Wingbacks auf lange Rückwege zwingen.',
+          'Nach Ballgewinn können wir direkt in die freie Außenbahn spielen und ihre Schienenspieler auf lange Rückwege zwingen.',
           'Unsere zwei Spitzen bieten sofort kurze und tiefe Optionen gegen ihre Dreierkette.',
-          'Flügel können ihre besten Konterräume attackieren, bevor die Wingbacks zurück in die Fünferlinie kommen.',
+          'Flügel können ihre besten Konterräume attackieren, bevor die Schienenspieler zurück in die Fünferlinie kommen.',
           'Direktes vertikales Spiel umgeht ihre zentrale Überzahl im Gegenpressing.',
         ],
         dangers: [
@@ -732,7 +732,7 @@ export const entriesOur442: TacticBookEntry[] = [
           'Ein erneuter Ballverlust auf außen ist gefährlich, wenn unser Außenverteidiger bereits ungesichert nachgeschoben hat.',
         ],
         keyActions: [
-          'Erster Pass nach Ballgewinn geht direkt hinter den Wingback oder auf die entgegenkommende Spitze.',
+          'Erster Pass nach Ballgewinn geht direkt hinter den Schienenspieler oder auf die entgegenkommende Spitze.',
           'Ballnaher Flügel startet in den freien Außenraum und fordert den Ball in den Lauf.',
           'Eine Spitze kommt kurz entgegen und lässt klatschen, die andere attackiert die Schnittstelle zur Dreierkette.',
           'Zentraler Mittelfeldspieler rückt sofort auf den zweiten Ball nach, der andere bleibt als Sicherung vor der Kette.',
@@ -740,13 +740,13 @@ export const entriesOur442: TacticBookEntry[] = [
         ],
       },
     },
-    liveCoaching: ['„Zentrum eng halten!"', '„Hinter den Wingback!"', '„Ballfern einrücken!"'],
+    liveCoaching: ['„Zentrum eng halten!"', '„Hinter den Schienenspieler!"', '„Ballfern einrücken!"'],
     adjustments: [
       'Einen Stürmer tiefer auf ihren Sechser fallen lassen, wenn ihre drei Zentrumsspieler zu frei kombinieren.',
       'Ballfernen Flügel enger zur Zentrumsicherung stellen, wenn zweite Bälle vor unserer Abwehr kippen.',
-      'Außenverteidiger nur mit klarer Absicherung hochschieben, wenn ihre Wingbacks nach Ballgewinn zu viel Raum bekommen.',
+      'Außenverteidiger nur mit klarer Absicherung hochschieben, wenn ihre Schienenspieler nach Ballgewinn zu viel Raum bekommen.',
       'Auf 4-4-1-1 verdichten, wenn wir im Zentrum dauerhaft in Unterzahl geraten.',
-      'Nach Ballgewinn konsequenter den ersten Pass hinter den Wingback suchen, wenn wir zu oft in ihrer Mittelfeldüberzahl hängen bleiben.',
+      'Nach Ballgewinn konsequenter den ersten Pass hinter den Schienenspieler suchen, wenn wir zu oft in ihrer Mittelfeldüberzahl hängen bleiben.',
     ],
   },
   {
@@ -760,13 +760,13 @@ export const entriesOur442: TacticBookEntry[] = [
       ownPossession: {
         spaces: [
           'Rückraum vor ihrer Fünferkette ist die wichtigste Zone, weil ihre Innenverteidiger tief bleiben und Flanken verteidigen wollen.',
-          'Außenbahn gegen ihre Wingbacks ist bespielbar, wenn unser Flügel breit bindet und der Außenverteidiger kontrolliert überlappt.',
-          'Halbraum neben ihrem äußeren Innenverteidiger öffnet sich, wenn eine Spitze seitlich ausweicht und den Wingback bindet.',
+          'Außenbahn gegen ihre Schienenspieler ist bespielbar, wenn unser Flügel breit bindet und der Außenverteidiger kontrolliert überlappt.',
+          'Halbraum neben ihrem äußeren Innenverteidiger öffnet sich, wenn eine Spitze seitlich ausweicht und den Schienenspieler bindet.',
           'Ballferne Außenbahn wird frei, wenn ihre Fünferkette und Dreier-Mittelfeldreihe stark zur Ballseite verschieben.',
           'Zentrum gegen ihre drei Mittelfeldspieler ist eng, dort dürfen wir den Ball nicht ohne klare Anschlussoption festspielen.',
         ],
         advantages: [
-          'Unsere Flügel können ihre Wingbacks seitlich binden und die Fünferkette in die Breite ziehen.',
+          'Unsere Flügel können ihre Schienenspieler seitlich binden und die Fünferkette in die Breite ziehen.',
           'Zwei Spitzen halten Präsenz gegen ihre Innenverteidiger und können Rückraumbewegungen auslösen.',
           'Außenverteidiger können auf den Flügeln Überzahl schaffen, wenn das zentrale Mittelfeld dahinter absichert.',
           'Geduldige Verlagerungen zwingen ihre Kette zum Verschieben und öffnen den ballfernen Flügel.',
@@ -778,7 +778,7 @@ export const entriesOur442: TacticBookEntry[] = [
           'Unsere Spitzen können zwischen drei Innenverteidigern isoliert werden, wenn keine Rückraum- oder Halbraumläufe kommen.',
         ],
         keyActions: [
-          'Flügel hält Breite gegen den Wingback und sucht nach Verlagerung Tempo ins Eins-gegen-eins statt die frühe Flanke.',
+          'Flügel hält Breite gegen den Schienenspieler und sucht nach Verlagerung Tempo ins Eins-gegen-eins statt die frühe Flanke.',
           'Ballnaher Außenverteidiger überlappt kontrolliert, sobald der zentrale Mittelfeldspieler den Raum hinter ihm sichert.',
           'Eine Spitze löst sich in den Rückraum oder seitlich in den Flügelraum, die andere besetzt die Tiefe im Strafraum.',
           'Zentrale Mittelfeldspieler besetzen Rückraum und zweite Bälle vor ihrer Fünferkette.',
@@ -790,7 +790,7 @@ export const entriesOur442: TacticBookEntry[] = [
           'Raum hinter unserem ballnahen Außenverteidiger ist sofort kritisch, wenn er im Flügelangriff hoch überlappt hat.',
           'Zentrum vor unserer Abwehr muss geschlossen werden, weil ihre drei Mittelfeldspieler dort den ersten Konterpass vorbereiten.',
           'Raum zwischen unseren Innenverteidigern ist gefährlich, weil ihre zwei Spitzen Tiefe und Ablage gleichzeitig anbieten.',
-          'Ballferne Außenbahn wird offen, wenn ihr Wingback nach Ballgewinn schnell löst und unser ballferner Außenverteidiger nicht einrückt.',
+          'Ballferne Außenbahn wird offen, wenn ihr Schienenspieler nach Ballgewinn schnell löst und unser ballferner Außenverteidiger nicht einrückt.',
           'Rückraum um die Mittellinie entscheidet über zweite Bälle nach langen Befreiungen auf ihre Spitzen.',
         ],
         advantages: [
@@ -801,56 +801,56 @@ export const entriesOur442: TacticBookEntry[] = [
         dangers: [
           'Ihre zwei Spitzen können lange Bälle festmachen und unsere Innenverteidiger in direkte Duelle zwingen.',
           'Zentrale Unterzahl gegen ihre drei Mittelfeldspieler wird gefährlich, wenn wir zweite Bälle nicht eng attackieren.',
-          'Ihre Wingbacks können die Räume hinter unseren Außenverteidigern attackieren, wenn unsere Restverteidigung zu breit steht.',
+          'Ihre Schienenspieler können die Räume hinter unseren Außenverteidigern attackieren, wenn unsere Restverteidigung zu breit steht.',
           'Wenn beide zentralen Mittelfeldspieler zum Ball springen, öffnet sich der Rückraum für ihren nachstoßenden Mittelfeldspieler.',
         ],
         keyActions: [
           'Nach Ballverlust sofort den direkten Pass auf ihre Spitzen blocken.',
           'Ballnaher zentraler Mittelfeldspieler stellt den Ballführer, der andere bleibt vor der Abwehr und sichert Ablagen.',
           'Ballferner Außenverteidiger rückt früh ein und sichert gegen Diagonalball oder zweite Spitze.',
-          'Ballnaher Flügel arbeitet zurück und verhindert den einfachen Pass auf den Wingback.',
+          'Ballnaher Flügel arbeitet zurück und verhindert den einfachen Pass auf den Schienenspieler.',
           'Innenverteidiger bleiben gestaffelt: einer attackiert den Zielspieler, einer sichert Tiefe und zweiten Ball.',
         ],
       },
       oppPossession: {
         spaces: [
           'Ihre äußeren Innenverteidiger sind Pressingzonen, wenn unsere Spitzen den Aufbau bogenförmig nach außen lenken.',
-          'Wingback-Raum auf der Außenbahn muss kontrolliert werden, ohne unsere Viererkette zu früh auseinanderzuziehen.',
+          'Schienenspieler-Raum auf der Außenbahn muss kontrolliert werden, ohne unsere Viererkette zu früh auseinanderzuziehen.',
           'Zentrum vor unserer Mittelfeldlinie ist eng zu halten, weil ihre drei Mittelfeldspieler dort Überzahl herstellen.',
-          'Raum hinter unseren Außenverteidigern bleibt kritisch für Läufe ihrer Wingbacks und ausweichenden Spitzen.',
+          'Raum hinter unseren Außenverteidigern bleibt kritisch für Läufe ihrer Schienenspieler und ausweichenden Spitzen.',
           'Zweite-Ball-Zone vor unserer Abwehr entscheidet, ob lange Bälle auf ihre Spitzen gefährlich werden.',
         ],
         advantages: [
           'Unsere zwei Spitzen können ihre äußeren Innenverteidiger bogenförmig anlaufen und den Aufbau auf eine Seite lenken.',
           'Die Viererkette hat gegen ihre zwei Spitzen klare Zuordnung, solange Außenverteidiger nicht blind herausrücken.',
-          'Flügel und Außenverteidiger können den Wingback an der Linie doppeln, wenn der Pass offen gespielt wird.',
+          'Flügel und Außenverteidiger können den Schienenspieler an der Linie doppeln, wenn der Pass offen gespielt wird.',
         ],
         dangers: [
           'Ihre drei zentralen Mittelfeldspieler können unsere Mitte überladen und zweite Bälle sichern.',
-          'Ihre Wingbacks können unsere Flügel tief drücken und uns nach Ballgewinn die Breite nehmen.',
+          'Ihre Schienenspieler können unsere Flügel tief drücken und uns nach Ballgewinn die Breite nehmen.',
           'Konter oder Direktspiel über ihre zwei Spitzen wird gefährlich, wenn unser zentrales Mittelfeld zu hoch steht.',
-          'Wenn der ballnahe Flügel zu spät zurückarbeitet, bekommt ihr Wingback freie Zeit für Flanken oder Diagonalpässe.',
+          'Wenn der ballnahe Flügel zu spät zurückarbeitet, bekommt ihr Schienenspieler freie Zeit für Flanken oder Diagonalpässe.',
         ],
         keyActions: [
           'Spitzen laufen die äußeren Innenverteidiger bogenförmig an und halten den zentralen Innenverteidiger im Deckungsschatten.',
-          'Ballnaher Flügel stellt den Wingback nach außen fest und presst erst aggressiv bei offener Ballannahme.',
+          'Ballnaher Flügel stellt den Schienenspieler nach außen fest und presst erst aggressiv bei offener Ballannahme.',
           'Zentrales Mittelfeld schiebt eng auf zweite Bälle und lässt sich nicht von ihrer Dreierreihe auseinanderziehen.',
-          'Außenverteidiger rückt nur auf den Wingback heraus, wenn Flügel und zentraler Mittelfeldspieler den Halbraum absichern.',
+          'Außenverteidiger rückt nur auf den Schienenspieler heraus, wenn Flügel und zentraler Mittelfeldspieler den Halbraum absichern.',
           'Ballferner Außenverteidiger bleibt eingerückt und schützt den Raum gegen die zweite Spitze.',
         ],
       },
       afterGain: {
         spaces: [
           'Ballferne Seite ist nach Ballgewinn oft frei, weil ihre Fünferkette und Dreier-Mittelfeldreihe zur alten Ballseite verschoben sind.',
-          'Außenbahn hinter dem ballnahen Wingback kann sofort attackiert werden, wenn er im Angriff hoch stand.',
+          'Außenbahn hinter dem ballnahen Schienenspieler kann sofort attackiert werden, wenn er im Angriff hoch stand.',
           'Rückraum vor ihrer Fünferkette öffnet sich kurz, wenn ihre Mittelfeldspieler ins Gegenpressing nach vorne schieben.',
-          'Schnittstelle zwischen Wingback und äußerem Innenverteidiger ist bespielbar für eine ausweichende Spitze oder den Flügel.',
+          'Schnittstelle zwischen Schienenspieler und äußerem Innenverteidiger ist bespielbar für eine ausweichende Spitze oder den Flügel.',
           'Zweite-Ball-Zone vor ihrer Abwehr bleibt wichtig, wenn der erste direkte Pass auf eine Spitze kommt.',
         ],
         advantages: [
           'Nach Ballgewinn können wir schnell auf die ballferne Seite lösen und ihre langen Verschiebewege bestrafen.',
           'Zwei Spitzen bieten sofort eine Klatschoption und eine Tiefenoption gegen ihre Dreier-Innenverteidigung.',
-          'Flügel können direkt hinter die Wingbacks starten, bevor ihre Fünferkette wieder komplett steht.',
+          'Flügel können direkt hinter die Schienenspieler starten, bevor ihre Fünferkette wieder komplett steht.',
           'Direkte Angriffe über außen vermeiden das enge Zentrum gegen ihre drei Mittelfeldspieler.',
         ],
         dangers: [
@@ -860,7 +860,7 @@ export const entriesOur442: TacticBookEntry[] = [
           'Wenn unser ballferner Außenverteidiger zu hoch bleibt, droht nach Ballverlust sofort der diagonale Konter auf ihre Spitze.',
         ],
         keyActions: [
-          'Erster Pass nach Ballgewinn löst schnell auf die ballferne Seite oder hinter den nächsten Wingback.',
+          'Erster Pass nach Ballgewinn löst schnell auf die ballferne Seite oder hinter den nächsten Schienenspieler.',
           'Eine Spitze kommt kurz und klatscht, die andere attackiert die Schnittstelle zwischen äußerem und zentralem Innenverteidiger.',
           'Ballnaher Flügel startet in den freien Außenraum und fordert den Ball in den Lauf.',
           'Zentraler Mittelfeldspieler rückt in den Rückraum nach, der andere bleibt als Kontersicherung vor der Kette.',
@@ -871,10 +871,10 @@ export const entriesOur442: TacticBookEntry[] = [
     liveCoaching: ['„Nicht blind flanken!"', '„Rückraum besetzen!"', '„Spitzen blocken!"'],
     adjustments: [
       'Einen zentralen Mittelfeldspieler tiefer zur Kontersicherung halten, wenn ihre zwei Spitzen lange Bälle zu oft festmachen.',
-      'Eine Spitze seitlich in den Flügelraum ausweichen lassen, wenn unsere Flügel gegen die Wingbacks keine saubere Überzahl herstellen.',
-      'Ballnahen Außenverteidiger kontrolliert überlappen lassen, wenn ihr Wingback isoliert ist und der Rückraum abgesichert bleibt.',
+      'Eine Spitze seitlich in den Flügelraum ausweichen lassen, wenn unsere Flügel gegen die Schienenspieler keine saubere Überzahl herstellen.',
+      'Ballnahen Außenverteidiger kontrolliert überlappen lassen, wenn ihr Schienenspieler isoliert ist und der Rückraum abgesichert bleibt.',
       'Ballfernen Außenverteidiger früher einrücken lassen, wenn ihre Konter diagonal hinter unsere Kette kommen.',
-      'Flanken reduzieren und stärker auf Rücklagen spielen, wenn ihre drei Innenverteidiger unsere Hereingaben dominieren.',
+      'Flanken reduzieren und stärker auf flache Rückpässe spielen, wenn ihre drei Innenverteidiger unsere Hereingaben dominieren.',
     ],
   },
   {
@@ -888,14 +888,14 @@ export const entriesOur442: TacticBookEntry[] = [
       ownPossession: {
         spaces: [
           'Rückraum vor ihrer Fünferkette ist die wichtigste Zone, weil ihre drei Innenverteidiger tief stehen und frühe Flanken aufnehmen wollen.',
-          'Außenbahn gegen ihren Wingback ist bespielbar, wenn unser Flügel breit bindet und der Außenverteidiger als Überzahlspieler nachschiebt.',
+          'Außenbahn gegen ihren Schienenspieler ist bespielbar, wenn unser Flügel breit bindet und der Außenverteidiger als Überzahlspieler nachschiebt.',
           'Zentrum vor ihrer Mittelfeldkette bleibt eng, dort müssen wir geduldig zirkulieren und nicht in den Block hineinspielen.',
           'Ballferne Strafraumkante wird frei, wenn ihre Fünferkette stark zum Ball verschiebt und der ballferne Flügel enger einrückt.',
-          'Schnittstelle zwischen Wingback und äußerem Innenverteidiger öffnet sich erst nach Tempo, Doppelpass oder sauberer Überladung auf außen.',
+          'Schnittstelle zwischen Schienenspieler und äußerem Innenverteidiger öffnet sich erst nach Tempo, Doppelpass oder sauberer Überladung auf außen.',
         ],
         advantages: [
           'Zwei Spitzen geben klare Strafraumbesetzung und binden ihre drei Innenverteidiger dauerhaft.',
-          'Flügel und Außenverteidiger können ihre Breite bespielen und den Wingback in wiederholte Entscheidungen zwingen.',
+          'Flügel und Außenverteidiger können ihre Breite bespielen und den Schienenspieler in wiederholte Entscheidungen zwingen.',
           'Unser zentrales Mittelfeld kann zweite Bälle vor der Kette sichern und den Druck nach abgewehrten Flanken halten.',
           'Durch Verlagerungen von Seite zu Seite können wir ihren tiefen Block bewegen und Tempo im richtigen Moment wechseln.',
         ],
@@ -907,7 +907,7 @@ export const entriesOur442: TacticBookEntry[] = [
         ],
         keyActions: [
           'Zentrale Mittelfeldspieler verlagern geduldig von Seite zu Seite und sichern dabei den Rückraum vor ihrer Kette.',
-          'Flügel hält Breite gegen den Wingback und sucht Tempo oder Doppelpass, bevor die Flanke kommt.',
+          'Flügel hält Breite gegen den Schienenspieler und sucht Tempo oder Doppelpass, bevor die Flanke kommt.',
           'Außenverteidiger nutzt ballnah eine höhere Position als Überzahlspieler, sobald der zentrale Mittelfeldspieler hinter ihm absichert.',
           'Eine Spitze attackiert den ersten Pfosten, die andere bleibt zentral und der ballferne Flügel rückt zur Strafraumkante ein.',
           'Flanken erst nach Dynamik, Überzahl oder klarer Rückpassoption bringen, nicht aus statischem Stand.',
@@ -936,22 +936,22 @@ export const entriesOur442: TacticBookEntry[] = [
           'Nach Ballverlust zuerst den Pass auf den Zielspieler verhindern.',
           'Ballnaher zentraler Mittelfeldspieler stellt den Ballführer, der zweite sichert den Raum vor den Innenverteidigern.',
           'Ballferner Außenverteidiger bleibt zur Absicherung eingerückt und schützt gegen diagonale Befreiungsbälle.',
-          'Ballnaher Flügel arbeitet sofort zurück und blockt den Pass auf den Wingback.',
+          'Ballnaher Flügel arbeitet sofort zurück und blockt den Pass auf den Schienenspieler.',
           'Innenverteidiger attackiert den Zielspieler früh, während der zweite Innenverteidiger die Tiefe absichert.',
         ],
       },
       oppPossession: {
         spaces: [
           'Ihre Innenverteidiger sind die erste Pressingzone, weil wir mit zwei Spitzen Rückpässe und Querpasswege zustellen können.',
-          'Außenbahn beim Wingback ist eine gute Druckzone, sobald er seitlich und mit Rücken zur Linie annimmt.',
+          'Außenbahn beim Schienenspieler ist eine gute Druckzone, sobald er seitlich und mit Rücken zur Linie annimmt.',
           'Zentrum vor unserer Mittelfeldkette muss eng bleiben, damit Befreiungspässe auf ihren Zielspieler keinen freien zweiten Ball finden.',
-          'Ballferner Halbraum darf nicht offen werden, wenn wir stark auf den Wingback pressen.',
+          'Ballferner Halbraum darf nicht offen werden, wenn wir stark auf den Schienenspieler pressen.',
           'Raum hinter unseren Außenverteidigern ist nur dann gefährlich, wenn ihre Außenspieler nach Befreiung sofort Tiefe suchen.',
         ],
         advantages: [
           'Spitzen können Innenverteidiger und Rückpässe zustellen und den Gegner zu langen Bällen zwingen.',
           'Unsere zwei Viererketten können kompakt bleiben und die Anschlussräume um ihren Zielspieler schließen.',
-          'Flügel können den Wingback bei seitlicher Ballannahme früh pressen und den Gegner an der Linie festsetzen.',
+          'Flügel können den Schienenspieler bei seitlicher Ballannahme früh pressen und den Gegner an der Linie festsetzen.',
           'Das zentrale Mittelfeld kann zweite Bälle gegen den einzelnen Zielspieler eng absichern.',
         ],
         dangers: [
@@ -962,9 +962,9 @@ export const entriesOur442: TacticBookEntry[] = [
         ],
         keyActions: [
           'Spitzen stellen Innenverteidiger und Rückpässe zu, eine presst den Ballführer, die andere blockt die Verlagerung.',
-          'Ballnaher Flügel presst den Wingback bei seitlicher Ballannahme mit geschlossener Innenseite.',
+          'Ballnaher Flügel presst den Schienenspieler bei seitlicher Ballannahme mit geschlossener Innenseite.',
           'Zentrale Mittelfeldspieler bleiben eng gegen Befreiungspässe und attackieren zweite Bälle vor der Kette.',
-          'Außenverteidiger rückt nur heraus, wenn der Flügel Druck auf den Wingback hat.',
+          'Außenverteidiger rückt nur heraus, wenn der Flügel Druck auf den Schienenspieler hat.',
           'Ballferner Flügel rückt ein und sichert den ballfernen Halbraum gegen Verlagerungen.',
         ],
       },
@@ -972,14 +972,14 @@ export const entriesOur442: TacticBookEntry[] = [
         spaces: [
           'Rückraum vor ihrer Fünferkette ist nach Ballgewinn sofort offen, bevor ihre Mittelfeldlinie wieder tief steht.',
           'Ballferne Seite kann attackiert werden, wenn ihr 5-4-1 noch zur alten Ballseite verschoben ist.',
-          'Außenbahn gegen den herausgerückten Wingback bietet Tempo, wenn wir den ersten Pass schnell nach außen lösen.',
+          'Außenbahn gegen den herausgerückten Schienenspieler bietet Tempo, wenn wir den ersten Pass schnell nach außen lösen.',
           'Strafraumkante ist bespielbar, wenn ihre Innenverteidiger gegen unsere zwei Spitzen tief fallen.',
-          'Schnittstelle zwischen Wingback und äußerem Innenverteidiger öffnet sich kurz, bevor die Fünferkette wieder geschlossen ist.',
+          'Schnittstelle zwischen Schienenspieler und äußerem Innenverteidiger öffnet sich kurz, bevor die Fünferkette wieder geschlossen ist.',
         ],
         advantages: [
           'Nach Ballgewinn können wir den Druck auf die letzte Linie sofort halten und ihren Block am eigenen Strafraum binden.',
           'Zwei Spitzen geben direkte Zielpunkte für frühe Steckpässe, Klatschbälle und Strafraumbesetzung.',
-          'Flügel können schnell Tempo gegen den Wingback aufnehmen, bevor der tiefe Block komplett sortiert ist.',
+          'Flügel können schnell Tempo gegen den Schienenspieler aufnehmen, bevor der tiefe Block komplett sortiert ist.',
           'Unser zentrales Mittelfeld kann nachrücken und zweite Bälle vor der Kette direkt wieder verwerten.',
         ],
         dangers: [
@@ -989,9 +989,9 @@ export const entriesOur442: TacticBookEntry[] = [
           'Wenn der erste Pass nach außen zu langsam ist, steht ihr 5-4-1 sofort wieder kompakt.',
         ],
         keyActions: [
-          'Erster Pass nach Ballgewinn sucht den Rückraum vor ihrer Fünferkette oder den Flügel mit Tempo gegen den Wingback.',
+          'Erster Pass nach Ballgewinn sucht den Rückraum vor ihrer Fünferkette oder den Flügel mit Tempo gegen den Schienenspieler.',
           'Eine Spitze kommt kurz entgegen und lässt klatschen, die andere attackiert den ersten Pfosten oder die Tiefe.',
-          'Ballnaher Flügel geht nach vorne, nimmt aber den Kopf hoch für Rücklage statt nur Flanke.',
+          'Ballnaher Flügel geht nach vorne, nimmt aber den Kopf hoch für den flachen Rückpass statt nur Flanke.',
           'Zentraler Mittelfeldspieler rückt an die Strafraumkante nach, der zweite bleibt als Absicherung gegen den Zielspieler.',
           'Ballferner Flügel positioniert sich enger für Abschluss oder zweiten Pfosten, statt breit an der Linie zu warten.',
         ],
@@ -1000,10 +1000,10 @@ export const entriesOur442: TacticBookEntry[] = [
     liveCoaching: ['„Geduldig verlagern!"', '„Zielspieler zustellen!"', '„Rückraum besetzen!"'],
     adjustments: [
       'Einen Stürmer kurz zwischen die Linien fallen lassen, wenn beide Spitzen zwischen ihren Innenverteidigern festhängen.',
-      'Außenverteidiger ballnah höher als Überzahlspieler nutzen, wenn ihr Wingback dauerhaft isoliert verteidigt.',
-      'Ballfernen Flügel enger für Abschlüsse positionieren, wenn ihre Fünferkette Flanken am ersten Kontakt klärt.',
+      'Außenverteidiger ballnah höher als Überzahlspieler nutzen, wenn ihr Schienenspieler dauerhaft isoliert verteidigt.',
+      'Ballfernen Flügel enger für Abschlüsse positionieren, wenn ihre Fünferkette Flanken am ersten Ballkontakt klärt.',
       'Einen zentralen Mittelfeldspieler tiefer halten, wenn ihr Zielspieler lange Bälle zu oft festmacht.',
-      'Flanken reduzieren und stärker auf Rücklagen spielen, wenn wir im Strafraum trotz zwei Spitzen keinen klaren Abschluss bekommen.',
+      'Flanken reduzieren und stärker auf flache Rückpässe spielen, wenn wir im Strafraum trotz zwei Spitzen keinen klaren Abschluss bekommen.',
     ],
   },
   {
