@@ -3,7 +3,7 @@ import { persist } from 'zustand/middleware'
 import { formationById, formations } from '../data/formations'
 import { initialPlayers } from '../data/players'
 import type { SystemId } from '../data/tacticBook'
-import type { Phase } from '../lib/phaseShift'
+import { defaultPhaseShape, sanitizePhaseShape, type Phase, type PhaseShape } from '../lib/phaseShift'
 import type { ShareMatchResult } from '../lib/shareUrl'
 import type { Match, Player, PlayerStatus, Position, Role, Skills, Substitution } from '../types'
 import { lineupStorage } from './idbStorage'
@@ -31,6 +31,12 @@ type State = {
   activeLineupId: string | null
   /** Taktische Phase, beeinflusst die Slot-Koordinaten auf dem Feld. */
   phase: Phase
+  /**
+   * Form (Breite/Höhe) je Phase. Der Mit-/Gegen-Ball-Switch wechselt
+   * zwischen offensiver und defensiver Ausrichtung. Nutzergesteuert –
+   * ersetzt die früher fest verdrahtete Phasen-Verschiebung.
+   */
+  phaseShape: Record<Phase, PhaseShape>
   /** Zuletzt betrachtetes Duell, damit der Dialog bei Öffnen dort weitermacht. */
   lastViewedDuel: { our: SystemId; opp: SystemId } | null
   /**
@@ -126,6 +132,9 @@ type Actions = {
   setPhase: (phase: Phase) => void
   togglePhase: () => void
 
+  /** Passt die Form (Breite/Höhe) der angegebenen Phase an. */
+  setPhaseShape: (phase: Phase, patch: Partial<PhaseShape>) => void
+
   /** Stellt einen zuvor exportierten Snapshot wieder her (alle persistierten Felder). */
   restoreFromBackup: (snapshot: Partial<State>) => void
 
@@ -153,7 +162,7 @@ const newId = (): string => {
  * Backups die Version mitschreiben und beim Import durch dieselbe Migrations-
  * Kette wie der reguläre Persist-Pfad laufen können.
  */
-export const STORE_VERSION = 9
+export const STORE_VERSION = 10
 
 /**
  * Reine Migrationsfunktion. Wird sowohl im `persist({ migrate })`-Hook als auch
@@ -207,6 +216,14 @@ export function migratePersistedState(
   if (fromVersion < 9) {
     if (typeof s.isPro !== 'boolean') s.isPro = false
   }
+  // v9 → v10: nutzergesteuerte Form je Phase (ersetzt feste phaseShift-Tabelle).
+  if (fromVersion < 10) {
+    const raw = (s.phaseShape ?? {}) as Partial<Record<Phase, PhaseShape>>
+    s.phaseShape = {
+      withBall: sanitizePhaseShape(raw.withBall, defaultPhaseShape.withBall),
+      withoutBall: sanitizePhaseShape(raw.withoutBall, defaultPhaseShape.withoutBall),
+    }
+  }
   return s
 }
 
@@ -219,6 +236,10 @@ export const useLineupStore = create<State & Actions>()(
       savedLineups: [],
       activeLineupId: null,
       phase: 'withBall',
+      phaseShape: {
+        withBall: { ...defaultPhaseShape.withBall },
+        withoutBall: { ...defaultPhaseShape.withoutBall },
+      },
       lastViewedDuel: null,
       playerListIsUserManaged: false,
       substitutions: [],
@@ -599,6 +620,12 @@ export const useLineupStore = create<State & Actions>()(
       setPhase: (phase) => set({ phase }),
       togglePhase: () => set({ phase: get().phase === 'withBall' ? 'withoutBall' : 'withBall' }),
 
+      setPhaseShape: (phase, patch) => {
+        const current = get().phaseShape
+        const next = sanitizePhaseShape({ ...current[phase], ...patch }, defaultPhaseShape[phase])
+        set({ phaseShape: { ...current, [phase]: next } })
+      },
+
       restoreFromBackup: (snapshot) => {
         const safeFormationId =
           typeof snapshot.formationId === 'string' ? snapshot.formationId : formations[0].id
@@ -618,6 +645,11 @@ export const useLineupStore = create<State & Actions>()(
             ? (snapshot.activeLineupId as string | null)
             : null
         const safePhase: Phase = snapshot.phase === 'withoutBall' ? 'withoutBall' : 'withBall'
+        const rawShape = (snapshot.phaseShape ?? {}) as Partial<Record<Phase, PhaseShape>>
+        const safePhaseShape: Record<Phase, PhaseShape> = {
+          withBall: sanitizePhaseShape(rawShape.withBall, defaultPhaseShape.withBall),
+          withoutBall: sanitizePhaseShape(rawShape.withoutBall, defaultPhaseShape.withoutBall),
+        }
         const safeSubstitutions: Substitution[] = Array.isArray(snapshot.substitutions)
           ? (snapshot.substitutions as Substitution[])
           : []
@@ -659,6 +691,7 @@ export const useLineupStore = create<State & Actions>()(
           savedLineups: safeSavedLineups,
           activeLineupId: safeActiveId,
           phase: safePhase,
+          phaseShape: safePhaseShape,
           players: mergedPlayers,
           playerListIsUserManaged: userManaged,
           substitutions: safeSubstitutions,
@@ -684,6 +717,7 @@ export const useLineupStore = create<State & Actions>()(
         activeLineupId: state.activeLineupId,
         players: state.players,
         phase: state.phase,
+        phaseShape: state.phaseShape,
         lastViewedDuel: state.lastViewedDuel,
         playerListIsUserManaged: state.playerListIsUserManaged,
         substitutions: state.substitutions,

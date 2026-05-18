@@ -1,4 +1,4 @@
-import type { Phase } from '../lib/phaseShift'
+import { defaultPhaseShape, type PhaseShape } from '../lib/phaseShift'
 import type { Player } from '../types'
 import { formationById } from './formations'
 
@@ -67,14 +67,14 @@ export const demoLineup = {
  */
 export function demoExportInput(): {
   formation: ReturnType<typeof formationById>
-  phase: Phase
+  shape: PhaseShape
   assignments: Record<string, string>
   players: Player[]
   title: string
 } {
   return {
     formation: formationById(DEMO_FORMATION_ID),
-    phase: 'withBall',
+    shape: { ...defaultPhaseShape.withBall },
     assignments: demoAssignments,
     players: demoPlayers,
     title: DEMO_TITLE,

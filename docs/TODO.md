@@ -158,6 +158,28 @@ Spiegel-Konsistenz, nie die Reihen-Balance.
 
 ---
 
+## 🟢 Produktvertiefung (nutzergetrieben)
+
+### F1 · Form-Regler pro Phase (Breite/Höhe)
+
+**Stufe A — ERLEDIGT (2026-05-18):** Die früher fest verdrahtete
+Phasen-Verschiebung (`phaseShift`-Offset-Tabelle) ist ersetzt durch
+zwei nutzergesteuerte Regler **Breite** + **Höhe**, pro Phase
+gespeichert. Der Mit-/Gegen-Ball-Switch wechselt damit zwischen
+offensiver und defensiver Ausrichtung (eigene Form je Phase). Defaults
+bewusst kompakter als die rohen Formationskoordinaten (löst „Abstände
+zu groß"). `shapeSlots()` skaliert Breite um die Mittelachse, Höhe um
+einen Anker am eigenen Tor; Torwart bleibt fix. Store-Migration
+v9→v10, in Backup-Export/Import enthalten, PNG-Export berücksichtigt
+die Form. Browser-verifiziert (Regler live, Persistenz + Phasen-
+Trennung über Reload, mobil ohne Overflow, 0 Console-Errors).
+test 52/52, tsc 0, build ✓.
+
+**Stufe B — OFFEN:** „Gegen den Ball" mit 3 Pressinghöhen
+(Angriffs-/Mittelfeld-/Abwehrpressing) als Presets des Höhe-Reglers
+in der Defensivphase + schattierte Pressingzone + Linie des ersten
+Angreifers/Störers als Overlay (Feld + PNG-Export).
+
 ## 🟡 Nach Schnellstart: Pro-System (Monat 2)
 
 ### P1 · Marken-Rebrand — ERLEDIGT (Code-Teil, 2026-05-18)
@@ -462,3 +484,12 @@ In neuer Session:
   Rest extern: Logo-Grafik + DPMA-Anmeldung nach Profi-Recherche
   (`formaxi.it` gegenprüfen). Einziger offener Code-Block: P4 Paddle
   (braucht Paddle-Account; P4a-Lizenz-Mechanik wäre vorab baubar).
+- **2026-05-18 (Folge 8):** App live auf `formaxi.de` deployt (Vercel,
+  korrekter Build verifiziert). Bezahl-Entscheidung: Merchant of
+  Record (Paddle oder LemonSqueezy), nicht Stripe — final offen.
+  Neues nutzergetriebenes Feature **F1 Stufe A** erledigt: feste
+  Phasen-Verschiebung ersetzt durch Breite/Höhe-Regler pro Phase
+  (Store-Migration v9→v10, kompaktere Defaults, Switch = offensiv/
+  defensiv). test 52/52, tsc 0, build ✓, browser-verifiziert.
+  Offen: F1 Stufe B (3 Pressinghöhen + Zone + Störer-Linie),
+  P4 (MoR-Account von dir), DPMA-Anmeldung, S6.

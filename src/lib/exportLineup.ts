@@ -1,12 +1,12 @@
 import { positionShort } from '../data/positionWeights'
 import { usePhotoStore } from '../store/photoStore'
 import type { Formation, Player, PlayerStatus, Slot } from '../types'
-import { applyPhase, type Phase } from './phaseShift'
+import { shapeSlots, type PhaseShape } from './phaseShift'
 import { initials } from './photoUtils'
 
 type ExportInput = {
   formation: Formation
-  phase: Phase
+  shape: PhaseShape
   assignments: Record<string, string | null>
   players: Player[]
   /** Anzeigetitel über dem Spielfeld (z. B. „Heimspiel · 4-3-3"). */
@@ -308,7 +308,7 @@ export async function renderLineupPng(input: ExportInput): Promise<Blob> {
   // Fotos für die aufgestellten Spieler vorladen.
   const photos = await loadPhotos(input)
 
-  const slots = applyPhase(input.formation.slots, input.phase)
+  const slots = shapeSlots(input.formation.slots, input.shape)
   const slotRadius = Math.min(W, H) * 0.06
   for (const slot of slots) {
     const cx = (slot.x / 100) * W

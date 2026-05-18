@@ -13,6 +13,7 @@ import {
 import { useEffect, useMemo, useState } from 'react'
 import { Bench } from './components/Bench'
 import { DemoDialog } from './components/DemoDialog'
+import { FormationShapeControls } from './components/FormationShapeControls'
 import { Header } from './components/Header'
 import { IOSInstallHint } from './components/IOSInstallHint'
 import { ImportShareDialog } from './components/ImportShareDialog'
@@ -25,7 +26,7 @@ import { isDemoHash } from './data/demoLineup'
 import { formationById } from './data/formations'
 import { positionLabel, positionShort } from './data/positionWeights'
 import { downloadLineupPng, suggestedLineupFilename } from './lib/exportLineup'
-import { applyPhase } from './lib/phaseShift'
+import { shapeSlots } from './lib/phaseShift'
 import { playerPositionScore } from './lib/score'
 import { buildShareUrl, parseShareHash, type SharePayload } from './lib/shareUrl'
 import { useLineupStore } from './store/useLineupStore'
@@ -44,6 +45,7 @@ export default function App() {
   // sie fertig ist. Kein Splash, der bei fertiger Hydration hängen bleiben könnte.
   const formationId = useLineupStore((s) => s.formationId)
   const phase = useLineupStore((s) => s.phase)
+  const phaseShape = useLineupStore((s) => s.phaseShape)
   const players = useLineupStore((s) => s.players)
   const assignments = useLineupStore((s) => s.assignments)
   const substitutions = useLineupStore((s) => s.substitutions)
@@ -107,7 +109,7 @@ export default function App() {
     setExporting(true)
     try {
       await downloadLineupPng(
-        { formation, phase, assignments, players, title: formation.name },
+        { formation, shape: phaseShape[phase], assignments, players, title: formation.name },
         suggestedLineupFilename(formation.name),
       )
     } catch (e) {
@@ -171,7 +173,7 @@ export default function App() {
     ? players.find((p) => p.id === activeDrag.playerId) ?? null
     : null
   const activeSlot = activeDrag && activeDrag.source !== 'bench'
-    ? applyPhase(formation.slots, phase).find((s) => s.id === activeDrag.source)
+    ? shapeSlots(formation.slots, phaseShape[phase]).find((s) => s.id === activeDrag.source)
     : undefined
   const overlayScore = activePlayer && activeSlot && activePlayer.skills
     ? playerPositionScore(activePlayer, activeSlot.position)
@@ -233,6 +235,7 @@ export default function App() {
                   </button>
                 </div>
               </div>
+              <FormationShapeControls />
             </div>
             <Pitch formation={formation} />
             <div className="mt-3 flex w-full max-w-[480px] flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-slate-500">

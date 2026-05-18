@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { applyPhase } from '../lib/phaseShift'
+import { shapeSlots } from '../lib/phaseShift'
 import { useLineupStore } from '../store/useLineupStore'
 import type { Formation } from '../types'
 import { SlotDropZone } from './SlotDropZone'
@@ -12,7 +12,11 @@ type Props = { formation: Formation }
  */
 export function Pitch({ formation }: Props) {
   const phase = useLineupStore((s) => s.phase)
-  const slots = useMemo(() => applyPhase(formation.slots, phase), [formation.slots, phase])
+  const shape = useLineupStore((s) => s.phaseShape[phase])
+  const slots = useMemo(
+    () => shapeSlots(formation.slots, shape),
+    [formation.slots, shape],
+  )
 
   // Slot-Positionen werden ausschließlich beim Phasenwechsel animiert, nicht
   // während des normalen Drag-and-Drops. So gibt es kein „Nachlaufen" wenn

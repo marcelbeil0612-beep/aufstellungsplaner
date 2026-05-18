@@ -16,6 +16,7 @@ type BackupPayload = {
     activeLineupId: string | null
     players: unknown[]
     phase: Phase
+    phaseShape?: unknown
     lastViewedDuel?: unknown
     playerListIsUserManaged?: boolean
     substitutions?: unknown[]
@@ -38,6 +39,7 @@ export function exportBackupBlob(): Blob {
       activeLineupId: s.activeLineupId,
       players: s.players,
       phase: s.phase,
+      phaseShape: s.phaseShape,
       lastViewedDuel: s.lastViewedDuel,
       playerListIsUserManaged: s.playerListIsUserManaged,
       substitutions: s.substitutions,

@@ -15,11 +15,18 @@ reibungsarm.
 
 ## IST — was steht und läuft
 
+**Live:** öffentlich deployt auf **`https://formaxi.de`** (Vercel,
+korrekter Build verifiziert) — installierbare PWA, weltweit erreichbar.
+
 **Kern-App (stabil, getestet):**
 - Aufstellungsbau, Kader-CRUD, Hungarian-Auto-Aufstellung, Wechselplan,
-  Phasen (Mit/Gegen Ball), PNG-Export, Share-Link, Backup, PWA.
-- Persistenz versioniert; Testsuite grün (`npm run test` 31/31),
-  `npm run build` sauber.
+  PNG-Export, Share-Link, Backup, PWA.
+- **Form-Regler pro Phase (F1 Stufe A):** Breite/Höhe nutzergesteuert,
+  je Phase gespeichert; Mit-/Gegen-Ball-Switch = offensive/defensive
+  Ausrichtung (ersetzt die alte feste Phasen-Verschiebung). Offen:
+  F1 Stufe B (3 Pressinghöhen + Zone + Störer-Linie).
+- Persistenz versioniert (Store v10); Testsuite grün (`npm run test`
+  52/52), `npm run build` sauber.
 
 **Systembuch (inhaltlich abgeschlossen + qualitätsgesichert):**
 - 81/81 Duelle im 4-Phasen-Schema; Legacy-Schema entfernt; `phases`
