@@ -98,28 +98,25 @@ je Konzept), dann skriptweit konsistent ersetzen. Audit-Test
 Platzhalter). Synergie mit S3: der verify-duels-Lint kann verbotene
 Begriffe künftig automatisch flaggen (Forbidden-Term-Check ergänzen).
 
-### Q2 · Reiter „Coaching" + Live-Coaching-Ausbau
+### Q2 · Reiter „Im Spiel" + Live-Coaching-Ausbau
 
-**Tab-Design entschieden:** Der `PhaseHighlighter` wird von „Filter mit
-‚Alles'-Option" zu einem echten 5-Tab-Selektor umgebaut:
+**Q2-UI — ERLEDIGT (Commit 173e500):** `PhaseHighlighter` → `DuelTabs`.
+Echter 5-Tab-Selektor; „Alles" entfernt; Tabs = die vier Phasen + neuer
+Reiter **„Im Spiel"** am Ende mit den zwei Boxen Live-Coaching +
+Mögliche Ingame-Anpassung. Boxen aus der Dauer-Oben-Position entfernt,
+Default-Tab = erste Phase. tsc + build grün. (Tab-Label „Im Spiel"
+gewählt statt „Coaching" gemäß früherer Vorgabe „der Block soll im
+Spiel/Live heißen" + Q1-Deutsch-Prinzip; trivial änderbar.)
 
-- **„Alles" entfällt** (redundant — zeigte nur alle vier Phasen
-  gestapelt).
-- Tabs: `Eigener Ballbesitz` · `Nach Ballverlust` · `Gegen den Ball` ·
-  `Nach Ballgewinn` · **`Coaching`** (neuer 5. Tab am Ende).
-- Jeder Tab zeigt genau einen Inhalt: die vier Phasen je ihre
-  PhaseCard, der `Coaching`-Tab die zwei Boxen **Live-Coaching** +
-  **Mögliche Ingame-Anpassung**.
-- Diese zwei Boxen werden aus der dauerhaft oben gerenderten
-  `coachingTools`-Position in `DuelDetail.tsx` **entfernt** und
-  erscheinen nur noch im `Coaching`-Tab. Default-Tab: erste Phase
-  (Eigener Ballbesitz) bzw. zuletzt gewählter.
-
-- **Content:** `liveCoaching` pro Duell von aktuell 1–3 auf **5–6
-  Anweisungen** ausbauen (alle 81, KI-gestützt wie die Migration; Pilot-
-  Anker `4-3-3 vs 4-4-2`, gleicher Workflow wie Systembuch-Migration).
-- **Abhängigkeit:** Audit-Test prüft `liveCoaching` aktuell auf 1–3 →
-  Spanne auf 5–6 anpassen, sonst schlägt die Suite fehl.
+**Q2-Content — OFFEN (bewusst deferred mit Mechanismus):**
+`liveCoaching` pro Duell von 1–3 auf **5–6** ausbauen, alle 81.
+- Generierungs-Prompt + Einpfleg-Workflow + Gate liegen bereit in
+  `docs/livecoaching-ausbau-prompt.md` (gleicher externer-KI-Workflow
+  wie die Systembuch-Migration — 450+ trennscharfe Zurufe sind eine
+  Content-Aufgabe, keine mechanische Transformation).
+- **Gate:** Audit-Spanne bleibt auf **1–3**, bis ALLE 81 auf 5–6 sind;
+  dann `tacticBook.audit.test.ts` Spanne `1–3` → `5–6`, Suite grün,
+  committen.
 
 ### Q3 · Rating-Realismus (Bias-Cluster) + Systembuch-Vorwort/Erklärseite
 

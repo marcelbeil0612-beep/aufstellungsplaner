@@ -79,15 +79,92 @@ function PhaseCard({ phaseKey, analysis }: { phaseKey: PhaseKey; analysis: Phase
   )
 }
 
+/** Vorwort / Erklärseite: Standard-Inhalt des Systembuchs, bis ein Duell
+ *  gewählt ist. Erklärt die Lesart der Ampel und entschärft die Erwartung
+ *  „ein System ist absolut überlegen". */
+function SystembuchVorwort() {
+  return (
+    <div className="h-full overflow-y-auto pr-1">
+      <div className="space-y-4 text-sm leading-relaxed text-slate-300">
+        <header className="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+          <h3 className="mb-1 flex items-center gap-2 text-base font-semibold text-white">
+            <span aria-hidden>📖</span> So liest du das Systembuch
+          </h3>
+          <p className="text-slate-400">
+            Wähle links ein Gegner-System, um das Duell zu öffnen. Vorher
+            kurz, wie diese Analyse gemeint ist — und wie nicht.
+          </p>
+        </header>
+
+        <section className="rounded-xl border border-slate-800 bg-slate-950/40 p-4">
+          <h4 className="mb-1.5 text-xs font-semibold uppercase tracking-wider text-sky-300">
+            Was es ist
+          </h4>
+          <p>
+            Jedes Duell betrachtet <strong>System gegen System</strong> über
+            die vier Spielphasen (eigener Ballbesitz, nach Ballverlust, gegen
+            den Ball, nach Ballgewinn). Pro Phase: wo Raum entsteht, wo es eng
+            wird, eure Vorteile, eure Gefahren und konkrete Aktionen.
+          </p>
+        </section>
+
+        <section className="rounded-xl border border-slate-800 bg-slate-950/40 p-4">
+          <h4 className="mb-1.5 text-xs font-semibold uppercase tracking-wider text-amber-300">
+            Wie die Ampel zu lesen ist
+          </h4>
+          <p className="mb-2">
+            <span className="font-semibold text-emerald-300">vorteilhaft</span>{' '}
+            ·{' '}
+            <span className="font-semibold text-amber-300">ausgeglichen</span>{' '}
+            ·{' '}
+            <span className="font-semibold text-rose-300">unangenehm</span>{' '}
+            beschreibt die <strong>Tendenz der Konstellation bei sauberer
+            Umsetzung</strong> — kein absolutes Stärke-Ranking der Systeme.
+          </p>
+          <p>
+            Spielerqualität, Tagesform, Coaching und Ausführung schlagen die
+            Konstellation. Jedes Rating hat seinen Spiegel: Was für euch
+            vorteilhaft ist, ist für den Gegner unangenehm — kein System ist
+            gegen alles überlegen. Wenn ein Aufbau „grandios" aussieht, heißt
+            das nur: in <em>dieser</em> Phase, in <em>dieser</em> Paarung, bei
+            sauberer Umsetzung.
+          </p>
+        </section>
+
+        <section className="rounded-xl border border-slate-800 bg-slate-950/40 p-4">
+          <h4 className="mb-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-300">
+            Wann es greift
+          </h4>
+          <ul className="list-disc space-y-1 pl-5">
+            <li>Matchplan-Vorbereitung gegen ein bekanntes Gegner-System.</li>
+            <li>Phasen-Fokus im Training: welche Phase entscheidet dieses Duell.</li>
+            <li>Ingame: Reiter „Im Spiel" für Zurufe und mögliche Anpassung.</li>
+          </ul>
+        </section>
+
+        <section className="rounded-xl border border-slate-800 bg-slate-950/40 p-4">
+          <h4 className="mb-1.5 text-xs font-semibold uppercase tracking-wider text-rose-300">
+            Wann nicht
+          </h4>
+          <ul className="list-disc space-y-1 pl-5">
+            <li>Nicht als Ergebnis-Garantie — es ist eine Tendenz, kein Orakel.</li>
+            <li>Nicht als Ersatz für Kaderqualität, Training und Spielidee.</li>
+            <li>
+              Nicht starr: lies zuerst Schlüsselraum und Schlüsselrisiko, passe
+              an deine Spieler an.
+            </li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  )
+}
+
 export function DuelDetail({ ourSystem, opponentSystem, entry }: Props) {
   const [tab, setTab] = useState<DuelTab>('ownPossession')
 
   if (!opponentSystem) {
-    return (
-      <div className="flex h-full items-center justify-center p-6 text-center text-sm text-slate-500">
-        Wähle links ein Gegner-System, um das Duell zu öffnen.
-      </div>
-    )
+    return <SystembuchVorwort />
   }
   if (!entry) {
     return (
