@@ -61,11 +61,18 @@ nicht im persistierten Zustand-Store).
 
 Trainer sollen in 3 Minuten verstehen, was das Tool macht.
 
-### S5 · Demo-Aufstellung als öffentlicher Share-Link (2 h, Code)
+### S5 · Demo-Aufstellung als öffentlicher Share-Link — ERLEDIGT (2026-05-18)
 
-Statische Demo-Aufstellung mit fiktiven Spielernamen, die über einen
-festen Share-Link aufrufbar ist. **Read-only-Ansicht** — kein Import
-nötig.
+Umgesetzt: fester Link `…/#demo` (`src/data/demoLineup.ts`:
+deterministisches 4-3-3 mit 11 rein fiktiven Spielern, `isDemoHash`,
+`demoExportInput`). `DemoDialog` rendert die Demo read-only über
+`renderLineupPng` (identische Spielfeld-Grafik wie der PNG-Export,
+kein Drag-and-Drop, kein Store, **kein Import**); CTA „Eigene
+Aufstellung bauen" schließt nur. App.tsx wertet `#demo`/`#share=` beim
+Mount aus und putzt den Hash. Tests `demoLineup.test.ts`
+(Determinismus + Integrität). Browser-Smoke-Test bestanden (Link
+öffnet Demo, PNG rendert, CTA schließt, ohne Hash kein Dialog, 390px
+ohne Overflow, 0 Console-Errors). test 47/47, tsc 0, build ✓.
 
 Wofür: Trainer-Foren-Posts können den Demo-Link ohne Reibung verlinken
 („so sieht das aus"). Niemand muss erst installieren oder anmelden.
@@ -422,3 +429,12 @@ In neuer Session:
   Aufstellung bauen → Teilen"), eigener SSR-sicherer localStorage-Key
   `aufstellungsplaner:onboarding-seen`, kein Store-/Migrations-Eingriff.
   Nach Schließen erscheint das Overlay beim Reload nicht erneut.
+  (An Codex delegiert, hier verifiziert & als eigene Einheit committet.)
+- **2026-05-18 (Folge 6):** S5 Demo-Share-Link erledigt — fester Link
+  `…/#demo`, deterministisches Demo-4-3-3 mit fiktiven Spielern
+  (`demoLineup.ts`), `DemoDialog` rendert read-only via
+  `renderLineupPng` (kein Import), CTA schließt nur; App.tsx wertet
+  `#demo`/`#share=` aus. Tests `demoLineup.test.ts`, Browser-Smoke-Test
+  bestanden. test 47/47, tsc 0, build ✓. S2+S5 (Wachstums-Polish):
+  S5 erledigt, S2 wartet weiter auf Markenname. Offener Code-Pfad:
+  P4 Paddle (extern blockiert: Paddle-Account + S1 Marke).

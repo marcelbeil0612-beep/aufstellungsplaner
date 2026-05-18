@@ -12,6 +12,7 @@ import {
 } from '@dnd-kit/core'
 import { useEffect, useMemo, useState } from 'react'
 import { Bench } from './components/Bench'
+import { DemoDialog } from './components/DemoDialog'
 import { Header } from './components/Header'
 import { IOSInstallHint } from './components/IOSInstallHint'
 import { ImportShareDialog } from './components/ImportShareDialog'
@@ -20,6 +21,7 @@ import { PaywallDialog } from './components/PaywallDialog'
 import { PhaseToggle } from './components/PhaseToggle'
 import { Pitch } from './components/Pitch'
 import { PlayerChipVisual } from './components/PlayerChipVisual'
+import { isDemoHash } from './data/demoLineup'
 import { formationById } from './data/formations'
 import { positionLabel, positionShort } from './data/positionWeights'
 import { downloadLineupPng, suggestedLineupFilename } from './lib/exportLineup'
@@ -53,17 +55,21 @@ export default function App() {
   const [activeDrag, setActiveDrag] = useState<ActiveDrag | null>(null)
   const [exporting, setExporting] = useState(false)
   const [sharePayload, setSharePayload] = useState<SharePayload | null>(null)
+  const [demoOpen, setDemoOpen] = useState(false)
 
-  // Beim Mount prüfen, ob ein #share=… Hash anliegt → Import-Dialog öffnen
-  // und den Hash aus der URL entfernen, damit Reloads ihn nicht erneut triggern.
+  // Beim Mount den Location-Hash auswerten: `#demo` öffnet die Read-only-
+  // Demo, `#share=…` den Import-Dialog. Hash danach entfernen, damit Reloads
+  // ihn nicht erneut triggern.
   useEffect(() => {
     if (typeof window === 'undefined') return
-    const payload = parseShareHash(window.location.hash)
-    if (payload) {
-      setSharePayload(payload)
-      const cleanUrl = window.location.pathname + window.location.search
-      window.history.replaceState(null, '', cleanUrl)
-    }
+    const hash = window.location.hash
+    const payload = parseShareHash(hash)
+    const isDemo = isDemoHash(hash)
+    if (!payload && !isDemo) return
+    if (isDemo) setDemoOpen(true)
+    else if (payload) setSharePayload(payload)
+    const cleanUrl = window.location.pathname + window.location.search
+    window.history.replaceState(null, '', cleanUrl)
   }, [])
 
   const handleShare = async () => {
@@ -250,6 +256,7 @@ export default function App() {
       </div>
 
       <ImportShareDialog payload={sharePayload} onClose={() => setSharePayload(null)} />
+      <DemoDialog open={demoOpen} onClose={() => setDemoOpen(false)} />
       <PaywallDialog />
 
       {/* Schwebender Chip beim Drag – kein Overflow-Clipping, kein Transform-Kampf. */}
