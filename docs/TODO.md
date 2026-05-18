@@ -165,8 +165,21 @@ Logo, Favicon, App-Name in:
 
 **Vorbedingung:** Marken-Check (S1) abgeschlossen, Kandidat fix.
 
-### P2 · Feature-Flag-Architektur (4 h)
+### P2 · Feature-Flag-Architektur — ERLEDIGT (2026-05-18)
 
+Umgesetzt: `isPro` im Zustand-Store (Default false, partialize-persistiert,
+Migration v8→v9, Setter `setProStatus`); bewusst NICHT in Backup-
+Export/-Import (sonst per JSON-Datei umgehbar — `restoreFromBackup`
+ignoriert `isPro` explizit). `src/lib/proAccess.ts`: `ProFeature`-Typ
+(7 Gate-Schlüssel aus der Synthese), `isProFeature()`, `useProStatus()`,
+`useFeatureAccess(feature)`. `src/components/FeatureGate.tsx`:
+deklaratives `<FeatureGate feature="…" fallback={…}>` (fallback offen
+für P3-Paywall). Tests: `proAccess.test.ts` (test 36/36 grün, tsc 0,
+build ✓). Noch NICHT verdrahtet an Call-Sites — das passiert mit P3
+(Paywall + Trigger-Stellen), damit ohne Paywall keine UX-Regression
+entsteht.
+
+Ursprüngliche Spezifikation (umgesetzt):
 - `useProStatus()`-Hook (liest aus Pro-State)
 - `<FeatureGate feature="…">`-Komponente die Pro-Inhalte schützt
 - `isPro` State im Zustand-Store
@@ -381,3 +394,9 @@ In neuer Session:
   nötig. Neu (untracked): `.claude/launch.json` für das Preview-Tooling.
   → Damit ist der gesamte Systembuch-Komplex auch UI-seitig live
   verifiziert; nächster Engpass ist rein extern (S1 Marken-Check).
+- **2026-05-18 (Folge 3):** P2 Feature-Flag-Architektur erledigt
+  (`isPro` im Store + Migration v8→v9 + Setter; `proAccess.ts` mit
+  `ProFeature`/`isProFeature`/`useProStatus`/`useFeatureAccess`;
+  `<FeatureGate>`-Komponente; `isPro` bewusst aus Backup ausgeklammert).
+  test 36/36, tsc 0, build ✓. Noch nicht an Call-Sites verdrahtet
+  (bewusst → P3). Nächster Code-Schritt: P3 Paywall-UI.

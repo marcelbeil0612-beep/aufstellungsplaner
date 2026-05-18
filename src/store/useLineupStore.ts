@@ -43,6 +43,12 @@ type State = {
   substitutions: Substitution[]
   /** Spielprotokoll: chronologische Liste gespielter Matches. */
   matches: Match[]
+  /**
+   * Pro-Freischaltung. Lokal pro Gerät persistiert (Offline-Karenz für die
+   * spätere Lizenz-Validierung), bewusst NICHT Teil von Backup-Export/Import
+   * – sonst ließe sich Pro durch Teilen einer JSON-Datei umgehen.
+   */
+  isPro: boolean
 }
 
 type Actions = {
@@ -125,6 +131,12 @@ type Actions = {
 
   /** Systembuch: zuletzt betrachtetes Duell merken. */
   setLastViewedDuel: (duel: { our: SystemId; opp: SystemId } | null) => void
+
+  /**
+   * Setzt den Pro-Freischalt-Status. Wird später von der Lizenz-Validierung
+   * (P4) gesetzt; vorerst der einzige Schreibpfad auf `isPro`.
+   */
+  setProStatus: (isPro: boolean) => void
 }
 
 const emptyAssignments = (slotIds: string[]): Assignments =>
@@ -141,7 +153,7 @@ const newId = (): string => {
  * Backups die Version mitschreiben und beim Import durch dieselbe Migrations-
  * Kette wie der reguläre Persist-Pfad laufen können.
  */
-export const STORE_VERSION = 8
+export const STORE_VERSION = 9
 
 /**
  * Reine Migrationsfunktion. Wird sowohl im `persist({ migrate })`-Hook als auch
@@ -191,6 +203,10 @@ export function migratePersistedState(
   if (fromVersion < 8) {
     if (!Array.isArray(s.matches)) s.matches = []
   }
+  // v8 → v9: Pro-Freischalt-Status. Bestehende Installationen starten frei.
+  if (fromVersion < 9) {
+    if (typeof s.isPro !== 'boolean') s.isPro = false
+  }
   return s
 }
 
@@ -207,6 +223,7 @@ export const useLineupStore = create<State & Actions>()(
       playerListIsUserManaged: false,
       substitutions: [],
       matches: [],
+      isPro: false,
 
       setFormation: (id) => {
         const oldFormation = formationById(get().formationId)
@@ -633,6 +650,9 @@ export const useLineupStore = create<State & Actions>()(
           })
         }
 
+        // `isPro` wird bewusst NICHT aus dem Snapshot übernommen: Pro-
+        // Entitlement darf nicht über eine geteilte Backup-Datei wandern.
+        // Der aktuelle Gerätestatus bleibt unverändert.
         set({
           formationId: safeFormationId,
           assignments: safeAssignments,
@@ -647,6 +667,8 @@ export const useLineupStore = create<State & Actions>()(
       },
 
       setLastViewedDuel: (duel) => set({ lastViewedDuel: duel }),
+
+      setProStatus: (isPro) => set({ isPro }),
     }),
     {
       name: 'aufstellungsplaner:v1',
@@ -666,6 +688,7 @@ export const useLineupStore = create<State & Actions>()(
         playerListIsUserManaged: state.playerListIsUserManaged,
         substitutions: state.substitutions,
         matches: state.matches,
+        isPro: state.isPro,
       }),
       migrate: (persistedStateUnknown, version) =>
         migratePersistedState(persistedStateUnknown, version),
