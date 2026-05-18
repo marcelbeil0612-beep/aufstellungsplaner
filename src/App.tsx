@@ -254,7 +254,16 @@ export default function App() {
           className="border-t border-slate-800 px-6 py-3 text-center text-[11px] text-slate-500"
           style={{ paddingBottom: 'max(env(safe-area-inset-bottom, 0px), 0.75rem)' }}
         >
-          Aufstellung, Fotos & Skills werden im Browser gespeichert · Beste-Aufstellung-Rechner per Skill-Score
+          <div>
+            Aufstellung, Fotos & Skills werden im Browser gespeichert · Beste-Aufstellung-Rechner per Skill-Score
+          </div>
+          <nav className="mt-2 flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
+            <a href="/preise" className="hover:text-slate-300">Preise</a>
+            <a href="/impressum" className="hover:text-slate-300">Impressum</a>
+            <a href="/datenschutz" className="hover:text-slate-300">Datenschutz</a>
+            <a href="/agb" className="hover:text-slate-300">AGB</a>
+            <a href="/widerruf" className="hover:text-slate-300">Widerruf</a>
+          </nav>
         </footer>
       </div>
 

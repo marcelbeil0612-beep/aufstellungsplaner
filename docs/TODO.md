@@ -505,3 +505,14 @@ In neuer Session:
   verifiziert (Presets verschieben Linie hoch↔tief, Mit-Ball clean).
   test 54/54, tsc 0, build ✓. Damit F1 komplett. Offene Code-Arbeit:
   nur noch P4 (MoR-Account von dir). Rest extern: DPMA, S6.
+- **2026-05-18 (Folge 10):** Bezahl-Entscheidung = **Paddle**, KYB
+  gestartet (Produktbeschreibung + Website-Verifizierung). Für Paddle-
+  Verifizierung Rechts-/Infoseiten gebaut: `/preise /agb /datenschutz
+  /widerruf /impressum` als statische Seiten auf `formaxi.de` (eigene
+  `legal.css`), Platzhalter `[NAME]/[ANSCHRIFT]/[E-MAIL]/[USt-IdNr]`
+  (Nutzer ist Gewerbe mit USt-IdNr, kein §19). 14-Tage-Geld-zurück.
+  Footer-Links in der App. **Fix:** bestehender SPA-Catch-all-Rewrite
+  in `vercel.json` hätte die Seiten geschluckt → `cleanUrls:true`
+  ergänzt; SW-`navigateFallbackDenylist` für die Pfade. build/test
+  grün; Live-Verifizierung der sauberen URLs nach Deploy. Offen vom
+  Nutzer: echte Impressumsdaten; P4-Sandbox-Bau kann starten.

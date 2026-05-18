@@ -48,7 +48,10 @@ korrekter Build verifiziert) — installierbare PWA, weltweit erreichbar.
   Checkout-Stub → P4) + `useProGuard`. Trigger verdrahtet &
   browser-verifiziert: Gegen-Ball-Phase, Beste Aufstellung,
   Wechselplan, Systembuch (3 Schaufenster-Duelle frei, Rest Pro).
-- Offen: nur noch P4 (echter Paddle-Checkout + Lizenz-Validierung).
+- Rechts-/Infoseiten live-fähig: `/preise /agb /datenschutz /widerruf
+  /impressum` (statisch, `cleanUrls`, Footer-verlinkt; Impressumsdaten
+  als Platzhalter). Paddle gewählt, KYB läuft.
+- Offen: P4 (Paddle-Sandbox-Integration baubar) + echte Impressumsdaten.
 
 **Marke (S1/P1):**
 - Name = **FormaXI**, `formaxi.de` gesichert. Rebrand live

@@ -30,6 +30,11 @@ export default defineConfig({
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,ico,webmanifest}'],
         navigateFallback: '/index.html',
+        // Statische Rechts-/Infoseiten dürfen NICHT vom SPA-Shell-Fallback
+        // überlagert werden – sie haben eigene HTML-Dateien.
+        navigateFallbackDenylist: [
+          /^\/(?:preise|agb|datenschutz|widerruf|impressum)(?:\/|$)/,
+        ],
         cleanupOutdatedCaches: true,
       },
     }),
