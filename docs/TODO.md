@@ -197,6 +197,42 @@ im PNG-Export. Browser-verifiziert: Presets verschieben Linie/Zone
 PNG-Export code-parallel zum verifizierten Feld-Overlay (gleiche
 Koordinaten-Mathematik wie die Chips), tsc/build grün. test 54/54.
 
+### F2 · Linien-Kompaktheit (OFFEN — Nutzer-Anforderung 2026-05-19)
+
+Der Nutzer will **durchgängig deutlich engere Abstände ZWISCHEN den
+Linien** (Abwehr↔Mittelfeld↔Angriff), **unabhängig von der Höhe** und
+**für Mit Ball und Gegen den Ball** separat. Das aktuelle Modell
+skaliert alle Slots proportional um einen Anker → bei höherem Block
+ziehen die Linien zu weit auseinander. Soll: **Block-Höhe/-Position
+und Linien-Kompaktheit trennen** (Bänder zur Mittelfeldlinie
+zusammenziehen; Höhe/Position separat). Konkreter Kompaktheits-Grad
+je Phase wird per Rückfragen mit dem Nutzer abgestimmt, dann
+`phaseShift` umbauen (eigener Kompaktheits-Faktor je Phase, sehr enge
+Defaults), alle Aufrufer + Tests anpassen, browser-verifizieren.
+
+### BUG · Breite/Höhe-Regler nicht ziehbar (OFFEN)
+
+Slider reagiert nur auf **Klick auf die Leiste** (springt dorthin),
+**nicht auf Drag** (linke Maustaste gedrückt ziehen). Erste Vermutung
+(Remount durch verschachtelte Komponente) war nicht die volle Ursache
+— Slider ist bereits auf Modulebene. **Neue Hypothese:** Die App ist
+in `<DndContext>` (dnd-kit) gewrappt; der `PointerSensor`
+(activationConstraint distance:4) fängt vermutlich `pointerdown/move`
+auf dem Range-Input ab, sodass der native Thumb-Drag nicht startet
+(Klick = einzelnes Change-Event funktioniert weiterhin). Lösung
+voraussichtlich: Pointer-Events des Sliders von dnd-kit ausnehmen
+(z. B. Sensor-Filter / `onPointerDown` stopPropagation am Input, oder
+Slider außerhalb des DndContext-Eventflows). Noch nicht umgesetzt.
+
+### Bezahlung (P4) — Go-live vom Nutzer geparkt
+
+P4-Code komplett & **Sandbox end-to-end live verifiziert**
+(`formaxi.de`: Checkout → `issue-license` → signierte Lizenz → Pro;
+Persistenz). Offen nur die Production-Umstellung (Paddle-Production-
+Produkt/Preise/Token/Secrets in Vercel-Env, `…ENV=production`,
+Redeploy, Payout-Bankdaten, Paddle-Go-live-Checklist). Bewusst
+**später** — Nutzer priorisiert erst die Aufstellungs-Optik (F2/Bug).
+
 ## 🟡 Nach Schnellstart: Pro-System (Monat 2)
 
 ### P1 · Marken-Rebrand — ERLEDIGT (Code-Teil, 2026-05-18)
@@ -571,3 +607,12 @@ In neuer Session:
   des `<input>` pro Wertänderung. Slider auf Modulebene gehoben →
   Drag durchgehend (browser-verifiziert: Node bleibt stabil).
   test 56/56, tsc 0, build ✓.
+- **2026-05-19 (Folge 14):** Paddle **Sandbox end-to-end live
+  verifiziert** auf `formaxi.de` (Domain/Default-Payment-Link in Paddle
+  gesetzt → Checkout-Overlay ok; Testkauf 4242 → `issue-license` →
+  signierte Lizenz → Pro freigeschaltet). Go-live (Production-Env) vom
+  Nutzer geparkt. Zwei offene Punkte priorisiert: **F2 Linien-
+  Kompaktheit** (Modell muss Block-Höhe und Linien-Kompaktheit trennen;
+  Grad per Rückfragen) und **Bug: Slider nicht ziehbar** (Hypothese:
+  dnd-kit `PointerSensor` fängt Pointer-Events des Range-Inputs ab).
+  Doku/Memory aktualisiert. Slider-„Fix" aus Folge 13 war unzureichend.

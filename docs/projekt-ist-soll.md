@@ -25,9 +25,13 @@ korrekter Build verifiziert) — installierbare PWA, weltweit erreichbar.
   Phase gespeichert; Mit-/Gegen-Ball-Switch = offensive/defensive
   Ausrichtung (ersetzt die alte feste Phasen-Verschiebung). Defensiv
   zusätzlich 3 Pressinghöhen-Presets + Pressingzone + Störer-Linie
-  (Feld + PNG). F1 komplett (A+B).
-- Persistenz versioniert (Store v10); Testsuite grün (`npm run test`
-  52/52), `npm run build` sauber.
+  (Feld + PNG). F1 (A+B) umgesetzt. **OFFEN F2:** Linien-Kompaktheit
+  — Nutzer will durchgängig deutlich engere Abstände zwischen den
+  Linien, unabhängig von der Höhe (Modell muss Höhe/Position und
+  Kompaktheit trennen). **OFFENER BUG:** Breite/Höhe-Regler nur
+  klick-, nicht ziehbar (Hypothese: dnd-kit-PointerSensor).
+- Persistenz versioniert (Store v11); Testsuite grün (`npm run test`
+  56/56), `npm run build` sauber.
 
 **Systembuch (inhaltlich abgeschlossen + qualitätsgesichert):**
 - 81/81 Duelle im 4-Phasen-Schema; Legacy-Schema entfernt; `phases`
@@ -55,9 +59,10 @@ korrekter Build verifiziert) — installierbare PWA, weltweit erreichbar.
   Checkout, ECDSA-Lizenz (Server signiert / Client verifiziert offline),
   `api/issue-license|refresh-license|paddle-webhook`, Store-Lizenz
   (v10→v11) + 90-Tage-Karenz, PaywallDialog mit Einlösen + Graceful-
-  Stub. Browser-verifiziert.
-- Offen: **nur noch Nutzer-Config** (Paddle-Produkt/Preise/Token/
-  Secrets in Vercel-Env, Sandbox-Testkauf, dann Prod/Go-live).
+  Stub. **Sandbox end-to-end live verifiziert** (Checkout→Lizenz→Pro
+  auf formaxi.de).
+- Offen: **Go-live geparkt** (Production-Env-Umstellung + Payout) —
+  Nutzer priorisiert erst F2 Linien-Kompaktheit + Slider-Drag-Bug.
 
 **Marke (S1/P1):**
 - Name = **FormaXI**, `formaxi.de` gesichert. Rebrand live
@@ -90,17 +95,18 @@ Live-Coaching-Ausbau-Prompt, dieses IST/SOLL — alle auf Live-Stand.
 | Systembuch-Qualität | auditiert, rebalanciert, konsistent | — | **0** (fertig) |
 | Systembuch-Inhalt | liveCoaching 5–6 (alle 81) | — | **0** (fertig, Audit-Gate 5–6 aktiv) |
 | Marke/Domain | FormaXI fix, formaxi.de gesichert, Rebrand live | + Logo + DPMA-Anmeldung | **extern** (Grafik + Anwalt) |
-| Monetarisierung | P2+P3 + P4-Code (Checkout/Lizenz) komplett | Paddle-Produkt/Env + Go-live | **nur Nutzer-Config** |
+| Monetarisierung | P2+P3+P4-Code; Paddle **Sandbox e2e verifiziert** | Production-Env + Payout (Go-live) | **geparkt** (Nutzer-Prio später) |
+| Aufstellungs-Optik | F1 A+B live | **F2 Linien-Kompaktheit** + Slider-Drag-Bug | **offen (Prio jetzt)** |
 | Wachstums-Polish | Onboarding + Demo-Link + Branding-Footer live | — | **0** (fertig) |
 | Validierung | KI-Hypothesen | Trainer-Befragung | **S6** offen (No-Code) |
 | Skalierung | 1 Team, DE | Multi-Team, i18n, EN | **Monat 3–4+** (bewusst später) |
 
-**Kurz:** Produktkern, Systembuch, Monetarisierungs-UI (P2+P3),
-Wachstums-Polish (S4/S5/S2) und der Marken-Rebrand-Code (P1, FormaXI)
-sind am Ziel. Es bleibt **nur noch ein Code-Block: P4 Paddle**
-(echter Checkout + Lizenz) — extern blockiert durch Paddle-Account.
-Daneben rein extern: Logo-Grafik, DPMA-Anmeldung, S6 Trainer-Befragung.
-Inhaltlich/technisch ist sonst nichts mehr offen.
+**Kurz:** Produktkern, Systembuch, P2/P3, Wachstums-Polish, Rebrand
+und der **P4-Bezahlpfad (Sandbox end-to-end live verifiziert)** sind
+fertig. **Aktuelle Priorität des Nutzers:** Aufstellungs-Optik —
+F2 (durchgängig kompaktere Linien-Abstände, Höhe von Kompaktheit
+trennen) + Slider-Drag-Bug. Danach Paddle-Go-live (Production-Env +
+Payout). Rein extern weiterhin: Logo-Grafik, DPMA, S6.
 
 ## Empfohlener Pfad zum Ziel (kürzeste sinnvolle Linie)
 
