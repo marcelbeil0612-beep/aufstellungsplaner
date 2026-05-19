@@ -38,7 +38,7 @@ function Slider({
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
         aria-label={`${label} (${ariaSuffix})`}
-        className="h-1.5 flex-1 cursor-pointer appearance-none rounded-full bg-slate-700 accent-emerald-500"
+        className="flex-1 cursor-pointer accent-emerald-500"
       />
       <span className="w-9 shrink-0 text-right tabular-nums text-slate-400">{pct(value)}</span>
     </label>

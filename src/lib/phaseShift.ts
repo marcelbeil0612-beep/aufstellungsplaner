@@ -3,103 +3,105 @@ import type { Slot } from '../types'
 export type Phase = 'withBall' | 'withoutBall'
 
 /**
- * Form-Parameter einer Phase: relative Breite und Höhe der Mannschaft.
- * 1.0 = neutrale Formationskoordinaten, <1 kompakter.
+ * Gespeicherte Form je Phase. `width` = Fächerung (Regler). `height` =
+ * nur defensiv genutzt: Block-Position (Pressinghöhe), 0.55–0.95.
+ * Die Linien-Kompaktheit ist NICHT nutzergesteuert, sondern je Phase
+ * fest (Trainer-Wunsch: durchgängig eng, unabhängig von der Höhe).
  */
 export type PhaseShape = { width: number; height: number }
 
-/** Breiten-Regler-Grenzen. */
+/** Intern: aufgelöste Form, die `shapeSlots` konsumiert. */
+type EffectiveShape = { width: number; frontY: number; k: number }
+
 export const WIDTH_MIN = 0.55
 export const WIDTH_MAX = 1.15
 
-/**
- * Höhen-Grenzen bewusst eng: selbst maximal gepresst bleibt die
- * Mannschaft kompakt – der vorderste Spieler darf nie über Höhe des
- * gegnerischen Strafraums hinausgezogen werden.
- */
+// Defensiv-Positions-Regler (Pressinghöhe) – Wertebereich des `height`-
+// Speicherfelds; wird auf eine Front-Linie (frontY) abgebildet.
 export const HEIGHT_MIN = 0.55
 export const HEIGHT_MAX = 0.95
 
-/**
- * Feste Vertikal-Staffelung „Mit Ball“ (offensiv): realistische, gleich
- * große Abstände. Mit Ball gibt es bewusst KEINEN Höhe-Regler – dort
- * zählt nur die Breite (wie weit wir fächern).
- */
-export const WITHBALL_HEIGHT = 0.95
+// Linien-Kompaktheit (Abstand Abwehr↔MF↔Angriff) FEST je Phase.
+// Kleiner = enger. Mit Ball „deutlich enger", gegen den Ball „sehr eng".
+const K_ATTACK = 0.52
+const K_DEFENSE = 0.4
 
-/** y-Obergrenze: Höhe des gegnerischen Strafraums (kein Überstrecken). */
+// Front-Linie (vorderster Feldspieler) in y-Einheiten (0 eigenes Tor →
+// 100 Gegnertor). Y_MAX = Höhe des gegnerischen Strafraums (Deckel).
+const FRONT_ATTACK = 80
+const FRONT_LOW = 44 // tiefstes Abwehrpressing
+const FRONT_HIGH = 80 // höchstes Angriffspressing
 const Y_MAX = 82
 
-/** Defaults: Mit Ball breit & fest gestaffelt, gegen den Ball enger/tiefer. */
 export const defaultPhaseShape: Record<Phase, PhaseShape> = {
-  withBall: { width: 0.95, height: WITHBALL_HEIGHT },
-  withoutBall: { width: 0.78, height: 0.78 },
+  withBall: { width: 0.95, height: 0.95 },
+  withoutBall: { width: 0.78, height: 0.75 },
 }
 
 function clamp(n: number, min: number, max: number): number {
   return Math.max(min, Math.min(max, n))
 }
 
-// y-Anker knapp vor dem eigenen Tor: kleineres height = kompakter/tiefer.
-const Y_ANCHOR = 8
-
-/**
- * Liefert die tatsächlich anzuwendende Form je Phase:
- * – Mit Ball: Höhe fix (kein Regler), nur Breite nutzergesteuert.
- * – Gegen den Ball: Breite + Höhe (Pressinghöhe) nutzergesteuert.
- */
-export function effectiveShape(phase: Phase, stored: PhaseShape): PhaseShape {
-  const width = clamp(stored.width, WIDTH_MIN, WIDTH_MAX)
-  if (phase === 'withBall') return { width, height: WITHBALL_HEIGHT }
-  return { width, height: clamp(stored.height, HEIGHT_MIN, HEIGHT_MAX) }
+/** Defensiver Positions-Wert (0.55–0.95) → Front-Linie y. */
+function heightToFrontY(h: number): number {
+  const t = (clamp(h, HEIGHT_MIN, HEIGHT_MAX) - HEIGHT_MIN) / (HEIGHT_MAX - HEIGHT_MIN)
+  return FRONT_LOW + t * (FRONT_HIGH - FRONT_LOW)
 }
 
 /**
- * Skaliert die Slot-Koordinaten gemäß Form. Breite um die Mittelachse,
- * Höhe um einen Anker am eigenen Tor, hart auf Strafraumhöhe geklemmt.
- * Torwart bleibt fix. Eingabe wird nicht mutiert.
+ * Pressinghöhen = Positions-Presets (verschieben den ganzen Block, NICHT
+ * die Linien-Enge). `height` so gewählt, dass heightToFrontY hoch/mittel/
+ * tief ergibt.
  */
-export function shapeSlots(slots: Slot[], shape: PhaseShape): Slot[] {
-  const w = clamp(shape.width, WIDTH_MIN, WIDTH_MAX)
-  const h = clamp(shape.height, HEIGHT_MIN, HEIGHT_MAX)
+export type PressingHeight = 'high' | 'mid' | 'low'
+export const PRESSING_PRESETS: Record<PressingHeight, { label: string; height: number }> = {
+  high: { label: 'Angriffspressing', height: 0.95 },
+  mid: { label: 'Mittelfeldpressing', height: 0.75 },
+  low: { label: 'Abwehrpressing', height: 0.58 },
+}
+
+export const PRESSING_ZONE_DEPTH = 24
+
+/**
+ * Auflösung der gespeicherten Form je Phase:
+ * – Mit Ball: feste offensive Front + feste (deutlich enge) Kompaktheit,
+ *   nur Breite nutzergesteuert.
+ * – Gegen den Ball: Front aus Pressinghöhe, feste (sehr enge)
+ *   Kompaktheit, Breite nutzergesteuert.
+ */
+export function effectiveShape(phase: Phase, stored: PhaseShape): EffectiveShape {
+  const width = clamp(stored.width, WIDTH_MIN, WIDTH_MAX)
+  if (phase === 'withBall') return { width, frontY: FRONT_ATTACK, k: K_ATTACK }
+  return { width, frontY: heightToFrontY(stored.height), k: K_DEFENSE }
+}
+
+/**
+ * Setzt die Slots: Breite um die Mittelachse skaliert; vertikal wird der
+ * vorderste Feldspieler auf `frontY` gelegt und alle dahinterliegenden
+ * Linien mit Faktor `k` herangezogen (konstante Enge, unabhängig von der
+ * Front-Position). Torwart bleibt fix. Eingabe wird nicht mutiert.
+ */
+export function shapeSlots(slots: Slot[], eff: EffectiveShape): Slot[] {
+  const outfield = slots.filter((s) => s.position !== 'GK')
+  const maxBaseY = outfield.length ? Math.max(...outfield.map((s) => s.y)) : 100
+  const w = clamp(eff.width, WIDTH_MIN, WIDTH_MAX)
   return slots.map((s) => {
     if (s.position === 'GK') return { ...s }
     return {
       ...s,
       x: clamp(50 + (s.x - 50) * w, 4, 96),
-      y: clamp(Y_ANCHOR + (s.y - Y_ANCHOR) * h, 5, Y_MAX),
+      y: clamp(eff.frontY - (maxBaseY - s.y) * eff.k, 5, Y_MAX),
     }
   })
 }
 
-/**
- * Pressinghöhen für die Defensivphase (Presets des Höhe-Reglers).
- * Alle im kompakten Bereich – auch „hoch“ stretcht nicht unrealistisch.
- */
-export type PressingHeight = 'high' | 'mid' | 'low'
-
-export const PRESSING_PRESETS: Record<
-  PressingHeight,
-  { label: string; height: number }
-> = {
-  high: { label: 'Angriffspressing', height: 0.95 },
-  mid: { label: 'Mittelfeldpressing', height: 0.78 },
-  low: { label: 'Abwehrpressing', height: 0.6 },
-}
-
-/** Tiefe der Pressingzone (in y-Einheiten 0–100) hinter dem ersten Störer. */
-export const PRESSING_ZONE_DEPTH = 24
-
-/**
- * y des vordersten Feldspielers = Linie des ersten Störers. Der Torwart
- * zählt nicht. Leeres/GK-only Input → Mittellinie als Fallback.
- */
+/** y des vordersten Feldspielers (= frontY) – für die Störer-Linie. */
 export function pressingLineY(slots: Slot[]): number {
   const ys = slots.filter((s) => s.position !== 'GK').map((s) => s.y)
   return ys.length ? Math.max(...ys) : 50
 }
 
-/** Normalisiert/klemmt eine evtl. unvollständige Form auf gültige Werte. */
+/** Normalisiert/klemmt eine evtl. unvollständige gespeicherte Form. */
 export function sanitizePhaseShape(raw: unknown, fallback: PhaseShape): PhaseShape {
   const o = (raw ?? {}) as Partial<PhaseShape>
   const num = (v: unknown, d: number, min: number, max: number) =>

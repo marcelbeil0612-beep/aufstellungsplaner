@@ -4,110 +4,117 @@ import {
   defaultPhaseShape,
   effectiveShape,
   HEIGHT_MAX,
-  HEIGHT_MIN,
   PRESSING_PRESETS,
   pressingLineY,
   sanitizePhaseShape,
   shapeSlots,
   WIDTH_MAX,
-  WITHBALL_HEIGHT,
 } from './phaseShift'
 
-const slot = (overrides: Partial<Slot>): Slot => ({
-  id: 's',
-  position: 'CM',
-  x: 50,
-  y: 50,
-  ...overrides,
-})
+const slot = (o: Partial<Slot>): Slot => ({ id: 's', position: 'CM', x: 50, y: 50, ...o })
 
 describe('shapeSlots', () => {
-  it('zieht Spieler bei width < 1 zur Mittelachse', () => {
-    const [s] = shapeSlots([slot({ position: 'LB', x: 14, y: 24 })], { width: 0.6, height: 0.8 })
+  const eff = (p: Partial<{ width: number; frontY: number; k: number }> = {}) => ({
+    width: 1,
+    frontY: 80,
+    k: 0.5,
+    ...p,
+  })
+
+  it('legt den vordersten Feldspieler auf frontY', () => {
+    const [st] = shapeSlots([slot({ position: 'ST', y: 85 })], eff({ frontY: 78 }))
+    expect(st.y).toBeCloseTo(78)
+  })
+
+  it('zieht dahinterliegende Linien mit Faktor k heran (Enge)', () => {
+    const slots = [slot({ id: 'st', position: 'ST', y: 85 }), slot({ id: 'cb', position: 'CB', y: 25 })]
+    const [st, cb] = shapeSlots(slots, eff({ frontY: 80, k: 0.5 }))
+    // Linien-Abstand = Basis-Abstand * k
+    expect(st.y - cb.y).toBeCloseTo((85 - 25) * 0.5)
+  })
+
+  it('kleineres k = engere Linien', () => {
+    const slots = [slot({ id: 'st', position: 'ST', y: 85 }), slot({ id: 'cb', position: 'CB', y: 25 })]
+    const tight = shapeSlots(slots, eff({ k: 0.35 }))
+    const loose = shapeSlots(slots, eff({ k: 0.6 }))
+    expect(tight[0].y - tight[1].y).toBeLessThan(loose[0].y - loose[1].y)
+  })
+
+  it('width < 1 zieht zur Mittelachse', () => {
+    const [s] = shapeSlots([slot({ position: 'LB', x: 14, y: 24 })], eff({ width: 0.6 }))
     expect(s.x).toBeGreaterThan(14)
     expect(s.x).toBeLessThan(50)
   })
 
-  it('macht die Mannschaft bei kleinerer Höhe kompakter (zieht nach hinten)', () => {
-    const [s] = shapeSlots([slot({ position: 'ST', x: 50, y: 82 })], { width: 1, height: 0.6 })
-    expect(s.y).toBeLessThan(82)
-  })
-
-  it('lässt den Torwart unverändert', () => {
-    const [gk] = shapeSlots([slot({ position: 'GK', x: 50, y: 6 })], { width: 0.6, height: 0.6 })
+  it('Torwart bleibt unverändert', () => {
+    const [gk] = shapeSlots([slot({ position: 'GK', x: 50, y: 6 })], eff())
     expect(gk.x).toBe(50)
     expect(gk.y).toBe(6)
   })
 
-  it('überstreckt nie über Strafraumhöhe (y ≤ 82), selbst bei Maximalwerten', () => {
-    const [s] = shapeSlots([slot({ position: 'ST', x: 50, y: 92 })], {
-      width: WIDTH_MAX,
-      height: HEIGHT_MAX,
-    })
+  it('klemmt y ≤ 82 (Strafraumhöhe)', () => {
+    const [s] = shapeSlots([slot({ position: 'ST', y: 85 })], eff({ frontY: 999 }))
     expect(s.y).toBeLessThanOrEqual(82)
   })
 
   it('mutiert die Eingabe nicht', () => {
     const input = [slot({ position: 'LB', x: 14, y: 24 })]
-    const snapshot = JSON.parse(JSON.stringify(input))
-    shapeSlots(input, { width: 0.7, height: 0.8 })
-    expect(input).toEqual(snapshot)
+    const snap = JSON.parse(JSON.stringify(input))
+    shapeSlots(input, eff())
+    expect(input).toEqual(snap)
   })
 })
 
 describe('effectiveShape', () => {
-  it('Mit Ball: Höhe ist fix (kein Regler), Breite wird durchgereicht', () => {
-    const e = effectiveShape('withBall', { width: 1.05, height: 0.2 })
-    expect(e.height).toBe(WITHBALL_HEIGHT)
-    expect(e.width).toBe(1.05)
+  it('Gegen den Ball ist enger gestaffelt als Mit Ball (kleineres k)', () => {
+    const atk = effectiveShape('withBall', defaultPhaseShape.withBall)
+    const def = effectiveShape('withoutBall', defaultPhaseShape.withoutBall)
+    expect(def.k).toBeLessThan(atk.k)
   })
 
-  it('Gegen den Ball: Höhe wird in die Defensiv-Grenzen geklemmt', () => {
-    expect(effectiveShape('withoutBall', { width: 1, height: 5 }).height).toBe(HEIGHT_MAX)
-    expect(effectiveShape('withoutBall', { width: 1, height: 0 }).height).toBe(HEIGHT_MIN)
+  it('Mit Ball: feste offensive Front, Breite durchgereicht', () => {
+    const e = effectiveShape('withBall', { width: 1.05, height: 0.2 })
+    expect(e.width).toBe(1.05)
+    expect(e.frontY).toBeGreaterThan(70)
+  })
+
+  it('Gegen den Ball: höhere Pressinghöhe → höhere Front-Linie', () => {
+    const hi = effectiveShape('withoutBall', { width: 1, height: HEIGHT_MAX })
+    const lo = effectiveShape('withoutBall', { width: 1, height: 0.55 })
+    expect(hi.frontY).toBeGreaterThan(lo.frontY)
   })
 })
 
-describe('Phasen-Form-Defaults', () => {
-  it('Mit-Ball-Höhe entspricht der festen Vertikal-Staffelung', () => {
-    expect(defaultPhaseShape.withBall.height).toBe(WITHBALL_HEIGHT)
-  })
-  it('gegen den Ball ist enger gefächert als mit Ball', () => {
-    expect(defaultPhaseShape.withoutBall.width).toBeLessThan(defaultPhaseShape.withBall.width)
+describe('Pressing-Presets (Positions-Presets)', () => {
+  it('hoch steht höher als tief', () => {
+    expect(PRESSING_PRESETS.high.height).toBeGreaterThan(PRESSING_PRESETS.mid.height)
+    expect(PRESSING_PRESETS.mid.height).toBeGreaterThan(PRESSING_PRESETS.low.height)
+    const f = (h: number) => effectiveShape('withoutBall', { width: 1, height: h }).frontY
+    expect(f(PRESSING_PRESETS.high.height)).toBeGreaterThan(f(PRESSING_PRESETS.low.height))
   })
 })
 
 describe('pressingLineY', () => {
   it('nimmt den vordersten Feldspieler, ignoriert den Torwart', () => {
-    const slots: Slot[] = [
-      slot({ id: 'gk', position: 'GK', y: 6 }),
-      slot({ id: 'cb', position: 'CB', y: 22 }),
-      slot({ id: 'st', position: 'ST', y: 70 }),
-    ]
-    expect(pressingLineY(slots)).toBe(70)
-  })
-
-  it('Presets: hoch presst höher als tief, alle im kompakten Bereich', () => {
-    expect(PRESSING_PRESETS.high.height).toBeGreaterThan(PRESSING_PRESETS.mid.height)
-    expect(PRESSING_PRESETS.mid.height).toBeGreaterThan(PRESSING_PRESETS.low.height)
-    expect(PRESSING_PRESETS.high.height).toBeLessThanOrEqual(HEIGHT_MAX)
+    expect(
+      pressingLineY([
+        slot({ id: 'gk', position: 'GK', y: 6 }),
+        slot({ id: 'cb', position: 'CB', y: 22 }),
+        slot({ id: 'st', position: 'ST', y: 70 }),
+      ]),
+    ).toBe(70)
   })
 })
 
 describe('sanitizePhaseShape', () => {
-  it('klemmt Werte in die jeweiligen Grenzen', () => {
-    const s = sanitizePhaseShape({ width: 5, height: -1 }, defaultPhaseShape.withBall)
+  it('klemmt in die jeweiligen Grenzen', () => {
+    const s = sanitizePhaseShape({ width: 9, height: -1 }, defaultPhaseShape.withBall)
     expect(s.width).toBe(WIDTH_MAX)
-    expect(s.height).toBe(HEIGHT_MIN)
+    expect(s.height).toBe(0.55)
   })
-
   it('fällt bei ungültigen Werten auf den Fallback zurück', () => {
-    const s = sanitizePhaseShape({ width: 'x' }, defaultPhaseShape.withoutBall)
-    expect(s).toEqual(defaultPhaseShape.withoutBall)
-  })
-
-  it('akzeptiert gültige Werte unverändert', () => {
-    const s = sanitizePhaseShape({ width: 0.9, height: 0.8 }, defaultPhaseShape.withBall)
-    expect(s).toEqual({ width: 0.9, height: 0.8 })
+    expect(sanitizePhaseShape({ width: 'x' }, defaultPhaseShape.withoutBall)).toEqual(
+      defaultPhaseShape.withoutBall,
+    )
   })
 })

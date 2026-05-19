@@ -197,7 +197,20 @@ im PNG-Export. Browser-verifiziert: Presets verschieben Linie/Zone
 PNG-Export code-parallel zum verifizierten Feld-Overlay (gleiche
 Koordinaten-Mathematik wie die Chips), tsc/build grün. test 54/54.
 
-### F2 · Linien-Kompaktheit (OFFEN — Nutzer-Anforderung 2026-05-19)
+### F2 · Linien-Kompaktheit — ERLEDIGT (2026-05-19)
+
+Modell getrennt: **Block-Position** vs. **Linien-Kompaktheit**.
+`shapeSlots` front-verankert: vorderster Feldspieler auf `frontY`,
+dahinter alle Linien mit festem Faktor `k` herangezogen (Enge
+konstant, unabhängig von der Position). Je Phase fest: Mit Ball
+`K_ATTACK` (deutlich enger) + feste offensive Front (ST ~Strafraum);
+Gegen den Ball `K_DEFENSE` (sehr eng) + Front aus Pressinghöhe
+(Presets/Slider verschieben nur den Block). Kein neuer Regler.
+Browser-verifiziert: Linien-Abstand bei Angriffs- und Abwehrpressing
+**konstant** (gemessen 24 ↔ 24), nur Block verschoben; Mit Ball
+deutlich enger & hoch. test 56/56, tsc 0, build ✓.
+
+(Ursprüngliche Anforderung:)
 
 Der Nutzer will **durchgängig deutlich engere Abstände ZWISCHEN den
 Linien** (Abwehr↔Mittelfeld↔Angriff), **unabhängig von der Höhe** und
@@ -210,19 +223,17 @@ je Phase wird per Rückfragen mit dem Nutzer abgestimmt, dann
 `phaseShift` umbauen (eigener Kompaktheits-Faktor je Phase, sehr enge
 Defaults), alle Aufrufer + Tests anpassen, browser-verifizieren.
 
-### BUG · Breite/Höhe-Regler nicht ziehbar (OFFEN)
+### BUG · Slider nicht ziehbar — ERLEDIGT (2026-05-19)
 
-Slider reagiert nur auf **Klick auf die Leiste** (springt dorthin),
-**nicht auf Drag** (linke Maustaste gedrückt ziehen). Erste Vermutung
-(Remount durch verschachtelte Komponente) war nicht die volle Ursache
-— Slider ist bereits auf Modulebene. **Neue Hypothese:** Die App ist
-in `<DndContext>` (dnd-kit) gewrappt; der `PointerSensor`
-(activationConstraint distance:4) fängt vermutlich `pointerdown/move`
-auf dem Range-Input ab, sodass der native Thumb-Drag nicht startet
-(Klick = einzelnes Change-Event funktioniert weiterhin). Lösung
-voraussichtlich: Pointer-Events des Sliders von dnd-kit ausnehmen
-(z. B. Sensor-Filter / `onPointerDown` stopPropagation am Input, oder
-Slider außerhalb des DndContext-Eventflows). Noch nicht umgesetzt.
+**Tatsächliche Ursache** (nicht dnd-kit): die Tailwind-Klassen
+kombinierten `appearance-none` **mit** `accent-*`. `appearance-none`
+entfernt den nativen Thumb; ohne explizite `::-webkit-slider-thumb`-
+Regel kollabiert der Greifpunkt auf 0 px → nur Track-Klick (einzelnes
+Change) funktioniert, kein Thumb-Drag. Fix: `appearance-none` (und
+manuelles Track-Styling) entfernt, nativer Range mit `accent-emerald-500`
+→ sichtbarer, ziehbarer Thumb. (Die Folge-13-Modulebene-Änderung war
+unabhängig/harmlos.) Browser: Thumb sichtbar; finale Drag-Bestätigung
+durch Nutzer auf dem Deploy.
 
 ### Bezahlung (P4) — Go-live vom Nutzer geparkt
 
@@ -616,3 +627,11 @@ In neuer Session:
   Grad per Rückfragen) und **Bug: Slider nicht ziehbar** (Hypothese:
   dnd-kit `PointerSensor` fängt Pointer-Events des Range-Inputs ab).
   Doku/Memory aktualisiert. Slider-„Fix" aus Folge 13 war unzureichend.
+- **2026-05-19 (Folge 15):** F2 + Slider-Bug erledigt. Kompaktheits-
+  Modell: Block-Position (frontY) und Linien-Enge (festes `k` je Phase)
+  getrennt; Mit Ball deutlich enger & offensiv hoch, Gegen den Ball
+  sehr eng, Pressinghöhe verschiebt nur den Block (Linien-Abstand
+  gemessen konstant 24↔24). Slider-Bug: echte Ursache war
+  `appearance-none`+`accent-*` (Thumb 0 px) → behoben. test 56/56,
+  tsc 0, build ✓, browser-verifiziert. Nächste Prio danach:
+  Paddle-Go-live (Production-Env), sonst nichts Offenes im Code.
