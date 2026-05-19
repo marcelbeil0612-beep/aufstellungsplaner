@@ -33,7 +33,7 @@ export default defineConfig({
         // Statische Rechts-/Infoseiten dürfen NICHT vom SPA-Shell-Fallback
         // überlagert werden – sie haben eigene HTML-Dateien.
         navigateFallbackDenylist: [
-          /^\/(?:preise|agb|datenschutz|widerruf|impressum)(?:\/|$)/,
+          /^\/(?:hilfe|preise|agb|datenschutz|widerruf|impressum)(?:\/|$)/,
         ],
         cleanupOutdatedCaches: true,
       },
