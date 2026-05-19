@@ -18,22 +18,33 @@ type Props = {
   compact?: boolean
   /** Wenn im DragOverlay gerendert: etwas mehr Schatten + leichtes Scale für Tiefe. */
   elevated?: boolean
+  /**
+   * Feldseitiger Größenfaktor (0.4–1). Bei engem Block werden die Chips
+   * verkleinert, damit sie sich nicht überlappen; das Foto bleibt erhalten,
+   * das Namens-Label blendet unterhalb einer Schwelle aus.
+   */
+  scale?: number
 }
 
 /**
  * Rein visuelle Spielerdarstellung – ohne Drag-Logik.
  * Wird sowohl vom normalen `PlayerChip` als auch vom `DragOverlay` gerendert.
  */
-export function PlayerChipVisual({ player, positionShort, score, compact, elevated }: Props) {
+export function PlayerChipVisual({ player, positionShort, score, compact, elevated, scale = 1 }: Props) {
   const photoUrl = usePlayerPhotoUrl(player)
   const isGK = player.role === 'GK'
   const ringColor = isGK ? 'ring-amber-400' : 'ring-sky-400'
   const gradient = isGK
     ? 'bg-gradient-to-br from-amber-400 via-amber-600 to-amber-800'
     : 'bg-gradient-to-br from-sky-400 via-sky-600 to-indigo-800'
-  const avatarSize = compact ? 'h-16 w-16' : 'h-14 w-14'
+  const s = Math.max(0.4, Math.min(1, scale))
+  const baseAvatar = compact ? 64 : 56
+  const avatarPx = Math.round(baseAvatar * s)
   const nameSize = compact ? 'text-[11px]' : 'text-xs'
-  const initialsSize = compact ? 'text-lg' : 'text-base'
+  // Namens-Pille ist bei engem Block der Hauptüberlapper → früh
+  // ausblenden; das Positions-Badge (ST/ZM/IV) bleibt, Identität klar.
+  // Foto/Avatar bleibt immer (nur kleiner).
+  const showName = s >= 0.88
 
   return (
     <div
@@ -84,9 +95,9 @@ export function PlayerChipVisual({ player, positionShort, score, compact, elevat
           </span>
         )}
         <div
+          style={{ width: avatarPx, height: avatarPx }}
           className={[
             'relative overflow-hidden rounded-full shadow-xl ring-[3px] ring-offset-2 ring-offset-transparent',
-            avatarSize,
             ringColor,
             photoUrl ? 'bg-slate-950' : gradient,
           ].join(' ')}
@@ -99,7 +110,10 @@ export function PlayerChipVisual({ player, positionShort, score, compact, elevat
               className="h-full w-full object-cover"
             />
           ) : (
-            <div className={`flex h-full w-full items-center justify-center font-black tracking-wide ${initialsSize}`}>
+            <div
+              style={{ fontSize: Math.round(avatarPx * 0.4) }}
+              className="flex h-full w-full items-center justify-center font-black tracking-wide"
+            >
               {initials(player.name)}
             </div>
           )}
@@ -109,22 +123,24 @@ export function PlayerChipVisual({ player, positionShort, score, compact, elevat
           />
         </div>
       </div>
-      <span
-        className={[
-          'flex max-w-[110px] items-center gap-1 rounded-md bg-black/70 px-2 py-0.5 font-bold text-white shadow backdrop-blur',
-          nameSize,
-        ].join(' ')}
-      >
-        {typeof player.number === 'number' && (
-          <span
-            className="shrink-0 rounded bg-white/15 px-1 text-[10px] font-black tabular-nums text-amber-200"
-            aria-label={`Trikotnummer ${player.number}`}
-          >
-            {player.number}
-          </span>
-        )}
-        <span className="truncate">{player.name}</span>
-      </span>
+      {showName && (
+        <span
+          className={[
+            'flex max-w-[110px] items-center gap-1 rounded-md bg-black/70 px-2 py-0.5 font-bold text-white shadow backdrop-blur',
+            nameSize,
+          ].join(' ')}
+        >
+          {typeof player.number === 'number' && (
+            <span
+              className="shrink-0 rounded bg-white/15 px-1 text-[10px] font-black tabular-nums text-amber-200"
+              aria-label={`Trikotnummer ${player.number}`}
+            >
+              {player.number}
+            </span>
+          )}
+          <span className="truncate">{player.name}</span>
+        </span>
+      )}
     </div>
   )
 }

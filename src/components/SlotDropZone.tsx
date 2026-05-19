@@ -9,9 +9,11 @@ type Props = {
   slot: Slot
   /** Aktiviert die weichen top/left-Transitions – nur beim Phasenwechsel gesetzt. */
   animating?: boolean
+  /** Feldseitiger Größenfaktor (adaptiv bei engem Block, 0.4–1). */
+  chipScale?: number
 }
 
-export function SlotDropZone({ slot, animating }: Props) {
+export function SlotDropZone({ slot, animating, chipScale = 1 }: Props) {
   const player = useLineupStore((s) => selectPlayerOfSlot(s, slot.id))
   const { isOver, setNodeRef, active } = useDroppable({
     id: `slot:${slot.id}`,
@@ -52,9 +54,16 @@ export function SlotDropZone({ slot, animating }: Props) {
             positionShort={positionShort[slot.position]}
             score={player.skills ? playerPositionScore(player, slot.position) : undefined}
             compact
+            scale={chipScale}
           />
         ) : (
-          <div className="flex h-14 w-14 flex-col items-center justify-center rounded-full border-2 border-dashed border-white/70 bg-white/10 text-[11px] font-black uppercase tracking-wider text-white/90 shadow-[inset_0_0_15px_rgba(0,0,0,0.25)] backdrop-blur">
+          <div
+            style={{
+              width: Math.round(56 * Math.max(0.4, Math.min(1, chipScale))),
+              height: Math.round(56 * Math.max(0.4, Math.min(1, chipScale))),
+            }}
+            className="flex flex-col items-center justify-center rounded-full border-2 border-dashed border-white/70 bg-white/10 text-[11px] font-black uppercase tracking-wider text-white/90 shadow-[inset_0_0_15px_rgba(0,0,0,0.25)] backdrop-blur"
+          >
             {positionShort[slot.position]}
           </div>
         )}

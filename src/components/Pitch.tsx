@@ -18,6 +18,39 @@ export function Pitch({ formation }: Props) {
     [formation.slots, phase, shape],
   )
 
+  // Feldbreite messen → adaptive Chipgröße: bei engem Block werden die
+  // Spieler-Chips so verkleinert, dass sie sich nicht überlappen
+  // (Foto bleibt; Label blendet in PlayerChipVisual ab Schwelle aus).
+  const rootRef = useRef<HTMLDivElement>(null)
+  const [pitchW, setPitchW] = useState(0)
+  useEffect(() => {
+    const el = rootRef.current
+    if (!el) return
+    const update = () => setPitchW(el.clientWidth)
+    update()
+    const ro = new ResizeObserver(update)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
+
+  const chipScale = useMemo(() => {
+    if (pitchW <= 0) return 1
+    const h = pitchW * 1.5 // aspect-[2/3]
+    let min = Infinity
+    for (let i = 0; i < slots.length; i++) {
+      for (let j = i + 1; j < slots.length; j++) {
+        const dx = ((slots[i].x - slots[j].x) / 100) * pitchW
+        const dy = ((slots[i].y - slots[j].y) / 100) * h
+        const d = Math.hypot(dx, dy)
+        if (d < min) min = d
+      }
+    }
+    if (!Number.isFinite(min)) return 1
+    // Chip-Durchmesser ~64px; ab Mindestabstand ~84px volle Größe,
+    // darunter linear runter bis Faktor 0.48 (noch klar erkennbar).
+    return Math.max(0.48, Math.min(1, min / 84))
+  }, [slots, pitchW])
+
   // Slot-Positionen werden ausschließlich beim Phasenwechsel animiert, nicht
   // während des normalen Drag-and-Drops. So gibt es kein „Nachlaufen" wenn
   // ein Chip in einen Slot einrastet.
@@ -32,7 +65,10 @@ export function Pitch({ formation }: Props) {
   }, [phase])
 
   return (
-    <div className="relative mx-auto aspect-[2/3] w-full max-w-[480px] overflow-hidden rounded-[28px] shadow-[0_30px_60px_-20px_rgba(0,0,0,0.7)] ring-1 ring-white/10">
+    <div
+      ref={rootRef}
+      className="relative mx-auto aspect-[2/3] w-full max-w-[480px] overflow-hidden rounded-[28px] shadow-[0_30px_60px_-20px_rgba(0,0,0,0.7)] ring-1 ring-white/10"
+    >
       <svg
         viewBox="0 0 100 150"
         preserveAspectRatio="none"
@@ -135,7 +171,12 @@ export function Pitch({ formation }: Props) {
 
       <div className="absolute inset-0">
         {slots.map((slot) => (
-          <SlotDropZone key={slot.id} slot={slot} animating={animatingPhase} />
+          <SlotDropZone
+            key={slot.id}
+            slot={slot}
+            animating={animatingPhase}
+            chipScale={chipScale}
+          />
         ))}
       </div>
     </div>

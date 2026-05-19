@@ -28,8 +28,10 @@ korrekter Build verifiziert) — installierbare PWA, weltweit erreichbar.
   (Feld + PNG). F1 (A+B) + **F2** umgesetzt: Block-Position und
   Linien-Kompaktheit getrennt — durchgängig enge Linien (Mit Ball
   deutlich enger, Gegen den Ball sehr eng), Höhe/Pressing verschiebt
-  nur den Block (Abstand konstant). Slider-Drag-Bug behoben
-  (`appearance-none`+`accent-*` → Thumb 0 px).
+  nur den Block (Abstand konstant). Slider-Drag-Bug behoben.
+  F3: adaptive Chipgröße gegen Überlappen (Foto bleibt/kleiner,
+  Namens-Pille blendet eng aus, Positions-Badge bleibt; PNG-Export
+  unverändert groß).
 - Persistenz versioniert (Store v11); Testsuite grün (`npm run test`
   56/56), `npm run build` sauber.
 

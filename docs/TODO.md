@@ -210,7 +210,22 @@ Browser-verifiziert: Linien-Abstand bei Angriffs- und Abwehrpressing
 **konstant** (gemessen 24 ↔ 24), nur Block verschoben; Mit Ball
 deutlich enger & hoch. test 56/56, tsc 0, build ✓.
 
-(Ursprüngliche Anforderung:)
+### F3 · Adaptive Chipgröße gegen Überlappen — ERLEDIGT (2026-05-19)
+
+Nutzer-Befund: enge Linien + fixe Pixel-Chips (Foto+Name) →
+Überlappung. Entscheidung Hybrid (Foto bleibt, nur kleiner). Umgesetzt:
+`Pitch` misst die Feldbreite (ResizeObserver), berechnet aus dem
+Slot-Mindestabstand einen `chipScale` (Floor 0.48), gereicht über
+`SlotDropZone`→`PlayerChip`→`PlayerChipVisual` (Avatar/Initialen
+inline skaliert, leerer Platzhalter ebenfalls). Namens-Pille (Haupt-
+Überlapper) blendet ab `scale < 0.88` aus — Positions-Badge bleibt,
+Identität klar; Foto bleibt immer. Dazu moderate Enge-Obergrenze
+(K_ATTACK 0.56 / K_DEFENSE 0.47). PNG-Export unverändert (eigene
+Leinwand → Fotos dort weiter groß). Browser-verifiziert: Desktop mit
+Namen, mobil/eng ohne Namen, kein Stapeln; Bank unverändert.
+test 56/56, tsc 0, build ✓.
+
+(Ursprüngliche Anforderung F2:)
 
 Der Nutzer will **durchgängig deutlich engere Abstände ZWISCHEN den
 Linien** (Abwehr↔Mittelfeld↔Angriff), **unabhängig von der Höhe** und
@@ -635,3 +650,9 @@ In neuer Session:
   `appearance-none`+`accent-*` (Thumb 0 px) → behoben. test 56/56,
   tsc 0, build ✓, browser-verifiziert. Nächste Prio danach:
   Paddle-Go-live (Production-Env), sonst nichts Offenes im Code.
+- **2026-05-19 (Folge 16):** F3 erledigt — adaptive Chipgröße gegen
+  Überlappen bei engem Block (Hybrid: Foto bleibt/kleiner, Namens-Pille
+  blendet aus, Positions-Badge bleibt; moderate Enge-Obergrenze;
+  PNG-Export unverändert). Desktop + mobil/eng browser-verifiziert,
+  kein Stapeln. test 56/56, tsc 0, build ✓. Offen im Code weiterhin
+  nur Paddle-Go-live (Production-Env), vom Nutzer geparkt.

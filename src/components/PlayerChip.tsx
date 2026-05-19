@@ -11,6 +11,8 @@ type Props = {
   /** Optionaler Score (0-99) für die aktuelle Position – erscheint als Badge rechts oben. */
   score?: number
   compact?: boolean
+  /** Feldseitiger Größenfaktor (adaptiv bei engem Block). */
+  scale?: number
 }
 
 /**
@@ -19,7 +21,7 @@ type Props = {
  * `App.tsx`). Dadurch gibt es keinen Transform-Kampf mit den Slot-Transitions
  * und kein Subpixel-Zittern durch Rotation.
  */
-export function PlayerChip({ player, source, positionShort, score, compact }: Props) {
+export function PlayerChip({ player, source, positionShort, score, compact, scale }: Props) {
   const { attributes, listeners, setNodeRef, isDragging } = useDraggable({
     id: `player:${player.id}:${source}`,
     data: { playerId: player.id, source, role: player.role },
@@ -41,6 +43,7 @@ export function PlayerChip({ player, source, positionShort, score, compact }: Pr
         positionShort={positionShort}
         score={score}
         compact={compact}
+        scale={scale}
       />
     </button>
   )

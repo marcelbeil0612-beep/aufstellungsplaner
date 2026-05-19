@@ -23,8 +23,10 @@ export const HEIGHT_MAX = 0.95
 
 // Linien-Kompaktheit (Abstand Abwehr↔MF↔Angriff) FEST je Phase.
 // Kleiner = enger. Mit Ball „deutlich enger", gegen den Ball „sehr eng".
-const K_ATTACK = 0.52
-const K_DEFENSE = 0.4
+// Moderate Enge-Obergrenze: eng genug für einen klaren Block, aber so,
+// dass die (adaptiv verkleinerten) Chips sich nicht stapeln.
+const K_ATTACK = 0.56
+const K_DEFENSE = 0.47
 
 // Front-Linie (vorderster Feldspieler) in y-Einheiten (0 eigenes Tor →
 // 100 Gegnertor). Y_MAX = Höhe des gegnerischen Strafraums (Deckel).
