@@ -264,6 +264,7 @@ export default function App() {
             Aufstellung, Fotos & Skills werden im Browser gespeichert · Beste-Aufstellung-Rechner per Skill-Score
           </div>
           <nav className="mt-2 flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
+            <a href="/hilfe" className="hover:text-slate-300">Hilfe</a>
             <a href="/preise" className="hover:text-slate-300">Preise</a>
             <a href="/impressum" className="hover:text-slate-300">Impressum</a>
             <a href="/datenschutz" className="hover:text-slate-300">Datenschutz</a>

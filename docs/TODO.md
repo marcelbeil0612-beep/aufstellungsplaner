@@ -656,3 +656,16 @@ In neuer Session:
   PNG-Export unverändert). Desktop + mobil/eng browser-verifiziert,
   kein Stapeln. test 56/56, tsc 0, build ✓. Offen im Code weiterhin
   nur Paddle-Go-live (Production-Env), vom Nutzer geparkt.
+- **2026-05-19 (Folge 17):** Anleitung/Hilfeseite erledigt — statische
+  `public/hilfe/index.html` nach dem `/preise`-Muster (`legal.css`,
+  `cleanUrls` → URL `formaxi.de/hilfe`, SEO-`<meta description>`,
+  forenverlinkbar). 10 Abschnitte (App-Idee, Kader, Aufstellung,
+  Phasen/Pressing, Beste Aufstellung, Wechselplan, Systembuch,
+  Export/Teilen, Installation, Free/Pro). Verdrahtet: `?`-Button im
+  Header → `/hilfe`, Footer-Link „Hilfe", „Mehr erfahren →" im
+  Onboarding-Overlay. Doppelnutzen: In-App-Hilfe + Marketing-Landing
+  (Funnel `#demo` sehen → `/hilfe` verstehen → App). Browser-
+  verifiziert (Header/Footer-Link → `/hilfe`, Seite rendert, 0
+  Console-Errors; `/hilfe` verhält sich wie live `/preise`).
+  test 56/56, tsc 0, build ✓. Offen im Code weiterhin nur
+  Paddle-Go-live (Production-Env), vom Nutzer geparkt.

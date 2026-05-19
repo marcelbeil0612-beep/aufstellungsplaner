@@ -101,6 +101,14 @@ export function Header() {
           >
             Zurücksetzen
           </button>
+          <a
+            href="/hilfe"
+            className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-700 bg-slate-900 text-sm font-semibold text-slate-200 shadow-inner transition hover:bg-slate-800"
+            title="Anleitung & Hilfe"
+            aria-label="Anleitung und Hilfe"
+          >
+            ?
+          </a>
         </div>
       </header>
 

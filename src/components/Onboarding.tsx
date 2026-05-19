@@ -45,13 +45,21 @@ export function Onboarding() {
       subtitle="Kader anlegen → Aufstellung bauen → Teilen"
       size="xl"
       footer={
-        <button
-          type="button"
-          onClick={markSeen}
-          className="rounded-lg bg-emerald-500 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-300 focus:ring-offset-2 focus:ring-offset-slate-950"
-        >
-          Los geht's
-        </button>
+        <div className="flex items-center gap-4">
+          <a
+            href="/hilfe"
+            className="text-sm font-medium text-slate-400 transition hover:text-slate-200"
+          >
+            Mehr erfahren →
+          </a>
+          <button
+            type="button"
+            onClick={markSeen}
+            className="rounded-lg bg-emerald-500 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-300 focus:ring-offset-2 focus:ring-offset-slate-950"
+          >
+            Los geht's
+          </button>
+        </div>
       }
     >
       <div className="overflow-y-auto px-5 py-5">

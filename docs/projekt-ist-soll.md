@@ -1,6 +1,6 @@
 # Aufstellungsplaner · IST / SOLL · Wie weit vom Ziel
 
-Stand: 2026-05-18. Single Source of Truth für „wo stehen wir, wo wollen
+Stand: 2026-05-19. Single Source of Truth für „wo stehen wir, wo wollen
 wir hin, was fehlt". Detail-Backlog: `docs/TODO.md`. Strategie:
 `docs/market-analysis/synthesis.md`.
 
@@ -84,6 +84,11 @@ korrekter Build verifiziert) — installierbare PWA, weltweit erreichbar.
   kein Import) — reibungsfreies Foren-/Werbe-Asset.
 - S2 Branding-Footer live: dezente „Erstellt mit FormaXI · formaxi.de"-
   Pille auf jedem exportierten/geteilten PNG.
+- Anleitung/Hilfeseite live: statische `/hilfe` (10 Abschnitte) nach
+  `/preise`-Muster — eigene SEO-/forenverlinkbare URL + In-App über
+  `?`-Button (Header), Footer-Link und „Mehr erfahren" im Onboarding.
+  Doppelnutzen: Nutzerhilfe + Marketing-Landing (Funnel `#demo` →
+  `/hilfe` → App).
 - Offen: nichts mehr im Polish-Block.
 
 **Dokumentation:** TODO, Rating-Audit, Migration (archiviert),
