@@ -563,3 +563,11 @@ In neuer Session:
   ≈0,70), Höhe nur defensiv, getrennte Grenzen + y-Klemmung auf
   Strafraumhöhe → kein Überstrecken. `effectiveShape` zentral.
   Browser-verifiziert. test 56/56, tsc 0, build ✓.
+- **2026-05-19 (Folge 13):** Mit-Ball-Staffelung höher/offensiver
+  (`WITHBALL_HEIGHT` 0,70→0,95, ST ≈ Strafraumkreis, gleichmäßiges
+  Aufrücken, weiter auf Strafraumhöhe gedeckelt). **Bug-Fix:** Breite-
+  Regler reagierte nur auf Klick, nicht aufs Ziehen — Ursache: Slider-
+  Komponente war in `FormationShapeControls` verschachtelt → Remount
+  des `<input>` pro Wertänderung. Slider auf Modulebene gehoben →
+  Drag durchgehend (browser-verifiziert: Node bleibt stabil).
+  test 56/56, tsc 0, build ✓.

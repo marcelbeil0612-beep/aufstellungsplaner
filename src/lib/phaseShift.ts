@@ -25,7 +25,7 @@ export const HEIGHT_MAX = 0.95
  * große Abstände. Mit Ball gibt es bewusst KEINEN Höhe-Regler – dort
  * zählt nur die Breite (wie weit wir fächern).
  */
-export const WITHBALL_HEIGHT = 0.7
+export const WITHBALL_HEIGHT = 0.95
 
 /** y-Obergrenze: Höhe des gegnerischen Strafraums (kein Überstrecken). */
 const Y_MAX = 82
