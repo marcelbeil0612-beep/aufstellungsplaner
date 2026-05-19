@@ -146,6 +146,7 @@ export function TacticBookDialog({ open, onClose }: Props) {
             />
           </aside>
           <main
+            data-tour="systembuch-detail"
             className={[
               'flex-1 overflow-hidden bg-slate-950 px-4 py-4 sm:px-6',
               opponent ? 'block' : 'hidden lg:block',

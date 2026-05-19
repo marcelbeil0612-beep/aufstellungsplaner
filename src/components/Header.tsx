@@ -56,6 +56,7 @@ export function Header() {
           </button>
           <button
             onClick={() => setRosterOpen(true)}
+            data-tour="kader-open"
             className="flex items-center gap-1.5 rounded-lg border border-sky-700 bg-sky-800/40 px-3 py-1.5 text-sm font-medium text-sky-100 shadow-inner transition hover:bg-sky-700/50"
           >
             <span aria-hidden>👥</span>
@@ -63,7 +64,7 @@ export function Header() {
           </button>
           <button
             onClick={() => setBookOpen(true)}
-            data-tour="systembuch"
+            data-tour="systembuch-open"
             className="flex items-center gap-1.5 rounded-lg border border-indigo-700 bg-indigo-800/40 px-3 py-1.5 text-sm font-medium text-indigo-100 shadow-inner transition hover:bg-indigo-700/50"
             title="Taktik-Nachschlagewerk für den Spieltag"
           >

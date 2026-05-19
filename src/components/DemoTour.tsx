@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useLayoutEffect, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 
 /**
  * Geführte Tour für den Demo-Modus: Sprechblasen mit Spotlight auf die
@@ -11,6 +11,13 @@ type Step = {
   target?: string
   title: string
   body: string
+  /** data-tour-Wert eines Buttons, der beim Betreten einen Screen öffnet. */
+  openSelector?: string
+  /**
+   * Selektor, an dem erkannt wird, dass der Screen offen ist; sein
+   * Schließen-Knopf (aria-label="Schließen") wird beim Verlassen geklickt.
+   */
+  dialogSelector?: string
 }
 
 const STEPS: Step[] = [
@@ -30,14 +37,23 @@ const STEPS: Step[] = [
     body: 'Breite und Höhe stufenlos regeln. Defensiv zusätzlich Pressinghöhe per Klick: tiefer Block, Mittelfeld- oder hohes Pressing.',
   },
   {
-    target: 'auto',
-    title: 'Beste Aufstellung',
-    body: 'Ein Klick – das Tool rechnet die stärkste Elf nach Skill-Score und stellt sie automatisch auf.',
+    target: 'kader-skills',
+    openSelector: 'kader-open',
+    dialogSelector: '[role="dialog"][aria-label="Kader verwalten"]',
+    title: 'Kader & Stärken',
+    body: 'Hier bekommt jeder Spieler Skill-Werte (1–99) und Stammpositionen. Genau daraus rechnet das Tool die beste Aufstellung – das ist das Fundament.',
   },
   {
-    target: 'systembuch',
-    title: 'Systembuch',
-    body: '81 Duelle System gegen System, jeweils in vier Spielphasen mit konkretem Live-Coaching für den Spieltag.',
+    target: 'auto',
+    title: 'Beste Aufstellung',
+    body: 'Ein Klick – auf Basis der eben gezeigten Skills stellt das Tool die stärkste Elf automatisch positionsgenau auf.',
+  },
+  {
+    target: 'systembuch-detail',
+    openSelector: 'systembuch-open',
+    dialogSelector: '[role="dialog"][aria-label="Systembuch"]',
+    title: 'Systembuch – der eigentliche Wert',
+    body: '81 Duelle „unser System gegen Gegnersystem", jedes über vier Spielphasen mit Räumen, Vorteilen, Gefahren und Live-Coaching für die Seitenlinie. Wechsle die Reiter – das gibt es nirgends sonst.',
   },
   {
     title: 'Das war die Tour',
@@ -56,6 +72,14 @@ function findRect(target?: string): Rect | null {
   return { top: r.top, left: r.left, width: r.width, height: r.height }
 }
 
+/** Schließt einen vom Tour-Flow geöffneten Dialog über seinen ✕-Knopf. */
+function closeDialog(selector: string) {
+  if (typeof document === 'undefined') return
+  const dlg = document.querySelector(selector)
+  const btn = dlg?.querySelector('[aria-label="Schließen"]')
+  if (btn instanceof HTMLElement) btn.click()
+}
+
 export function DemoTour() {
   const [active, setActive] = useState(true)
   const [index, setIndex] = useState(0)
@@ -68,19 +92,49 @@ export function DemoTour() {
   const goNext = () => setIndex((i) => Math.min(i + 1, STEPS.length - 1))
   const goBack = () => setIndex((i) => Math.max(i - 1, 0))
 
+  // Selektor des aktuell vom Tour-Flow geöffneten Dialogs (oder null).
+  const openedRef = useRef<string | null>(null)
+
   const measure = useCallback(() => {
     setRect(findRect(STEPS[clamped]?.target))
   }, [clamped])
 
-  // Zielelement in den Sichtbereich holen, dann vermessen.
+  // Schritt betreten: ggf. vorherigen Dialog schließen, diesen öffnen,
+  // Ziel in den Sichtbereich holen und vermessen.
   useLayoutEffect(() => {
     if (!active) return
-    const target = STEPS[clamped]?.target
-    if (target) {
-      const el = document.querySelector(`[data-tour="${target}"]`)
-      el?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    const s = STEPS[clamped]
+
+    // 1. Anderen, noch offenen Tour-Dialog schließen.
+    if (openedRef.current && openedRef.current !== s.dialogSelector) {
+      closeDialog(openedRef.current)
+      openedRef.current = null
     }
-    const t = window.setTimeout(measure, 320)
+    // 2. Dialog dieses Schritts öffnen (falls nicht schon offen).
+    if (s.openSelector && s.dialogSelector) {
+      if (!document.querySelector(s.dialogSelector)) {
+        const opener = document.querySelector(`[data-tour="${s.openSelector}"]`)
+        if (opener instanceof HTMLElement) opener.click()
+      }
+      openedRef.current = s.dialogSelector
+    }
+
+    const isDialog = Boolean(s.dialogSelector)
+    const settle = () => {
+      // Selbstheilung: falls der Dialog (z. B. per Klick aufs Overlay)
+      // zuging, einmal erneut öffnen.
+      if (s.openSelector && s.dialogSelector && !document.querySelector(s.dialogSelector)) {
+        const opener = document.querySelector(`[data-tour="${s.openSelector}"]`)
+        if (opener instanceof HTMLElement) opener.click()
+      }
+      if (s.target) {
+        document
+          .querySelector(`[data-tour="${s.target}"]`)
+          ?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      }
+      measure()
+    }
+    const t = window.setTimeout(settle, isDialog ? 460 : 90)
     measure()
     return () => window.clearTimeout(t)
   }, [active, clamped, measure])
@@ -97,8 +151,22 @@ export function DemoTour() {
     }
   }, [active, measure])
 
+  // Tour pausiert/beendet („Überspringen"/„Frei erkunden") → offenen
+  // Tour-Dialog schließen, damit die Demo sauber frei erkundbar ist.
+  useEffect(() => {
+    if (active) return
+    if (openedRef.current) {
+      closeDialog(openedRef.current)
+      openedRef.current = null
+    }
+  }, [active])
+
   const leave = () => {
     if (typeof window === 'undefined') return
+    if (openedRef.current) {
+      closeDialog(openedRef.current)
+      openedRef.current = null
+    }
     // Hash weg + voller Reload → raus aus dem isolierten Demo-Store.
     window.history.replaceState(null, '', '/')
     window.location.reload()

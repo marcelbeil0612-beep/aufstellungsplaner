@@ -707,3 +707,19 @@ In neuer Session:
   Banner, 11 Demo-Spieler, alle 6 Schritte, kein ErrorBoundary, Pro
   frei). test 70/70, tsc 0, build ✓. Funnel jetzt: Forum-Link
   `#demo` → echtes Tool erleben → `/hilfe` → eigene App.
+- **2026-05-19 (Folge 20):** Demo-Tour zeigt jetzt die Wert-Screens.
+  (1) Demo-Kader bekommt plausible Skill-Werte + Stammpositionen →
+  Kader-Skill-Tabelle und „Beste Aufstellung" wirken echt statt leer.
+  (2) `demoStoreSeed` seedet `lastViewedDuel` 4-3-3 vs 4-4-2 → das
+  Systembuch öffnet direkt ein ausgearbeitetes Duell (statt Vorwort).
+  (3) Tour-Steps können einen Screen öffnen: Step-Modell um
+  `openSelector`/`dialogSelector` erweitert; neuer Schritt „Kader &
+  Stärken" (öffnet Kader-Dialog, Spotlight auf Skill-Tabelle) und
+  „Systembuch – der eigentliche Wert" (öffnet Systembuch-Dialog mit
+  Duell). Beim Verlassen/Skip/Leave wird der geöffnete Dialog über
+  seinen ✕-Knopf geschlossen; Selbstheilung bei versehentlichem
+  Overlay-Klick. data-tour-Anker: `kader-open`, `kader-skills`,
+  `systembuch-open`, `systembuch-detail`. Tour jetzt 7 Schritte.
+  Browser-verifiziert (Kader-Dialog mit gefüllten Skills, Systembuch
+  mit „vorteilhaft"-Duell + 4 Phasen, sauberes Öffnen/Schließen, kein
+  ErrorBoundary). test 70/70, tsc 0, build ✓.

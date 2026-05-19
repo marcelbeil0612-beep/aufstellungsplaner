@@ -90,9 +90,12 @@ korrekter Build verifiziert) — installierbare PWA, weltweit erreichbar.
 - S5 Demo-Link live, ausgebaut zur **interaktiven Demo mit geführter
   Tour**: `…/#demo` lädt die echte App read-safe (Store strikt
   isoliert, Demo-Kader 4-3-3, Pro AN), `DemoBanner` + `DemoTour`
-  (6 Sprechblasen-Schritte mit Spotlight über die Kernfunktionen).
-  Statt nur „so sieht es aus" jetzt „so fühlt es sich an" — stärkstes
-  Foren-/Werbe-Asset. Funnel: `#demo` erleben → `/hilfe` → App.
+  (7 Sprechblasen-Schritte mit Spotlight). Tour öffnet jetzt auch die
+  Wert-Screens direkt: Kader mit gefüllten Skill-Werten und das
+  Systembuch mit einem ausgearbeiteten Duell (4-3-3 vs 4-4-2, vier
+  Phasen + Live-Coaching). Statt nur „so sieht es aus" jetzt „so fühlt
+  es sich an" inkl. USP-Tiefe — stärkstes Foren-/Werbe-Asset.
+  Funnel: `#demo` erleben → `/hilfe` → App.
 - S2 Branding-Footer live: dezente „Erstellt mit FormaXI · formaxi.de"-
   Pille auf jedem exportierten/geteilten PNG.
 - Anleitung/Hilfeseite live: statische `/hilfe` (10 Abschnitte) nach

@@ -600,12 +600,14 @@ export function RosterDialog({ open, onClose }: Props) {
           players={goalkeepers}
           columns={gkSkillColumns}
         />
-        <SkillTable
-          title="Feldspieler"
-          accent="text-sky-400/80"
-          players={fieldPlayers}
-          columns={fieldSkillColumns}
-        />
+        <div data-tour="kader-skills">
+          <SkillTable
+            title="Feldspieler"
+            accent="text-sky-400/80"
+            players={fieldPlayers}
+            columns={fieldSkillColumns}
+          />
+        </div>
 
         <PreferredPositionsSection players={players} />
 
