@@ -17,7 +17,7 @@ export function b64url(buf) {
 
 /**
  * Signiert Lizenz-Claims und gibt `payloadB64.sigB64` zurück.
- * @param {{v:1,email:string,plan:'year'|'month'|'lifetime',exp:number,iat:number,sub?:string}} claims
+ * @param {{v:1,email:string,plan:'year'|'month'|'lifetime',exp:number,iat:number,sub?:string,txn?:string}} claims
  * @param {string} privateKeyB64  PKCS8-DER, base64 (LICENSE_PRIVATE_KEY)
  */
 export function signLicense(claims, privateKeyB64) {
@@ -68,3 +68,15 @@ export function verifyLicenseServer(token, privateKeyB64) {
 
 /** Lifetime-Ablauf: ~100 Jahre in der Zukunft (praktisch unbegrenzt). */
 export const LIFETIME_EXP = () => Math.floor(Date.now() / 1000) + 100 * 365 * 86400
+
+/**
+ * Rollierende Token-Gültigkeit (Tage). Auch Lifetime-Token laufen nach
+ * dieser Spanne ab und MÜSSEN online erneuert werden – erst dadurch wird
+ * eine Erstattung/Stornierung serverseitig (gegen Paddle) durchsetzbar.
+ * Die clientseitige 90-Tage-Offline-Karenz federt Funklöcher ab.
+ */
+export const LICENSE_TTL_DAYS = 30
+
+/** Ablauf für ein frisch ausgestelltes Token (Unix-Sekunden). */
+export const rollingExp = () =>
+  Math.floor(Date.now() / 1000) + LICENSE_TTL_DAYS * 86400

@@ -16,6 +16,8 @@ export type LicenseClaims = {
   iat: number
   /** Paddle-Subscription-ID (nur bei Abos), für späteres Refresh. */
   sub?: string
+  /** Paddle-Transaktions-ID, damit refresh-license Erstattungen prüfen kann. */
+  txn?: string
 }
 
 /** Offline-Karenz: abgelaufene Abos bleiben so lange nutzbar (Tage). */
@@ -81,17 +83,33 @@ export async function verifyLicenseToken(token: string): Promise<LicenseClaims |
 
 /**
  * Ist die Lizenz aktuell nutzbar? Signatur-gültige Claims vorausgesetzt.
- * Lifetime: immer. Abo: bis `exp`; danach noch `LICENSE_GRACE_DAYS`
- * Karenz (offline-freundlich, echte Revocation kommt per Server-Refresh).
+ * Für ALLE Pläne (auch Lifetime) gilt: bis `exp`, danach noch
+ * `LICENSE_GRACE_DAYS` Offline-Karenz. Lifetime-Token tragen ein
+ * rollierendes `exp` und müssen vorher online erneuert werden – nur so
+ * ist eine Erstattung überhaupt durchsetzbar.
  */
 export function licenseUsable(claims: LicenseClaims, nowMs: number = Date.now()): boolean {
   const now = Math.floor(nowMs / 1000)
-  if (claims.plan === 'lifetime') return now < claims.exp
   return now < claims.exp + LICENSE_GRACE_DAYS * 86400
 }
 
-/** True, wenn das Abo abgelaufen ist und ein Server-Refresh sinnvoll wäre. */
+/**
+ * True, wenn das Token abgelaufen ist (für jeden Plan) und ein
+ * Server-Refresh nötig ist – greift innerhalb der Karenz.
+ */
 export function licenseNeedsRefresh(claims: LicenseClaims, nowMs: number = Date.now()): boolean {
-  if (claims.plan === 'lifetime') return false
   return Math.floor(nowMs / 1000) >= claims.exp
+}
+
+/**
+ * True, sobald das Token über die Hälfte seiner Laufzeit hinaus ist –
+ * Signal für einen lautlosen Hintergrund-Refresh, BEVOR `exp` erreicht
+ * ist. So erneuert ein online genutztes Gerät rechtzeitig (keine
+ * Downgrade-Klippe) und eine Erstattung wird zeitnah wirksam.
+ * TTL-agnostisch (funktioniert für 30-Tage- wie 365-Tage-Token).
+ */
+export function licenseRefreshDue(claims: LicenseClaims, nowMs: number = Date.now()): boolean {
+  const now = Math.floor(nowMs / 1000)
+  if (claims.exp <= claims.iat) return true
+  return now >= claims.iat + (claims.exp - claims.iat) / 2
 }

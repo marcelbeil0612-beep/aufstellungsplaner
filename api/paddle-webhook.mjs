@@ -1,9 +1,11 @@
 // POST /api/paddle-webhook
-// Verifiziert die Paddle-Signatur (HMAC-SHA256 über `ts:rawBody`).
-// MVP: Signaturprüfung + 200. Abo-Lebenszyklus (Kündigung sofort
-// propagieren) ist bewusst zurückgestellt – die clientseitige
-// Ablauf-/Refresh-Logik (api/refresh-license + 90-Tage-Karenz) deckt
-// den praktischen Fall ab. Hier ist der Hook für späteren Ausbau.
+// Verifiziert die Paddle-Signatur (HMAC-SHA256 über `ts:rawBody`) und
+// protokolliert erstattungs-/kündigungsrelevante Events sichtbar in den
+// Vercel-Logs (Monitoring/Missbrauchssicht). Die Durchsetzung selbst
+// läuft über api/refresh-license (Paddle als Wahrheitsquelle, rollierende
+// Token + 90-Tage-Karenz). Echtzeit-Push-Revocation (Sperrliste) wäre
+// der nächste Ausbau – hier bewusst noch nicht, um ohne zusätzliche
+// Infrastruktur auszukommen.
 import { createHmac, timingSafeEqual } from 'node:crypto'
 
 async function readRaw(req) {
@@ -39,10 +41,36 @@ export default async function handler(req, res) {
     res.statusCode = 401
     return res.end('invalid_signature')
   }
-  // Signatur gültig. Eventtyp wird (noch) nicht weiterverarbeitet.
+  // Signatur gültig. Erstattungs-/Kündigungs-Events deutlich loggen,
+  // damit Missbrauch (Kauf → Widerruf → Weiternutzung) in den Vercel-
+  // Logs sichtbar ist; der Entzug erfolgt beim nächsten Token-Refresh.
   try {
     const evt = JSON.parse(raw)
-    console.log('[paddle-webhook]', evt?.event_type ?? 'unknown')
+    const type = evt?.event_type ?? 'unknown'
+    const REVOCATION_EVENTS = new Set([
+      'transaction.refunded',
+      'transaction.canceled',
+      'adjustment.created',
+      'adjustment.updated',
+      'subscription.canceled',
+      'subscription.paused',
+    ])
+    if (REVOCATION_EVENTS.has(type)) {
+      const d = evt?.data ?? {}
+      console.warn(
+        '[paddle-webhook] REVOCATION-RELEVANT',
+        type,
+        JSON.stringify({
+          id: d.id,
+          transaction_id: d.transaction_id,
+          subscription_id: d.subscription_id,
+          status: d.status,
+          action: d.action,
+        }),
+      )
+    } else {
+      console.log('[paddle-webhook]', type)
+    }
   } catch {
     /* ignorieren */
   }

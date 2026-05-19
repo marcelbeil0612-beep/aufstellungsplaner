@@ -1,6 +1,6 @@
 import type { PlanId } from './billing'
 import { isLicenseVerifiable } from './billing'
-import { licenseNeedsRefresh, licenseUsable, verifyLicenseToken } from './license'
+import { licenseRefreshDue, licenseUsable, verifyLicenseToken } from './license'
 import { openCheckout } from './paddle'
 import { useLineupStore } from '../store/useLineupStore'
 
@@ -46,7 +46,9 @@ export async function activateFromStoredLicense(): Promise<void> {
   }
   if (licenseUsable(claims)) {
     useLineupStore.getState().setProStatus(true)
-    if (licenseNeedsRefresh(claims)) void refreshIfNeeded(token)
+    // Lautloser Hintergrund-Refresh ab Token-Halbzeit: erneuert
+    // rechtzeitig online und macht Erstattungen zeitnah wirksam.
+    if (licenseRefreshDue(claims)) void refreshIfNeeded(token)
   } else {
     useLineupStore.getState().setProStatus(false)
     void refreshIfNeeded(token)

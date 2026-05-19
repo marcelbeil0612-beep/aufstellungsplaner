@@ -1,7 +1,7 @@
 // POST /api/issue-license  { transactionId }
 // Verifiziert die Paddle-Transaktion serverseitig und stellt einen
 // signierten Lizenz-Token aus. Sandbox/Prod via PADDLE_API_ENV.
-import { LIFETIME_EXP, signLicense } from '../server/licenseSign.mjs'
+import { rollingExp, signLicense } from '../server/licenseSign.mjs'
 
 const apiBase = () =>
   (process.env.PADDLE_API_ENV === 'production'
@@ -67,7 +67,10 @@ export default async function handler(req, res) {
     const customer = txn.customer_id ? await pget(`/customers/${txn.customer_id}`) : null
     const email = customer?.email ?? txn.details?.customer?.email ?? ''
 
-    let exp = LIFETIME_EXP()
+    // Auch Lifetime erhält ein rollierendes Ablaufdatum: das Token muss
+    // periodisch online erneuert werden, sonst ließe sich eine Erstattung
+    // nie durchsetzen (Lifetime hat kein Abo zum Gegenprüfen).
+    let exp = rollingExp()
     let sub
     if (plan !== 'lifetime' && txn.subscription_id) {
       sub = txn.subscription_id
@@ -78,7 +81,9 @@ export default async function handler(req, res) {
 
     const iat = Math.floor(Date.now() / 1000)
     const token = signLicense(
-      { v: 1, email, plan, exp, iat, ...(sub ? { sub } : {}) },
+      // `txn` mitsigniert → refresh-license kann die Original-Transaktion
+      // bei Paddle auf Erstattung prüfen (gilt v. a. für Lifetime).
+      { v: 1, email, plan, exp, iat, txn: transactionId, ...(sub ? { sub } : {}) },
       process.env.LICENSE_PRIVATE_KEY,
     )
     res.statusCode = 200

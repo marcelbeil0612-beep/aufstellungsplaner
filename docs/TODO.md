@@ -667,5 +667,27 @@ In neuer Session:
   (Funnel `#demo` sehen → `/hilfe` verstehen → App). Browser-
   verifiziert (Header/Footer-Link → `/hilfe`, Seite rendert, 0
   Console-Errors; `/hilfe` verhält sich wie live `/preise`).
-  test 56/56, tsc 0, build ✓. Offen im Code weiterhin nur
-  Paddle-Go-live (Production-Env), vom Nutzer geparkt.
+  test 56/56, tsc 0, build ✓. Folge-Fix: `/hilfe` zur PWA-SW-
+  `navigateFallbackDenylist` ergänzt + Hilfe-Links `target="_blank"`
+  (Standalone-PWA fing die Navigation sonst ab → App-Shell). Live
+  verifiziert (`sw.js` enthält `hilfe`).
+- **2026-05-19 (Folge 18):** Lizenz-Härtung gegen Refund-Missbrauch
+  (Stufe 1+2 der Empfehlung; bewusst OHNE Vercel-KV-Sperrliste —
+  Paddle als Wahrheitsquelle, null neue Infra). (1) `issue-license`
+  signiert jetzt `txn` (Transaktions-ID) mit; Lifetime erhält ein
+  rollierendes 30-Tage-`exp` statt 100-Jahre-`LIFETIME_EXP`.
+  (2) `refresh-license` prüft Lifetime gegen Paddle (Transaktion +
+  Adjustments: refund/credit/chargeback/canceled → 410), sonst Neu-
+  Ausstellung mit rollierendem `exp`; `txn` wird durchgereicht; bei
+  Paddle-Fehler kein Lockout (offline-freundlich). (3) Client:
+  `licenseUsable`/`licenseNeedsRefresh` behandeln Lifetime wie Abos
+  (exp + 90-Tage-Karenz; Refresh ab exp); neues `licenseRefreshDue`
+  (Token-Halbzeit) → lautloser Hintergrund-Refresh vor der Klippe.
+  (4) Webhook loggt erstattungsrelevante Events sichtbar. Alt-Token
+  ohne `txn`: kein Lockout (nur Sandbox-Testtoken betroffen).
+  Effekt: Erstattung wird beim nächsten Online-Refresh wirksam
+  (online zeitnah, offline spätestens nach exp+Karenz); Lifetime ist
+  nicht mehr „für immer gratis nach Refund". test 65/65, tsc 0,
+  build ✓. Offen: Echtzeit-Push-Revocation (Sperrliste) = optionaler
+  Stufe-4-Nachzügler; Stufe 3 (Paddle-Widerrufsverzicht) = Nutzer-
+  Aufgabe; Paddle-Go-live weiterhin geparkt.

@@ -63,6 +63,14 @@ korrekter Build verifiziert) — installierbare PWA, weltweit erreichbar.
   (v10→v11) + 90-Tage-Karenz, PaywallDialog mit Einlösen + Graceful-
   Stub. **Sandbox end-to-end live verifiziert** (Checkout→Lizenz→Pro
   auf formaxi.de).
+- **Lizenz-Härtung gegen Refund-Missbrauch (Stufe 1+2) live:** Lizenz-
+  Token tragen `txn`; Lifetime rolliert (30 Tage) statt „für immer";
+  `refresh-license` prüft Lifetime gegen Paddle (Refund/Storno → 410);
+  Client unifiziert (Lifetime wie Abo: exp + 90-Tage-Karenz, proaktiver
+  Halbzeit-Refresh); Webhook loggt Erstattungs-Events. Bewusst ohne
+  KV-Sperrliste (Paddle = Wahrheitsquelle, keine neue Infra). Offen:
+  Echtzeit-Push-Revocation = optionale Stufe 4; Paddle-Widerrufs-
+  verzicht im Checkout = Nutzer-Aufgabe (Stufe 3, kein Code).
 - Offen: **Go-live geparkt** (Production-Env-Umstellung + Payout) —
   Nutzer priorisiert erst F2 Linien-Kompaktheit + Slider-Drag-Bug.
 
