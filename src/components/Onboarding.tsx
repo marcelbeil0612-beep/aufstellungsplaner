@@ -48,6 +48,8 @@ export function Onboarding() {
         <div className="flex items-center gap-4">
           <a
             href="/hilfe"
+            target="_blank"
+            rel="noopener noreferrer external"
             className="text-sm font-medium text-slate-400 transition hover:text-slate-200"
           >
             Mehr erfahren →
