@@ -691,3 +691,19 @@ In neuer Session:
   build ✓. Offen: Echtzeit-Push-Revocation (Sperrliste) = optionaler
   Stufe-4-Nachzügler; Stufe 3 (Paddle-Widerrufsverzicht) = Nutzer-
   Aufgabe; Paddle-Go-live weiterhin geparkt.
+- **2026-05-19 (Folge 19):** Interaktive Demo mit geführter Tour
+  (ersetzt die statische PNG-Demo). `#demo` lädt jetzt die echte App
+  read-safe: Store strikt isoliert (`idbStorage` → No-op-Memory bei
+  Demo-Session, echte IndexedDB wird nie gelesen/geschrieben),
+  geseedet mit dem fiktiven Demo-Kader im 4-3-3, **Pro AN** (alle
+  Funktionen anklickbar). `DemoBanner` (Hinweis + „Selbst loslegen")
+  und `DemoTour` (6-Schritt-Sprechblasen-Coachmarks mit Spotlight:
+  Aufstellung → Phasen → Form/Pressing → Beste Aufstellung →
+  Systembuch → CTA) über `data-tour`-Anker. Onboarding/IOS-Hint im
+  Demo unterdrückt. Bugfix beim Bauen: Verlassen erzwingt vollen
+  Reload (`replaceState('/')` + `reload`) — reiner `assign('/')` von
+  `/#demo` wäre nur Hash-Wechsel; Tour-Index defensiv geklemmt.
+  `DemoDialog.tsx` entfernt. Browser-verifiziert (Reload in `#demo`:
+  Banner, 11 Demo-Spieler, alle 6 Schritte, kein ErrorBoundary, Pro
+  frei). test 70/70, tsc 0, build ✓. Funnel jetzt: Forum-Link
+  `#demo` → echtes Tool erleben → `/hilfe` → eigene App.

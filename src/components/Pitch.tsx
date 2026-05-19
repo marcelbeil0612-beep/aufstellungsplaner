@@ -67,6 +67,7 @@ export function Pitch({ formation }: Props) {
   return (
     <div
       ref={rootRef}
+      data-tour="pitch"
       className="relative mx-auto aspect-[2/3] w-full max-w-[480px] overflow-hidden rounded-[28px] shadow-[0_30px_60px_-20px_rgba(0,0,0,0.7)] ring-1 ring-white/10"
     >
       <svg

@@ -25,6 +25,7 @@ export function PhaseToggle() {
     <div
       role="radiogroup"
       aria-label="Taktische Phase"
+      data-tour="phase"
       className="inline-flex items-center rounded-full border border-slate-700 bg-slate-900/70 p-1 shadow-inner backdrop-blur"
     >
       {options.map((opt) => {

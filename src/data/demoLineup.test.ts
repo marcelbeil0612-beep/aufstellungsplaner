@@ -1,5 +1,12 @@
-import { describe, expect, it } from 'vitest'
-import { DEMO_HASH, demoExportInput, demoLineup, isDemoHash } from './demoLineup'
+import { afterEach, describe, expect, it, vi } from 'vitest'
+import {
+  DEMO_HASH,
+  demoExportInput,
+  demoLineup,
+  demoStoreSeed,
+  isDemoHash,
+  isDemoSession,
+} from './demoLineup'
 import { formationById } from './formations'
 
 describe('isDemoHash', () => {
@@ -13,6 +20,51 @@ describe('isDemoHash', () => {
     expect(isDemoHash('')).toBe(false)
     expect(isDemoHash('#share=abc')).toBe(false)
     expect(isDemoHash('#demoX')).toBe(false)
+  })
+})
+
+describe('isDemoSession', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals()
+  })
+
+  const withHash = (hash: string) =>
+    vi.stubGlobal('window', { location: { hash } })
+
+  it('true nur bei #demo', () => {
+    withHash('#demo')
+    expect(isDemoSession()).toBe(true)
+  })
+
+  it('false bei leerem oder anderem Hash (z. B. Share)', () => {
+    withHash('')
+    expect(isDemoSession()).toBe(false)
+    withHash('#share=abc')
+    expect(isDemoSession()).toBe(false)
+  })
+
+  it('false ohne window (SSR/Node)', () => {
+    expect(isDemoSession()).toBe(false)
+  })
+})
+
+describe('demoStoreSeed', () => {
+  const seed = demoStoreSeed()
+  const formation = formationById(seed.formationId)
+
+  it('seedet 4-3-3 mit Pro AN und vollständiger Slot-Map', () => {
+    expect(seed.formationId).toBe('4-3-3')
+    expect(seed.isPro).toBe(true)
+    expect(seed.playerListIsUserManaged).toBe(true)
+    const slotIds = formation.slots.map((s) => s.id).sort()
+    expect(Object.keys(seed.assignments).sort()).toEqual(slotIds)
+  })
+
+  it('jeder belegte Slot zeigt auf einen existierenden Demo-Spieler', () => {
+    const ids = new Set(seed.players.map((p) => p.id))
+    for (const pid of Object.values(seed.assignments)) {
+      if (pid !== null) expect(ids.has(pid)).toBe(true)
+    }
   })
 })
 

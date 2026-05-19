@@ -87,9 +87,12 @@ korrekter Build verifiziert) — installierbare PWA, weltweit erreichbar.
 **Wachstums-Polish:**
 - S4 Onboarding live: First-Run-Overlay mit drei Schritten, einmalig
   über eigenen localStorage-Key, ohne Store-Migration.
-- S5 Demo-Link live: fester Link `…/#demo` zeigt eine read-only
-  Beispiel-Aufstellung (fiktive Spieler, gerendert wie der PNG-Export,
-  kein Import) — reibungsfreies Foren-/Werbe-Asset.
+- S5 Demo-Link live, ausgebaut zur **interaktiven Demo mit geführter
+  Tour**: `…/#demo` lädt die echte App read-safe (Store strikt
+  isoliert, Demo-Kader 4-3-3, Pro AN), `DemoBanner` + `DemoTour`
+  (6 Sprechblasen-Schritte mit Spotlight über die Kernfunktionen).
+  Statt nur „so sieht es aus" jetzt „so fühlt es sich an" — stärkstes
+  Foren-/Werbe-Asset. Funnel: `#demo` erleben → `/hilfe` → App.
 - S2 Branding-Footer live: dezente „Erstellt mit FormaXI · formaxi.de"-
   Pille auf jedem exportierten/geteilten PNG.
 - Anleitung/Hilfeseite live: statische `/hilfe` (10 Abschnitte) nach

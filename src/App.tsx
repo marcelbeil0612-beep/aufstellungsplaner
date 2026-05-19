@@ -12,7 +12,8 @@ import {
 } from '@dnd-kit/core'
 import { useEffect, useMemo, useState } from 'react'
 import { Bench } from './components/Bench'
-import { DemoDialog } from './components/DemoDialog'
+import { DemoBanner } from './components/DemoBanner'
+import { DemoTour } from './components/DemoTour'
 import { FormationShapeControls } from './components/FormationShapeControls'
 import { Header } from './components/Header'
 import { IOSInstallHint } from './components/IOSInstallHint'
@@ -23,7 +24,7 @@ import { PhaseToggle } from './components/PhaseToggle'
 import { Pitch } from './components/Pitch'
 import { PlayerChipVisual } from './components/PlayerChipVisual'
 import { activateFromStoredLicense } from './lib/proActivation'
-import { isDemoHash } from './data/demoLineup'
+import { demoStoreSeed, isDemoSession } from './data/demoLineup'
 import { formationById } from './data/formations'
 import { positionLabel, positionShort } from './data/positionWeights'
 import { downloadLineupPng, suggestedLineupFilename } from './lib/exportLineup'
@@ -40,7 +41,18 @@ type DragData = {
 type DropData = { slotId?: string; position?: string; isBench?: boolean }
 type ActiveDrag = { playerId: string; source: string }
 
+/** Einmal-Flag: Demo-Seed nur beim ersten Render setzen (idempotent). */
+let demoSeeded = false
+
 export default function App() {
+  // Demo-Session (`…/#demo`): Store synchron mit der Beispiel-Mannschaft
+  // seeden, BEVOR Kinder rendern. Persistenz ist im Demo eine No-op
+  // (idbStorage) – echte Nutzerdaten werden nie gelesen/geschrieben.
+  const DEMO = isDemoSession()
+  if (DEMO && !demoSeeded) {
+    demoSeeded = true
+    useLineupStore.setState(demoStoreSeed())
+  }
   // Default-State ist valide (leere Aufstellung auf 4-4-2) – die App rendert
   // sofort, die IndexedDB-Hydration tauscht die Werte transparent aus, sobald
   // sie fertig ist. Kein Splash, der bei fertiger Hydration hängen bleiben könnte.
@@ -58,27 +70,29 @@ export default function App() {
   const [activeDrag, setActiveDrag] = useState<ActiveDrag | null>(null)
   const [exporting, setExporting] = useState(false)
   const [sharePayload, setSharePayload] = useState<SharePayload | null>(null)
-  const [demoOpen, setDemoOpen] = useState(false)
 
   // Beim Mount den Location-Hash auswerten: `#demo` öffnet die Read-only-
   // Demo, `#share=…` den Import-Dialog. Hash danach entfernen, damit Reloads
   // ihn nicht erneut triggern.
   useEffect(() => {
     if (typeof window === 'undefined') return
+    // Demo: Hash bewusst NICHT entfernen – ein Reload soll isoliert
+    // in der Demo bleiben (Storage-Wahl hängt am Hash).
+    if (DEMO) return
     const hash = window.location.hash
     const payload = parseShareHash(hash)
-    const isDemo = isDemoHash(hash)
-    if (!payload && !isDemo) return
-    if (isDemo) setDemoOpen(true)
-    else if (payload) setSharePayload(payload)
+    if (!payload) return
+    setSharePayload(payload)
     const cleanUrl = window.location.pathname + window.location.search
     window.history.replaceState(null, '', cleanUrl)
-  }, [])
+  }, [DEMO])
 
-  // Gespeicherte Pro-Lizenz beim Start prüfen und ggf. freischalten.
+  // Gespeicherte Pro-Lizenz beim Start prüfen – im Demo übersprungen
+  // (Pro ist dort ohnehin frei, kein echter Lizenz-Status).
   useEffect(() => {
+    if (DEMO) return
     void activateFromStoredLicense()
-  }, [])
+  }, [DEMO])
 
   const handleShare = async () => {
     const url = buildShareUrl({
@@ -193,9 +207,10 @@ export default function App() {
       onDragCancel={onDragCancel}
     >
       <div className="flex min-h-[100svh] flex-col bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+        {DEMO && <DemoBanner />}
         <Header />
-        <Onboarding />
-        <IOSInstallHint />
+        {!DEMO && <Onboarding />}
+        {!DEMO && <IOSInstallHint />}
 
         {warning && (
           <div className="mx-6 mt-4 rounded-lg border border-rose-500/40 bg-rose-950/70 px-4 py-2 text-sm text-rose-200 shadow">
@@ -275,8 +290,8 @@ export default function App() {
       </div>
 
       <ImportShareDialog payload={sharePayload} onClose={() => setSharePayload(null)} />
-      <DemoDialog open={demoOpen} onClose={() => setDemoOpen(false)} />
       <PaywallDialog />
+      {DEMO && <DemoTour />}
 
       {/* Schwebender Chip beim Drag – kein Overflow-Clipping, kein Transform-Kampf. */}
       <DragOverlay

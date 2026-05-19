@@ -19,6 +19,16 @@ export const isDemoHash = (hash: string): boolean => {
   return clean === DEMO_HASH
 }
 
+/**
+ * True, wenn die laufende Seite eine Demo-Session ist (`…/#demo`).
+ * Wird sowohl von der Storage-Schicht (Isolation: keine echten Nutzer-
+ * daten lesen/schreiben) als auch von der App (Seed + Tour) genutzt.
+ * Muss synchron zum Modul-/Store-Init auswertbar sein – daher reiner
+ * `location.hash`-Check, kein React-State.
+ */
+export const isDemoSession = (): boolean =>
+  typeof window !== 'undefined' && isDemoHash(window.location.hash)
+
 export const DEMO_TITLE = 'Demo-Aufstellung · 4-3-3'
 
 const DEMO_FORMATION_ID = '4-3-3'
@@ -59,6 +69,33 @@ export const demoLineup = {
   players: demoPlayers,
   assignments: demoAssignments,
 } as const
+
+/**
+ * Seed-Zustand für den interaktiven Demo-Modus: vollständige Slot-Map
+ * (auch leere Slots als `null`), Demo-Kader, 4-3-3, Pro AN (damit der
+ * Besucher alle Funktionen anklicken kann). Wird NICHT persistiert –
+ * die Storage-Schicht ist im Demo-Modus eine No-op (siehe idbStorage).
+ */
+export function demoStoreSeed(): {
+  formationId: string
+  players: Player[]
+  assignments: Record<string, string | null>
+  isPro: true
+  playerListIsUserManaged: true
+} {
+  const formation = formationById(DEMO_FORMATION_ID)
+  const assignments: Record<string, string | null> = {}
+  for (const slot of formation.slots) {
+    assignments[slot.id] = demoAssignments[slot.id] ?? null
+  }
+  return {
+    formationId: DEMO_FORMATION_ID,
+    players: demoPlayers,
+    assignments,
+    isPro: true,
+    playerListIsUserManaged: true,
+  }
+}
 
 /**
  * Liefert die Demo als fertiges Render-Input für `renderLineupPng`.

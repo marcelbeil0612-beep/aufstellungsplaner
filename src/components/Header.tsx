@@ -41,6 +41,7 @@ export function Header() {
           <FormationPicker />
           <button
             onClick={() => guardAuto(() => setAutoOpen(true))}
+            data-tour="auto"
             className="flex items-center gap-1.5 rounded-lg border border-amber-600 bg-amber-800/40 px-3 py-1.5 text-sm font-medium text-amber-100 shadow-inner transition hover:bg-amber-700/50"
             title={
               autoAllowed
@@ -62,6 +63,7 @@ export function Header() {
           </button>
           <button
             onClick={() => setBookOpen(true)}
+            data-tour="systembuch"
             className="flex items-center gap-1.5 rounded-lg border border-indigo-700 bg-indigo-800/40 px-3 py-1.5 text-sm font-medium text-indigo-100 shadow-inner transition hover:bg-indigo-700/50"
             title="Taktik-Nachschlagewerk für den Spieltag"
           >

@@ -1,5 +1,6 @@
 import { get as idbGet, set as idbSet, del as idbDel, createStore } from 'idb-keyval'
 import { createJSONStorage, type StateStorage } from 'zustand/middleware'
+import { isDemoSession } from '../data/demoLineup'
 
 /**
  * Eigener IndexedDB-Objektspeicher, damit wir nicht mit Fremd-Libs kollidieren
@@ -48,5 +49,23 @@ const idbStateStorage: StateStorage = {
   },
 }
 
-/** Fertiger Storage, direkt an `persist({ storage: lineupStorage })` übergebbar. */
-export const lineupStorage = createJSONStorage(() => idbStateStorage)
+/**
+ * Flüchtige No-op-Storage für die Demo-Session (`…/#demo`). Liefert beim
+ * Lesen immer `null` (Store startet auf Defaults, die App seedet die
+ * Demo) und verwirft jedes Schreiben. So werden die echten IndexedDB-
+ * Daten eines Besuchers im Demo-Modus WEDER gelesen NOCH überschrieben.
+ */
+const memoryStateStorage: StateStorage = {
+  getItem: () => null,
+  setItem: () => {},
+  removeItem: () => {},
+}
+
+/**
+ * Fertiger Storage, direkt an `persist({ storage: lineupStorage })`
+ * übergebbar. Die Storage-Wahl fällt beim Hydrieren (Client) – im
+ * Demo-Modus strikt isoliert, sonst echtes IndexedDB.
+ */
+export const lineupStorage = createJSONStorage(() =>
+  isDemoSession() ? memoryStateStorage : idbStateStorage,
+)
