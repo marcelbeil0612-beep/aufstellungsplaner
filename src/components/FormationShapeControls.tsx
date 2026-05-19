@@ -1,55 +1,91 @@
-import { PRESSING_PRESETS, SHAPE_MAX, SHAPE_MIN, type PressingHeight } from '../lib/phaseShift'
+import {
+  HEIGHT_MAX,
+  HEIGHT_MIN,
+  PRESSING_PRESETS,
+  WIDTH_MAX,
+  WIDTH_MIN,
+  type PressingHeight,
+} from '../lib/phaseShift'
 import { useLineupStore } from '../store/useLineupStore'
 
 const pct = (v: number) => `${Math.round(v * 100)}%`
 
 /**
- * Zwei Regler (Breite/Höhe) für die aktuell gewählte Phase. Mit Ball =
- * offensive Ausrichtung, Gegen Ball = defensive – der Phasen-Switch
- * wechselt zwischen beiden gespeicherten Formen.
+ * Form-Regler je Phase. Mit Ball: nur Breite (Vertikal-Staffelung ist
+ * fest & realistisch). Gegen den Ball: Breite + Höhe (Pressinghöhe)
+ * inkl. drei Presets. Der Phasen-Switch wechselt die Ausrichtung.
  */
 export function FormationShapeControls() {
   const phase = useLineupStore((s) => s.phase)
   const shape = useLineupStore((s) => s.phaseShape[phase])
   const setPhaseShape = useLineupStore((s) => s.setPhaseShape)
+  const defensive = phase === 'withoutBall'
 
-  const sliders: Array<{ key: 'width' | 'height'; label: string }> = [
-    { key: 'width', label: 'Breite' },
-    { key: 'height', label: 'Höhe' },
-  ]
+  const Slider = ({
+    label,
+    value,
+    min,
+    max,
+    onChange,
+  }: {
+    label: string
+    value: number
+    min: number
+    max: number
+    onChange: (v: number) => void
+  }) => (
+    <label className="flex items-center gap-3 text-xs text-slate-300">
+      <span className="w-12 shrink-0">{label}</span>
+      <input
+        type="range"
+        min={min}
+        max={max}
+        step={0.01}
+        value={value}
+        onChange={(e) => onChange(Number(e.target.value))}
+        aria-label={`${label} (${defensive ? 'Gegen den Ball' : 'Mit Ball'})`}
+        className="h-1.5 flex-1 cursor-pointer appearance-none rounded-full bg-slate-700 accent-emerald-500"
+      />
+      <span className="w-9 shrink-0 text-right tabular-nums text-slate-400">{pct(value)}</span>
+    </label>
+  )
 
   return (
     <div className="rounded-lg border border-slate-800 bg-slate-900/60 px-3 py-2.5">
       <div className="mb-1.5 flex items-center justify-between">
         <span className="text-[11px] font-semibold uppercase tracking-wide text-slate-400">
-          Form · {phase === 'withBall' ? 'Mit Ball' : 'Gegen den Ball'}
+          Form · {defensive ? 'Gegen den Ball' : 'Mit Ball'}
         </span>
         <span className="text-[10px] text-slate-500">
-          {phase === 'withBall' ? 'offensive Ausrichtung' : 'defensive Ausrichtung'}
+          {defensive ? 'defensive Ausrichtung' : 'offensive Ausrichtung'}
         </span>
       </div>
+
       <div className="flex flex-col gap-2">
-        {sliders.map(({ key, label }) => (
-          <label key={key} className="flex items-center gap-3 text-xs text-slate-300">
-            <span className="w-12 shrink-0">{label}</span>
-            <input
-              type="range"
-              min={SHAPE_MIN}
-              max={SHAPE_MAX}
-              step={0.01}
-              value={shape[key]}
-              onChange={(e) => setPhaseShape(phase, { [key]: Number(e.target.value) })}
-              aria-label={`${label} (${phase === 'withBall' ? 'Mit Ball' : 'Gegen den Ball'})`}
-              className="h-1.5 flex-1 cursor-pointer appearance-none rounded-full bg-slate-700 accent-emerald-500"
-            />
-            <span className="w-9 shrink-0 text-right tabular-nums text-slate-400">
-              {pct(shape[key])}
-            </span>
-          </label>
-        ))}
+        <Slider
+          label="Breite"
+          value={shape.width}
+          min={WIDTH_MIN}
+          max={WIDTH_MAX}
+          onChange={(v) => setPhaseShape(phase, { width: v })}
+        />
+        {defensive ? (
+          <Slider
+            label="Höhe"
+            value={shape.height}
+            min={HEIGHT_MIN}
+            max={HEIGHT_MAX}
+            onChange={(v) => setPhaseShape('withoutBall', { height: v })}
+          />
+        ) : (
+          <p className="text-[10px] text-slate-500">
+            Mit Ball zählt die Breite – die Vertikal-Staffelung ist fest
+            realistisch gehalten. Die Höhe stellst du defensiv ein.
+          </p>
+        )}
       </div>
 
-      {phase === 'withoutBall' && (
+      {defensive && (
         <div className="mt-2.5 border-t border-slate-800 pt-2">
           <span className="mb-1.5 block text-[10px] font-semibold uppercase tracking-wide text-slate-500">
             Pressinghöhe

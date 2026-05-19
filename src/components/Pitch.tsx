@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { PRESSING_ZONE_DEPTH, pressingLineY, shapeSlots } from '../lib/phaseShift'
+import { PRESSING_ZONE_DEPTH, effectiveShape, pressingLineY, shapeSlots } from '../lib/phaseShift'
 import { useLineupStore } from '../store/useLineupStore'
 import type { Formation } from '../types'
 import { SlotDropZone } from './SlotDropZone'
@@ -14,8 +14,8 @@ export function Pitch({ formation }: Props) {
   const phase = useLineupStore((s) => s.phase)
   const shape = useLineupStore((s) => s.phaseShape[phase])
   const slots = useMemo(
-    () => shapeSlots(formation.slots, shape),
-    [formation.slots, shape],
+    () => shapeSlots(formation.slots, effectiveShape(phase, shape)),
+    [formation.slots, phase, shape],
   )
 
   // Slot-Positionen werden ausschließlich beim Phasenwechsel animiert, nicht

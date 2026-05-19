@@ -175,6 +175,17 @@ die Form. Browser-verifiziert (Regler live, Persistenz + Phasen-
 Trennung über Reload, mobil ohne Overflow, 0 Console-Errors).
 test 52/52, tsc 0, build ✓.
 
+**Stufe A · Nachschärfung — ERLEDIGT (2026-05-19):** Nutzer-Feedback:
+voller Höhe-Regler zog das Team unrealistisch auseinander; Mit Ball
+braucht keine Höhe. Umgesetzt: **Mit Ball = nur Breite**, Höhe fix
+realistisch (`WITHBALL_HEIGHT` ≈ 0,70). Höhe-Regler nur noch defensiv,
+Grenzen getrennt (`WIDTH_*` vs `HEIGHT_MAX` = 0,95) + harte y-Klemmung
+auf Strafraumhöhe (`Y_MAX` = 82) → **kein Überstrecken mehr**.
+`effectiveShape(phase,…)` zentralisiert das (Pitch/Overlay/PNG).
+Pressing-Presets in den kompakten Bereich nachjustiert. Browser-
+verifiziert (Mit Ball ohne Höhe-Regler & realistisch; Defensiv-Max
+bleibt kompakt). test 56/56, tsc 0, build ✓.
+
 **Stufe B — ERLEDIGT (2026-05-18):** In der Defensivphase 3
 Pressinghöhen-Presets (Angriffs-/Mittelfeld-/Abwehrpressing) als
 Schnellwahl des Höhe-Reglers (`PRESSING_PRESETS`), aktiver Button
@@ -547,3 +558,8 @@ In neuer Session:
   → Pro, persistent). test 54/54, tsc 0, build ✓. Offen: nur noch
   Nutzer-Aufgaben (Paddle-Produkt/Preise/Token/Secrets in Vercel-Env,
   Sandbox-Testkauf, dann Prod/Go-live).
+- **2026-05-19 (Folge 12):** F1 Stufe A nachgeschärft (Nutzer-
+  Feedback): Mit Ball ohne Höhe-Regler (feste realistische Staffelung
+  ≈0,70), Höhe nur defensiv, getrennte Grenzen + y-Klemmung auf
+  Strafraumhöhe → kein Überstrecken. `effectiveShape` zentral.
+  Browser-verifiziert. test 56/56, tsc 0, build ✓.

@@ -27,7 +27,7 @@ import { isDemoHash } from './data/demoLineup'
 import { formationById } from './data/formations'
 import { positionLabel, positionShort } from './data/positionWeights'
 import { downloadLineupPng, suggestedLineupFilename } from './lib/exportLineup'
-import { shapeSlots } from './lib/phaseShift'
+import { effectiveShape, shapeSlots } from './lib/phaseShift'
 import { playerPositionScore } from './lib/score'
 import { buildShareUrl, parseShareHash, type SharePayload } from './lib/shareUrl'
 import { useLineupStore } from './store/useLineupStore'
@@ -179,7 +179,7 @@ export default function App() {
     ? players.find((p) => p.id === activeDrag.playerId) ?? null
     : null
   const activeSlot = activeDrag && activeDrag.source !== 'bench'
-    ? shapeSlots(formation.slots, phaseShape[phase]).find((s) => s.id === activeDrag.source)
+    ? shapeSlots(formation.slots, effectiveShape(phase, phaseShape[phase])).find((s) => s.id === activeDrag.source)
     : undefined
   const overlayScore = activePlayer && activeSlot && activePlayer.skills
     ? playerPositionScore(activePlayer, activeSlot.position)

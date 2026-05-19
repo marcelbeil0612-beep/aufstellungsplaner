@@ -3,6 +3,7 @@ import { usePhotoStore } from '../store/photoStore'
 import type { Formation, Player, PlayerStatus, Slot } from '../types'
 import {
   PRESSING_ZONE_DEPTH,
+  effectiveShape,
   pressingLineY,
   shapeSlots,
   type Phase,
@@ -316,7 +317,7 @@ export async function renderLineupPng(input: ExportInput): Promise<Blob> {
   // Fotos für die aufgestellten Spieler vorladen.
   const photos = await loadPhotos(input)
 
-  const slots = shapeSlots(input.formation.slots, input.shape)
+  const slots = shapeSlots(input.formation.slots, effectiveShape(input.phase, input.shape))
 
   // Defensiv: Pressingzone + Linie des ersten Störers unter die Chips legen.
   if (input.phase === 'withoutBall') {
