@@ -20,7 +20,7 @@ export default defineConfig({
         display: 'standalone',
         orientation: 'any',
         scope: '/',
-        start_url: '/',
+        start_url: '/app',
         icons: [
           { src: 'pwa-192x192.png',         sizes: '192x192', type: 'image/png' },
           { src: 'pwa-512x512.png',         sizes: '512x512', type: 'image/png' },
@@ -29,15 +29,24 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,ico,webmanifest}'],
-        navigateFallback: '/index.html',
-        // Statische Rechts-/Infoseiten dürfen NICHT vom SPA-Shell-Fallback
-        // überlagert werden – sie haben eigene HTML-Dateien.
+        navigateFallback: '/app/index.html',
+        // Statische Seiten (Landingpage auf "/" und Rechts-/Infoseiten) dürfen
+        // NICHT vom SPA-Shell-Fallback überlagert werden – sie haben eigene
+        // HTML-Dateien.
         navigateFallbackDenylist: [
           /^\/(?:hilfe|preise|agb|datenschutz|widerruf|impressum|landing)(?:\/|$)/,
+          /^\/$/,
         ],
         cleanupOutdatedCaches: true,
       },
     }),
   ],
   server: { host: true, port: 5173 },
+  // Die App-HTML wird nach dist/app/index.html gebaut, damit "/" für die
+  // statische Landingpage frei bleibt (siehe vercel.json-Rewrites).
+  build: {
+    rollupOptions: {
+      input: 'app/index.html',
+    },
+  },
 })
