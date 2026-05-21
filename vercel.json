@@ -6,8 +6,8 @@
   "installCommand": "npm ci",
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/app/(.*)", "destination": "/app/index.html" },
-    { "source": "/((?!.*\\.).*)", "destination": "/landing/index.html" }
+    { "source": "/app/(.*)", "destination": "/app" },
+    { "source": "/(.*)", "destination": "/" }
   ],
   "headers": [
     {
