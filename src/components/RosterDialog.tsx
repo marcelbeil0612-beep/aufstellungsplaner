@@ -6,6 +6,7 @@ import { useLineupStore } from '../store/useLineupStore'
 import type { Player, PlayerStatus, Position, Role, Skills } from '../types'
 import { fileToSquareBlob, initials } from '../lib/photoUtils'
 import { Modal } from './Modal'
+import { useProGuard } from '../lib/proAccess'
 
 const fieldPositions = Object.keys(fieldWeights) as Position[]
 
@@ -509,6 +510,7 @@ function PreferredPositionsSection({ players }: { players: Player[] }) {
 function BackupSection() {
   const fileRef = useRef<HTMLInputElement>(null)
   const [status, setStatus] = useState<{ kind: 'ok' | 'err'; text: string } | null>(null)
+  const { guard: guardRestore } = useProGuard('backup-import')
 
   const handleRestore = async (file: File) => {
     setStatus(null)
@@ -545,7 +547,7 @@ function BackupSection() {
           <span aria-hidden>⬇</span> Backup herunterladen
         </button>
         <button
-          onClick={() => fileRef.current?.click()}
+          onClick={() => guardRestore(() => fileRef.current?.click())}
           className="inline-flex items-center gap-1.5 rounded-lg border border-emerald-600/70 bg-slate-900 px-3 py-1.5 text-sm font-semibold text-emerald-200 transition hover:bg-slate-800"
         >
           <span aria-hidden>⬆</span> Backup wiederherstellen
