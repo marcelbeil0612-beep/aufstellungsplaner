@@ -24,6 +24,7 @@ import { PhaseToggle } from './components/PhaseToggle'
 import { Pitch } from './components/Pitch'
 import { PlayerChipVisual } from './components/PlayerChipVisual'
 import { activateFromStoredLicense } from './lib/proActivation'
+import { useProStatus } from './lib/proAccess'
 import { demoStoreSeed, isDemoSession } from './data/demoLineup'
 import { formationById } from './data/formations'
 import { positionLabel, positionShort } from './data/positionWeights'
@@ -32,6 +33,7 @@ import { effectiveShape, shapeSlots } from './lib/phaseShift'
 import { playerPositionScore } from './lib/score'
 import { buildShareUrl, parseShareHash, type SharePayload } from './lib/shareUrl'
 import { useLineupStore } from './store/useLineupStore'
+import { usePaywallStore } from './store/paywallStore'
 
 type DragData = {
   playerId: string
@@ -70,6 +72,9 @@ export default function App() {
   const [activeDrag, setActiveDrag] = useState<ActiveDrag | null>(null)
   const [exporting, setExporting] = useState(false)
   const [sharePayload, setSharePayload] = useState<SharePayload | null>(null)
+  const [pendingSharePayload, setPendingSharePayload] = useState<SharePayload | null>(null)
+  const isPro = useProStatus()
+  const requestUnlock = usePaywallStore((s) => s.requestUnlock)
 
   // Beim Mount den Location-Hash auswerten: `#demo` öffnet die Read-only-
   // Demo, `#share=…` den Import-Dialog. Hash danach entfernen, damit Reloads
@@ -82,10 +87,24 @@ export default function App() {
     const hash = window.location.hash
     const payload = parseShareHash(hash)
     if (!payload) return
-    setSharePayload(payload)
     const cleanUrl = window.location.pathname + window.location.search
     window.history.replaceState(null, '', cleanUrl)
+    if (isPro) {
+      setSharePayload(payload)
+    } else {
+      setPendingSharePayload(payload)
+      requestUnlock('share-import')
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [DEMO])
+
+  // Nach Pro-Kauf: ausstehenden Share-Import nachholen.
+  useEffect(() => {
+    if (isPro && pendingSharePayload) {
+      setSharePayload(pendingSharePayload)
+      setPendingSharePayload(null)
+    }
+  }, [isPro, pendingSharePayload])
 
   // Gespeicherte Pro-Lizenz beim Start prüfen – im Demo übersprungen
   // (Pro ist dort ohnehin frei, kein echter Lizenz-Status).

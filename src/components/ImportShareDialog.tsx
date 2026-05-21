@@ -1,3 +1,4 @@
+import { useProGuard } from '../lib/proAccess'
 import { formationById } from '../data/formations'
 import { matchShareToRoster, type SharePayload } from '../lib/shareUrl'
 import { useLineupStore } from '../store/useLineupStore'
@@ -11,6 +12,7 @@ type Props = {
 export function ImportShareDialog({ payload, onClose }: Props) {
   const players = useLineupStore((s) => s.players)
   const applySharedLineup = useLineupStore((s) => s.applySharedLineup)
+  const { allowed: importAllowed, guard: guardImport } = useProGuard('share-import')
 
   if (!payload) return null
 
@@ -22,8 +24,10 @@ export function ImportShareDialog({ payload, onClose }: Props) {
   const subsMatched = match.substitutions.length
 
   const handleImport = () => {
-    applySharedLineup(match)
-    onClose()
+    guardImport(() => {
+      applySharedLineup(match)
+      onClose()
+    })
   }
 
   return (
@@ -47,6 +51,7 @@ export function ImportShareDialog({ payload, onClose }: Props) {
             className="rounded-lg bg-emerald-600 px-4 py-1.5 text-sm font-semibold text-white shadow transition hover:bg-emerald-500 disabled:cursor-not-allowed disabled:opacity-50"
           >
             Als neue Aufstellung übernehmen
+            {!importAllowed && <span aria-hidden className="ml-1 text-[10px] opacity-70">🔒</span>}
           </button>
         </>
       }
