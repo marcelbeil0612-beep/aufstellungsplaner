@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { useProGuard } from '../lib/proAccess'
+import { useProGuard, useProStatus } from '../lib/proAccess'
 import { useLineupStore } from '../store/useLineupStore'
+import { usePaywallStore } from '../store/paywallStore'
 import { AutoLineupDialog } from './AutoLineupDialog'
 import { FormationPicker } from './FormationPicker'
 import { MatchesDialog } from './MatchesDialog'
@@ -18,6 +19,8 @@ export function Header() {
   const [bookOpen, setBookOpen] = useState(false)
   const [matchesOpen, setMatchesOpen] = useState(false)
   const { allowed: autoAllowed, guard: guardAuto } = useProGuard('auto-lineup')
+  const isPro = useProStatus()
+  const showLicenseInfo = usePaywallStore((s) => s.showLicenseInfo)
 
   return (
     <>
@@ -104,6 +107,18 @@ export function Header() {
           >
             Zurücksetzen
           </button>
+          {isPro && (
+            <button
+              type="button"
+              onClick={showLicenseInfo}
+              className="flex items-center gap-1.5 rounded-lg border border-emerald-700 bg-emerald-800/40 px-3 py-1.5 text-sm font-medium text-emerald-100 shadow-inner transition hover:bg-emerald-700/50"
+              title="Deine Pro-Lizenz anzeigen / Schlüssel kopieren"
+            >
+              <span aria-hidden>★</span>
+              <span className="hidden sm:inline">Pro · Lizenz</span>
+              <span className="sm:hidden">Pro</span>
+            </button>
+          )}
           <a
             href="/hilfe"
             target="_blank"
