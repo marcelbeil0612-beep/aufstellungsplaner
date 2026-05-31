@@ -11,3 +11,6 @@ vite.config.*.timestamp-*
 .env.*
 !.env.example
 .vercel
+
+# Lead-Magnet: Debug-Vorschau-PNGs (kein Versand-Asset)
+scripts/lead-magnet/.preview
