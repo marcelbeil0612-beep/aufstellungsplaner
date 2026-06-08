@@ -12,5 +12,8 @@ vite.config.*.timestamp-*
 !.env.example
 .vercel
 
+# Systembuch-Export: Arbeitsmaterial zur Inhalts-Beurteilung, kein Repo-Artefakt
+exports/
+
 # Lead-Magnet: Debug-Vorschau-PNGs (kein Versand-Asset)
 scripts/lead-magnet/.preview
