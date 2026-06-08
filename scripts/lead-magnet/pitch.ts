@@ -47,13 +47,13 @@ export function renderPitchSVG(ourSystemId: string, opponentSystemId: string): s
   const a = formationById(ourSystemId)
   const b = formationById(opponentSystemId)
 
-  // Gegner zuerst (liegt optisch hinter unseren Spielern)
+  // Gegner zuerst (liegt optisch hinter unseren Spielern) – rote Punkte
   const shadow = b.slots
     .map((s) => {
       const cx = s.x
       const cy = s.y * 1.5 // gespiegelte y-Achse → ihr Tor oben
-      return `<circle cx="${cx}" cy="${cy.toFixed(1)}" r="3" fill="none"
-        stroke="rgba(255,255,255,0.5)" stroke-width="0.5" stroke-dasharray="1.6 1.2" />`
+      return `<circle cx="${cx}" cy="${cy.toFixed(1)}" r="3.2"
+        fill="#ef4444" stroke="#450a0a" stroke-width="0.6" opacity="0.95" />`
     })
     .join('')
 

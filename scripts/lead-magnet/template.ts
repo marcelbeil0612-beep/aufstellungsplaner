@@ -72,7 +72,7 @@ function renderCover(d: TemplateData): string {
           <div class="lm-spread-chips">${spread}</div>
         </div>
       </div>
-      <footer class="lm-cover-foot">formaxi.de · ${esc(d.dateLabel)}</footer>
+      <footer class="lm-cover-foot">Stand ${esc(d.dateLabel)}</footer>
     </div>
   </section>`
 }
@@ -111,12 +111,11 @@ function renderStory(d: TemplateData): string {
         </div>
       </div>
     </div>
-    <footer class="lm-foot"><span>Komplette 81 Duelle in FormaXI Pro · formaxi.de</span><span>Seite 2 von ${d.totalPages}</span></footer>
   </section>`
 }
 
-// ── Duell (Seiten 3–7) ──────────────────────────────────────────────────────
-function renderDuel(duel: DuelVM, totalPages: number): string {
+// ── Duell (eine, bei Bedarf zwei A4-Seiten) ─────────────────────────────────
+function renderDuel(duel: DuelVM): string {
   const r = RATING_META[duel.rating]
   const coachingCells = duel.coaching
     .map((c) => `<div class="lm-zuruf">${esc(c)}</div>`)
@@ -137,7 +136,7 @@ function renderDuel(duel: DuelVM, totalPages: number): string {
       <div class="lm-pitch-wrap">${duel.pitchSVG}
         <div class="lm-pitch-legend">
           <span><span class="lm-leg-dot lm-leg-dot--solid"></span>Unser System</span>
-          <span><span class="lm-leg-dot lm-leg-dot--dashed"></span>Gegner (Schatten)</span>
+          <span><span class="lm-leg-dot lm-leg-dot--opp"></span>Gegner</span>
         </div>
       </div>
 
@@ -165,7 +164,6 @@ function renderDuel(duel: DuelVM, totalPages: number): string {
         <div class="lm-coaching-grid">${coachingCells}</div>
       </div>
     </div>
-    <footer class="lm-foot"><span>formaxi.de</span><span>Seite ${duel.pageNumber} von ${totalPages}</span></footer>
   </section>`
 }
 
@@ -196,7 +194,6 @@ function renderOutro(d: TemplateData): string {
 
       <div class="lm-signoff">Indie-gebaut von einem Trainer für Trainer.</div>
     </div>
-    <footer class="lm-foot"><span>formaxi.de · ${esc(d.dateLabel)}</span><span>Seite ${d.totalPages} von ${d.totalPages}</span></footer>
   </section>`
 }
 
@@ -205,7 +202,7 @@ export function renderDocument(d: TemplateData): string {
   const pages = [
     renderCover(d),
     renderStory(d),
-    ...d.duels.map((duel) => renderDuel(duel, d.totalPages)),
+    ...d.duels.map((duel) => renderDuel(duel)),
     renderOutro(d),
   ].join('\n')
 
@@ -235,32 +232,41 @@ body{
   font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;
   color:var(--text); -webkit-print-color-adjust:exact; print-color-adjust:exact;
 }
+/* Druckfläche je A4-Seite = 210×297mm minus page.pdf-Margins (12 li/re/oben, 18 unten). */
 .page{
-  position:relative; width:190mm; height:276mm; overflow:hidden;
+  position:relative; width:186mm; height:267mm; overflow:hidden;
   background:linear-gradient(160deg,#10192e 0%,#0c1424 60%,#0a1120 100%);
   page-break-after:always; break-after:page;
 }
 .page:last-child{ page-break-after:auto; break-after:auto; }
-.lm-page-inner{ position:relative; z-index:2; padding:13mm 13mm 0; height:100%; display:flex; flex-direction:column; }
+.lm-page-inner{ position:relative; z-index:2; padding:11mm 13mm 0; height:100%; display:flex; flex-direction:column; }
+
+/* Duell-Seiten dürfen bei Bedarf auf eine zweite Seite fließen, statt Inhalt zu kappen.
+   Karten bleiben dabei dank break-inside:avoid stets unzerschnitten. */
+.page--duel{ height:auto; min-height:267mm; overflow:visible; break-inside:auto; }
+/* Block-Flow (statt Flex) → saubere Seiten-Fragmentierung mit break-inside:avoid. */
+.page--duel .lm-page-inner{ display:block; height:auto; padding-bottom:6mm; }
+
+/* Karten/Blöcke NIE über einen Seitenumbruch zerschneiden – ganz auf nächste Seite rutschen. */
+.lm-duel-head, .lm-character, .lm-pitch-wrap, .lm-cell, .lm-coaching, .lm-zuruf{
+  break-inside:avoid; page-break-inside:avoid;
+}
 
 /* Hintergrund-Spielfeld */
 .lm-backdrop-wrap{ position:absolute; inset:0; z-index:0; opacity:0.10; }
 .lm-backdrop-wrap--soft{ opacity:0.06; }
 .lm-backdrop{ width:100%; height:100%; }
 
-/* Footer */
-.lm-foot{
-  position:absolute; left:13mm; right:13mm; bottom:7mm; z-index:3;
-  display:flex; justify-content:space-between;
-  font-size:7.5pt; color:var(--muted); letter-spacing:.02em;
-  border-top:1px solid var(--border); padding-top:2.5mm;
-}
+/* Footer wird nativ von Puppeteer im unteren Seitenrand gerendert (kein DOM-Element),
+   damit er den Inhalt nie überlappt – siehe footerTemplate in generate.ts. */
 
 /* ── Cover ── */
 .page--cover{ background:radial-gradient(120% 80% at 50% 0%,#16315f 0%,#0c1526 55%,#080e1b 100%); }
 .lm-cover-inner{ position:relative; z-index:2; height:100%; padding:18mm 16mm 12mm; display:flex; flex-direction:column; }
-.lm-cover-head{ display:flex; }
-.lm-cover-logo{ height:30mm; width:auto; margin:-4mm 0 0 -3mm; }
+.lm-cover-head{ display:flex; margin-top:4mm; }
+/* Reine „FormaXI"-Wortmarke (transparent, ohne Kachel) – groß, damit der obere
+   Spielfeld-Bereich nicht so leer wirkt. */
+.lm-cover-logo{ height:24mm; width:auto; margin:0; }
 .lm-cover-wordmark{ font-size:22pt; font-weight:800; letter-spacing:-.01em; color:#fff; }
 .lm-cover-wordmark span{ color:var(--green); }
 .lm-cover-body{ margin-top:auto; margin-bottom:auto; }
@@ -285,36 +291,39 @@ body{
 .lm-preview-tags{ display:flex; flex-wrap:wrap; gap:3mm; }
 .lm-preview-tags span{ font-size:10pt; font-weight:600; color:var(--text); background:rgba(255,255,255,0.05); border:1px solid var(--border); border-radius:99px; padding:1.6mm 4mm; }
 
-/* ── Duell ── */
+/* ── Duell ──
+   Vertikal verdichtet, damit ein Duell mit ALLEN Zurufen auf EINE A4-Seite passt
+   (break-inside:avoid bleibt als Sicherheitsnetz für Ausnahmefälle aktiv). */
 .lm-duel-head{ display:flex; align-items:baseline; gap:4mm; flex-wrap:wrap; }
 .lm-duel-no{ font-size:9pt; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--green-light); }
-.lm-duel-title{ font-size:18pt; font-weight:800; letter-spacing:-.01em; color:#fff; flex:1 1 auto; }
+.lm-duel-title{ font-size:16.5pt; font-weight:800; letter-spacing:-.01em; color:#fff; flex:1 1 auto; }
 .lm-duel-rating{ display:inline-flex; align-items:center; gap:2mm; }
 .lm-rating-label{ font-size:10.5pt; font-weight:700; }
-.lm-character{ font-size:10pt; line-height:1.5; color:var(--muted); margin-top:2.5mm; padding-bottom:3.5mm; border-bottom:1px solid var(--border); }
+.lm-character{ font-size:9.5pt; line-height:1.42; color:var(--muted); margin-top:2mm; padding-bottom:2.5mm; border-bottom:1px solid var(--border); }
 
-.lm-pitch-wrap{ display:flex; flex-direction:column; align-items:center; margin:4mm 0 2mm; }
-.lm-pitch{ width:52mm; height:auto; filter:drop-shadow(0 4mm 8mm rgba(0,0,0,0.45)); }
-.lm-pitch-legend{ display:flex; gap:7mm; margin-top:2.5mm; font-size:8pt; color:var(--muted); }
+.lm-pitch-wrap{ display:flex; flex-direction:column; align-items:center; margin:2.5mm 0 1.5mm; }
+.lm-pitch{ width:38mm; height:auto; filter:drop-shadow(0 3mm 6mm rgba(0,0,0,0.45)); }
+.lm-pitch-legend{ display:flex; gap:7mm; margin-top:1.8mm; font-size:8pt; color:var(--muted); }
 .lm-pitch-legend span{ display:inline-flex; align-items:center; gap:1.6mm; }
 .lm-leg-dot{ width:3mm; height:3mm; border-radius:50%; }
 .lm-leg-dot--solid{ background:var(--green); }
-.lm-leg-dot--dashed{ background:transparent; border:0.5mm dashed rgba(255,255,255,0.7); }
+.lm-leg-dot--opp{ background:var(--red); }
 
-.lm-grid{ display:grid; grid-template-columns:1fr 1fr; gap:3.5mm 5mm; margin-top:3mm; }
-.lm-cell{ background:rgba(255,255,255,0.025); border:1px solid var(--border); border-radius:3mm; padding:3.5mm 4mm; }
-.lm-cell-h{ font-size:9pt; font-weight:800; text-transform:uppercase; letter-spacing:.08em; color:#fff; margin-bottom:2.5mm; padding-left:3mm; border-left:1mm solid var(--muted); }
+.lm-grid{ display:grid; grid-template-columns:1fr 1fr; gap:2.8mm 4.5mm; margin-top:2mm; }
+.lm-cell{ background:rgba(255,255,255,0.025); border:1px solid var(--border); border-radius:3mm; padding:2.8mm 3.5mm; }
+.lm-cell-h{ font-size:9pt; font-weight:800; text-transform:uppercase; letter-spacing:.08em; color:#fff; margin-bottom:2mm; padding-left:3mm; border-left:1mm solid var(--muted); }
 .lm-cell-h--good{ border-left-color:var(--green); color:var(--green-light); }
 .lm-cell-h--bad{ border-left-color:var(--red); color:#fca5a5; }
 .lm-list{ list-style:none; }
-.lm-list li{ position:relative; font-size:9pt; line-height:1.42; color:var(--text); padding-left:4mm; margin-bottom:1.8mm; }
-.lm-list li::before{ content:''; position:absolute; left:0; top:1.5mm; width:1.6mm; height:1.6mm; border-radius:50%; background:var(--green); opacity:.65; }
+.lm-list li{ position:relative; font-size:9pt; line-height:1.34; color:var(--text); padding-left:4mm; margin-bottom:1.3mm; }
+.lm-list li::before{ content:''; position:absolute; left:0; top:1.4mm; width:1.6mm; height:1.6mm; border-radius:50%; background:var(--green); opacity:.65; }
 
-.lm-coaching{ margin-top:4mm; padding:4mm 4.5mm; background:rgba(34,197,94,0.08); border:1px solid rgba(34,197,94,0.25); border-radius:3.5mm; }
-.lm-coaching-h{ font-size:9.5pt; font-weight:800; text-transform:uppercase; letter-spacing:.1em; color:var(--green-light); margin-bottom:3mm; }
+.lm-coaching{ margin-top:3mm; padding:3.2mm 4mm; background:rgba(34,197,94,0.08); border:1px solid rgba(34,197,94,0.25); border-radius:3.5mm; }
+.lm-coaching-h{ font-size:9.5pt; font-weight:800; text-transform:uppercase; letter-spacing:.1em; color:var(--green-light); margin-bottom:2.5mm; }
 .lm-mic{ font-size:11pt; }
-.lm-coaching-grid{ display:grid; grid-template-columns:1fr 1fr; gap:2.5mm 4mm; }
-.lm-zuruf{ font-size:10.5pt; font-weight:700; font-style:italic; color:#fff; padding-left:4mm; border-left:0.8mm solid var(--green); }
+/* 6 Zurufe in 3 Spalten → 2 Zeilen statt 3 (spart vertikalen Platz). */
+.lm-coaching-grid{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:2.4mm 3.5mm; }
+.lm-zuruf{ font-size:9pt; font-weight:700; font-style:italic; color:#fff; padding-left:3mm; border-left:0.8mm solid var(--green); line-height:1.25; }
 
 /* ── Outro ── */
 .lm-outro-inner{ justify-content:flex-start; }
