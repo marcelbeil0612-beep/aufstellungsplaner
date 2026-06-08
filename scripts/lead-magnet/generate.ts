@@ -13,7 +13,7 @@ import puppeteer from 'puppeteer'
 import { findEntry, systemLabels, type SystemId } from '../../src/data/tacticBook/index'
 import { renderPitchSVG } from './pitch'
 import { renderDocument, type DuelVM, type TemplateData } from './template'
-import { prepareLogo } from './prepare-assets.mjs'
+import { prepareWordmark } from './prepare-assets.mjs'
 
 const here = path.dirname(fileURLToPath(import.meta.url))
 const repoRoot = path.resolve(here, '../..')
@@ -29,12 +29,12 @@ const SELECTED_DUELS: Array<{ our: SystemId; opp: SystemId }> = [
 ]
 
 const CTA_URL = 'https://formaxi.de'
-const DATE_LABEL = 'Mai 2026'
+/** Generierungsmonat dynamisch (z.B. „Juni 2026"), nicht hartkodiert. */
+const DATE_LABEL = new Date().toLocaleDateString('de-DE', { month: 'long', year: 'numeric' })
 const OUT_PATH = path.join(repoRoot, 'public', 'downloads', 'formaxi-systembuch-mini.pdf')
 
-/** Max. Listenlänge pro Säule, damit jede Duell-Seite auf eine A4-Seite passt. */
+/** Max. Listenlänge pro Säule (Teaser-Kuratierung der vier Säulen). */
 const MAX_ITEMS = 3
-const MAX_COACHING = 4
 
 // ── View-Model bauen ─────────────────────────────────────────────────────────
 function buildDuels(): DuelVM[] {
@@ -57,7 +57,8 @@ function buildDuels(): DuelVM[] {
       dangers: entry.phases.oppPossession.dangers.slice(0, MAX_ITEMS),
       spaces: entry.phases.ownPossession.spaces.slice(0, MAX_ITEMS),
       pressing: entry.phases.oppPossession.keyActions.slice(0, MAX_ITEMS),
-      coaching: entry.liveCoaching.slice(0, MAX_COACHING),
+      // ALLE Live-Coaching-Zurufe rendern – nicht slicen (Layout erlaubt 2 Seiten).
+      coaching: entry.liveCoaching,
       pitchSVG: renderPitchSVG(sel.our, sel.opp),
     }
   })
@@ -69,14 +70,17 @@ async function main() {
   console.log(`[lead-magnet] ${duels.length} Duelle selektiert:`)
   for (const d of duels) console.log(`   • Duell ${d.index}: ${d.title} (${d.rating})`)
 
-  // Logo vorbereiten (kopieren + skalieren), dann als Data-URI einbetten
-  const logoPath = await prepareLogo({ silent: true }).catch(() => null)
+  // Transparente Wortmarke (nur „FormaXI"-Schriftzug, keine Kachel) erzeugen & einbetten
+  const logoPath = await prepareWordmark({ silent: true }).catch((err) => {
+    console.warn('[lead-magnet] Wortmarke fehlgeschlagen:', err?.message ?? err)
+    return null
+  })
   let logoDataUri: string | null = null
   if (logoPath && existsSync(logoPath)) {
     logoDataUri = `data:image/png;base64,${readFileSync(logoPath).toString('base64')}`
-    console.log('[lead-magnet] Logo eingebettet.')
+    console.log('[lead-magnet] Wortmarke eingebettet.')
   } else {
-    console.warn('[lead-magnet] Kein Logo gefunden – Wortmarke als Fallback.')
+    console.warn('[lead-magnet] Keine Wortmarke gefunden – Text-Fallback.')
   }
 
   // QR-Code
@@ -106,12 +110,27 @@ async function main() {
     await page.evaluateHandle('document.fonts.ready')
 
     mkdirSync(path.dirname(OUT_PATH), { recursive: true })
+
+    // Footer als nativer Puppeteer-Footer im reservierten Seitenrand (bottom-Margin),
+    // damit er den Body-Inhalt NIE überlappt. Links formaxi.de, rechts „Seite X von Y".
+    const footerTemplate = `
+      <div style="width:100%; box-sizing:border-box; padding:0 12mm;
+                  font-family:'Inter','Segoe UI',sans-serif; font-size:8px; color:#64748b;
+                  display:flex; justify-content:space-between; align-items:center;">
+        <span>formaxi.de</span>
+        <span>Seite <span class="pageNumber"></span> von <span class="totalPages"></span></span>
+      </div>`
+
     await page.pdf({
       path: OUT_PATH,
       format: 'A4',
       printBackground: true,
       preferCSSPageSize: false,
-      margin: { top: '1cm', right: '1cm', bottom: '1cm', left: '1cm' },
+      displayHeaderFooter: true,
+      headerTemplate: '<div></div>', // kein Header
+      footerTemplate,
+      // bottom groß genug, dass der Footer-Streifen frei bleibt und Inhalt nie hineinläuft
+      margin: { top: '12mm', right: '12mm', bottom: '18mm', left: '12mm' },
     })
 
     // Optionaler Debug-Output: PNG-Screenshots je Seite (LEAD_MAGNET_SHOTS=1)
@@ -131,10 +150,14 @@ async function main() {
 
   const { size } = statSync(OUT_PATH)
   const kb = size / 1024
+  // Tatsächliche physische Seitenzahl aus dem PDF zählen (Duelle dürfen 2 Seiten nutzen).
+  const pdfBuf = readFileSync(OUT_PATH)
+  const physicalPages = (pdfBuf.toString('latin1').match(/\/Type\s*\/Page[^s]/g) || []).length
   console.log('\n[lead-magnet] ✅ PDF erzeugt')
   console.log(`   Pfad:   ${path.relative(repoRoot, OUT_PATH)}`)
   console.log(`   Größe:  ${kb < 1024 ? kb.toFixed(1) + ' KB' : (kb / 1024).toFixed(2) + ' MB'}`)
-  console.log(`   Seiten: ${data.totalPages} (Ziel: 8)`)
+  console.log(`   Logische Blöcke: ${data.totalPages} (Cover + Story + ${duels.length} Duelle + Outro)`)
+  console.log(`   Physische Seiten: ${physicalPages}`)
   if (kb / 1024 > 2) console.warn('   ⚠ über 2 MB – ggf. Logo/QR weiter komprimieren.')
 }
 
