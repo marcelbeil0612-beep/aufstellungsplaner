@@ -91,8 +91,8 @@ type Actions = {
   setPlayerPhoto: (playerId: string, blob: Blob | null) => Promise<void>
   /** Aktualisiert einzelne Skill-Werte; undefined im Patch entfernt den Key. */
   updatePlayerSkills: (playerId: string, patch: Partial<Skills>) => void
-  /** Setzt oder löscht die Trikotnummer (1–99). */
-  setPlayerNumber: (playerId: string, number: number | null) => void
+  /** Setzt die Trikotnummer (1–99). Pflichtfeld – kann nicht geleert werden. */
+  setPlayerNumber: (playerId: string, number: number) => void
   /** Setzt oder löscht den Verfügbarkeitsstatus (undefined = verfügbar). */
   setPlayerStatus: (playerId: string, status: PlayerStatus | null) => void
   /** Setzt die Stammpositionen des Spielers (leeres Array = keine Bevorzugung). */
@@ -166,12 +166,40 @@ const newId = (): string => {
 }
 
 /**
+ * Trikotnummer ist Pflicht: JEDER Spieler bekommt eine Nummer. Diese Helfer
+ * garantieren das zur Laufzeit an allen Eintrittspunkten (Anlegen, Migration,
+ * Merge, Backup-Restore) – bestehende Nummern bleiben unangetastet.
+ */
+const nextFreeNumber = (players: Player[]): number => {
+  const used = new Set(
+    players
+      .map((p) => p.number)
+      .filter((n): n is number => typeof n === 'number' && Number.isFinite(n)),
+  )
+  for (let n = 1; n <= 99; n++) if (!used.has(n)) return n
+  return 99 // >99 Spieler (praktisch nie) – dann darf sich eine Nummer doppeln
+}
+
+/** Vergibt jedem Spieler ohne Nummer die kleinste freie (1–99). Reihenfolge-stabil. */
+export function ensurePlayerNumbers(players: Player[]): Player[] {
+  const result: Player[] = []
+  for (const p of players) {
+    if (typeof p.number === 'number' && Number.isFinite(p.number)) {
+      result.push(p)
+    } else {
+      result.push({ ...p, number: nextFreeNumber(result) })
+    }
+  }
+  return result
+}
+
+/**
  * Aktuelle Schema-Version des persistierten Stores. Wird sowohl von der
  * Zustand-`persist`-Konfiguration als auch von `lib/backup.ts` gelesen, damit
  * Backups die Version mitschreiben und beim Import durch dieselbe Migrations-
  * Kette wie der reguläre Persist-Pfad laufen können.
  */
-export const STORE_VERSION = 11
+export const STORE_VERSION = 12
 
 /**
  * Reine Migrationsfunktion. Wird sowohl im `persist({ migrate })`-Hook als auch
@@ -236,6 +264,10 @@ export function migratePersistedState(
   // v10 → v11: Pro-Lizenz-Token (signiert). Bestehende ohne Lizenz.
   if (fromVersion < 11) {
     if (typeof s.license !== 'string') s.license = null
+  }
+  // v11 → v12: Trikotnummer ist Pflicht. Fehlende Nummern nachvergeben.
+  if (fromVersion < 12) {
+    if (Array.isArray(s.players)) s.players = ensurePlayerNumbers(s.players as Player[])
   }
   return s
 }
@@ -446,13 +478,13 @@ export const useLineupStore = create<State & Actions>()(
       },
 
       setPlayerNumber: (playerId, number) => {
-        const next = get().players.map((p) => {
-          if (p.id !== playerId) return p
-          if (number === null || !Number.isFinite(number)) return { ...p, number: undefined }
-          const clamped = Math.max(1, Math.min(99, Math.trunc(number)))
-          return { ...p, number: clamped }
+        if (!Number.isFinite(number)) return
+        const clamped = Math.max(1, Math.min(99, Math.trunc(number)))
+        set({
+          players: get().players.map((p) =>
+            p.id === playerId ? { ...p, number: clamped } : p,
+          ),
         })
-        set({ players: next })
       },
 
       setPlayerStatus: (playerId, status) => {
@@ -479,7 +511,13 @@ export const useLineupStore = create<State & Actions>()(
       addPlayer: (name, role) => {
         const trimmed = name.trim()
         if (!trimmed) return
-        const player: Player = { id: newId(), name: trimmed, role }
+        // Trikotnummer ist Pflicht: kleinste freie Nummer automatisch vergeben.
+        const player: Player = {
+          id: newId(),
+          name: trimmed,
+          role,
+          number: nextFreeNumber(get().players),
+        }
         set({
           players: [...get().players, player],
           playerListIsUserManaged: true,
@@ -690,12 +728,14 @@ export const useLineupStore = create<State & Actions>()(
               photo: saved.photo,
               photoId: saved.photoId,
               skills: saved.skills,
-              number: saved.number,
+              number: saved.number ?? base.number,
               status: saved.status,
               preferredPositions: saved.preferredPositions,
             }
           })
         }
+        // Trikotnummer ist Pflicht – fehlende (aus altem Backup) nachvergeben.
+        mergedPlayers = ensurePlayerNumbers(mergedPlayers)
 
         // `isPro` wird bewusst NICHT aus dem Snapshot übernommen: Pro-
         // Entitlement darf nicht über eine geteilte Backup-Datei wandern.
@@ -765,7 +805,7 @@ export const useLineupStore = create<State & Actions>()(
               photo: saved.photo,
               photoId: saved.photoId,
               skills: saved.skills,
-              number: saved.number,
+              number: saved.number ?? base.number,
               status: saved.status,
               preferredPositions: saved.preferredPositions,
             }
@@ -775,7 +815,8 @@ export const useLineupStore = create<State & Actions>()(
         return {
           ...currentState,
           ...persisted,
-          players: mergedPlayers,
+          // Trikotnummer ist Pflicht – fehlende (Altbestand) nachvergeben.
+          players: ensurePlayerNumbers(mergedPlayers),
         }
       },
     },

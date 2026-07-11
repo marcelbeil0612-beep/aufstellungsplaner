@@ -193,10 +193,17 @@ function drawSlot(
     ctx.fillStyle = g
     ctx.fillRect(cx - radius, cy - radius, radius * 2, radius * 2)
     ctx.fillStyle = '#ffffff'
-    ctx.font = `bold ${Math.round(radius * 0.95)}px Inter, system-ui, sans-serif`
+    // Trikotnummer mittig (Pflichtfeld); nur falls ausnahmsweise keine gesetzt → Initialen.
+    const centerText = player
+      ? typeof player.number === 'number'
+        ? String(player.number)
+        : initials(player.name)
+      : positionShort[slot.position]
+    const centerScale = player && typeof player.number === 'number' ? 1.1 : 0.95
+    ctx.font = `bold ${Math.round(radius * centerScale)}px Inter, system-ui, sans-serif`
     ctx.textAlign = 'center'
     ctx.textBaseline = 'middle'
-    ctx.fillText(player ? initials(player.name) : positionShort[slot.position], cx, cy)
+    ctx.fillText(centerText, cx, cy)
   }
   ctx.restore()
 
@@ -248,9 +255,10 @@ function drawSlot(
     ctx.restore()
   }
 
-  // Name-Pill unten.
+  // Name-Pill unten. Nummer steht mittig im Chip; in der Pille nur bei Foto-Spielern
+  // (dort zeigt die Mitte das Foto), sonst reicht der Name.
   const label = player
-    ? typeof player.number === 'number'
+    ? photo && typeof player.number === 'number'
       ? `${player.number} · ${player.name}`
       : player.name
     : '— frei —'

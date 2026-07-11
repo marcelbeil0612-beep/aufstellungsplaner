@@ -180,6 +180,29 @@ function NameCell({ player }: { player: Player }) {
 
 function NumberCell({ player }: { player: Player }) {
   const setPlayerNumber = useLineupStore((s) => s.setPlayerNumber)
+  // Lokaler Puffer, damit man beim Tippen kurz leeren darf – die Nummer ist aber
+  // Pflicht: bleibt das Feld leer/ungültig, wird beim Verlassen zurückgesetzt.
+  const [draft, setDraft] = useState<string>(String(player.number ?? ''))
+
+  // Externe Änderungen (z. B. Auto-Vergabe) in den Puffer spiegeln.
+  const [lastNumber, setLastNumber] = useState(player.number)
+  if (player.number !== lastNumber) {
+    setLastNumber(player.number)
+    setDraft(String(player.number ?? ''))
+  }
+
+  const commit = () => {
+    const n = parseInt(draft, 10)
+    if (Number.isFinite(n) && n >= 1) {
+      const clamped = Math.max(1, Math.min(99, n))
+      setPlayerNumber(player.id, clamped)
+      setDraft(String(clamped))
+    } else {
+      // leer/ungültig → auf bestehende Pflichtnummer zurücksetzen
+      setDraft(String(player.number ?? ''))
+    }
+  }
+
   return (
     <input
       type="number"
@@ -187,18 +210,14 @@ function NumberCell({ player }: { player: Player }) {
       min={1}
       max={99}
       step={1}
-      placeholder="–"
-      value={player.number ?? ''}
-      onChange={(e) => {
-        const raw = e.target.value
-        if (raw === '') {
-          setPlayerNumber(player.id, null)
-          return
-        }
-        const n = parseInt(raw, 10)
-        if (Number.isFinite(n)) setPlayerNumber(player.id, n)
+      required
+      value={draft}
+      onChange={(e) => setDraft(e.target.value)}
+      onBlur={commit}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') e.currentTarget.blur()
       }}
-      className="w-14 rounded-md border border-slate-700 bg-slate-950 px-1 py-1 text-center text-sm text-white placeholder:text-slate-600 focus:border-emerald-500 focus:outline-none"
+      className="w-14 rounded-md border border-slate-700 bg-slate-950 px-1 py-1 text-center text-sm text-white focus:border-emerald-500 focus:outline-none"
       style={{ fontSize: '16px' }}
       aria-label={`Trikotnummer für ${player.name}`}
     />

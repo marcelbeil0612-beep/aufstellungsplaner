@@ -109,6 +109,14 @@ export function PlayerChipVisual({ player, positionShort, score, compact, elevat
               draggable={false}
               className="h-full w-full object-cover"
             />
+          ) : typeof player.number === 'number' ? (
+            <div
+              style={{ fontSize: Math.round(avatarPx * 0.52) }}
+              className="flex h-full w-full items-center justify-center font-black tabular-nums leading-none"
+              aria-label={`Trikotnummer ${player.number}`}
+            >
+              {player.number}
+            </div>
           ) : (
             <div
               style={{ fontSize: Math.round(avatarPx * 0.4) }}
@@ -130,7 +138,8 @@ export function PlayerChipVisual({ player, positionShort, score, compact, elevat
             nameSize,
           ].join(' ')}
         >
-          {typeof player.number === 'number' && (
+          {/* Nummer steht bei Foto-Spielern in der Pille (sonst mittig im Kreis). */}
+          {photoUrl && typeof player.number === 'number' && (
             <span
               className="shrink-0 rounded bg-white/15 px-1 text-[10px] font-black tabular-nums text-amber-200"
               aria-label={`Trikotnummer ${player.number}`}
