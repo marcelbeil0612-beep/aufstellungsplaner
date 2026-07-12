@@ -11,7 +11,13 @@ export type Phase = 'withBall' | 'withoutBall'
 export type PhaseShape = { width: number; height: number }
 
 /** Intern: aufgelöste Form, die `shapeSlots` konsumiert. */
-type EffectiveShape = { width: number; frontY: number; k: number }
+type EffectiveShape = {
+  width: number
+  frontY: number
+  k: number
+  /** Ziel-y des Torwarts; undefined = auf der Linie (Grundwert bleibt). */
+  gkY?: number
+}
 
 export const WIDTH_MIN = 0.55
 export const WIDTH_MAX = 1.15
@@ -34,6 +40,10 @@ const FRONT_ATTACK = 80
 const FRONT_LOW = 44 // tiefstes Abwehrpressing
 const FRONT_HIGH = 80 // höchstes Angriffspressing
 const Y_MAX = 82
+
+// Torwart im eigenen Ballbesitz leicht vorgezogen (Sweeper-Keeper, ~16er-Höhe).
+// Grundwert auf der Linie ist y≈6; gegen den Ball bleibt der Keeper dort.
+const GK_ATTACK_Y = 16
 
 export const defaultPhaseShape: Record<Phase, PhaseShape> = {
   withBall: { width: 0.95, height: 0.95 },
@@ -73,7 +83,8 @@ export const PRESSING_ZONE_DEPTH = 24
  */
 export function effectiveShape(phase: Phase, stored: PhaseShape): EffectiveShape {
   const width = clamp(stored.width, WIDTH_MIN, WIDTH_MAX)
-  if (phase === 'withBall') return { width, frontY: FRONT_ATTACK, k: K_ATTACK }
+  if (phase === 'withBall')
+    return { width, frontY: FRONT_ATTACK, k: K_ATTACK, gkY: GK_ATTACK_Y }
   return { width, frontY: heightToFrontY(stored.height), k: K_DEFENSE }
 }
 
@@ -81,14 +92,15 @@ export function effectiveShape(phase: Phase, stored: PhaseShape): EffectiveShape
  * Setzt die Slots: Breite um die Mittelachse skaliert; vertikal wird der
  * vorderste Feldspieler auf `frontY` gelegt und alle dahinterliegenden
  * Linien mit Faktor `k` herangezogen (konstante Enge, unabhängig von der
- * Front-Position). Torwart bleibt fix. Eingabe wird nicht mutiert.
+ * Front-Position). Torwart wird auf `eff.gkY` gelegt (im Aufbau leicht
+ * vorgezogen), sonst auf der Linie belassen. Eingabe wird nicht mutiert.
  */
 export function shapeSlots(slots: Slot[], eff: EffectiveShape): Slot[] {
   const outfield = slots.filter((s) => s.position !== 'GK')
   const maxBaseY = outfield.length ? Math.max(...outfield.map((s) => s.y)) : 100
   const w = clamp(eff.width, WIDTH_MIN, WIDTH_MAX)
   return slots.map((s) => {
-    if (s.position === 'GK') return { ...s }
+    if (s.position === 'GK') return { ...s, y: eff.gkY ?? s.y }
     return {
       ...s,
       x: clamp(50 + (s.x - 50) * w, 4, 96),

@@ -272,7 +272,14 @@ function drawSlot(
   const pillW = Math.min(metrics.width + pillPadX * 2, radius * 4)
   const pillH = radius * 0.65
   const pillX = cx - pillW / 2
-  const pillY = cy + radius + radius * 0.25
+  // Standard: Pille unter dem Chip. Reicht der Platz zur Canvas-Unterkante nicht
+  // (z. B. tief stehender Torwart), nach oben über den Chip klappen.
+  const pillGap = radius * 0.25
+  const pillBelowY = cy + radius + pillGap
+  const pillY =
+    pillBelowY + pillH <= ctx.canvas.height - radius * 0.12
+      ? pillBelowY
+      : cy - radius - pillGap - pillH
   ctx.fillStyle = 'rgba(0,0,0,0.75)'
   roundedRect(ctx, pillX, pillY, pillW, pillH, 5)
   ctx.fill()
