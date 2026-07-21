@@ -6,8 +6,6 @@ type Props = {
   player: Player
   /** "bench" für Bank, sonst die slotId. Wird zum Unterscheiden der Quelle beim Drop gebraucht. */
   source: string
-  /** Optionales Positionskürzel, das auf dem Chip im Feld angezeigt wird. */
-  positionShort?: string
   /** Optionaler Score (0-99) für die aktuelle Position – erscheint als Badge rechts oben. */
   score?: number
   compact?: boolean
@@ -21,7 +19,7 @@ type Props = {
  * `App.tsx`). Dadurch gibt es keinen Transform-Kampf mit den Slot-Transitions
  * und kein Subpixel-Zittern durch Rotation.
  */
-export function PlayerChip({ player, source, positionShort, score, compact, scale }: Props) {
+export function PlayerChip({ player, source, score, compact, scale }: Props) {
   const { attributes, listeners, setNodeRef, isDragging } = useDraggable({
     id: `player:${player.id}:${source}`,
     data: { playerId: player.id, source, role: player.role },
@@ -40,7 +38,6 @@ export function PlayerChip({ player, source, positionShort, score, compact, scal
     >
       <PlayerChipVisual
         player={player}
-        positionShort={positionShort}
         score={score}
         compact={compact}
         scale={scale}

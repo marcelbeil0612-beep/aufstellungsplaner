@@ -10,8 +10,6 @@ const statusBadge: Record<PlayerStatus, { icon: string; ring: string; title: str
 
 type Props = {
   player: Player
-  /** Optionales Positionskürzel links-oben. */
-  positionShort?: string
   /** Optionaler Score (0–99) rechts-oben. */
   score?: number
   /** Kompaktere Variante (auf dem Feld) vs. Bank. */
@@ -30,7 +28,7 @@ type Props = {
  * Rein visuelle Spielerdarstellung – ohne Drag-Logik.
  * Wird sowohl vom normalen `PlayerChip` als auch vom `DragOverlay` gerendert.
  */
-export function PlayerChipVisual({ player, positionShort, score, compact, elevated, scale = 1 }: Props) {
+export function PlayerChipVisual({ player, score, compact, elevated, scale = 1 }: Props) {
   const photoUrl = usePlayerPhotoUrl(player)
   const isGK = player.role === 'GK'
   const ringColor = isGK ? 'ring-amber-400' : 'ring-sky-400'
@@ -41,9 +39,9 @@ export function PlayerChipVisual({ player, positionShort, score, compact, elevat
   const baseAvatar = compact ? 64 : 56
   const avatarPx = Math.round(baseAvatar * s)
   const nameSize = compact ? 'text-[11px]' : 'text-xs'
-  // Namens-Pille ist bei engem Block der Hauptüberlapper → früh
-  // ausblenden; das Positions-Badge (ST/ZM/IV) bleibt, Identität klar.
-  // Foto/Avatar bleibt immer (nur kleiner).
+  // Namens-Pille ist bei engem Block der Hauptüberlapper → früh ausblenden.
+  // Die Identität trägt dann die Trikotnummer mitten im Kreis – eindeutiger
+  // als das frühere Positionskürzel, das mehrfach vorkommen konnte.
   const showName = s >= 0.88
 
   return (
@@ -58,16 +56,6 @@ export function PlayerChipVisual({ player, positionShort, score, compact, elevat
           aria-hidden
           className="absolute inset-x-2 bottom-[-4px] h-2 rounded-full bg-black/50 blur-md"
         />
-        {positionShort && (
-          <span
-            className={[
-              'absolute -left-1.5 -top-1.5 z-10 rounded-md px-1.5 py-0.5 text-[10px] font-black uppercase tracking-wide text-white shadow-lg ring-1',
-              isGK ? 'bg-amber-500 ring-amber-300/60' : 'bg-sky-600 ring-sky-300/60',
-            ].join(' ')}
-          >
-            {positionShort}
-          </span>
-        )}
         {typeof score === 'number' && (
           <span
             className={[

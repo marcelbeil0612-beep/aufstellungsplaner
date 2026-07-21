@@ -51,7 +51,6 @@ export function SlotDropZone({ slot, animating, chipScale = 1 }: Props) {
           <PlayerChip
             player={player}
             source={slot.id}
-            positionShort={positionShort[slot.position]}
             score={player.skills ? playerPositionScore(player, slot.position) : undefined}
             compact
             scale={chipScale}

@@ -1,12 +1,12 @@
 import { useDroppable } from '@dnd-kit/core'
 import { useState } from 'react'
 import { useProGuard } from '../lib/proAccess'
-import { selectBenchPlayers, useLineupStore } from '../store/useLineupStore'
+import { selectReservePlayers, useLineupStore } from '../store/useLineupStore'
 import { PlayerChip } from './PlayerChip'
 import { SubstitutionsDialog } from './SubstitutionsDialog'
 
 export function Bench() {
-  const players = useLineupStore(selectBenchPlayers)
+  const players = useLineupStore(selectReservePlayers)
   const subCount = useLineupStore((s) => s.substitutions.length)
   const [subsOpen, setSubsOpen] = useState(false)
   const { allowed: subsAllowed, guard: guardSubs } = useProGuard('substitutions')
@@ -32,7 +32,7 @@ export function Bench() {
       <header>
         <h2 className="text-lg font-bold text-white">Kader</h2>
         <p className="text-xs text-slate-400">
-          {players.length} Spieler verfügbar · zum Aufstellen aufs Feld ziehen
+          {players.length} Spieler verfügbar · aufs Feld oder auf die Bank ziehen
         </p>
       </header>
 

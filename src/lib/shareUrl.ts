@@ -14,6 +14,12 @@ export type SharePayload = {
   a: Array<[string, string]>
   /** Auswechselplan, namebasiert (out / in / Minute / Notiz). */
   s?: Array<{ m?: number; o: string; i: string; n?: string }>
+  /**
+   * Ersatzbank, positionstreu und namebasiert (null = freier Platz).
+   * Optional und additiv: ältere Clients ignorieren das Feld, neuere lesen bei
+   * älteren Links schlicht keine Bank – deshalb bleibt `v` bei 1.
+   */
+  b?: Array<string | null>
   /** Anzeigetitel (z. B. Datum / Gegner). */
   t?: string
 }
@@ -42,6 +48,8 @@ type ShareInput = {
   formationId: string
   assignments: Record<string, string | null>
   substitutions: Substitution[]
+  /** Ersatzbank als Spieler-IDs (null = freier Platz). */
+  bench?: Array<string | null>
   players: Player[]
   title?: string
 }
@@ -71,11 +79,17 @@ export function buildShareHash(input: ShareInput): string {
     })
   }
 
+  // Bank positionstreu: unbekannte Spieler werden zu freien Plätzen, damit die
+  // Sitzordnung des Absenders erhalten bleibt.
+  const bench = (input.bench ?? []).map((id) => (id ? nameOf(id) ?? null : null))
+  const hasBench = bench.some((name) => name !== null)
+
   const payload: SharePayload = {
     v: 1,
     f: input.formationId,
     a: assignments,
     ...(subs.length > 0 ? { s: subs } : {}),
+    ...(hasBench ? { b: bench } : {}),
     ...(input.title ? { t: input.title } : {}),
   }
   return HASH_PREFIX + toBase64Url(JSON.stringify(payload))
@@ -128,6 +142,8 @@ export type ShareMatchResult = {
   assignments: Array<[string, string]>
   /** Sub mit aufgelösten lokalen IDs. */
   substitutions: Array<{ minute?: number; outPlayerId: string; inPlayerId: string; note?: string }>
+  /** Ersatzbank mit lokalen IDs, positionstreu (null = frei/nicht gefunden). */
+  bench: Array<string | null>
   /** Namen aus dem Share, für die kein lokaler Spieler gefunden wurde. */
   missingPlayers: string[]
   title?: string
@@ -166,10 +182,21 @@ export function matchShareToRoster(
     }
   }
 
+  const bench: ShareMatchResult['bench'] = (payload.b ?? []).map((name) => {
+    if (typeof name !== 'string' || !name) return null
+    const id = resolve(name)
+    if (!id) {
+      missing.add(name)
+      return null
+    }
+    return id
+  })
+
   return {
     formationId: payload.f,
     assignments,
     substitutions: subs,
+    bench,
     missingPlayers: Array.from(missing).sort((a, b) => a.localeCompare(b, 'de')),
     title: payload.t,
   }

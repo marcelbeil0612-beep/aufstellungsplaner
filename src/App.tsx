@@ -12,6 +12,7 @@ import {
 } from '@dnd-kit/core'
 import { useEffect, useMemo, useState } from 'react'
 import { Bench } from './components/Bench'
+import { BENCH_SOURCE_PREFIX, BenchStrip } from './components/BenchStrip'
 import { DemoBanner } from './components/DemoBanner'
 import { DemoTour } from './components/DemoTour'
 import { FormationShapeControls } from './components/FormationShapeControls'
@@ -27,7 +28,7 @@ import { activateFromStoredLicense } from './lib/proActivation'
 import { useProStatus } from './lib/proAccess'
 import { demoStoreSeed, isDemoSession } from './data/demoLineup'
 import { formationById } from './data/formations'
-import { positionLabel, positionShort } from './data/positionWeights'
+import { positionLabel } from './data/positionWeights'
 import { downloadLineupPng, suggestedLineupFilename } from './lib/exportLineup'
 import { effectiveShape, shapeSlots } from './lib/phaseShift'
 import { playerPositionScore } from './lib/score'
@@ -37,11 +38,25 @@ import { usePaywallStore } from './store/paywallStore'
 
 type DragData = {
   playerId: string
-  source: string // "bench" oder slotId
+  source: string // "bench" (Kader), "bench-seat:<i>" oder slotId
   role: 'GK' | 'FIELD'
 }
-type DropData = { slotId?: string; position?: string; isBench?: boolean }
+type DropData = {
+  slotId?: string
+  position?: string
+  /** Kader-Panel: Spieler zurück ins Reservoir. */
+  isBench?: boolean
+  /** Sitzplatz auf der Ersatzbank. */
+  benchIndex?: number
+}
 type ActiveDrag = { playerId: string; source: string }
+
+/** Liefert den Bankplatz-Index einer Drag-Quelle – oder null, wenn sie keiner ist. */
+function benchSeatIndex(source: string): number | null {
+  if (!source.startsWith(BENCH_SOURCE_PREFIX)) return null
+  const index = Number(source.slice(BENCH_SOURCE_PREFIX.length))
+  return Number.isInteger(index) ? index : null
+}
 
 /** Einmal-Flag: Demo-Seed nur beim ersten Render setzen (idempotent). */
 let demoSeeded = false
@@ -64,8 +79,11 @@ export default function App() {
   const players = useLineupStore((s) => s.players)
   const assignments = useLineupStore((s) => s.assignments)
   const substitutions = useLineupStore((s) => s.substitutions)
+  const bench = useLineupStore((s) => s.bench)
   const assign = useLineupStore((s) => s.assign)
   const unassign = useLineupStore((s) => s.unassign)
+  const benchAssign = useLineupStore((s) => s.benchAssign)
+  const benchClear = useLineupStore((s) => s.benchClear)
   const formation = useMemo(() => formationById(formationId), [formationId])
   const [warning, setWarning] = useState<string | null>(null)
   const [notice, setNotice] = useState<string | null>(null)
@@ -118,6 +136,7 @@ export default function App() {
       formationId,
       assignments,
       substitutions,
+      bench,
       players,
       title: formation.name,
     })
@@ -148,7 +167,7 @@ export default function App() {
     setExporting(true)
     try {
       await downloadLineupPng(
-        { formation, shape: phaseShape[phase], phase, assignments, players, title: formation.name },
+        { formation, shape: phaseShape[phase], phase, assignments, players, bench, title: formation.name },
         suggestedLineupFilename(formation.name),
       )
     } catch (e) {
@@ -184,8 +203,16 @@ export default function App() {
     const target = e.over?.data.current as DropData | undefined
     if (!data || !target) return
 
+    const fromSeat = benchSeatIndex(data.source)
+
+    if (typeof target.benchIndex === 'number') {
+      benchAssign(target.benchIndex, data.playerId)
+      return
+    }
     if (target.isBench) {
-      if (data.source !== 'bench') unassign(data.source)
+      // Zurück ins Kader-Reservoir – je nach Herkunft Slot oder Bankplatz leeren.
+      if (fromSeat !== null) benchClear(fromSeat)
+      else if (data.source !== 'bench') unassign(data.source)
       return
     }
     if (target.slotId) {
@@ -211,7 +238,7 @@ export default function App() {
   const activePlayer = activeDrag
     ? players.find((p) => p.id === activeDrag.playerId) ?? null
     : null
-  const activeSlot = activeDrag && activeDrag.source !== 'bench'
+  const activeSlot = activeDrag && activeDrag.source !== 'bench' && benchSeatIndex(activeDrag.source) === null
     ? shapeSlots(formation.slots, effectiveShape(phase, phaseShape[phase])).find((s) => s.id === activeDrag.source)
     : undefined
   const overlayScore = activePlayer && activeSlot && activePlayer.skills
@@ -278,6 +305,7 @@ export default function App() {
               <FormationShapeControls />
             </div>
             <Pitch formation={formation} />
+            <BenchStrip />
             <div className="mt-3 flex w-full max-w-[480px] flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-slate-500">
               <span className="font-semibold text-slate-400">Legende:</span>
               {Array.from(new Set(formation.slots.map((s) => s.position))).map((pos) => (
@@ -322,7 +350,6 @@ export default function App() {
           <PlayerChipVisual
             player={activePlayer}
             compact
-            positionShort={activeSlot ? positionShort[activeSlot.position] : undefined}
             score={overlayScore}
             elevated
           />

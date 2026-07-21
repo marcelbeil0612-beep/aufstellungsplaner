@@ -18,9 +18,17 @@ export type SavedLineup = {
   assignments: Assignments
   /** Geplante Auswechslungen für diese Aufstellung. */
   substitutions: Substitution[]
+  /** Besetzung der Ersatzbank (Index = Sitzplatz, null = frei). */
+  bench: Bench
   createdAt: number
   updatedAt: number
 }
+
+/** Ersatzbank: fixe Sitzplätze, `playerId` oder null. Länge immer `BENCH_SIZE`. */
+export type Bench = (string | null)[]
+
+/** Bankplätze wie auf dem Spielberichtsbogen. */
+export const BENCH_SIZE = 7
 
 type State = {
   players: Player[]
@@ -47,6 +55,12 @@ type State = {
   playerListIsUserManaged: boolean
   /** Live geplante Auswechslungen für die aktuelle Aufstellung. */
   substitutions: Substitution[]
+  /**
+   * Nominierte Ersatzbank. Disjunkt zu `assignments`: ein Spieler steht
+   * entweder auf dem Feld ODER auf der Bank – nie beides. Wer weder noch
+   * ist, bleibt im Kader-Reservoir (siehe `selectReservePlayers`).
+   */
+  bench: Bench
   /** Spielprotokoll: chronologische Liste gespielter Matches. */
   matches: Match[]
   /**
@@ -67,8 +81,17 @@ type Actions = {
   setFormation: (id: string) => void
   /** Weist einen Spieler einem Slot zu. Wenn der Spieler bereits woanders steht, wird sein alter Slot frei. Wenn der Zielslot belegt ist, wird der vorhandene Spieler getauscht. */
   assign: (slotId: string, playerId: string) => void
-  /** Entfernt die Zuordnung eines Slots (Spieler geht zurück auf die Bank). */
+  /** Entfernt die Zuordnung eines Slots (Spieler geht zurück in den Kader). */
   unassign: (slotId: string) => void
+
+  /**
+   * Setzt einen Spieler auf den Bankplatz `index`. Stand er auf dem Feld,
+   * wird sein Slot frei; stand er auf einem anderen Bankplatz, tauschen die
+   * beiden Plätze. Ein bereits dort sitzender Spieler wandert zurück in den Kader.
+   */
+  benchAssign: (index: number, playerId: string) => void
+  /** Leert einen Bankplatz (Spieler geht zurück in den Kader). */
+  benchClear: (index: number) => void
   /** Setzt Aufstellung zurück (alle Slots leer, Formation bleibt). */
   reset: () => void
 
@@ -160,6 +183,26 @@ type Actions = {
 const emptyAssignments = (slotIds: string[]): Assignments =>
   Object.fromEntries(slotIds.map((id) => [id, null]))
 
+export const emptyBench = (): Bench => Array<string | null>(BENCH_SIZE).fill(null)
+
+/**
+ * Bringt eine beliebige (persistierte, importierte, geteilte) Bank auf die
+ * kanonische Form: exakt `BENCH_SIZE` Plätze, nur Strings, keine Doppelung
+ * desselben Spielers auf zwei Plätzen.
+ */
+export function sanitizeBench(raw: unknown): Bench {
+  const seats = emptyBench()
+  if (!Array.isArray(raw)) return seats
+  const seen = new Set<string>()
+  for (let i = 0; i < BENCH_SIZE; i++) {
+    const value = raw[i]
+    if (typeof value !== 'string' || !value || seen.has(value)) continue
+    seats[i] = value
+    seen.add(value)
+  }
+  return seats
+}
+
 const newId = (): string => {
   if (typeof crypto !== 'undefined' && 'randomUUID' in crypto) return crypto.randomUUID()
   return Math.random().toString(36).slice(2) + Date.now().toString(36)
@@ -199,7 +242,7 @@ export function ensurePlayerNumbers(players: Player[]): Player[] {
  * Backups die Version mitschreiben und beim Import durch dieselbe Migrations-
  * Kette wie der reguläre Persist-Pfad laufen können.
  */
-export const STORE_VERSION = 12
+export const STORE_VERSION = 13
 
 /**
  * Reine Migrationsfunktion. Wird sowohl im `persist({ migrate })`-Hook als auch
@@ -269,6 +312,14 @@ export function migratePersistedState(
   if (fromVersion < 12) {
     if (Array.isArray(s.players)) s.players = ensurePlayerNumbers(s.players as Player[])
   }
+  // v12 → v13: Ersatzbank, live + pro gespeicherter Aufstellung. Bestehende
+  // Installationen starten mit leerer Bank – der Kader bleibt unverändert.
+  if (fromVersion < 13) {
+    s.bench = sanitizeBench(s.bench)
+    if (Array.isArray(s.savedLineups)) {
+      s.savedLineups = s.savedLineups.map((l) => ({ ...l, bench: sanitizeBench(l.bench) }))
+    }
+  }
   return s
 }
 
@@ -288,6 +339,7 @@ export const useLineupStore = create<State & Actions>()(
       lastViewedDuel: null,
       playerListIsUserManaged: false,
       substitutions: [],
+      bench: emptyBench(),
       matches: [],
       isPro: false,
       license: null,
@@ -345,7 +397,13 @@ export const useLineupStore = create<State & Actions>()(
         }
         next[slotId] = playerId
 
-        set({ assignments: next })
+        // Feld und Bank sind disjunkt: wer aufgestellt wird, verlässt die Bank.
+        const bench = get().bench
+        const nextBench = bench.includes(playerId)
+          ? bench.map((id) => (id === playerId ? null : id))
+          : bench
+
+        set({ assignments: next, bench: nextBench })
       },
 
       unassign: (slotId) => {
@@ -354,17 +412,55 @@ export const useLineupStore = create<State & Actions>()(
         set({ assignments: { ...assignments, [slotId]: null } })
       },
 
+      benchAssign: (index, playerId) => {
+        if (!Number.isInteger(index) || index < 0 || index >= BENCH_SIZE) return
+        const { bench, assignments, players } = get()
+        if (!players.some((p) => p.id === playerId)) return
+        if (bench[index] === playerId) return
+
+        const nextBench = [...bench]
+        const currentSeat = nextBench.indexOf(playerId)
+        if (currentSeat !== -1 && currentSeat !== index) {
+          // Platztausch innerhalb der Bank: der bisherige Insasse rückt nach.
+          nextBench[currentSeat] = nextBench[index]
+        }
+        nextBench[index] = playerId
+
+        // Kam der Spieler vom Feld, wird sein Slot frei.
+        let nextAssignments = assignments
+        if (Object.values(assignments).includes(playerId)) {
+          nextAssignments = Object.fromEntries(
+            Object.entries(assignments).map(([slotId, pid]) => [
+              slotId,
+              pid === playerId ? null : pid,
+            ]),
+          )
+        }
+
+        set({ bench: nextBench, assignments: nextAssignments })
+      },
+
+      benchClear: (index) => {
+        const { bench } = get()
+        if (!Number.isInteger(index) || index < 0 || index >= bench.length) return
+        if (bench[index] === null) return
+        const next = [...bench]
+        next[index] = null
+        set({ bench: next })
+      },
+
       reset: () => {
         const formation = formationById(get().formationId)
         set({
           assignments: emptyAssignments(formation.slots.map((s) => s.id)),
           activeLineupId: null,
           substitutions: [],
+          bench: emptyBench(),
         })
       },
 
       saveAsNewLineup: (name) => {
-        const { formationId, assignments, substitutions, savedLineups } = get()
+        const { formationId, assignments, substitutions, bench, savedLineups } = get()
         const now = Date.now()
         const lineup: SavedLineup = {
           id: newId(),
@@ -372,6 +468,7 @@ export const useLineupStore = create<State & Actions>()(
           formationId,
           assignments: { ...assignments },
           substitutions: substitutions.map((s) => ({ ...s })),
+          bench: [...bench],
           createdAt: now,
           updatedAt: now,
         }
@@ -383,7 +480,7 @@ export const useLineupStore = create<State & Actions>()(
       },
 
       overwriteActiveLineup: () => {
-        const { activeLineupId, formationId, assignments, substitutions, savedLineups } = get()
+        const { activeLineupId, formationId, assignments, substitutions, bench, savedLineups } = get()
         if (!activeLineupId) return
         const idx = savedLineups.findIndex((l) => l.id === activeLineupId)
         if (idx === -1) return
@@ -392,6 +489,7 @@ export const useLineupStore = create<State & Actions>()(
           formationId,
           assignments: { ...assignments },
           substitutions: substitutions.map((s) => ({ ...s })),
+          bench: [...bench],
           updatedAt: Date.now(),
         }
         const next = [...savedLineups]
@@ -412,6 +510,7 @@ export const useLineupStore = create<State & Actions>()(
           assignments: merged,
           activeLineupId: id,
           substitutions: (lineup.substitutions ?? []).map((s) => ({ ...s })),
+          bench: sanitizeBench(lineup.bench),
         })
       },
 
@@ -541,12 +640,16 @@ export const useLineupStore = create<State & Actions>()(
           return next
         }
 
+        const cleanBench = (b: Bench): Bench => b.map((pid) => (pid === playerId ? null : pid))
+
         set({
           players: get().players.filter((p) => p.id !== playerId),
           assignments: cleanAssignments(get().assignments),
+          bench: cleanBench(get().bench),
           savedLineups: get().savedLineups.map((l) => ({
             ...l,
             assignments: cleanAssignments(l.assignments),
+            bench: cleanBench(sanitizeBench(l.bench)),
           })),
           playerListIsUserManaged: true,
         })
@@ -627,7 +730,10 @@ export const useLineupStore = create<State & Actions>()(
         }
         // Auswechslungen sind plan-spezifisch – nach kompletter Umstellung
         // sind sie i. d. R. nicht mehr passend.
-        set({ assignments: next, activeLineupId: null, substitutions: [] })
+        // Die Bank bleibt bestehen, verliert aber alle, die jetzt in der Elf stehen.
+        const onPitch = new Set(Object.values(next).filter(Boolean) as string[])
+        const bench = get().bench.map((pid) => (pid && onPitch.has(pid) ? null : pid))
+        set({ assignments: next, activeLineupId: null, substitutions: [], bench })
       },
 
       applySharedLineup: (match) => {
@@ -650,12 +756,21 @@ export const useLineupStore = create<State & Actions>()(
             day: '2-digit',
             month: '2-digit',
           })}`
+        // Bank aus dem Link, aber defensiv: wer im Link zugleich in der Elf
+        // steht (handgebauter Link), verliert den Bankplatz – die Invariante
+        // „Feld ODER Bank" gilt auch für importierte Daten.
+        const onPitch = new Set(Object.values(next).filter(Boolean) as string[])
+        const sharedBench = sanitizeBench(match.bench).map((pid) =>
+          pid && onPitch.has(pid) ? null : pid,
+        )
+
         const lineup: SavedLineup = {
           id: newId(),
           name,
           formationId: match.formationId,
           assignments: next,
           substitutions: subs,
+          bench: sharedBench,
           createdAt: now,
           updatedAt: now,
         }
@@ -663,6 +778,7 @@ export const useLineupStore = create<State & Actions>()(
           formationId: match.formationId,
           assignments: next,
           substitutions: subs,
+          bench: sharedBench,
           savedLineups: [lineup, ...get().savedLineups],
           activeLineupId: lineup.id,
         })
@@ -690,6 +806,7 @@ export const useLineupStore = create<State & Actions>()(
           ? (snapshot.savedLineups as SavedLineup[]).map((l) => ({
               ...l,
               substitutions: Array.isArray(l.substitutions) ? l.substitutions : [],
+              bench: sanitizeBench(l.bench),
             }))
           : []
         const safeActiveId =
@@ -751,6 +868,7 @@ export const useLineupStore = create<State & Actions>()(
           players: mergedPlayers,
           playerListIsUserManaged: userManaged,
           substitutions: safeSubstitutions,
+          bench: sanitizeBench(snapshot.bench),
           matches: safeMatches,
         })
       },
@@ -779,6 +897,7 @@ export const useLineupStore = create<State & Actions>()(
         lastViewedDuel: state.lastViewedDuel,
         playerListIsUserManaged: state.playerListIsUserManaged,
         substitutions: state.substitutions,
+        bench: state.bench,
         matches: state.matches,
         isPro: state.isPro,
         license: state.license,
@@ -817,6 +936,9 @@ export const useLineupStore = create<State & Actions>()(
           ...persisted,
           // Trikotnummer ist Pflicht – fehlende (Altbestand) nachvergeben.
           players: ensurePlayerNumbers(mergedPlayers),
+          // Bank immer in kanonischer Form – auch wenn die Persistenz
+          // (Altbestand, manipulierter IDB-Eintrag) etwas anderes liefert.
+          bench: sanitizeBench(persisted.bench),
         }
       },
     },
@@ -835,11 +957,23 @@ export const hasHydratedStore = (): boolean => useLineupStore.persist.hasHydrate
 export const onStoreHydrated = (cb: () => void): (() => void) =>
   useLineupStore.persist.onFinishHydration(cb)
 
-/** Liefert Spieler, die aktuell keinem Slot zugewiesen sind. */
-export const selectBenchPlayers = (s: State): Player[] => {
-  const assigned = new Set(Object.values(s.assignments).filter(Boolean) as string[])
-  return s.players.filter((p) => !assigned.has(p.id))
+/**
+ * Kader-Reservoir: Spieler, die weder aufgestellt noch nominiert sind.
+ * Bewusst NICHT „Bank" – die Bank ist seit v13 eine eigene, aktiv besetzte Liste.
+ */
+export const selectReservePlayers = (s: State): Player[] => {
+  const used = new Set(Object.values(s.assignments).filter(Boolean) as string[])
+  for (const pid of s.bench) if (pid) used.add(pid)
+  return s.players.filter((p) => !used.has(p.id))
 }
+
+/** Bankplätze index-treu aufgelöst (null = freier Platz). */
+export const selectBenchSeats = (s: State): (Player | null)[] =>
+  s.bench.map((pid) => (pid ? s.players.find((p) => p.id === pid) ?? null : null))
+
+/** Anzahl besetzter Bankplätze. */
+export const selectBenchCount = (s: State): number =>
+  s.bench.reduce((n, pid) => (pid ? n + 1 : n), 0)
 
 /** Liefert den Spieler, der dem Slot zugewiesen ist (oder undefined). */
 export const selectPlayerOfSlot = (s: State, slotId: string): Player | undefined => {

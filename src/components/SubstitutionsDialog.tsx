@@ -19,19 +19,33 @@ function sortedPlayers(players: Player[]): Player[] {
   })
 }
 
+const optionLabel = (p: Player): string =>
+  `${typeof p.number === 'number' ? `${p.number} · ${p.name}` : p.name}${p.role === 'GK' ? ' (TW)' : ''}`
+
 function PlayerSelect({
   value,
   onChange,
   players,
+  fallbackPool,
   placeholder,
   label,
 }: {
   value: string
   onChange: (id: string) => void
   players: Player[]
+  /**
+   * Gesamter Kader – nur als Rückfalltopf. Zeigt einen bereits gewählten
+   * Spieler weiter an, auch wenn er inzwischen nicht mehr in die Liste gehört
+   * (Aufstellung geändert, Bank umgebaut). Sonst verschwände ein gespeicherter
+   * Wechsel stumm aus dem Plan.
+   */
+  fallbackPool: Player[]
   placeholder: string
   label: string
 }) {
+  const inList = players.some((p) => p.id === value)
+  const stale = !inList && value ? fallbackPool.find((p) => p.id === value) : undefined
+
   return (
     <select
       value={value}
@@ -43,10 +57,14 @@ function PlayerSelect({
       <option value="">{placeholder}</option>
       {players.map((p) => (
         <option key={p.id} value={p.id}>
-          {typeof p.number === 'number' ? `${p.number} · ${p.name}` : p.name}
-          {p.role === 'GK' ? ' (TW)' : ''}
+          {optionLabel(p)}
         </option>
       ))}
+      {stale && (
+        <option key={stale.id} value={stale.id}>
+          {optionLabel(stale)} — nicht mehr im Plan
+        </option>
+      )}
     </select>
   )
 }
@@ -54,13 +72,17 @@ function PlayerSelect({
 function SubstitutionRow({
   index,
   sub,
-  players,
+  onPitch,
+  onBench,
+  roster,
   onChange,
   onRemove,
 }: {
   index: number
   sub: Substitution
-  players: Player[]
+  onPitch: Player[]
+  onBench: Player[]
+  roster: Player[]
   onChange: (patch: Partial<Omit<Substitution, 'id'>>) => void
   onRemove: () => void
 }) {
@@ -89,14 +111,16 @@ function SubstitutionRow({
       <PlayerSelect
         value={sub.outPlayerId}
         onChange={(id) => onChange({ outPlayerId: id })}
-        players={players}
+        players={onPitch}
+        fallbackPool={roster}
         placeholder="Spieler raus…"
         label={`Spieler raus (${index + 1}. Wechsel)`}
       />
       <PlayerSelect
         value={sub.inPlayerId}
         onChange={(id) => onChange({ inPlayerId: id })}
-        players={players}
+        players={onBench}
+        fallbackPool={roster}
         placeholder="Spieler rein…"
         label={`Spieler rein (${index + 1}. Wechsel)`}
       />
@@ -130,7 +154,20 @@ export function SubstitutionsDialog({ open, onClose }: Props) {
   const removeSubstitution = useLineupStore((s) => s.removeSubstitution)
   const clearSubstitutions = useLineupStore((s) => s.clearSubstitutions)
 
+  const assignments = useLineupStore((s) => s.assignments)
+  const bench = useLineupStore((s) => s.bench)
+
   const sortedRoster = useMemo(() => sortedPlayers(players), [players])
+  // „Raus" kann nur, wer spielt. „Rein" nur, wer auf der Bank sitzt – das ist
+  // die Regel auf dem Platz und seit der Ersatzbank auch hier abbildbar.
+  const onPitch = useMemo(() => {
+    const ids = new Set(Object.values(assignments).filter(Boolean) as string[])
+    return sortedPlayers(players.filter((p) => ids.has(p.id)))
+  }, [players, assignments])
+  const onBench = useMemo(() => {
+    const ids = new Set(bench.filter(Boolean) as string[])
+    return sortedPlayers(players.filter((p) => ids.has(p.id)))
+  }, [players, bench])
 
   return (
     <Modal
@@ -174,6 +211,12 @@ export function SubstitutionsDialog({ open, onClose }: Props) {
       }
     >
       <div className="flex-1 overflow-y-auto px-5 py-4">
+        {onBench.length === 0 && (
+          <div className="mb-3 rounded-lg border border-amber-700/40 bg-amber-950/40 px-3 py-2 text-xs text-amber-200">
+            Die Ersatzbank ist leer – es steht niemand zum Einwechseln bereit. Zieh unter dem
+            Spielfeld Spieler aus dem Kader auf die Bank.
+          </div>
+        )}
         {substitutions.length === 0 ? (
           <div className="rounded-xl border border-dashed border-slate-800 bg-slate-950/40 px-5 py-10 text-center text-sm text-slate-400">
             Noch keine Wechsel geplant.
@@ -187,7 +230,9 @@ export function SubstitutionsDialog({ open, onClose }: Props) {
                 key={sub.id}
                 index={i}
                 sub={sub}
-                players={sortedRoster}
+                onPitch={onPitch}
+                onBench={onBench}
+                roster={sortedRoster}
                 onChange={(patch) => updateSubstitution(sub.id, patch)}
                 onRemove={() => removeSubstitution(sub.id)}
               />

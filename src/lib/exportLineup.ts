@@ -18,9 +18,17 @@ type ExportInput = {
   phase: Phase
   assignments: Record<string, string | null>
   players: Player[]
+  /**
+   * Besetzte Ersatzbank (Sitzplätze, null = frei). Ist mindestens ein Platz
+   * belegt, hängt der Export unter dem Spielfeld ein Bank-Band an.
+   */
+  bench?: (string | null)[]
   /** Anzeigetitel über dem Spielfeld (z. B. „Heimspiel · 4-3-3"). */
   title?: string
 }
+
+/** Höhe des Bank-Bands unter dem Platz (nur gezeichnet, wenn die Bank besetzt ist). */
+const BENCH_BAND_H = 230
 
 const STATUS_GLYPH: Record<PlayerStatus, string> = {
   injured: '🤕',
@@ -44,7 +52,8 @@ async function loadPhotos(
   const urls = usePhotoStore.getState().urls
   const out = new Map<string, HTMLImageElement>()
   const tasks: Promise<void>[] = []
-  for (const playerId of Object.values(input.assignments)) {
+  const ids = [...Object.values(input.assignments), ...(input.bench ?? [])]
+  for (const playerId of ids) {
     if (!playerId) continue
     const player = input.players.find((p) => p.id === playerId)
     if (!player) continue
@@ -144,19 +153,22 @@ function drawPitch(ctx: CanvasRenderingContext2D, w: number, h: number): void {
   line(44, 148, 56, 148)
 }
 
-/** Zeichnet einen einzelnen Slot inkl. Spielerinfo (Foto/Initialen, Name, Nummer, Status). */
-function drawSlot(
+/**
+ * Zeichnet Schatten, Ring und Avatarfläche eines Chips – identisch für Feld
+ * und Bank, damit beide Darstellungen nicht auseinanderdriften.
+ */
+function drawAvatar(
   ctx: CanvasRenderingContext2D,
   cx: number,
   cy: number,
-  slot: Slot,
-  player: Player | undefined,
-  photo: HTMLImageElement | undefined,
   radius: number,
+  opts: {
+    isGK: boolean
+    photo: HTMLImageElement | undefined
+    centerText: string
+    centerScale: number
+  },
 ): void {
-  const isGK = slot.position === 'GK'
-  const ringColor = isGK ? '#fbbf24' : '#38bdf8'
-
   // Schatten unter dem Chip.
   ctx.save()
   ctx.fillStyle = 'rgba(0,0,0,0.45)'
@@ -165,25 +177,25 @@ function drawSlot(
   ctx.fill()
   ctx.restore()
 
-  // Ring
   ctx.save()
+  // Ring
   ctx.lineWidth = radius * 0.18
-  ctx.strokeStyle = ringColor
+  ctx.strokeStyle = opts.isGK ? '#fbbf24' : '#38bdf8'
   ctx.beginPath()
   ctx.arc(cx, cy, radius, 0, Math.PI * 2)
   ctx.stroke()
 
-  // Avatar-Hintergrund + Foto/Initialen-Clip.
+  // Avatar-Hintergrund + Foto/Text-Clip.
   ctx.beginPath()
   ctx.arc(cx, cy, radius - radius * 0.05, 0, Math.PI * 2)
   ctx.clip()
-  if (photo) {
+  if (opts.photo) {
     const size = (radius - radius * 0.05) * 2
-    ctx.drawImage(photo, cx - size / 2, cy - size / 2, size, size)
+    ctx.drawImage(opts.photo, cx - size / 2, cy - size / 2, size, size)
   } else {
     // Farbverlauf wie auf dem normalen Chip.
     const g = ctx.createLinearGradient(cx - radius, cy - radius, cx + radius, cy + radius)
-    if (isGK) {
+    if (opts.isGK) {
       g.addColorStop(0, '#fbbf24')
       g.addColorStop(1, '#92400e')
     } else {
@@ -193,75 +205,58 @@ function drawSlot(
     ctx.fillStyle = g
     ctx.fillRect(cx - radius, cy - radius, radius * 2, radius * 2)
     ctx.fillStyle = '#ffffff'
-    // Trikotnummer mittig (Pflichtfeld); nur falls ausnahmsweise keine gesetzt → Initialen.
-    const centerText = player
-      ? typeof player.number === 'number'
-        ? String(player.number)
-        : initials(player.name)
-      : positionShort[slot.position]
-    const centerScale = player && typeof player.number === 'number' ? 1.1 : 0.95
-    ctx.font = `bold ${Math.round(radius * centerScale)}px Inter, system-ui, sans-serif`
+    ctx.font = `bold ${Math.round(radius * opts.centerScale)}px Inter, system-ui, sans-serif`
     ctx.textAlign = 'center'
     ctx.textBaseline = 'middle'
-    ctx.fillText(centerText, cx, cy)
+    ctx.fillText(opts.centerText, cx, cy)
   }
   ctx.restore()
+}
 
-  // Positions-Badge oben links (immer).
+/** Status-Badge (verletzt/gesperrt/abwesend) unten rechts am Chip. */
+function drawStatusBadge(
+  ctx: CanvasRenderingContext2D,
+  cx: number,
+  cy: number,
+  radius: number,
+  status: PlayerStatus,
+): void {
   ctx.save()
-  ctx.fillStyle = isGK ? '#f59e0b' : '#0284c7'
-  ctx.strokeStyle = 'rgba(255,255,255,0.7)'
-  ctx.lineWidth = 1.5
-  const posText = positionShort[slot.position]
-  ctx.font = `900 ${Math.round(radius * 0.36)}px Inter, system-ui, sans-serif`
-  const posMetrics = ctx.measureText(posText)
-  const posPadX = radius * 0.16
-  const posPadY = radius * 0.1
-  const posW = posMetrics.width + posPadX * 2
-  const posH = radius * 0.55
-  const posX = cx - radius * 0.8
-  const posY = cy - radius * 1.05
-  roundedRect(ctx, posX, posY, posW, posH, 4)
+  const bx = cx + radius * 0.7
+  const by = cy + radius * 0.7
+  const br = radius * 0.32
+  const colors: Record<PlayerStatus, string> = {
+    injured: '#f43f5e',
+    suspended: '#f59e0b',
+    absent: '#64748b',
+  }
+  ctx.fillStyle = colors[status]
+  ctx.strokeStyle = '#0f172a'
+  ctx.lineWidth = 2
+  ctx.beginPath()
+  ctx.arc(bx, by, br, 0, Math.PI * 2)
   ctx.fill()
   ctx.stroke()
-  ctx.fillStyle = '#ffffff'
-  ctx.textAlign = 'left'
+  ctx.font = `${Math.round(br * 1.1)}px sans-serif`
+  ctx.textAlign = 'center'
   ctx.textBaseline = 'middle'
-  ctx.fillText(posText, posX + posPadX, posY + posH / 2 + posPadY * 0.05)
+  ctx.fillText(STATUS_GLYPH[status], bx, by + 1)
   ctx.restore()
+}
 
-  // Status-Badge unten rechts (falls gesetzt).
-  if (player?.status) {
-    ctx.save()
-    const sx = cx + radius * 0.7
-    const sy = cy + radius * 0.7
-    const sr = radius * 0.32
-    const colors: Record<PlayerStatus, string> = {
-      injured: '#f43f5e',
-      suspended: '#f59e0b',
-      absent: '#64748b',
-    }
-    ctx.fillStyle = colors[player.status]
-    ctx.strokeStyle = '#0f172a'
-    ctx.lineWidth = 2
-    ctx.beginPath()
-    ctx.arc(sx, sy, sr, 0, Math.PI * 2)
-    ctx.fill()
-    ctx.stroke()
-    ctx.font = `${Math.round(sr * 1.1)}px sans-serif`
-    ctx.textAlign = 'center'
-    ctx.textBaseline = 'middle'
-    ctx.fillText(STATUS_GLYPH[player.status], sx, sy + 1)
-    ctx.restore()
-  }
-
-  // Name-Pill unten. Nummer steht mittig im Chip; in der Pille nur bei Foto-Spielern
-  // (dort zeigt die Mitte das Foto), sonst reicht der Name.
-  const label = player
-    ? photo && typeof player.number === 'number'
-      ? `${player.number} · ${player.name}`
-      : player.name
-    : '— frei —'
+/**
+ * Namens-Pille unter dem Chip. Reicht der Platz bis `bottomLimit` nicht
+ * (tief stehender Torwart), klappt sie über den Chip.
+ */
+function drawNamePill(
+  ctx: CanvasRenderingContext2D,
+  cx: number,
+  cy: number,
+  radius: number,
+  label: string,
+  muted: boolean,
+  bottomLimit: number,
+): void {
   ctx.save()
   ctx.font = `bold ${Math.round(radius * 0.4)}px Inter, system-ui, sans-serif`
   ctx.textAlign = 'center'
@@ -272,12 +267,10 @@ function drawSlot(
   const pillW = Math.min(metrics.width + pillPadX * 2, radius * 4)
   const pillH = radius * 0.65
   const pillX = cx - pillW / 2
-  // Standard: Pille unter dem Chip. Reicht der Platz zur Canvas-Unterkante nicht
-  // (z. B. tief stehender Torwart), nach oben über den Chip klappen.
   const pillGap = radius * 0.25
   const pillBelowY = cy + radius + pillGap
   const pillY =
-    pillBelowY + pillH <= ctx.canvas.height - radius * 0.12
+    pillBelowY + pillH <= bottomLimit - radius * 0.12
       ? pillBelowY
       : cy - radius - pillGap - pillH
   ctx.fillStyle = 'rgba(0,0,0,0.75)'
@@ -289,9 +282,118 @@ function drawSlot(
     drawn = drawn.slice(0, -1)
   }
   if (drawn !== label) drawn = drawn.slice(0, -1) + '…'
-  ctx.fillStyle = player ? '#ffffff' : '#94a3b8'
+  ctx.fillStyle = muted ? '#94a3b8' : '#ffffff'
   ctx.fillText(drawn, cx, pillY + pillH / 2 + pillPadY * 0.05)
   ctx.restore()
+}
+
+/** Zeichnet einen einzelnen Slot inkl. Spielerinfo (Foto/Initialen, Name, Nummer, Status). */
+function drawSlot(
+  ctx: CanvasRenderingContext2D,
+  cx: number,
+  cy: number,
+  slot: Slot,
+  player: Player | undefined,
+  photo: HTMLImageElement | undefined,
+  radius: number,
+  /**
+   * Unterkante, an der die Namens-Pille nach oben klappt. Bewusst NICHT
+   * `ctx.canvas.height`: bei angehängtem Bank-Band wäre die Leinwand höher als
+   * der Platz und die Pille des tiefen Torwarts ragte ins Band hinein.
+   */
+  bottomLimit: number,
+): void {
+  const isGK = slot.position === 'GK'
+
+  drawAvatar(ctx, cx, cy, radius, {
+    isGK,
+    photo,
+    // Trikotnummer mittig (Pflichtfeld); nur falls ausnahmsweise keine gesetzt
+    // → Initialen. Ein leerer Slot zeigt weiterhin das Positionskürzel.
+    centerText: player
+      ? typeof player.number === 'number'
+        ? String(player.number)
+        : initials(player.name)
+      : positionShort[slot.position],
+    centerScale: player && typeof player.number === 'number' ? 1.1 : 0.95,
+  })
+
+  // Kein Positions-Badge: die Position steht schon als Ort auf dem Platz.
+  // Ein leerer Slot trägt sein Kürzel mittig im Kreis (siehe drawAvatar oben) –
+  // identisch zur App, damit Export und Bildschirm nicht auseinanderlaufen.
+
+  // Status-Badge unten rechts (falls gesetzt).
+  if (player?.status) drawStatusBadge(ctx, cx, cy, radius, player.status)
+
+  // Name-Pill unten. Nummer steht mittig im Chip; in der Pille nur bei Foto-Spielern
+  // (dort zeigt die Mitte das Foto), sonst reicht der Name.
+  const label = player
+    ? photo && typeof player.number === 'number'
+      ? `${player.number} · ${player.name}`
+      : player.name
+    : '— frei —'
+  drawNamePill(ctx, cx, cy, radius, label, !player, bottomLimit)
+}
+
+/** Ein Spieler auf dem Bank-Band – gleiche Optik wie auf dem Platz, ohne Slot-Bezug. */
+function drawBenchPlayer(
+  ctx: CanvasRenderingContext2D,
+  cx: number,
+  cy: number,
+  player: Player,
+  photo: HTMLImageElement | undefined,
+  radius: number,
+): void {
+  drawAvatar(ctx, cx, cy, radius, {
+    isGK: player.role === 'GK',
+    photo,
+    centerText:
+      typeof player.number === 'number' ? String(player.number) : initials(player.name),
+    centerScale: typeof player.number === 'number' ? 1.1 : 0.95,
+  })
+  if (player.status) drawStatusBadge(ctx, cx, cy, radius, player.status)
+  const label =
+    photo && typeof player.number === 'number'
+      ? `${player.number} · ${player.name}`
+      : player.name
+  drawNamePill(ctx, cx, cy, radius, label, false, ctx.canvas.height)
+}
+
+/**
+ * Bank-Band unter dem Platz. Es werden nur besetzte Plätze gezeichnet –
+ * leere Stühle im Bild wären reines Rauschen.
+ */
+function drawBenchBand(
+  ctx: CanvasRenderingContext2D,
+  w: number,
+  top: number,
+  h: number,
+  players: Player[],
+  photos: Map<string, HTMLImageElement>,
+): void {
+  ctx.save()
+  ctx.fillStyle = '#0f172a'
+  ctx.fillRect(0, top, w, h)
+  ctx.strokeStyle = 'rgba(148,163,184,0.35)'
+  ctx.lineWidth = 2
+  ctx.beginPath()
+  ctx.moveTo(0, top + 1)
+  ctx.lineTo(w, top + 1)
+  ctx.stroke()
+  ctx.fillStyle = 'rgba(203,213,225,0.85)'
+  ctx.font = '700 24px Inter, system-ui, sans-serif'
+  ctx.textAlign = 'left'
+  ctx.textBaseline = 'middle'
+  ctx.fillText(`ERSATZBANK · ${players.length}`, 28, top + 34)
+  ctx.restore()
+
+  // Gleichmäßig verteilt; Radius schrumpft, wenn die Bank voll besetzt ist.
+  const step = w / (players.length + 1)
+  const radius = Math.min(46, step * 0.38)
+  const rowY = top + h / 2 + 20
+  players.forEach((player, i) => {
+    drawBenchPlayer(ctx, step * (i + 1), rowY, player, photos.get(player.id), radius)
+  })
 }
 
 function roundedRect(
@@ -320,14 +422,21 @@ function roundedRect(
  */
 export async function renderLineupPng(input: ExportInput): Promise<Blob> {
   const W = 1000
-  const H = 1500
+  // Höhe des Spielfelds. Die Leinwand kann darunter noch das Bank-Band tragen.
+  const PITCH_H = 1500
+  const benchPlayers = (input.bench ?? [])
+    .map((pid) => (pid ? input.players.find((p) => p.id === pid) : undefined))
+    .filter((p): p is Player => p !== undefined)
+  const benchBandH = benchPlayers.length > 0 ? BENCH_BAND_H : 0
+  const H = PITCH_H + benchBandH
+
   const canvas = document.createElement('canvas')
   canvas.width = W
   canvas.height = H
   const ctx = canvas.getContext('2d')
   if (!ctx) throw new Error('Canvas-Kontext nicht verfügbar.')
 
-  drawPitch(ctx, W, H)
+  drawPitch(ctx, W, PITCH_H)
 
   // Fotos für die aufgestellten Spieler vorladen.
   const photos = await loadPhotos(input)
@@ -337,8 +446,8 @@ export async function renderLineupPng(input: ExportInput): Promise<Blob> {
   // Defensiv: Pressingzone + Linie des ersten Störers unter die Chips legen.
   if (input.phase === 'withoutBall') {
     const lineY = pressingLineY(slots)
-    const lineCy = ((100 - lineY) / 100) * H
-    const bandH = Math.min((PRESSING_ZONE_DEPTH / 100) * H, H * 0.92 - lineCy)
+    const lineCy = ((100 - lineY) / 100) * PITCH_H
+    const bandH = Math.min((PRESSING_ZONE_DEPTH / 100) * PITCH_H, PITCH_H * 0.92 - lineCy)
     ctx.save()
     if (bandH > 0) {
       ctx.fillStyle = 'rgba(251,191,36,0.12)'
@@ -353,11 +462,11 @@ export async function renderLineupPng(input: ExportInput): Promise<Blob> {
     ctx.stroke()
     ctx.setLineDash([])
     const label = '1. STÖRER'
-    ctx.font = `700 ${Math.round(H * 0.018)}px Inter, system-ui, sans-serif`
+    ctx.font = `700 ${Math.round(PITCH_H * 0.018)}px Inter, system-ui, sans-serif`
     const tw = ctx.measureText(label).width
     const padX = W * 0.012
     ctx.fillStyle = 'rgba(245,158,11,0.88)'
-    roundedRect(ctx, 16, lineCy - H * 0.018, tw + padX * 2, H * 0.032, 5)
+    roundedRect(ctx, 16, lineCy - PITCH_H * 0.018, tw + padX * 2, PITCH_H * 0.032, 5)
     ctx.fill()
     ctx.fillStyle = '#0f172a'
     ctx.textAlign = 'left'
@@ -366,14 +475,20 @@ export async function renderLineupPng(input: ExportInput): Promise<Blob> {
     ctx.restore()
   }
 
-  const slotRadius = Math.min(W, H) * 0.06
+  const slotRadius = Math.min(W, PITCH_H) * 0.06
   for (const slot of slots) {
     const cx = (slot.x / 100) * W
-    const cy = ((100 - slot.y) / 100) * H
+    const cy = ((100 - slot.y) / 100) * PITCH_H
     const playerId = input.assignments[slot.id] ?? null
     const player = playerId ? input.players.find((p) => p.id === playerId) : undefined
     const photo = player ? photos.get(player.id) : undefined
-    drawSlot(ctx, cx, cy, slot, player, photo, slotRadius)
+    // Unterkante ist das Spielfeld, nicht die Leinwand – sonst ragte die Pille
+    // des tief stehenden Torwarts in das Bank-Band.
+    drawSlot(ctx, cx, cy, slot, player, photo, slotRadius, PITCH_H)
+  }
+
+  if (benchBandH > 0) {
+    drawBenchBand(ctx, W, PITCH_H, benchBandH, benchPlayers, photos)
   }
 
   // Titel oben.

@@ -22,6 +22,8 @@ export function ImportShareDialog({ payload, onClose }: Props) {
   const matched = match.assignments.length
   const subsTotal = payload.s?.length ?? 0
   const subsMatched = match.substitutions.length
+  const benchTotal = (payload.b ?? []).filter(Boolean).length
+  const benchMatched = match.bench.filter(Boolean).length
 
   const handleImport = () => {
     guardImport(() => {
@@ -71,6 +73,12 @@ export function ImportShareDialog({ payload, onClose }: Props) {
             <span className="text-slate-500">Spieler im Plan:</span> {matched} von {total} im
             eigenen Kader gefunden
           </div>
+          {benchTotal > 0 && (
+            <div className="mt-1">
+              <span className="text-slate-500">Ersatzbank:</span> {benchMatched} von {benchTotal}{' '}
+              übertragbar
+            </div>
+          )}
           {subsTotal > 0 && (
             <div className="mt-1">
               <span className="text-slate-500">Wechsel:</span> {subsMatched} von {subsTotal}{' '}
